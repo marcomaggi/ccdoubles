@@ -1,0 +1,35 @@
+Subject: [announce] CCDoubles revision 0.1d0
+
+			       CCDoubles
+			       =========
+
+
+This package installs  a C99 language library  implementing routines for
+vectors and matrices of "double float" values.
+
+  The package  makes use  of the  GNU Autotools  and it  is tested  on a
+GNU+Linux  system.   It is  distributed  under  the GNU  General  Public
+License version 3.0.
+
+  The latest version of this package can be downloaded from:
+
+	       <http://github.com/marcomaggi/ccdoubles/>
+
+the documentation is available online:
+
+	   <http://marcomaggi.github.com/docs/ccdoubles.html>
+
+
+Notes for revision 0.1d0
+------------------------
+
+* This is a template project.
+
+
+### end of file
+# Local Variables:
+# coding: utf-8-unix
+# mode: text
+# fill-column: 72
+# paragraph-start: "*"
+# End:

@@ -36,7 +36,9 @@ libccdoubles_la_LDFLAGS= -version-info $(ccdoubles_CURRENT):$(ccdoubles_REVISION
 libccdoubles_la_SOURCES= \
 	src/ccdoubles.h			\
 	src/ccdoubles-internals.h	\
-	src/ccdoubles-version.c
+	src/ccdoubles-version.c		\
+	src/ccdoubles-real-vectors.c	\
+	src/ccdoubles-cplx-vectors.c
 
 #page
 #### tests

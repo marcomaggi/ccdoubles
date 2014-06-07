@@ -38,7 +38,6 @@ AC_LANG([C])
 dnl AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 AC_PROG_CC_C99
 AM_PROG_AS
-AC_PROG_CC
 AM_PROG_CC_C_O
 AC_HEADER_STDC
 AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h])
@@ -59,6 +58,11 @@ AC_FUNC_MEMCMP
 AC_CHECK_FUNCS([memmove memset strerror])
 
 AC_CACHE_SAVE
+
+dnl page
+dnl external libraries
+
+AC_CHECK_LIB([m],[cabs])
 
 dnl page
 #### finish

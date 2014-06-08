@@ -42,6 +42,8 @@
  ** Preprocessor macros.
  ** ----------------------------------------------------------------- */
 
+/* Build and return a "double complex". */
+#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
 
 
 /** --------------------------------------------------------------------

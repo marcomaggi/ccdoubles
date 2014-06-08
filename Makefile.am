@@ -37,6 +37,7 @@ libccdoubles_la_SOURCES= \
 	src/ccdoubles.h			\
 	src/ccdoubles-internals.h	\
 	src/ccdoubles-version.c		\
+	src/ccdoubles-cplx-scalars.c	\
 	src/ccdoubles-real-vectors.c	\
 	src/ccdoubles-cplx-vectors.c
 

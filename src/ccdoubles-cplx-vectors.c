@@ -38,12 +38,12 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_clear (size_t nitems, _Complex * __restrict__ vector)
+ccdoubles_cplx_vector_clear (size_t nitems, double complex * __restrict__ vector)
 {
-  memset(vector, 0, sizeof(_Complex double) * nitems);
+  memset(vector, 0, sizeof(double complex) * nitems);
 }
 void
-ccdoubles_cplx_vector_set (size_t nitems, _Complex * __restrict__ vector, _Complex value)
+ccdoubles_cplx_vector_set (size_t nitems, double complex * __restrict__ vector, double complex value)
 {
   for (size_t i=0; i<nitems; ++i) {
     vector[i] = value;
@@ -57,9 +57,9 @@ ccdoubles_cplx_vector_set (size_t nitems, _Complex * __restrict__ vector, _Compl
 
 void
 ccdoubles_cplx_vector_add (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand1,
-			   _Complex * __restrict__ operand2)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand1,
+			   double complex * __restrict__ operand2)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = operand1[i] + operand2[i];
@@ -67,9 +67,9 @@ ccdoubles_cplx_vector_add (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_sub (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand1,
-			   _Complex * __restrict__ operand2)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand1,
+			   double complex * __restrict__ operand2)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = operand1[i] - operand2[i];
@@ -77,9 +77,9 @@ ccdoubles_cplx_vector_sub (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_mul (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand1,
-			   _Complex * __restrict__ operand2)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand1,
+			   double complex * __restrict__ operand2)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = operand1[i] * operand2[i];
@@ -87,9 +87,9 @@ ccdoubles_cplx_vector_mul (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_div (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand1,
-			   _Complex * __restrict__ operand2)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand1,
+			   double complex * __restrict__ operand2)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = operand1[i] / operand2[i];
@@ -97,8 +97,8 @@ ccdoubles_cplx_vector_div (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_neg (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = - operand[i];
@@ -110,22 +110,22 @@ ccdoubles_cplx_vector_neg (size_t nitems,
  ** Vector operations.
  ** ----------------------------------------------------------------- */
 
-_Complex double
+double complex
 ccdoubles_cplx_vector_scalar_product (size_t nitems,
-				      const _Complex * __restrict__ operand1,
-				      const _Complex * __restrict__ operand2)
+				      const double complex * __restrict__ operand1,
+				      const double complex * __restrict__ operand2)
 {
-  _Complex double	result = 0.0;
+  double complex	result = 0.0;
   for (size_t i=0; i<nitems; ++i) {
-    result += operand1[i] + operand2[i];
+    result += operand1[i] * operand2[i];
   }
   return result;
 }
 void
 ccdoubles_cplx_vector_scalar_mul (size_t nitems,
-				  _Complex * __restrict__ result,
-				  _Complex lambda,
-				  const _Complex * __restrict__ operand)
+				  double complex * __restrict__ result,
+				  complex lambda,
+				  const double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = lambda * operand[i];
@@ -133,11 +133,11 @@ ccdoubles_cplx_vector_scalar_mul (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_linear_combination (size_t nitems,
-					  _Complex * __restrict__ result,
-					  _Complex alpha,
-					  _Complex * __restrict__ operand1,
-					  _Complex beta,
-					  _Complex * __restrict__ operand2)
+					  double complex * __restrict__ result,
+					  complex alpha,
+					  double complex * __restrict__ operand1,
+					  complex beta,
+					  double complex * __restrict__ operand2)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = alpha * operand1[i] + beta * operand2[i];
@@ -151,8 +151,8 @@ ccdoubles_cplx_vector_linear_combination (size_t nitems,
 
 void
 ccdoubles_cplx_vector_sin (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = csin(operand[i]);
@@ -160,8 +160,8 @@ ccdoubles_cplx_vector_sin (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_cos (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = ccos(operand[i]);
@@ -169,8 +169,8 @@ ccdoubles_cplx_vector_cos (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_tan (size_t nitems,
-			   _Complex * __restrict__ result,
-			   _Complex * __restrict__ operand)
+			   double complex * __restrict__ result,
+			   double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = ctan(operand[i]);
@@ -184,8 +184,8 @@ ccdoubles_cplx_vector_tan (size_t nitems,
 
 void
 ccdoubles_cplx_vector_asin (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = casin(operand[i]);
@@ -193,8 +193,8 @@ ccdoubles_cplx_vector_asin (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_acos (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = cacos(operand[i]);
@@ -202,8 +202,8 @@ ccdoubles_cplx_vector_acos (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_atan (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = catan(operand[i]);
@@ -217,8 +217,8 @@ ccdoubles_cplx_vector_atan (size_t nitems,
 
 void
 ccdoubles_cplx_vector_sinh (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = csinh(operand[i]);
@@ -226,8 +226,8 @@ ccdoubles_cplx_vector_sinh (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_cosh (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = ccosh(operand[i]);
@@ -235,8 +235,8 @@ ccdoubles_cplx_vector_cosh (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_tanh (size_t nitems,
-			    _Complex * __restrict__ result,
-			    _Complex * __restrict__ operand)
+			    double complex * __restrict__ result,
+			    double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = ctanh(operand[i]);
@@ -250,8 +250,8 @@ ccdoubles_cplx_vector_tanh (size_t nitems,
 
 void
 ccdoubles_cplx_vector_asinh (size_t nitems,
-			     _Complex * __restrict__ result,
-			     _Complex * __restrict__ operand)
+			     double complex * __restrict__ result,
+			     double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = casinh(operand[i]);
@@ -259,8 +259,8 @@ ccdoubles_cplx_vector_asinh (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_acosh (size_t nitems,
-			     _Complex * __restrict__ result,
-			     _Complex * __restrict__ operand)
+			     double complex * __restrict__ result,
+			     double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = cacosh(operand[i]);
@@ -268,8 +268,8 @@ ccdoubles_cplx_vector_acosh (size_t nitems,
 }
 void
 ccdoubles_cplx_vector_atanh (size_t nitems,
-			     _Complex * __restrict__ result,
-			     _Complex * __restrict__ operand)
+			     double complex * __restrict__ result,
+			     double complex * __restrict__ operand)
 {
   for (size_t i=0; i<nitems; ++i) {
     result[i] = catanh(operand[i]);

@@ -33,6 +33,14 @@
 #include <assert.h>
 #include <ccdoubles.h>
 
+static void test_real_vectors (void);
+static void test_cplx_vectors (void);
+
+#define	NITEMS		1
+#define EPSILON		1e-6
+
+#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
+
 
 /** --------------------------------------------------------------------
  ** Main.
@@ -41,7 +49,19 @@
 int
 main (int argc, const char *const argv[])
 {
-#define	NITEMS		1
+  test_real_vectors();
+  test_cplx_vectors();
+  exit(EXIT_SUCCESS);
+}
+
+
+/** --------------------------------------------------------------------
+ ** Test real vectors.
+ ** ----------------------------------------------------------------- */
+
+void
+test_real_vectors (void)
+{
   {
     double	V[NITEMS];
     ccdoubles_real_vector_clear(NITEMS, V);
@@ -219,8 +239,207 @@ main (int argc, const char *const argv[])
     ccdoubles_real_vector_atanh (NITEMS, R, O);
     assert(atanh(0.1) == R[0]);
   }
+}
 
-  exit(EXIT_SUCCESS);
+
+/** --------------------------------------------------------------------
+ ** Test complex vectors.
+ ** ----------------------------------------------------------------- */
+
+void
+test_cplx_vectors (void)
+{
+  {
+    double complex	V[NITEMS];
+    double complex	E = CPLX(0.0, 0.0);
+    ccdoubles_cplx_vector_clear(NITEMS, V);
+    assert(E == V[0]);
+  }
+
+  {
+    double complex	V[NITEMS];
+    double complex	E = CPLX(1.2, 3.4);
+    ccdoubles_cplx_vector_set(NITEMS, V, E);
+    assert(E == V[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double complex	R[NITEMS];
+    double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    ccdoubles_cplx_vector_add (NITEMS, R, O1, O2);
+    assert((CPLX(1.2, 3.4) + CPLX(4.5, 6.7)) == R[0]);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    ccdoubles_cplx_vector_sub (NITEMS, R, O1, O2);
+    assert((CPLX(1.2, 3.4) - CPLX(4.5, 6.7)) == R[0]);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    ccdoubles_cplx_vector_mul (NITEMS, R, O1, O2);
+    assert(ccdoubles_cplx_mul(CPLX(1.2, 3.4), CPLX(4.5, 6.7)) == R[0]);
+  }
+#if 0
+  {
+    double complex	R[NITEMS];
+    double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    ccdoubles_cplx_vector_div (NITEMS, R, O1, O2);
+    assert(ccdoubles_cplx_div(CPLX(1.2, 3.4), CPLX(4.5, 6.7)) == R[0]);
+  }
+#endif
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    ccdoubles_cplx_vector_neg (NITEMS, R, O);
+    assert(ccdoubles_cplx_neg(CPLX(1.2, 3.4)) == R[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double complex	R;
+    double complex	O1[2] = { CPLX(1.2, 2.3), CPLX(3.4, 4.5) };
+    double complex	O2[2] = { CPLX(5.6, 6.7), CPLX(7.8, 8.9) };
+    double complex	E =
+      ccdoubles_cplx_mul(CPLX(1.2, 2.3), CPLX(5.6, 6.7)) +
+      ccdoubles_cplx_mul(CPLX(3.4, 4.5), CPLX(7.8, 8.9));
+    R = ccdoubles_cplx_vector_scalar_product (2, O1, O2);
+    assert(E == R);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	lambda = CPLX(1.2, 3.4);
+    double complex	O[NITEMS] = { CPLX(5.6, 7.8) };
+    double complex	E = ccdoubles_cplx_mul(lambda, CPLX(5.6, 7.8));
+    ccdoubles_cplx_vector_scalar_mul (NITEMS, R, lambda, O);
+    assert(E == R[0]);
+  }
+
+  {
+    double complex	R[2];
+    double complex	alpha = CPLX(1.2, 2.3);
+    double complex	beta  = CPLX(3.4, 5.6);
+    double complex	O1[2] = { CPLX(1.2, 2.3), CPLX(3.4, 4.5) };
+    double complex	O2[2] = { CPLX(5.6, 6.7), CPLX(7.8, 8.9) };
+    double complex	E1 = \
+      ccdoubles_cplx_mul(alpha, O1[0]) + ccdoubles_cplx_mul(beta, O2[0]);
+    double complex	E2 = \
+      ccdoubles_cplx_mul(alpha, O1[1]) + ccdoubles_cplx_mul(beta, O2[1]);
+    ccdoubles_cplx_vector_linear_combination (2, R, alpha, O1, beta, O2);
+    assert(E1 == R[0]);
+    assert(E2 == R[1]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = csin(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_sin (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = ccos(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_cos (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = ctan(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_tan (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = casin(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_asin (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = cacos(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_acos (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = catan(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_atan (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = csinh(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_sinh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = ccosh(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_cosh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = ctanh(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_tanh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = casinh(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_asinh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = cacosh(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_acosh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NITEMS];
+    double complex	O[NITEMS] = { CPLX(0.5, 0.6) };
+    double complex	E = catanh(CPLX(0.5, 0.6));
+    ccdoubles_cplx_vector_atanh (NITEMS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
 }
 
 /* end of file */

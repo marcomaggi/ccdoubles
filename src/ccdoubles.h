@@ -176,7 +176,7 @@ ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
 ccdoubles_decl void ccdoubles_real_vector_scalar_mul (size_t nslots,
 						      double * restrict result,
 						      double lambda,
-						      const double * restrict operand);
+						      double * restrict operand);
 ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nslots,
 							      double * restrict result,
 							      double alpha,
@@ -223,6 +223,119 @@ ccdoubles_decl void ccdoubles_real_vector_acosh (size_t nslots,
 						 double * restrict result,
 						 double * restrict operand);
 ccdoubles_decl void ccdoubles_real_vector_atanh (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+
+
+/** --------------------------------------------------------------------
+ ** Real matrix functions.
+ ** ----------------------------------------------------------------- */
+
+ccdoubles_decl void ccdoubles_real_matrix_clear (size_t nrows, size_t ncols,
+						 double * restrict matrix);
+ccdoubles_decl void ccdoubles_real_matrix_set   (size_t nrows, size_t ncols,
+						 double * restrict matrix,
+						 double value);
+ccdoubles_decl void ccdoubles_real_matrix_copy (size_t nrows, size_t ncols,
+						double * restrict dst,
+						double * restrict src);
+
+ccdoubles_decl void ccdoubles_real_matrix_add (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_sub (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_mul (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_div (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_neg (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_abs (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_ceil (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_floor (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_trunc (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_round (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl double ccdoubles_real_matrix_scalar_product (size_t nrows, size_t ncols,
+							    const double * restrict operand1,
+							    const double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_scalar_mul (size_t nrows, size_t ncols,
+						      double * restrict result,
+						      double lambda,
+						      double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_linear_combination (size_t nrows, size_t ncols,
+							      double * restrict result,
+							      double alpha,
+							      double * restrict operand1,
+							      double beta,
+							      double * restrict operand2);
+
+ccdoubles_decl void ccdoubles_real_matrix_sin (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_cos (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_tan (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_asin (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_acos (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_atan (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_atan2 (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand1,
+						 double * restrict operand2);
+
+ccdoubles_decl void ccdoubles_real_matrix_sinh (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_cosh (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_tanh (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_asinh (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_acosh (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_atanh (size_t nrows, size_t ncols,
 						 double * restrict result,
 						 double * restrict operand);
 
@@ -291,7 +404,7 @@ ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (size_t nslot
 ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (size_t nslots,
 						      double complex * restrict result,
 						      double complex lambda,
-						      const double complex * restrict operand);
+						      double complex * restrict operand);
 ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nslots,
 							      double complex * restrict result,
 							      double complex alpha,
@@ -334,6 +447,117 @@ ccdoubles_decl void ccdoubles_cplx_vector_acosh (size_t nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
 ccdoubles_decl void ccdoubles_cplx_vector_atanh (size_t nslots,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+
+
+/** --------------------------------------------------------------------
+ ** Complex matrix functions.
+ ** ----------------------------------------------------------------- */
+
+ccdoubles_decl void ccdoubles_cplx_matrix_clear (size_t nrows, size_t ncols,
+						 double complex * restrict matrix);
+ccdoubles_decl void ccdoubles_cplx_matrix_set   (size_t nrows, size_t ncols,
+						 double complex * restrict matrix,
+						 double complex value);
+ccdoubles_decl void ccdoubles_cplx_matrix_copy (size_t nrows, size_t ncols,
+						double complex * restrict dst,
+						double complex * restrict src);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_real (size_t nrows, size_t ncols,
+						double * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_imag (size_t nrows, size_t ncols,
+						double * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_magnitude (size_t nrows, size_t ncols,
+						     double * restrict result,
+						     double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_angle (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_conj (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_from_rect (size_t nrows, size_t ncols,
+						     double complex * restrict result,
+						     double * restrict real,
+						     double * restrict imag);
+ccdoubles_decl void ccdoubles_cplx_matrix_from_polar (size_t nrows, size_t ncols,
+						      double complex * restrict result,
+						      double * restrict magnitude,
+						      double * restrict angle);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_matrix_add (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_sub (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_mul (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_div (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_neg (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl double complex ccdoubles_cplx_matrix_scalar_product (size_t nrows, size_t ncols,
+								    const double complex * restrict operand1,
+								    const double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (size_t nrows, size_t ncols,
+						      double complex * restrict result,
+						      double complex lambda,
+						      double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (size_t nrows, size_t ncols,
+							      double complex * restrict result,
+							      double complex alpha,
+							      double complex * restrict operand1,
+							      double complex beta,
+							      double complex * restrict operand2);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_cos (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_tan (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_asin (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_acos (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_atan (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_sinh (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_cosh (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_tanh (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_asinh (size_t nrows, size_t ncols,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_acosh (size_t nrows, size_t ncols,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_atanh (size_t nrows, size_t ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
 

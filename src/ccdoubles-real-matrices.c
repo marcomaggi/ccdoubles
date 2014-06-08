@@ -1,6 +1,6 @@
 /*
   Part of: CCDoubles
-  Contents: routines for vectors
+  Contents: routines for matrices of real numbers
   Date: Sat Jun  7, 2014
 
   Abstract
@@ -37,25 +37,24 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_clear (size_t nslots, double * restrict vector)
+ccdoubles_real_matrix_clear (size_t nrows, size_t ncols,
+			     double * restrict matrix)
 {
-  memset(vector, 0, sizeof(double) * nslots);
+  ccdoubles_real_vector_clear(nrows * ncols, matrix);
 }
 void
-ccdoubles_real_vector_set (size_t nslots, double * restrict vector, double value)
+ccdoubles_real_matrix_set (size_t nrows, size_t ncols,
+			   double * restrict matrix,
+			   double value)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    vector[i] = value;
-  }
+  ccdoubles_real_vector_set(nrows * ncols, matrix, value);
 }
 void
-ccdoubles_real_vector_copy (size_t nslots,
+ccdoubles_real_matrix_copy (size_t nrows, size_t ncols,
 			    double * restrict dst,
 			    double * restrict src)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    dst[i] = src[i];
-  }
+  ccdoubles_real_vector_copy(nrows * ncols, dst, src);
 }
 
 
@@ -64,62 +63,50 @@ ccdoubles_real_vector_copy (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_add (size_t nslots,
+ccdoubles_real_matrix_add (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand1,
 			   double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] + operand2[i];
-  }
+  ccdoubles_real_vector_add(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_real_vector_sub (size_t nslots,
+ccdoubles_real_matrix_sub (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand1,
 			   double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] - operand2[i];
-  }
+  ccdoubles_real_vector_sub(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_real_vector_mul (size_t nslots,
+ccdoubles_real_matrix_mul (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand1,
 			   double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] * operand2[i];
-  }
+  ccdoubles_real_vector_mul(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_real_vector_div (size_t nslots,
+ccdoubles_real_matrix_div (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand1,
 			   double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] / operand2[i];
-  }
+  ccdoubles_real_vector_div(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_real_vector_neg (size_t nslots,
+ccdoubles_real_matrix_neg (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = - operand[i];
-  }
+  ccdoubles_real_vector_neg(nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_abs (size_t nslots,
+ccdoubles_real_matrix_abs (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = fabs(operand[i]);
-  }
+  ccdoubles_real_vector_abs(nrows * ncols, result, operand);
 }
 
 
@@ -128,88 +115,64 @@ ccdoubles_real_vector_abs (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_ceil (size_t nslots,
+ccdoubles_real_matrix_ceil (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = ceil(operand[i]);
-  }
+  ccdoubles_real_vector_ceil(nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_floor (size_t nslots,
+ccdoubles_real_matrix_floor (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = floor(operand[i]);
-  }
+  ccdoubles_real_vector_floor(nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_trunc (size_t nslots,
+ccdoubles_real_matrix_trunc (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = trunc(operand[i]);
-  }
+  ccdoubles_real_vector_trunc(nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_round (size_t nslots,
+ccdoubles_real_matrix_round (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = round(operand[i]);
-  }
+  ccdoubles_real_vector_round(nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_rint (size_t nslots,
+ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = rint(operand[i]);
-  }
+  ccdoubles_real_vector_rint(nrows * ncols, result, operand);
 }
 
 
 /** --------------------------------------------------------------------
- ** Vector operations.
+ ** Matrix operations.
  ** ----------------------------------------------------------------- */
 
-double
-ccdoubles_real_vector_scalar_product (size_t nslots,
-				      const double * restrict operand1,
-				      const double * restrict operand2)
-{
-  double	result = 0.0;
-  for (size_t i=0; i<nslots; ++i) {
-    result += operand1[i] * operand2[i];
-  }
-  return result;
-}
 void
-ccdoubles_real_vector_scalar_mul (size_t nslots,
+ccdoubles_real_matrix_scalar_mul (size_t nrows, size_t ncols,
 				  double * restrict result,
 				  double lambda,
 				  double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = lambda * operand[i];
-  }
+  ccdoubles_real_vector_scalar_mul(nrows * ncols, result, lambda, operand);
 }
 void
-ccdoubles_real_vector_linear_combination (size_t nslots,
+ccdoubles_real_matrix_linear_combination (size_t nrows, size_t ncols,
 					  double * restrict result,
 					  double alpha,
 					  double * restrict operand1,
 					  double beta,
 					  double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = alpha * operand1[i] + beta * operand2[i];
-  }
+  ccdoubles_real_vector_linear_combination(nrows * ncols,
+					   result, alpha, operand1, beta, operand2);
 }
 
 
@@ -218,31 +181,25 @@ ccdoubles_real_vector_linear_combination (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_sin (size_t nslots,
+ccdoubles_real_matrix_sin (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = sin(operand[i]);
-  }
+  ccdoubles_real_vector_sin (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_cos (size_t nslots,
+ccdoubles_real_matrix_cos (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = cos(operand[i]);
-  }
+  ccdoubles_real_vector_cos (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_tan (size_t nslots,
+ccdoubles_real_matrix_tan (size_t nrows, size_t ncols,
 			   double * restrict result,
 			   double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = tan(operand[i]);
-  }
+  ccdoubles_real_vector_tan (nrows * ncols, result, operand);
 }
 
 
@@ -251,41 +208,33 @@ ccdoubles_real_vector_tan (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_asin (size_t nslots,
+ccdoubles_real_matrix_asin (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = asin(operand[i]);
-  }
+  ccdoubles_real_vector_asin (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_acos (size_t nslots,
+ccdoubles_real_matrix_acos (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = acos(operand[i]);
-  }
+  ccdoubles_real_vector_acos (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_atan (size_t nslots,
+ccdoubles_real_matrix_atan (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = atan(operand[i]);
-  }
+  ccdoubles_real_vector_atan (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_atan2 (size_t nslots,
+ccdoubles_real_matrix_atan2 (size_t nrows, size_t ncols,
 			     double * restrict result,
 			     double * restrict operand1,
 			     double * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = atan2(operand1[i], operand2[i]);
-  }
+  ccdoubles_real_vector_atan2 (nrows * ncols, result, operand1, operand2);
 }
 
 
@@ -294,31 +243,25 @@ ccdoubles_real_vector_atan2 (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_sinh (size_t nslots,
+ccdoubles_real_matrix_sinh (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = sinh(operand[i]);
-  }
+  ccdoubles_real_vector_sinh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_cosh (size_t nslots,
+ccdoubles_real_matrix_cosh (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = cosh(operand[i]);
-  }
+  ccdoubles_real_vector_cosh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_tanh (size_t nslots,
+ccdoubles_real_matrix_tanh (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = tanh(operand[i]);
-  }
+  ccdoubles_real_vector_tanh (nrows * ncols, result, operand);
 }
 
 
@@ -327,31 +270,25 @@ ccdoubles_real_vector_tanh (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_asinh (size_t nslots,
+ccdoubles_real_matrix_asinh (size_t nrows, size_t ncols,
 			     double * restrict result,
 			     double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = asinh(operand[i]);
-  }
+  ccdoubles_real_vector_asinh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_acosh (size_t nslots,
+ccdoubles_real_matrix_acosh (size_t nrows, size_t ncols,
 			     double * restrict result,
 			     double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = acosh(operand[i]);
-  }
+  ccdoubles_real_vector_acosh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_real_vector_atanh (size_t nslots,
+ccdoubles_real_matrix_atanh (size_t nrows, size_t ncols,
 			     double * restrict result,
 			     double * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = atanh(operand[i]);
-  }
+  ccdoubles_real_vector_atanh (nrows * ncols, result, operand);
 }
 
 /* end of file */

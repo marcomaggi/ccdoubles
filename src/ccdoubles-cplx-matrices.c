@@ -1,6 +1,6 @@
 /*
   Part of: CCDoubles
-  Contents: routines for vectors
+  Contents: routines for matrices of real numbers
   Date: Sat Jun  7, 2014
 
   Abstract
@@ -29,7 +29,6 @@
  ** ----------------------------------------------------------------- */
 
 #include "ccdoubles-internals.h"
-#include <complex.h>
 #include <string.h>
 
 
@@ -38,105 +37,81 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_clear (size_t nslots, double complex * restrict vector)
+ccdoubles_cplx_matrix_clear (size_t nrows, size_t ncols,
+			     double complex * restrict matrix)
 {
-  memset(vector, 0, sizeof(double complex) * nslots);
+  ccdoubles_cplx_vector_clear(nrows * ncols, matrix);
 }
 void
-ccdoubles_cplx_vector_set (size_t nslots, double complex * restrict vector, double complex value)
+ccdoubles_cplx_matrix_set (size_t nrows, size_t ncols,
+			   double complex * restrict matrix,
+			   double complex value)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    vector[i] = value;
-  }
+  ccdoubles_cplx_vector_set(nrows * ncols, matrix, value);
 }
 void
-ccdoubles_cplx_vector_copy (size_t nslots,
+ccdoubles_cplx_matrix_copy (size_t nrows, size_t ncols,
 			    double complex * restrict dst,
 			    double complex * restrict src)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    dst[i] = src[i];
-  }
+  ccdoubles_cplx_vector_copy(nrows * ncols, dst, src);
 }
 
 /* ------------------------------------------------------------------ */
 
 void
-ccdoubles_cplx_vector_real (size_t nslots,
+ccdoubles_cplx_matrix_real (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = creal(operand[i]);
-  }
+  ccdoubles_cplx_vector_real (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_imag (size_t nslots,
+ccdoubles_cplx_matrix_imag (size_t nrows, size_t ncols,
 			    double * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = cimag(operand[i]);
-  }
+  ccdoubles_cplx_vector_imag (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_magnitude (size_t nslots,
+ccdoubles_cplx_matrix_magnitude (size_t nrows, size_t ncols,
 				 double * restrict result,
 				 double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    if (1) {
-      result[i] = cabs(operand[i]);
-    } else {
-      result[i] = hypot(creal(operand[i]), cimag(operand[i]));
-    }
-  }
+  ccdoubles_cplx_vector_magnitude (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_angle (size_t nslots,
+ccdoubles_cplx_matrix_angle (size_t nrows, size_t ncols,
 			     double * restrict result,
 			     double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    if (1) {
-      result[i] = carg(operand[i]);
-    } else {
-      result[i] = atan2(cimag(operand[i]), creal(operand[i]));
-    }
-  }
+  ccdoubles_cplx_vector_angle (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_conj (size_t nslots,
+ccdoubles_cplx_matrix_conj (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = conj(operand[i]);
-  }
+  ccdoubles_cplx_vector_conj (nrows * ncols, result, operand);
 }
 
 /* ------------------------------------------------------------------ */
 
 void
-ccdoubles_cplx_vector_from_rect (size_t nslots,
+ccdoubles_cplx_matrix_from_rect (size_t nrows, size_t ncols,
 				 double complex * restrict result,
 				 double * restrict real,
 				 double * restrict imag)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = CCDOUBLES_CPLX(real[i], imag[i]);
-  }
+  ccdoubles_cplx_vector_from_rect (nrows * ncols, result, real, imag);
 }
 void
-ccdoubles_cplx_vector_from_polar (size_t nslots,
+ccdoubles_cplx_matrix_from_polar (size_t nrows, size_t ncols,
 				  double complex * restrict result,
 				  double * restrict magnitude,
 				  double * restrict angle)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = CCDOUBLES_CPLX((magnitude[i] * cos(angle[i])),
-			       (magnitude[i] * sin(angle[i])));
-  }
+  ccdoubles_cplx_vector_from_rect (nrows * ncols, result, magnitude, angle);
 }
 
 
@@ -145,92 +120,68 @@ ccdoubles_cplx_vector_from_polar (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_add (size_t nslots,
+ccdoubles_cplx_matrix_add (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand1,
 			   double complex * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] + operand2[i];
-  }
+  ccdoubles_cplx_vector_add(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_cplx_vector_sub (size_t nslots,
+ccdoubles_cplx_matrix_sub (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand1,
 			   double complex * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] - operand2[i];
-  }
+  ccdoubles_cplx_vector_sub(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_cplx_vector_mul (size_t nslots,
+ccdoubles_cplx_matrix_mul (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand1,
 			   double complex * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] * operand2[i];
-  }
+  ccdoubles_cplx_vector_mul(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_cplx_vector_div (size_t nslots,
+ccdoubles_cplx_matrix_div (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand1,
 			   double complex * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = operand1[i] / operand2[i];
-  }
+  ccdoubles_cplx_vector_div(nrows * ncols, result, operand1, operand2);
 }
 void
-ccdoubles_cplx_vector_neg (size_t nslots,
+ccdoubles_cplx_matrix_neg (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = - operand[i];
-  }
+  ccdoubles_cplx_vector_neg(nrows * ncols, result, operand);
 }
 
 
 /** --------------------------------------------------------------------
- ** Vector operations.
+ ** Matrix operations.
  ** ----------------------------------------------------------------- */
 
-double complex
-ccdoubles_cplx_vector_scalar_product (size_t nslots,
-				      const double complex * restrict operand1,
-				      const double complex * restrict operand2)
-{
-  double complex	result = 0.0;
-  for (size_t i=0; i<nslots; ++i) {
-    result += operand1[i] * operand2[i];
-  }
-  return result;
-}
 void
-ccdoubles_cplx_vector_scalar_mul (size_t nslots,
+ccdoubles_cplx_matrix_scalar_mul (size_t nrows, size_t ncols,
 				  double complex * restrict result,
 				  double complex lambda,
 				  double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = lambda * operand[i];
-  }
+  ccdoubles_cplx_vector_scalar_mul(nrows * ncols, result, lambda, operand);
 }
 void
-ccdoubles_cplx_vector_linear_combination (size_t nslots,
+ccdoubles_cplx_matrix_linear_combination (size_t nrows, size_t ncols,
 					  double complex * restrict result,
 					  double complex alpha,
 					  double complex * restrict operand1,
 					  double complex beta,
 					  double complex * restrict operand2)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = alpha * operand1[i] + beta * operand2[i];
-  }
+  ccdoubles_cplx_vector_linear_combination(nrows * ncols,
+					   result, alpha, operand1, beta, operand2);
 }
 
 
@@ -239,31 +190,25 @@ ccdoubles_cplx_vector_linear_combination (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_sin (size_t nslots,
+ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = csin(operand[i]);
-  }
+  ccdoubles_cplx_vector_sin (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_cos (size_t nslots,
+ccdoubles_cplx_matrix_cos (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = ccos(operand[i]);
-  }
+  ccdoubles_cplx_vector_cos (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_tan (size_t nslots,
+ccdoubles_cplx_matrix_tan (size_t nrows, size_t ncols,
 			   double complex * restrict result,
 			   double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = ctan(operand[i]);
-  }
+  ccdoubles_cplx_vector_tan (nrows * ncols, result, operand);
 }
 
 
@@ -272,31 +217,25 @@ ccdoubles_cplx_vector_tan (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_asin (size_t nslots,
+ccdoubles_cplx_matrix_asin (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = casin(operand[i]);
-  }
+  ccdoubles_cplx_vector_asin (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_acos (size_t nslots,
+ccdoubles_cplx_matrix_acos (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = cacos(operand[i]);
-  }
+  ccdoubles_cplx_vector_acos (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_atan (size_t nslots,
+ccdoubles_cplx_matrix_atan (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = catan(operand[i]);
-  }
+  ccdoubles_cplx_vector_atan (nrows * ncols, result, operand);
 }
 
 
@@ -305,31 +244,25 @@ ccdoubles_cplx_vector_atan (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_sinh (size_t nslots,
+ccdoubles_cplx_matrix_sinh (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = csinh(operand[i]);
-  }
+  ccdoubles_cplx_vector_sinh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_cosh (size_t nslots,
+ccdoubles_cplx_matrix_cosh (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = ccosh(operand[i]);
-  }
+  ccdoubles_cplx_vector_cosh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_tanh (size_t nslots,
+ccdoubles_cplx_matrix_tanh (size_t nrows, size_t ncols,
 			    double complex * restrict result,
 			    double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = ctanh(operand[i]);
-  }
+  ccdoubles_cplx_vector_tanh (nrows * ncols, result, operand);
 }
 
 
@@ -338,31 +271,25 @@ ccdoubles_cplx_vector_tanh (size_t nslots,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_asinh (size_t nslots,
+ccdoubles_cplx_matrix_asinh (size_t nrows, size_t ncols,
 			     double complex * restrict result,
 			     double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = casinh(operand[i]);
-  }
+  ccdoubles_cplx_vector_asinh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_acosh (size_t nslots,
+ccdoubles_cplx_matrix_acosh (size_t nrows, size_t ncols,
 			     double complex * restrict result,
 			     double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = cacosh(operand[i]);
-  }
+  ccdoubles_cplx_vector_acosh (nrows * ncols, result, operand);
 }
 void
-ccdoubles_cplx_vector_atanh (size_t nslots,
+ccdoubles_cplx_matrix_atanh (size_t nrows, size_t ncols,
 			     double complex * restrict result,
 			     double complex * restrict operand)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    result[i] = catanh(operand[i]);
-  }
+  ccdoubles_cplx_vector_atanh (nrows * ncols, result, operand);
 }
 
 /* end of file */

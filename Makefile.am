@@ -39,7 +39,9 @@ libccdoubles_la_SOURCES= \
 	src/ccdoubles-version.c		\
 	src/ccdoubles-cplx-scalars.c	\
 	src/ccdoubles-real-vectors.c	\
-	src/ccdoubles-cplx-vectors.c
+	src/ccdoubles-cplx-vectors.c	\
+	src/ccdoubles-real-matrices.c	\
+	src/ccdoubles-cplx-matrices.c
 
 #page
 #### tests

@@ -52,7 +52,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 To install from a proper release tarball, do this:
 
-    $ cd cctemplate-0.1.0
+    $ cd ccdoubles-0.1.0
     $ mkdir build
     $ cd build
     $ ../configure
@@ -69,7 +69,7 @@ site): we  must install the  GNU Autotools (GNU Automake,  GNU Autoconf,
 GNU Libtool),  then we must first  run the script "autogen.sh"  from the
 top source directory, to generate the needed files:
 
-    $ cd cctemplate
+    $ cd ccdoubles
     $ sh autogen.sh
 
 we  should   now  see   the  executable   "configure"  script   and  the
@@ -85,11 +85,11 @@ enabling the maintainer mode:
   The  Makefile supports  the  DESTDIR environment  variable to  install
 files in a temporary location, example: to see what will happen:
 
-    $ make -n install DESTDIR=/tmp/cctemplate
+    $ make -n install DESTDIR=/tmp/ccdoubles
 
 to really do it:
 
-    $ make install DESTDIR=/tmp/template
+    $ make install DESTDIR=/tmp/ccdoubles
 
   After the installation it is  possible to verify the installed library
 against the test suite with:

@@ -116,7 +116,7 @@ ccdoubles_real_vector_scalar_product (size_t nitems,
 {
   double	result = 0.0;
   for (size_t i=0; i<nitems; ++i) {
-    result += operand1[i] + operand2[i];
+    result += operand1[i] * operand2[i];
   }
   return result;
 }

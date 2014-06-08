@@ -150,6 +150,26 @@ ccdoubles_decl void ccdoubles_real_vector_abs (size_t nslots,
 					       double * restrict result,
 					       double * restrict operand);
 
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_vector_ceil (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_floor (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_trunc (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_round (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_rint (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
 							    const double * restrict operand1,
 							    const double * restrict operand2);

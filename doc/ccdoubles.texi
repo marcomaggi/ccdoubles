@@ -445,6 +445,7 @@ ccdoubles_cplx_vector_sin (size_t nslots,
 @menu
 * vectors real basic::          Basic real vector operations.
 * vectors real arithmetic::     Arithmetic real vector operations.
+* vectors real rounding::       Rounding real vector operations.
 * vectors real special::        Special real vector operations.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
@@ -490,6 +491,35 @@ Perform the slot--by--slot negation of the operand.
 
 @deftypefun void ccdoubles_real_vector_abs (size_t @var{nslots}, double * @var{result}, double * @var{operand})
 Compute slot--by--slot the absolute value of the operand.
+@end deftypefun
+
+@c page
+@node vectors real rounding
+@subsection Rounding real vector operations
+
+
+@deftypefun void ccdoubles_real_vector_ceil (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{ceil}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_floor (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{floor}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_trunc (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{trunc}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_round (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{round}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_rint (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{rint}.
 @end deftypefun
 
 @c page

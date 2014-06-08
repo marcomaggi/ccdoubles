@@ -124,6 +124,57 @@ ccdoubles_real_vector_abs (size_t nslots,
 
 
 /** --------------------------------------------------------------------
+ ** Rounding.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_vector_ceil (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = ceil(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_floor (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = floor(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_trunc (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = trunc(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_round (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = round(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_rint (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = rint(operand[i]);
+  }
+}
+
+
+/** --------------------------------------------------------------------
  ** Vector operations.
  ** ----------------------------------------------------------------- */
 

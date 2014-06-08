@@ -112,6 +112,15 @@ ccdoubles_real_vector_neg (size_t nslots,
     result[i] = - operand[i];
   }
 }
+void
+ccdoubles_real_vector_abs (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = fabs(operand[i]);
+  }
+}
 
 
 /** --------------------------------------------------------------------

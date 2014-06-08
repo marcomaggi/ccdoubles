@@ -146,6 +146,10 @@ ccdoubles_decl void ccdoubles_real_vector_div (size_t nslots,
 ccdoubles_decl void ccdoubles_real_vector_neg (size_t nslots,
 					       double * restrict result,
 					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_abs (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+
 ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
 							    const double * restrict operand1,
 							    const double * restrict operand2);

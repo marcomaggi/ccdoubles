@@ -487,6 +487,11 @@ division.
 Perform the slot--by--slot negation of the operand.
 @end deftypefun
 
+
+@deftypefun void ccdoubles_real_vector_abs (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Compute slot--by--slot the absolute value of the operand.
+@end deftypefun
+
 @c page
 @node vectors real special
 @subsection Special real vector operations

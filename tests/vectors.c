@@ -122,6 +122,13 @@ test_real_vectors (void)
     assert(-1.2 == R[0]);
   }
 
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { -1.2 };
+    ccdoubles_real_vector_abs (NSLOTS, R, O);
+    assert(1.2 == R[0]);
+  }
+
 /* ------------------------------------------------------------------ */
 
   {

@@ -103,6 +103,7 @@ entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * version::                     Version functions.
 * scalars::                     Operations on scalar numbers.
+* vectors::                     Operations on vectors.
 
 Appendices
 
@@ -341,6 +342,400 @@ R = ccdoubles_cplx_neg(O);
 printf("R = %lf%+lfi\n", creal(R), cimag(R));
 @print{} R = -1.200000-3.400000i
 @end example
+@end deftypefun
+
+@c page
+@node vectors
+@chapter Operations on vectors
+
+
+@menu
+* vectors intro::               Introduction to vector operations.
+* vectors real::                Operations on real--valued vectors.
+* vectors cplx::                Operations on complex--valued vectors.
+@end menu
+
+@c page
+@node vectors intro
+@section Introduction to vector operations
+
+
+The vectors on which @value{PACKAGE} operates are meant to be contiguous
+arrays of @code{double} and @code{double complex} values, defined as
+follows:
+
+@example
+#include <ccdoubles.h>
+#undef NSLOTS
+#define NSLOTS          2
+
+double          RV[NSLOTS] = @{ 1.2, 3.4 @};
+double complex  CV[NSLOTS] = @{
+  CCDOUBLES_CPLX(1.2, 3.4),
+  CCDOUBLES_CPLX(5.6, 7.8)
+@};
+@end example
+
+@noindent
+or as follows with dynamic size (which forbids hard--coded
+initialisation of slots):
+
+@example
+size_t          nslots = 1;
+double          RV[nslots];
+double complex  CV[nslots];
+@end example
+
+All the functions have simple implementation involving an iteration over
+the vector's slots using @code{restrict} pointers; examples for real
+valued vectors:
+
+@example
+void
+ccdoubles_real_vector_add (size_t nslots,
+                           double * restrict result,
+                           double * restrict operand1,
+                           double * restrict operand2)
+@{
+  for (size_t i=0; i<nslots; ++i) @{
+    result[i] = operand1[i] + operand2[i];
+  @}
+@}
+void
+ccdoubles_real_vector_sin (size_t nslots,
+                           double * restrict result,
+                           double * restrict operand)
+@{
+  for (size_t i=0; i<nslots; ++i) @{
+    result[i] = sin(operand[i]);
+  @}
+@}
+@end example
+
+@noindent
+examples for complex valued vectors:
+
+@example
+void
+ccdoubles_cplx_vector_add (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand1,
+			   double complex * restrict operand2)
+@{
+  for (size_t i=0; i<nslots; ++i) @{
+    result[i] = operand1[i] + operand2[i];
+  @}
+@}
+void
+ccdoubles_cplx_vector_sin (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+@{
+  for (size_t i=0; i<nslots; ++i) @{
+    result[i] = csin(operand[i]);
+  @}
+@}
+@end example
+
+@c page
+@node vectors real
+@section Operations on real--valued vectors
+
+
+@menu
+* vectors real basic::          Basic real vector operations.
+* vectors real arithmetic::     Arithmetic real vector operations.
+* vectors real special::        Special real vector operations.
+* vectors real trigonometric::  Trigonometric real vector operations.
+* vectors real hyperbolic::     Hyperbolic real vector operations.
+@end menu
+
+@c page
+@node vectors real basic
+@subsection Basic real vector operations
+
+
+@deftypefun void ccdoubles_real_vector_clear (size_t @var{nslots}, double * @var{vector})
+Reset all the slots to @code{0.0}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_set (size_t @var{nslots}, double * @var{vector}, double @var{value})
+Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_copy (size_t @var{nslots}, double * @var{dst}, double * @var{src})
+Copy the slots from @var{src} to @var{dst}.
+@end deftypefun
+
+@c page
+@node vectors real arithmetic
+@subsection Arithmetic real vector operations
+
+
+@deftypefun void ccdoubles_real_vector_add (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefunx void ccdoubles_real_vector_sub (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefunx void ccdoubles_real_vector_mul (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefunx void ccdoubles_real_vector_div (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Perform slot--by--slot addition, subtraction, multiplication and
+division.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_neg (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Perform the slot--by--slot negation of the operand.
+@end deftypefun
+
+@c page
+@node vectors real special
+@subsection Special real vector operations
+
+
+@deftypefun double ccdoubles_real_vector_scalar_product (size_t @var{nslots}, const double * @vari{operand}, const double * @varii{operand})
+Perform the scalar product between the operands and return the result.
+The implementation is:
+
+@example
+double        result = 0.0;
+for (size_t i=0; i<nslots; ++i) @{
+  result += operand1[i] * operand2[i];
+@}
+@end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_scalar_mul (size_t @var{nslots}, double * @var{result}, double @var{lambda}, const double * @var{operand})
+Multiply the scalar @var{lambda} with all the slots in the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_linear_combination (size_t @var{nslots}, double * @var{result}, double @var{alpha}, double * @vari{operand}, double @var{beta}, double * @varii{operand})
+Perform the linear combination of the vector operands and the given
+scalars.  The implementation is:
+
+@example
+for (size_t i=0; i<nslots; ++i) @{
+  result[i] = alpha * operand1[i] + beta * operand2[i];
+@}
+@end example
+@end deftypefun
+
+@c page
+@node vectors real trigonometric
+@subsection Trigonometric real vector operations
+
+
+@deftypefun void ccdoubles_real_vector_sin (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_cos (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_tan (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Compute slot--by--slot the trigonometric sine, cosine, tangent of the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_asin (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_acos (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_atan (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
+tangent of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_atan2 (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Compute slot--by--slot the trigonometric arc tangent of the operands.
+The implementation is:
+
+@example
+for (size_t i=0; i<nslots; ++i) @{
+  result[i] = atan2(operand1[i], operand2[i]);
+@}
+@end example
+
+@glibcref{Inverse Trig Functions, atan2} for details on @cfunc{atan2}.
+@end deftypefun
+
+@c page
+@node vectors real hyperbolic
+@subsection Hyperbolic real vector operations
+
+
+@deftypefun void ccdoubles_real_vector_sinh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_cosh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_tanh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_asinh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_acosh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefunx void ccdoubles_real_vector_atanh (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
+of the operand.
+@end deftypefun
+
+@c page
+@node vectors cplx
+@section Operations on complex--valued vectors
+
+
+@menu
+* vectors cplx basic::          Basic complex vector operations.
+* vectors cplx arithmetic::     Arithmetic complex vector operations.
+* vectors cplx special::        Special complex vector operations.
+* vectors cplx trigonometric::  Trigonometric complex vector operations.
+* vectors cplx hyperbolic::     Hyperbolic complex vector operations.
+@end menu
+
+@c page
+@node vectors cplx basic
+@subsection Basic complex vector operations
+
+
+@deftypefun void ccdoubles_cplx_vector_clear (size_t @var{nslots}, double complex * @var{vector})
+Reset all the slots to complex numbers with real part @code{0.0} and
+complex part @code{0.0}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_set (size_t @var{nslots}, double complex * @var{vector}, double @var{value})
+Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_copy (size_t @var{nslots}, double complex * @var{dst}, double complex * @var{src})
+Copy the slots from @var{src} to @var{dst}.
+@end deftypefun
+
+@c ------------------------------------------------------------
+
+@deftypefun void ccdoubles_cplx_vector_real (size_t @var{nslots}, double * @var{result}, double complex * @var{operand})
+Extract slot--by--slot the real part of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_imag (size_t @var{nslots}, double * @var{result}, double complex * @var{operand})
+Extract slot--by--slot the imaginary part of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_magnitude (size_t @var{nslots}, double * @var{result}, double complex * @var{operand})
+Extract slot--by--slot the magnitude of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_angle (size_t @var{nslots}, double * @var{result}, double complex * @var{operand})
+Extract slot--by--slot the angle of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_conj (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Compute slot--by--slot the conjugate of the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_from_rect (size_t @var{nslots}, double complex * @var{result}, double * @var{real}, double * imag)
+Build slot--by--slot a complex valued vectors from the real and
+imaginary parts.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_from_polar (size_t @var{nslots}, double complex * @var{result}, double * @var{magnitude}, double * @var{angle})
+Build slot--by--slot a complex valued vectors from the magnitude and
+angle.
+@end deftypefun
+
+@c page
+@node vectors cplx arithmetic
+@subsection Arithmetic complex vector operations
+
+
+@deftypefun void ccdoubles_cplx_vector_add (size_t @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefunx void ccdoubles_cplx_vector_sub (size_t @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefunx void ccdoubles_cplx_vector_mul (size_t @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefunx void ccdoubles_cplx_vector_div (size_t @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+Perform slot--by--slot addition, subtraction, multiplication and
+division.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_neg (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Perform the slot--by--slot negation of the operand.
+@end deftypefun
+
+@c page
+@node vectors cplx special
+@subsection Special complex vector operations
+
+
+@deftypefun double ccdoubles_cplx_vector_scalar_product (size_t @var{nslots}, const double complex * @vari{operand}, const double complex * @varii{operand})
+Perform the scalar product between the operands and return the result.
+The implementation is:
+
+@example
+double complex  result = CCDOUBLES_CPLX(0.0, 0.0);
+for (size_t i=0; i<nslots; ++i) @{
+  result += operand1[i] * operand2[i];
+@}
+@end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_scalar_mul (size_t @var{nslots}, double complex * @var{result}, double @var{lambda}, const double complex * @var{operand})
+Multiply the scalar @var{lambda} with all the slots in the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_linear_combination (size_t @var{nslots}, double complex * @var{result}, double @var{alpha}, double complex * @vari{operand}, double @var{beta}, double complex * @varii{operand})
+Perform the linear combination of the vector operands and the given
+scalars.  The implementation is:
+
+@example
+for (size_t i=0; i<nslots; ++i) @{
+  result[i] = alpha * operand1[i] + beta * operand2[i];
+@}
+@end example
+@end deftypefun
+
+@c page
+@node vectors cplx trigonometric
+@subsection Trigonometric complex vector operations
+
+
+@deftypefun void ccdoubles_cplx_vector_sin (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_cos (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_tan (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Compute slot--by--slot the trigonometric sine, cosine, tangent of the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_asin (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_acos (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_atan (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
+tangent of the operand.
+@end deftypefun
+
+@c page
+@node vectors cplx hyperbolic
+@subsection Hyperbolic complex vector operations
+
+
+@deftypefun void ccdoubles_cplx_vector_sinh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_cosh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_tanh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_asinh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_acosh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefunx void ccdoubles_cplx_vector_atanh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
+of the operand.
 @end deftypefun
 
 @c page

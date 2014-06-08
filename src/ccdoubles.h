@@ -118,168 +118,200 @@ ccdoubles_decl double complex ccdoubles_cplx_neg (double complex O);
  ** Real vector functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_real_vector_clear (size_t nitems,
-						 double * __restrict__ vector);
-ccdoubles_decl void ccdoubles_real_vector_set   (size_t nitems,
-						 double * __restrict__ vector,
+ccdoubles_decl void ccdoubles_real_vector_clear (size_t nslots,
+						 double * restrict vector);
+ccdoubles_decl void ccdoubles_real_vector_set   (size_t nslots,
+						 double * restrict vector,
 						 double value);
+ccdoubles_decl void ccdoubles_real_vector_copy (size_t nslots,
+						double * restrict dst,
+						double * restrict src);
 
-ccdoubles_decl void ccdoubles_real_vector_add (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand1,
-					       double * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_real_vector_sub (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand1,
-					       double * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_real_vector_mul (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand1,
-					       double * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_real_vector_div (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand1,
-					       double * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_real_vector_neg (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand);
-ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nitems,
-							    const double * __restrict__ operand1,
-							    const double * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_real_vector_scalar_mul (size_t nitems,
-						      double * __restrict__ result,
+ccdoubles_decl void ccdoubles_real_vector_add (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_sub (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_mul (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_div (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_neg (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
+							    const double * restrict operand1,
+							    const double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_scalar_mul (size_t nslots,
+						      double * restrict result,
 						      double lambda,
-						      const double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nitems,
-							      double * __restrict__ result,
+						      const double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nslots,
+							      double * restrict result,
 							      double alpha,
-							      double * __restrict__ operand1,
+							      double * restrict operand1,
 							      double beta,
-							      double * __restrict__ operand2);
+							      double * restrict operand2);
 
-ccdoubles_decl void ccdoubles_real_vector_sin (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_cos (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_tan (size_t nitems,
-					       double * __restrict__ result,
-					       double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_asin (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_acos (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_atan (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_atan2 (size_t nitems,
-						 double * __restrict__ result,
-						 double * __restrict__ operand1,
-						 double * __restrict__ operand2);
+ccdoubles_decl void ccdoubles_real_vector_sin (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_cos (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_tan (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_asin (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_acos (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_atan (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_atan2 (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand1,
+						 double * restrict operand2);
 
-ccdoubles_decl void ccdoubles_real_vector_sinh (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_cosh (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_tanh (size_t nitems,
-						double * __restrict__ result,
-						double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_asinh (size_t nitems,
-						 double * __restrict__ result,
-						 double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_acosh (size_t nitems,
-						 double * __restrict__ result,
-						 double * __restrict__ operand);
-ccdoubles_decl void ccdoubles_real_vector_atanh (size_t nitems,
-						 double * __restrict__ result,
-						 double * __restrict__ operand);
+ccdoubles_decl void ccdoubles_real_vector_sinh (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_cosh (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_tanh (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_asinh (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_acosh (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_atanh (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
 
 
 /** --------------------------------------------------------------------
  ** Complex vector functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_cplx_vector_clear (size_t nitems,
-						 double complex * __restrict__ vector);
-ccdoubles_decl void ccdoubles_cplx_vector_set   (size_t nitems,
-						 double complex * __restrict__ vector,
+ccdoubles_decl void ccdoubles_cplx_vector_clear (size_t nslots,
+						 double complex * restrict vector);
+ccdoubles_decl void ccdoubles_cplx_vector_set   (size_t nslots,
+						 double complex * restrict vector,
 						 double complex value);
+ccdoubles_decl void ccdoubles_cplx_vector_copy (size_t nslots,
+						double complex * restrict dst,
+						double complex * restrict src);
 
-ccdoubles_decl void ccdoubles_cplx_vector_add (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand1,
-					       double complex * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_sub (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand1,
-					       double complex * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_mul (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand1,
-					       double complex * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_div (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand1,
-					       double complex * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_neg (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand);
-ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (size_t nitems,
-							      const double complex * __restrict__ operand1,
-							      const double complex * __restrict__ operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (size_t nitems,
-						      double complex * __restrict__ result,
+ccdoubles_decl void ccdoubles_cplx_vector_real (size_t nslots,
+						double * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_imag (size_t nslots,
+						double * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_magnitude (size_t nslots,
+						     double * restrict result,
+						     double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_angle (size_t nslots,
+						 double * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_conj (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_from_rect (size_t nslots,
+						     double complex * restrict result,
+						     double * restrict real,
+						     double * restrict imag);
+ccdoubles_decl void ccdoubles_cplx_vector_from_polar (size_t nslots,
+						      double complex * restrict result,
+						      double * restrict magnitude,
+						      double * restrict angle);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_vector_add (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_sub (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_mul (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_div (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_neg (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (size_t nslots,
+							      const double complex * restrict operand1,
+							      const double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (size_t nslots,
+						      double complex * restrict result,
 						      double complex lambda,
-						      const double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nitems,
-							      double complex * __restrict__ result,
+						      const double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nslots,
+							      double complex * restrict result,
 							      double complex alpha,
-							      double complex * __restrict__ operand1,
+							      double complex * restrict operand1,
 							      double complex beta,
-							      double complex * __restrict__ operand2);
+							      double complex * restrict operand2);
 
-ccdoubles_decl void ccdoubles_cplx_vector_sin (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_cos (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_tan (size_t nitems,
-					       double complex * __restrict__ result,
-					       double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_asin (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_acos (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_atan (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
+ccdoubles_decl void ccdoubles_cplx_vector_sin (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_cos (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_tan (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_asin (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_acos (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_atan (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
 
-ccdoubles_decl void ccdoubles_cplx_vector_sinh (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_cosh (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_tanh (size_t nitems,
-						double complex * __restrict__ result,
-						double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_asinh (size_t nitems,
-						 double complex * __restrict__ result,
-						 double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_acosh (size_t nitems,
-						 double complex * __restrict__ result,
-						 double complex * __restrict__ operand);
-ccdoubles_decl void ccdoubles_cplx_vector_atanh (size_t nitems,
-						 double complex * __restrict__ result,
-						 double complex * __restrict__ operand);
+ccdoubles_decl void ccdoubles_cplx_vector_sinh (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_cosh (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_tanh (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_asinh (size_t nslots,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_acosh (size_t nslots,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_atanh (size_t nslots,
+						 double complex * restrict result,
+						 double complex * restrict operand);
 
 
 /** --------------------------------------------------------------------

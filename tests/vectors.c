@@ -284,24 +284,40 @@ test_cplx_vectors (void)
   {
     double complex	R[NITEMS];
     double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
-    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    double complex	O2[NITEMS] = { CPLX(5.6, 7.8) };
+    double complex	E = ccdoubles_cplx_mul(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
     ccdoubles_cplx_vector_mul (NITEMS, R, O1, O2);
-    assert(ccdoubles_cplx_mul(CPLX(1.2, 3.4), CPLX(4.5, 6.7)) == R[0]);
+    assert(E == R[0]);
+    assert((O1[0] * O2[0]) == R[0]);
+    assert((O1[0] * O2[0]) == E);
+    /* printf("multiplication E = %lf%+lfi\n", creal(E), cimag(E)); */
   }
-#if 0
+
   {
     double complex	R[NITEMS];
     double complex	O1[NITEMS] = { CPLX(1.2, 3.4) };
-    double complex	O2[NITEMS] = { CPLX(4.5, 6.7) };
+    double complex	O2[NITEMS] = { CPLX(5.6, 7.8) };
+    double complex	E = ccdoubles_cplx_div(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
+    double complex	X = CPLX(1.2, 3.4) / CPLX(5.6, 7.8);
     ccdoubles_cplx_vector_div (NITEMS, R, O1, O2);
-    assert(ccdoubles_cplx_div(CPLX(1.2, 3.4), CPLX(4.5, 6.7)) == R[0]);
+    assert(cabs(E - R[0]) < EPSILON);
+    assert(cabs(X - R[0]) < EPSILON);
+    assert(cabs(X - E)    < EPSILON);
+    /* printf("division E = %lf%+lfi\n", creal(E), cimag(E)); */
+    /* printf("division X = %lf%+lfi\n", creal(X), cimag(X)); */
   }
-#endif
+
   {
     double complex	R[NITEMS];
     double complex	O[NITEMS] = { CPLX(1.2, 3.4) };
+    double complex	E = ccdoubles_cplx_neg(CPLX(1.2, 3.4));
+    double complex	X = -O[0];
     ccdoubles_cplx_vector_neg (NITEMS, R, O);
-    assert(ccdoubles_cplx_neg(CPLX(1.2, 3.4)) == R[0]);
+    assert(E == R[0]);
+    assert(E == X);
+    assert(X == R[0]);
+    /* printf("negation R = %lf%+lfi\n", creal(R[0]), cimag(R[0])); */
+    /* printf("negation X = %lf%+lfi\n", creal(X), cimag(X)); */
   }
 
 /* ------------------------------------------------------------------ */

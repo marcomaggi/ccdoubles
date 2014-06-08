@@ -42,9 +42,10 @@
 
 @copying
 This document describes version @value{VERSION} of @value{PACKAGE}, a
-C99 language library implementing routines for vectors and matrices of
-@code{double float} values.  The package is distributed under the terms
-of the @gnu{} General Public License (@gpl{}).
+C99 language library implementing simple routines for vectors and
+matrices of @code{double} and @code{double complex} values.  The package
+is distributed under the terms of the @gnu{} General Public License
+(@gpl{}).
 
 @noindent
 Copyright @copyright{} @value{COPYRIGHT_YEARS} by @value{AUTHOR} @value{AUTHOR_EMAIL}
@@ -101,6 +102,7 @@ entitled ``@gnu{} Free Documentation License''.
 @menu
 * overview::                    Overview of the package.
 * version::                     Version functions.
+* scalars::                     Operations on scalar numbers.
 
 Appendices
 
@@ -123,9 +125,11 @@ Indexes
 @chapter Overview of the package
 
 
-This document describes version @value{VERSION} of @value{PACKAGE}, a C
-language library implementing routines for vector and matrices of
-@code{double float} values.
+This document describes version @value{VERSION} of @value{PACKAGE}, a
+C99 language library implementing simple routines for vectors and
+matrices of @code{double} and @code{double complex} values.  This
+library is meant to be used as companion for more sophisticated
+libraries such as @acronym{CBLAS} and @acronym{LAPACKE}.
 
 @value{PACKAGE} installs the single header file @file{ccdoubles.h}.  All
 the function names in the @api{} are prefixed with @code{ccd_}; all the
@@ -208,6 +212,135 @@ number.
 
 @deftypefun int ccd_version_interface_age (void)
 Return an integer representing the library interface current age.
+@end deftypefun
+
+@c page
+@node scalars
+@chapter Operations on scalar numbers
+
+
+@menu
+* scalars complex::             Operations on scalar complex numbers.
+@end menu
+
+@c page
+@node scalars complex
+@section Operations on scalar complex numbers
+
+
+The C99 language standard library defines common operations on scalar
+@code{double complex} numbers; in addition @value{PACKAGE} defines
+convenience functions to perform the same.
+
+
+@deftypefn {Preprocessor Macro} {double complex} CCDOUBLES_CPLX (double @var{REAL}, double @var{IMAG})
+Build and return a new @code{double complex} value.  Expands into:
+
+@example
+(((double)(@var{REAL})) + ((double)(@var{IMAG})) * _Complex_I)
+@end example
+
+@quotation
+@strong{NOTE} The latest C Language Standard defines the same operation
+with the preprocessor macro @code{CMPLX(@var{REAL}, @var{IMAG})}.
+@end quotation
+@end deftypefn
+
+
+@deftypefun {double complex} ccdoubles_cplx_mul (double complex @vari{O}, double complex @varii{O})
+Even though C99 supports the multiplication operation as:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  R  = O1 * O2;
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = -19.800000+28.400000i
+@end example
+
+@noindent
+this function computes and returns the product between the operands.
+Example:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  R;
+
+R = ccdoubles_cplx_mul(O1, O2);
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = -19.800000+28.400000i
+@end example
+@end deftypefun
+
+
+@deftypefun {double complex} ccdoubles_cplx_div (double complex @vari{O}, double complex @varii{O})
+Even though C99 supports the division operation as:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  R  = O1 / O2;
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = 0.360521+0.104989i
+@end example
+
+@noindent
+this function computes and returns the division between the operands.
+Example:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  R;
+
+R = ccdoubles_cplx_div(O1, O2);
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = 0.360521+0.104989i
+@end example
+@end deftypefun
+
+
+@deftypefun {double complex} ccdoubles_cplx_neg (double complex @var{O})
+Even though C99 supports the negation operation as:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  R = - O;
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = -1.200000-3.400000i
+@end example
+
+@noindent
+this function computes and returns the negation of the operand.
+Example:
+
+@example
+#include <ccdoubles.h>
+
+double complex  O = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  R;
+
+R = ccdoubles_cplx_neg(O);
+
+printf("R = %lf%+lfi\n", creal(R), cimag(R));
+@print{} R = -1.200000-3.400000i
+@end example
 @end deftypefun
 
 @c page

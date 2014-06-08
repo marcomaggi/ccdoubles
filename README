@@ -18,8 +18,10 @@ Topics
 1. Introduction
 ---------------
 
-This  package installs  a  C language  library  implementing a  template
-library.
+This  package  installs  a  C99  language  library  implementing  simple
+routines  for vectors  and  matrices of  "double"  and "double  complex"
+values.   This  library is  meant  to  be  used  as companion  for  more
+sophisticated libraries such as CBLAS and LAPACKE.
 
   The package  makes use  of the  GNU Autotools  and it  is tested  on a
 GNU+Linux system.

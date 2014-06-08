@@ -43,7 +43,7 @@
  ** ----------------------------------------------------------------- */
 
 /* Build and return a "double complex". */
-#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
+#define CPLX(REAL,IMAG)		(CCDOUBLES_CPLX((REAL),(IMAG)))
 
 
 /** --------------------------------------------------------------------

@@ -40,9 +40,27 @@
 int
 main (int argc, const char *const argv[])
 {
-  printf("Display tests:\n\n");
+  printf("\n***** Display tests:\n");
 
-  { /* real matrix */
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double	O[NSLOTS]= { 1.1, 1.2, 1.3 };
+    printf("\n--- real vector:\n\n");
+    ccdoubles_real_vector_print_display(stdout, "O", NSLOTS, O);
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double complex	O[NSLOTS] = {
+      CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+    };
+    printf("\n--- complex vector:\n\n");
+    ccdoubles_cplx_vector_print_display(stdout, "O", NSLOTS, O);
+  }
+
+  {
 #undef NROWS
 #undef NCOLS
 #define NROWS		2
@@ -51,6 +69,7 @@ main (int argc, const char *const argv[])
       { 1.1, 1.2, 1.3 },
       { 2.1, 2.2, 2.3 }
     };
+    printf("\n--- real matrix:\n\n");
     ccdoubles_real_matrix_print_display(stdout, "O", NROWS, NCOLS, &O[0][0]);
   }
 
@@ -63,12 +82,31 @@ main (int argc, const char *const argv[])
       { CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) },
       { CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) }
     };
+    printf("\n--- complex matrix:\n\n");
     ccdoubles_cplx_matrix_print_display(stdout, "O", NROWS, NCOLS, &O[0][0]);
   }
 
 /* ------------------------------------------------------------------ */
 
-  printf("Brackets tests:\n\n");
+  printf("\n***** Brackets tests:\n");
+
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double	O[NSLOTS]= { 1.1, 1.2, 1.3 };
+    printf("\n--- real vector:\n\n");
+    ccdoubles_real_vector_print_brackets(stdout, NSLOTS, O);
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double complex	O[NSLOTS] = {
+      CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+    };
+    printf("\n--- complex vector:\n\n");
+    ccdoubles_cplx_vector_print_brackets(stdout, NSLOTS, O);
+  }
 
   { /* real matrix */
 #undef NROWS
@@ -79,6 +117,7 @@ main (int argc, const char *const argv[])
       { 1.1, 1.2, 1.3 },
       { 2.1, 2.2, 2.3 }
     };
+    printf("\n--- real matrix:\n\n");
     ccdoubles_real_matrix_print_brackets(stdout, NROWS, NCOLS, &O[0][0]);
   }
 
@@ -91,12 +130,31 @@ main (int argc, const char *const argv[])
       { CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) },
       { CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) }
     };
+    printf("\n--- complex matrix:\n\n");
     ccdoubles_cplx_matrix_print_brackets(stdout, NROWS, NCOLS, &O[0][0]);
   }
 
 /* ------------------------------------------------------------------ */
 
-  printf("Braces tests:\n\n");
+  printf("\n***** Braces tests:\n");
+
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double	O[NSLOTS]= { 1.1, 1.2, 1.3 };
+    printf("\n--- real vector:\n\n");
+    ccdoubles_real_vector_print_braces(stdout, NSLOTS, O);
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS		3
+    double complex	O[NSLOTS] = {
+      CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+    };
+    printf("\n--- complex vector:\n\n");
+    ccdoubles_cplx_vector_print_braces(stdout, NSLOTS, O);
+  }
 
   { /* real matrix */
 #undef NROWS
@@ -107,6 +165,7 @@ main (int argc, const char *const argv[])
       { 1.1, 1.2, 1.3 },
       { 2.1, 2.2, 2.3 }
     };
+    printf("\n--- real matrix:\n\n");
     ccdoubles_real_matrix_print_braces(stdout, NROWS, NCOLS, &O[0][0]);
   }
 
@@ -119,6 +178,7 @@ main (int argc, const char *const argv[])
       { CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) },
       { CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) }
     };
+    printf("\n--- complex matrix:\n\n");
     ccdoubles_cplx_matrix_print_braces(stdout, NROWS, NCOLS, &O[0][0]);
   }
 

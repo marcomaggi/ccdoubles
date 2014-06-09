@@ -227,6 +227,18 @@ ccdoubles_decl void ccdoubles_real_vector_atanh (size_t nslots,
 						 double * restrict result,
 						 double * restrict operand);
 
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_vector_print_display (FILE * f, const char * name,
+							 size_t nslots,
+							 double * operand);
+
+ccdoubles_decl void ccdoubles_real_vector_print_brackets (FILE * f, size_t nslots,
+							  double * operand);
+
+ccdoubles_decl void ccdoubles_real_vector_print_braces (FILE * f, size_t nslots,
+							double * operand);
+
 
 /** --------------------------------------------------------------------
  ** Real matrix functions.
@@ -472,6 +484,18 @@ ccdoubles_decl void ccdoubles_cplx_vector_acosh (size_t nslots,
 ccdoubles_decl void ccdoubles_cplx_vector_atanh (size_t nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_vector_print_display (FILE * f, const char * name,
+							 size_t nslots,
+							 double complex * operand);
+
+ccdoubles_decl void ccdoubles_cplx_vector_print_brackets (FILE * f, size_t nslots,
+							  double complex * operand);
+
+ccdoubles_decl void ccdoubles_cplx_vector_print_braces (FILE * f, size_t nslots,
+							double complex * operand);
 
 
 /** --------------------------------------------------------------------

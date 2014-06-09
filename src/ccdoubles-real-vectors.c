@@ -358,4 +358,40 @@ ccdoubles_real_vector_atanh (size_t nslots,
   }
 }
 
+
+/** --------------------------------------------------------------------
+ ** Printing.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_vector_print_display (FILE * f, const char * name,
+				     size_t nslots,
+				     double * operand)
+{
+  fprintf(f, "Vector %s (dimension %ld):\n", name, nslots);
+  fprintf(f, "| (1) %+lf ", operand[0]);
+  for (size_t i=1; i<nslots; ++i) {
+    fprintf(f, "; (%ld) %+lf ", 1+i, operand[i]);
+  }
+  fprintf(f, "|\n");
+}
+void
+ccdoubles_real_vector_print_brackets (FILE * f, size_t nslots, double * operand)
+{
+  fprintf(f, "[%+lf", operand[0]);
+  for (size_t i=1; i<nslots; ++i) {
+    fprintf(f, " %+lf", operand[i]);
+  }
+  fprintf(f, "]\n");
+}
+void
+ccdoubles_real_vector_print_braces (FILE * f, size_t nslots, double * operand)
+{
+  fprintf(f, "{%+lf", operand[0]);
+  for (size_t i=1; i<nslots; ++i) {
+    fprintf(f, ", %+lf", operand[i]);
+  }
+  fprintf(f, "}\n");
+}
+
 /* end of file */

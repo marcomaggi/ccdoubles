@@ -468,6 +468,7 @@ old contents.
 * vectors real special::        Special real vector operations.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
+* vectors real printing::       Printing real vectors.
 @end menu
 
 @c page
@@ -630,6 +631,69 @@ of the operand.
 @end deftypefun
 
 @c page
+@node vectors real printing
+@subsection Printing real vectors
+
+
+@deftypefun void ccdoubles_real_vector_print_display (FILE * @var{f}, const char * @var{name}, size_t @var{nslots}, double * @var{operand})
+Print on @var{f} a layout of the operand.  @var{name} must be a pointer
+to an @asciiz{} string representing the operand name.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+double      O[NSLOTS] = @{ 1.1, 1.2, 1.3 @};
+ccdoubles_real_vector_print_display(stdout, "O", NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+Vector O (dimension 3):
+| (1) +1.100000 ; (2) +1.200000 ; (3) +1.300000 |
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_print_brackets (FILE * @var{f}, size_t @var{nslots}, double * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+double      O[NSLOTS] = @{ 1.1, 1.2, 1.3 @};
+ccdoubles_real_vector_print_brackets(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+[+1.100000 +1.200000 +1.300000]
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_print_braces (FILE * @var{f}, size_t @var{nslots}, double * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+double      O[NSLOTS] = @{ 1.1, 1.2, 1.3 @};
+ccdoubles_real_vector_print_brackets(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+@{+1.100000, +1.200000, +1.300000@}
+@end smallexample
+@end deftypefun
+
+@c page
 @node vectors cplx
 @section Operations on complex--valued vectors
 
@@ -640,6 +704,7 @@ of the operand.
 * vectors cplx special::        Special complex vector operations.
 * vectors cplx trigonometric::  Trigonometric complex vector operations.
 * vectors cplx hyperbolic::     Hyperbolic complex vector operations.
+* vectors cplx printing::       Printing complex vectors.
 @end menu
 
 @c page
@@ -790,6 +855,78 @@ operand.
 @deftypefunx void ccdoubles_cplx_vector_atanh (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
+@end deftypefun
+
+@c page
+@node vectors cplx printing
+@subsection Printing cplx vectors
+
+
+@deftypefun void ccdoubles_cplx_vector_print_display (FILE * @var{f}, const char * @var{name}, size_t @var{nslots}, double complex * @var{operand})
+Print on @var{f} a layout of the operand.  @var{name} must be a pointer
+to an @asciiz{} string representing the operand name.  Example:
+
+@example
+#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
+#undef NSLOTS
+#define NSLOTS          3
+double complex	O[NSLOTS] = @{
+  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+@};
+ccdoubles_cplx_vector_print_display(stdout, "O", NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+Vector O (dimension 3):
+| (1) +1.100000-1.100000i ; (2) +1.200000-1.200000i ; (3) +1.300000-1.300000i |
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_print_brackets (FILE * @var{f}, size_t @var{nslots}, double complex * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
+#undef NSLOTS
+#define NSLOTS          3
+double complex      O[NSLOTS] = @{
+  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+@};
+ccdoubles_cplx_vector_print_brackets(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+[+1.100000-1.100000i +1.200000-1.200000i +1.300000-1.300000i]
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_print_braces (FILE * @var{f}, size_t @var{nslots}, double complex * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
+#undef NSLOTS
+#define NSLOTS          3
+double complex      O[NSLOTS] = @{
+  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+@};
+ccdoubles_cplx_vector_print_braces(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+@{+1.100000-1.100000i, +1.200000-1.200000i, +1.300000-1.300000i@}
+@end smallexample
 @end deftypefun
 
 @c page

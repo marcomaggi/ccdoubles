@@ -195,6 +195,33 @@ ccdoubles_real_matrix_transpose (size_t operand_nrows, size_t operand_ncols,
     }
   }
 }
+void
+ccdoubles_real_matrix_rowcol_mul (size_t result_nrows,
+				  size_t operand_n,
+				  size_t result_ncols,
+				  double * restrict result,
+				  double * restrict operand1,
+				  double * restrict operand2)
+/* To call this function we are meant to do:
+ *
+ *
+ *    double	R[result_nrows][result_ncols];
+ *    double	O1[result_nrows][operand_n];
+ *    double	O2[operand_n][result_ncols];
+ *    ccdoubles_real_matrix_rowcol_mul(result_nrows, operand_n, result_ncols,
+ *                                     &R[0][0], &O1[0][0], &O2[0][0]);
+ */
+{
+  for (size_t i=0; i<result_nrows; ++i) {
+    for (size_t j=0; j<result_ncols; ++j) {
+      double *	R = &result[i * result_ncols + j];
+      *R = 0.0;
+      for (size_t k=0; k<operand_n; ++k) {
+	*R += operand1[i * operand_n + k] * operand2[k * result_ncols + j];
+      }
+    }
+  }
+}
 
 
 /** --------------------------------------------------------------------
@@ -310,6 +337,30 @@ ccdoubles_real_matrix_atanh (size_t nrows, size_t ncols,
 			     double * restrict operand)
 {
   ccdoubles_real_vector_atanh (nrows * ncols, result, operand);
+}
+
+
+/** --------------------------------------------------------------------
+ ** Printing.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_matrix_print_display (FILE * f, const char * name,
+				     size_t nrows, size_t ncols,
+				     double * operand)
+{
+  size_t	i, j;
+  fprintf(f, "Row-major matrix %s (dimension %ld x %ld) (displayed in row-major order):\n",
+	  name, nrows, ncols);
+  for (i=0; i<nrows; ++i) {
+    j = 0;
+    fprintf(f, "| (%ld,%ld) %+10lf ", 1+i, 1+j, operand[i * ncols + j]);
+    for (++j; j<ncols; ++j) {
+      fprintf(f, "; (%ld,%ld) %+10lf ", 1+i, 1+j, operand[i * ncols + j]);
+    }
+    fprintf(f, " |\n");
+  }
+  fprintf(f, "\n");
 }
 
 /* end of file */

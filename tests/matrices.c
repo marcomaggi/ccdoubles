@@ -202,6 +202,38 @@ test_real_matrices (void)
     assert(5.6 == R[2][0]); assert(9.0 == R[2][1]);
   }
 
+  {
+#undef RESULT_NROWS
+#undef RESULT_NCOLS
+#undef OPERAND_N
+#define RESULT_NROWS		2
+#define RESULT_NCOLS		3
+#define OPERAND_N		4
+    double	R[RESULT_NROWS][RESULT_NCOLS];
+    double	O1[RESULT_NROWS][OPERAND_N] = {
+      { 1.1, 1.2, 1.3, 1.4 },
+      { 2.1, 2.2, 2.3, 2.4 }
+    };
+    double	O2[OPERAND_N][RESULT_NCOLS] = {
+      { -1.1, -1.2, -1.3 },
+      { -2.1, -2.2, -2.3 },
+      { -3.1, -3.2, -3.3 },
+      { -4.1, -4.2, -4.3 }
+    };
+    double	E[RESULT_NROWS][RESULT_NCOLS] = { /* expected result */
+      { -13.5, -14.0, -14.5 },
+      { -23.9, -24.8, -25.7 }
+    };
+    ccdoubles_real_matrix_rowcol_mul (RESULT_NROWS, OPERAND_N, RESULT_NCOLS,
+				      &R[0][0], &O1[0][0], &O2[0][0]);
+    if (0) {
+      ccdoubles_real_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, &R[0][0]);
+      ccdoubles_real_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, &E[0][0]);
+    }
+    assert(fabs(E[0][0]-R[0][0])<EPSILON); assert(fabs(E[0][1]-R[0][1])<EPSILON); assert(fabs(E[0][2]-R[0][2])<EPSILON);
+    assert(fabs(E[1][0]-R[1][0])<EPSILON); assert(fabs(E[1][1]-R[1][1])<EPSILON); assert(fabs(E[1][2]-R[1][2])<EPSILON);
+  }
+
 /* ------------------------------------------------------------------ */
 
   {
@@ -500,6 +532,38 @@ test_cplx_matrices (void)
     assert(CPLX(1.2, +2.3) == R[0][0]); assert(CPLX(7.8, -8.9) == R[0][1]);
     assert(CPLX(3.4, -4.5) == R[1][0]); assert(CPLX(9.0, +0.1) == R[1][1]);
     assert(CPLX(5.6, -6.7) == R[2][0]); assert(CPLX(-1.2, 2.3) == R[2][1]);
+  }
+
+  {
+#undef RESULT_NROWS
+#undef RESULT_NCOLS
+#undef OPERAND_N
+#define RESULT_NROWS		2
+#define RESULT_NCOLS		3
+#define OPERAND_N		4
+    double complex	R[RESULT_NROWS][RESULT_NCOLS];
+    double complex	O1[RESULT_NROWS][OPERAND_N] = {
+      { CPLX(1.1,0.0), CPLX(1.2,0.0), CPLX(1.3,0.0), CPLX(1.4,0.0) },
+      { CPLX(2.1,0.0), CPLX(2.2,0.0), CPLX(2.3,0.0), CPLX(2.4,0.0) }
+    };
+    double complex	O2[OPERAND_N][RESULT_NCOLS] = {
+      { CPLX(-1.1,0.0),  CPLX(-1.2,0.0),  CPLX(-1.3,0.0) },
+      { CPLX(-2.1,0.0),  CPLX(-2.2,0.0),  CPLX(-2.3,0.0) },
+      { CPLX(-3.1,0.0),  CPLX(-3.2,0.0),  CPLX(-3.3,0.0) },
+      { CPLX(-4.1,0.0),  CPLX(-4.2,0.0),  CPLX(-4.3,0.0) }
+    };
+    double complex	E[RESULT_NROWS][RESULT_NCOLS] = { /* expected result */
+      { CPLX(-13.5,0.0), CPLX(-14.0,0.0), CPLX(-14.5,0.0) },
+      { CPLX(-23.9,0.0), CPLX(-24.8,0.0), CPLX(-25.7,0.0) }
+    };
+    ccdoubles_cplx_matrix_rowcol_mul (RESULT_NROWS, OPERAND_N, RESULT_NCOLS,
+				      &R[0][0], &O1[0][0], &O2[0][0]);
+    if (0) {
+      ccdoubles_cplx_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, &R[0][0]);
+      ccdoubles_cplx_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, &E[0][0]);
+    }
+    assert(cabs(E[0][0]-R[0][0])<EPSILON); assert(cabs(E[0][1]-R[0][1])<EPSILON); assert(cabs(E[0][2]-R[0][2])<EPSILON);
+    assert(cabs(E[1][0]-R[1][0])<EPSILON); assert(cabs(E[1][1]-R[1][1])<EPSILON); assert(cabs(E[1][2]-R[1][2])<EPSILON);
   }
 
 /* ------------------------------------------------------------------ */

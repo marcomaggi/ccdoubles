@@ -31,6 +31,7 @@
  ** Headers.
  ** ----------------------------------------------------------------- */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <math.h>
@@ -298,6 +299,13 @@ ccdoubles_decl void ccdoubles_real_matrix_transpose (size_t nrows, size_t ncols,
 						     double * restrict result,
 						     double * restrict operand);
 
+ccdoubles_decl void ccdoubles_real_matrix_rowcol_mul (size_t result_nrows,
+						      size_t operand_n,
+						      size_t result_ncols,
+						      double * restrict result,
+						      double * restrict operand1,
+						      double * restrict operand2);
+
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_matrix_sin (size_t nrows, size_t ncols,
@@ -341,6 +349,12 @@ ccdoubles_decl void ccdoubles_real_matrix_acosh (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_real_matrix_atanh (size_t nrows, size_t ncols,
 						 double * restrict result,
 						 double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_print_display (FILE * f, const char * name,
+							 size_t nrows, size_t ncols,
+							 double * operand);
 
 
 /** --------------------------------------------------------------------
@@ -534,6 +548,13 @@ ccdoubles_decl void ccdoubles_cplx_matrix_conjugate_transpose (size_t operand_nr
 							       double complex * restrict result,
 							       double complex * restrict operand);
 
+ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (size_t result_nrows,
+						      size_t operand_n,
+						      size_t result_ncols,
+						      double complex * restrict result,
+						      double complex * restrict operand1,
+						      double complex * restrict operand2);
+
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
@@ -573,6 +594,12 @@ ccdoubles_decl void ccdoubles_cplx_matrix_acosh (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_cplx_matrix_atanh (size_t nrows, size_t ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
+							 size_t nrows, size_t ncols,
+							 double complex * operand);
 
 
 /** --------------------------------------------------------------------

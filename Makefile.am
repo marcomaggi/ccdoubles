@@ -48,7 +48,8 @@ libccdoubles_la_SOURCES= \
 
 check_PROGRAMS	= \
 	tests/version		\
-	tests/vectors
+	tests/vectors		\
+	tests/matrices
 
 TESTS				= $(check_PROGRAMS)
 
@@ -60,6 +61,9 @@ tests_version_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_vectors_CPPFLAGS		= $(ccdoubles_tests_cppflags)
 tests_vectors_LDADD		= $(ccdoubles_tests_ldadd)
+
+tests_matrices_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_matrices_LDADD		= $(ccdoubles_tests_ldadd)
 
 installcheck-local: $(TESTS)
 	@for f in $(TESTS); do $(builddir)/$$f; done

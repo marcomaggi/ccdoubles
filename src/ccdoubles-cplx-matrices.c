@@ -111,7 +111,7 @@ ccdoubles_cplx_matrix_from_polar (size_t nrows, size_t ncols,
 				  double * restrict magnitude,
 				  double * restrict angle)
 {
-  ccdoubles_cplx_vector_from_rect (nrows * ncols, result, magnitude, angle);
+  ccdoubles_cplx_vector_from_polar (nrows * ncols, result, magnitude, angle);
 }
 
 

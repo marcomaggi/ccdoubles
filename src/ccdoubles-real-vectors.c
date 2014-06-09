@@ -53,8 +53,12 @@ ccdoubles_real_vector_copy (size_t nslots,
 			    double * restrict dst,
 			    double * restrict src)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    dst[i] = src[i];
+  if (1) {
+    memcpy(dst, src, sizeof(double) * nslots);
+  } else {
+    for (size_t i=0; i<nslots; ++i) {
+      dst[i] = src[i];
+    }
   }
 }
 

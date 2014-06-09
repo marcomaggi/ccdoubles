@@ -54,8 +54,12 @@ ccdoubles_cplx_vector_copy (size_t nslots,
 			    double complex * restrict dst,
 			    double complex * restrict src)
 {
-  for (size_t i=0; i<nslots; ++i) {
-    dst[i] = src[i];
+  if (1) {
+    memcpy(dst, src, sizeof(double complex) * nslots);
+  } else {
+    for (size_t i=0; i<nslots; ++i) {
+      dst[i] = src[i];
+    }
   }
 }
 

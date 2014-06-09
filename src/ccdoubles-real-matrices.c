@@ -362,5 +362,45 @@ ccdoubles_real_matrix_print_display (FILE * f, const char * name,
   }
   fprintf(f, "\n");
 }
+void
+ccdoubles_real_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+				      double * operand)
+{
+  size_t	i, j;
+  fprintf(f, "[[%+lf", operand[0]);
+  for (j=1; j<ncols; ++j) {
+    fprintf(f, " %+lf", operand[j]);
+  }
+  fprintf(f, "]");
+  for (i=1; i<nrows; ++i) {
+    j = 0;
+    fprintf(f, "\n [%+lf", operand[i * ncols + j]);
+    for (++j; j<ncols; ++j) {
+      fprintf(f, " %+lf", operand[i * ncols + j]);
+    }
+    fprintf(f, "]");
+  }
+  fprintf(f, "]\n");
+}
+void
+ccdoubles_real_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+				    double * operand)
+{
+  size_t	i, j;
+  fprintf(f, "{{%+lf", operand[0]);
+  for (j=1; j<ncols; ++j) {
+    fprintf(f, ", %+lf", operand[j]);
+  }
+  fprintf(f, "}");
+  for (i=1; i<nrows; ++i) {
+    j = 0;
+    fprintf(f, ",\n {%+lf", operand[i * ncols + j]);
+    for (++j; j<ncols; ++j) {
+      fprintf(f, ", %+lf", operand[i * ncols + j]);
+    }
+    fprintf(f, "}");
+  }
+  fprintf(f, "}\n");
+}
 
 /* end of file */

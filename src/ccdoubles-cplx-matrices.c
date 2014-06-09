@@ -382,5 +382,45 @@ ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
   }
   fprintf(f, "\n");
 }
+void
+ccdoubles_cplx_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+				      double complex * operand)
+{
+  size_t	i, j;
+  fprintf(f, "[[%+lf%-+lfi", creal(operand[0]), cimag(operand[0]));
+  for (j=1; j<ncols; ++j) {
+    fprintf(f, " %+lf%-+lfi", creal(operand[j]), cimag(operand[j]));
+  }
+  fprintf(f, "]");
+  for (i=1; i<nrows; ++i) {
+    j = 0;
+    fprintf(f, "\n [%+lf%-+lfi", creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
+    for (++j; j<ncols; ++j) {
+      fprintf(f, " %+lf%-+lfi", creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
+    }
+    fprintf(f, "]");
+  }
+  fprintf(f, "]\n");
+}
+void
+ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+				    double complex * operand)
+{
+  size_t	i, j;
+  fprintf(f, "{{%+lf%-+lfi", creal(operand[0]), cimag(operand[0]));
+  for (j=1; j<ncols; ++j) {
+    fprintf(f, ", %+lf%-+lfi", creal(operand[j]), cimag(operand[j]));
+  }
+  fprintf(f, "}");
+  for (i=1; i<nrows; ++i) {
+    j = 0;
+    fprintf(f, ",\n {%+lf%-+lfi", creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
+    for (++j; j<ncols; ++j) {
+      fprintf(f, ", %+lf%-+lfi", creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
+    }
+    fprintf(f, "}");
+  }
+  fprintf(f, "}\n");
+}
 
 /* end of file */

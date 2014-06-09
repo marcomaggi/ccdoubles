@@ -356,6 +356,12 @@ ccdoubles_decl void ccdoubles_real_matrix_print_display (FILE * f, const char * 
 							 size_t nrows, size_t ncols,
 							 double * operand);
 
+ccdoubles_decl void ccdoubles_real_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+							  double * operand);
+
+ccdoubles_decl void ccdoubles_real_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+							double * operand);
+
 
 /** --------------------------------------------------------------------
  ** Complex vector functions.
@@ -600,6 +606,12 @@ ccdoubles_decl void ccdoubles_cplx_matrix_atanh (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
 							 size_t nrows, size_t ncols,
 							 double complex * operand);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+							  double complex * operand);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+							double complex * operand);
 
 
 /** --------------------------------------------------------------------

@@ -203,6 +203,25 @@ ccdoubles_real_matrix_isunordered (size_t nrows, size_t ncols,
   ccdoubles_real_vector_isunordered (nrows * ncols, result, operand1, operand2);
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_min (size_t nrows, size_t ncols,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  ccdoubles_real_vector_min (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_max (size_t nrows, size_t ncols,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  ccdoubles_real_vector_max (nrows * ncols, result, operand1, operand2);
+}
+
 
 /** --------------------------------------------------------------------
  ** Matrix operations.

@@ -243,6 +243,29 @@ ccdoubles_real_vector_isunordered (size_t nslots,
   }
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_min (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = fmin(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_max (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = fmax(operand1[i], operand2[i]);
+  }
+}
+
 
 /** --------------------------------------------------------------------
  ** Vector operations.

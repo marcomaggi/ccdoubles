@@ -221,6 +221,24 @@ test_real_matrices (void)
 
   {
     double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_min (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(1.2 == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_max (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(3.4 == R[0][0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double	R[NROWS][NCOLS];
     double	lambda = 1.2;
     double	O[NROWS][NCOLS] = { {  3.4 } };
     ccdoubles_real_matrix_scalar_mul (NROWS, NCOLS, &R[0][0], lambda, &O[0][0]);

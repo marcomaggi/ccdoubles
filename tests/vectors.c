@@ -219,6 +219,24 @@ test_real_vectors (void)
 /* ------------------------------------------------------------------ */
 
   {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_min (NSLOTS, R, O1, O2);
+    assert(1.2 == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_max (NSLOTS, R, O1, O2);
+    assert(3.4 == R[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
     double	R;
     double	O1[2] = { 1.2, 3.4 };
     double	O2[2] = { 5.6, 7.8 };

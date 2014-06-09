@@ -577,6 +577,17 @@ Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
 Apply slot--by--slot the function @cfunc{isunordered} to the operands.
 @end deftypefun
 
+@c ------------------------------------------------------------
+
+@deftypefun void ccdoubles_real_vector_min (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmin} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_max (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmax} to the operands.
+@end deftypefun
+
 @c page
 @node vectors real special
 @subsection Special real vector operations
@@ -1198,6 +1209,17 @@ Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
 
 @deftypefun void ccdoubles_real_matrix_isunordered (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
 Apply slot--by--slot the function @cfunc{isunordered} to the operands.
+@end deftypefun
+
+@c ------------------------------------------------------------
+
+@deftypefun void ccdoubles_real_matrix_min (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmin} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_max (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmax} to the operands.
 @end deftypefun
 
 @c page

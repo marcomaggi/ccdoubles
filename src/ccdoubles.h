@@ -530,6 +530,10 @@ ccdoubles_decl void ccdoubles_cplx_matrix_transpose (size_t nrows, size_t ncols,
 						     double complex * restrict result,
 						     double complex * restrict operand);
 
+ccdoubles_decl void ccdoubles_cplx_matrix_conjugate_transpose (size_t operand_nrows, size_t operand_ncols,
+							       double complex * restrict result,
+							       double complex * restrict operand);
+
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,

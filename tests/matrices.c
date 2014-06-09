@@ -490,6 +490,18 @@ test_cplx_matrices (void)
     assert(CPLX(5.6, 0.0) == R[2][0]); assert(CPLX(9.0, 0.0) == R[2][1]);
   }
 
+  {
+    double complex	R[3][2];
+    double complex	O[2][3] = {
+      { CPLX(1.2, 2.3), CPLX(3.4, 4.5), CPLX(5.6, 6.7) },
+      { CPLX(7.8, 8.9), CPLX(9.0, 0.1), CPLX(-1.2, -2.3) }
+    };
+    ccdoubles_cplx_matrix_conjugate_transpose (2, 3, &R[0][0], &O[0][0]);
+    assert(CPLX(1.2, +2.3) == R[0][0]); assert(CPLX(7.8, -8.9) == R[0][1]);
+    assert(CPLX(3.4, -4.5) == R[1][0]); assert(CPLX(9.0, +0.1) == R[1][1]);
+    assert(CPLX(5.6, -6.7) == R[2][0]); assert(CPLX(-1.2, 2.3) == R[2][1]);
+  }
+
 /* ------------------------------------------------------------------ */
 
   {

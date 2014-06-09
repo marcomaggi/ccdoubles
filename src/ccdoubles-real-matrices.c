@@ -29,7 +29,6 @@
  ** ----------------------------------------------------------------- */
 
 #include "ccdoubles-internals.h"
-#include <string.h>
 
 
 /** --------------------------------------------------------------------
@@ -189,7 +188,7 @@ ccdoubles_real_matrix_transpose (size_t operand_nrows, size_t operand_ncols,
     for (size_t j=0; j<operand_ncols; ++j) {
       result[j * operand_nrows + i] = operand[i * operand_ncols + j];
       if (0) {
-	printf("i=%d, j=%d, R=%lf, O=%lf\n", i, j,
+	printf("i=%ld, j=%ld, R=%lf, O=%lf\n", i, j,
 	       result[j * operand_nrows + i],
 	       operand[i * operand_ncols + j]);
       }

@@ -36,6 +36,8 @@
 #  include <config.h>
 #endif
 #include "ccdoubles.h"
+#include <stdio.h>
+#include <string.h>
 
 
 /** --------------------------------------------------------------------

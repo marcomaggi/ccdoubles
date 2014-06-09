@@ -200,6 +200,27 @@ ccdoubles_cplx_matrix_transpose (size_t operand_nrows, size_t operand_ncols,
     }
   }
 }
+void
+ccdoubles_cplx_matrix_conjugate_transpose (size_t operand_nrows, size_t operand_ncols,
+					   double complex * restrict result,
+					   double complex * restrict operand)
+/* To call this function we are meant to do:
+ *
+ *    double complex	O[2][3];
+ *    double complex	R[3][2];
+ *    ccdoubles_cplx_matrix_conjugate_transpose (2, 3, &R[0][0], &O[0][0]);
+ */
+{
+  for (size_t i=0; i<operand_nrows; ++i) {
+    for (size_t j=0; j<operand_ncols; ++j) {
+      if (i != j) {
+	result[j * operand_nrows + i] = conj(operand[i * operand_ncols + j]);
+      } else {
+	result[j * operand_nrows + i] = operand[i * operand_ncols + j];
+      }
+    }
+  }
+}
 
 
 /** --------------------------------------------------------------------

@@ -372,10 +372,10 @@ ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
 	  name, nrows, ncols);
   for (i=0; i<nrows; ++i) {
     j = 0;
-    fprintf(f, "| (%ld,%ld) %+10lf%-+10lfi ", 1+i, 1+j,
+    fprintf(f, "| (%ld,%ld) %+lf%-+lfi ", 1+i, 1+j,
 	    creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
     for (++j; j<ncols; ++j) {
-      fprintf(f, "; (%ld,%ld) %+10lf%-+10lfi ", 1+i, 1+j,
+      fprintf(f, "; (%ld,%ld) %+lf%-+lfi ", 1+i, 1+j,
 	      creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
     }
     fprintf(f, " |\n");

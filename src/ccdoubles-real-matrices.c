@@ -354,9 +354,9 @@ ccdoubles_real_matrix_print_display (FILE * f, const char * name,
 	  name, nrows, ncols);
   for (i=0; i<nrows; ++i) {
     j = 0;
-    fprintf(f, "| (%ld,%ld) %+10lf ", 1+i, 1+j, operand[i * ncols + j]);
+    fprintf(f, "| (%ld,%ld) %+lf ", 1+i, 1+j, operand[i * ncols + j]);
     for (++j; j<ncols; ++j) {
-      fprintf(f, "; (%ld,%ld) %+10lf ", 1+i, 1+j, operand[i * ncols + j]);
+      fprintf(f, "; (%ld,%ld) %+lf ", 1+i, 1+j, operand[i * ncols + j]);
     }
     fprintf(f, " |\n");
   }

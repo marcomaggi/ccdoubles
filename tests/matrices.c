@@ -40,7 +40,7 @@ static void test_cplx_matrices (void);
 #define	NCOLS		1
 #define EPSILON		1e-6
 
-#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
+#define CPLX(REAL,IMAG)		CCDOUBLES_CPLX((REAL),(IMAG))
 
 
 /** --------------------------------------------------------------------

@@ -283,9 +283,6 @@ ccdoubles_decl void ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl double ccdoubles_real_matrix_scalar_product (size_t nrows, size_t ncols,
-							    const double * restrict operand1,
-							    const double * restrict operand2);
 ccdoubles_decl void ccdoubles_real_matrix_scalar_mul (size_t nrows, size_t ncols,
 						      double * restrict result,
 						      double lambda,
@@ -296,6 +293,12 @@ ccdoubles_decl void ccdoubles_real_matrix_linear_combination (size_t nrows, size
 							      double * restrict operand1,
 							      double beta,
 							      double * restrict operand2);
+
+ccdoubles_decl void ccdoubles_real_matrix_transpose (size_t nrows, size_t ncols,
+						     double * restrict result,
+						     double * restrict operand);
+
+/* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_matrix_sin (size_t nrows, size_t ncols,
 					       double * restrict result,
@@ -509,9 +512,9 @@ ccdoubles_decl void ccdoubles_cplx_matrix_div (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_cplx_matrix_neg (size_t nrows, size_t ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl double complex ccdoubles_cplx_matrix_scalar_product (size_t nrows, size_t ncols,
-								    const double complex * restrict operand1,
-								    const double complex * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (size_t nrows, size_t ncols,
 						      double complex * restrict result,
 						      double complex lambda,
@@ -522,6 +525,12 @@ ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (size_t nrows, size
 							      double complex * restrict operand1,
 							      double complex beta,
 							      double complex * restrict operand2);
+
+ccdoubles_decl void ccdoubles_cplx_matrix_transpose (size_t nrows, size_t ncols,
+						     double complex * restrict result,
+						     double complex * restrict operand);
+
+/* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
 					       double complex * restrict result,

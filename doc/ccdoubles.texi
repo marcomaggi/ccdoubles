@@ -1017,6 +1017,17 @@ for (size_t i=0; i<nrows; ++i) @{
 @end example
 @end deftypefun
 
+
+@deftypefun void ccdoubles_real_matrix_transpose (size_t @var{operand_nrows}, size_t @var{operand_ncols}, double * @var{result}, double * @var{operand})
+Transpose the operand.  To call this function we are meant to do:
+
+@example
+double  O[2][3];
+double  R[3][2];
+ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+@end example
+@end deftypefun
+
 @c page
 @node matrices real trigonometric
 @subsection Trigonometric real matrix operations
@@ -1184,6 +1195,17 @@ for (size_t i=0; i<nrows; ++i) @{
       beta  * operand2[i][j];
   @}
 @}
+@end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_transpose (size_t @var{operand_nrows}, size_t @var{operand_ncols}, double complex * @var{result}, double complex * @var{operand})
+Transpose the operand.  To call this function we are meant to do:
+
+@example
+double complex  O[2][3];
+double complex  R[3][2];
+ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
 @end example
 @end deftypefun
 

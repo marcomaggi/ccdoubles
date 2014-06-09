@@ -190,6 +190,18 @@ test_real_matrices (void)
     assert((1.2 * 6.7 + 2.3 * 0.1) == R[1][1]);
   }
 
+  {
+    double	R[3][2];
+    double	O[2][3] = {
+      { 1.2, 3.4, 5.6 },
+      { 7.8, 8.9, 9.0 }
+    };
+    ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+    assert(1.2 == R[0][0]); assert(7.8 == R[0][1]);
+    assert(3.4 == R[1][0]); assert(8.9 == R[1][1]);
+    assert(5.6 == R[2][0]); assert(9.0 == R[2][1]);
+  }
+
 /* ------------------------------------------------------------------ */
 
   {
@@ -464,6 +476,18 @@ test_cplx_matrices (void)
     assert(E01 == R[0][1]);
     assert(E10 == R[1][0]);
     assert(E11 == R[1][1]);
+  }
+
+  {
+    double complex	R[3][2];
+    double complex	O[2][3] = {
+      { CPLX(1.2, 0.0), CPLX(3.4, 0.0), CPLX(5.6, 0.0) },
+      { CPLX(7.8, 0.0), CPLX(8.9, 0.0), CPLX(9.0, 0.0) }
+    };
+    ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+    assert(CPLX(1.2, 0.0) == R[0][0]); assert(CPLX(7.8, 0.0) == R[0][1]);
+    assert(CPLX(3.4, 0.0) == R[1][0]); assert(CPLX(8.9, 0.0) == R[1][1]);
+    assert(CPLX(5.6, 0.0) == R[2][0]); assert(CPLX(9.0, 0.0) == R[2][1]);
   }
 
 /* ------------------------------------------------------------------ */

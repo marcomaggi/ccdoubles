@@ -183,6 +183,23 @@ ccdoubles_cplx_matrix_linear_combination (size_t nrows, size_t ncols,
   ccdoubles_cplx_vector_linear_combination(nrows * ncols,
 					   result, alpha, operand1, beta, operand2);
 }
+void
+ccdoubles_cplx_matrix_transpose (size_t operand_nrows, size_t operand_ncols,
+				 double complex * restrict result,
+				 double complex * restrict operand)
+/* To call this function we are meant to do:
+ *
+ *    double complex	O[2][3];
+ *    double complex	R[3][2];
+ *    ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+ */
+{
+  for (size_t i=0; i<operand_nrows; ++i) {
+    for (size_t j=0; j<operand_ncols; ++j) {
+      result[j * operand_nrows + i] = operand[i * operand_ncols + j];
+    }
+  }
+}
 
 
 /** --------------------------------------------------------------------

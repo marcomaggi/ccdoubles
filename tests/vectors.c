@@ -237,6 +237,36 @@ test_real_vectors (void)
 /* ------------------------------------------------------------------ */
 
   {
+    int		R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_fpclassify (NSLOTS, R, O);
+    assert(FP_NORMAL == R[0]);
+  }
+
+  {
+    int		R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_isfinite (NSLOTS, R, O);
+    assert(1 == R[0]);
+  }
+
+  {
+    int		R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_isnormal (NSLOTS, R, O);
+    assert(1 == R[0]);
+  }
+
+  {
+    int		R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_isnan (NSLOTS, R, O);
+    assert(0 == R[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
     double	R;
     double	O1[2] = { 1.2, 3.4 };
     double	O2[2] = { 5.6, 7.8 };

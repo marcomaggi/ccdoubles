@@ -209,6 +209,21 @@ ccdoubles_decl void ccdoubles_real_vector_max (size_t nslots,
 
 /* ------------------------------------------------------------------ */
 
+ccdoubles_decl void ccdoubles_real_vector_fpclassify (size_t nslots,
+						      int * restrict result,
+						      double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_isfinite (size_t nslots,
+						    int * restrict result,
+						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_isnormal (size_t nslots,
+						    int * restrict result,
+						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_isnan (size_t nslots,
+						 int * restrict result,
+						 double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
 							    const double * restrict operand1,
 							    const double * restrict operand2);
@@ -359,6 +374,8 @@ ccdoubles_decl void ccdoubles_real_matrix_isunordered (size_t nrows, size_t ncol
 						       double * restrict operand1,
 						       double * restrict operand2);
 
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_real_matrix_min (size_t nrows, size_t ncols,
 					       double * restrict result,
 					       double * restrict operand1,
@@ -367,6 +384,21 @@ ccdoubles_decl void ccdoubles_real_matrix_max (size_t nrows, size_t ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_fpclassify (size_t nrows, size_t ncols,
+						      int * restrict result,
+						      double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_isfinite (size_t nrows, size_t ncols,
+						    int * restrict result,
+						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_isnormal (size_t nrows, size_t ncols,
+						    int * restrict result,
+						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_isnan (size_t nrows, size_t ncols,
+						 int * restrict result,
+						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 

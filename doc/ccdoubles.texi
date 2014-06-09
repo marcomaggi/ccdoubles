@@ -466,6 +466,7 @@ old contents.
 * vectors real arithmetic::     Arithmetic real vector operations.
 * vectors real rounding::       Rounding real vector operations.
 * vectors real comparison::     Comparing real vectors.
+* vectors real predicates::     Inspecting real vectors.
 * vectors real special::        Special real vector operations.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
@@ -586,6 +587,30 @@ Apply slot--by--slot the function @cfunc{fmin} to the operands.
 
 @deftypefun void ccdoubles_real_vector_max (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
 Apply slot--by--slot the function @cfunc{fmax} to the operands.
+@end deftypefun
+
+@c page
+@node vectors real predicates
+@subsection Inspecting real vectors
+
+
+@deftypefun void ccdoubles_real_vector_fpclassify (size_t @var{nslots}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{fpclassify} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isfinite (size_t @var{nslots}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isnormal (size_t @var{nslots}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isnormal} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isnan (size_t @var{nslots}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @end deftypefun
 
 @c page
@@ -1100,6 +1125,7 @@ old contents.
 * matrices real arithmetic::    Arithmetic real matrix operations.
 * matrices real rounding::      Rounding real matrix operations.
 * matrices real comparison::    Comparing real matrices.
+* matrices real predicates::    Inspecting real matrices.
 * matrices real special::       Special real matrix operations.
 * matrices real trigonometric:: Trigonometric real matrix operations.
 * matrices real hyperbolic::    Hyperbolic real matrix operations.
@@ -1220,6 +1246,30 @@ Apply slot--by--slot the function @cfunc{fmin} to the operands.
 
 @deftypefun void ccdoubles_real_matrix_max (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
 Apply slot--by--slot the function @cfunc{fmax} to the operands.
+@end deftypefun
+
+@c page
+@node matrices real predicates
+@subsection Inspecting real matrices
+
+
+@deftypefun void ccdoubles_real_matrix_fpclassify (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{fpclassify} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isfinite (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isnormal (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isnormal} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isnan (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @end deftypefun
 
 @c page

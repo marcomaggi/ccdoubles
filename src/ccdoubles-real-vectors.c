@@ -266,6 +266,45 @@ ccdoubles_real_vector_max (size_t nslots,
   }
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_fpclassify (size_t nslots,
+				  int * restrict result,
+				  double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = fpclassify(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_isfinite (size_t nslots,
+				int * restrict result,
+				double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isfinite(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_isnormal (size_t nslots,
+				int * restrict result,
+				double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isnormal(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_isnan (size_t nslots,
+			     int * restrict result,
+			     double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isnan(operand[i]);
+  }
+}
+
 
 /** --------------------------------------------------------------------
  ** Vector operations.

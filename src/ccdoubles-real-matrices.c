@@ -222,6 +222,37 @@ ccdoubles_real_matrix_max (size_t nrows, size_t ncols,
   ccdoubles_real_vector_max (nrows * ncols, result, operand1, operand2);
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_fpclassify (size_t nrows, size_t ncols,
+				  int * restrict result,
+				  double * restrict operand)
+{
+  ccdoubles_real_vector_fpclassify (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_isfinite (size_t nrows, size_t ncols,
+				int * restrict result,
+				double * restrict operand)
+{
+  ccdoubles_real_vector_isfinite (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_isnormal (size_t nrows, size_t ncols,
+				int * restrict result,
+				double * restrict operand)
+{
+  ccdoubles_real_vector_isnormal (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_isnan (size_t nrows, size_t ncols,
+			     int * restrict result,
+			     double * restrict operand)
+{
+  ccdoubles_real_vector_isnan (nrows * ncols, result, operand);
+}
+
 
 /** --------------------------------------------------------------------
  ** Matrix operations.

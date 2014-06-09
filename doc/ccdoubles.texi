@@ -465,6 +465,7 @@ old contents.
 * vectors real basic::          Basic real vector operations.
 * vectors real arithmetic::     Arithmetic real vector operations.
 * vectors real rounding::       Rounding real vector operations.
+* vectors real comparison::     Comparing real vectors.
 * vectors real special::        Special real vector operations.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
@@ -540,6 +541,40 @@ Apply slot--by--slot the function @cfunc{round}.
 
 @deftypefun void ccdoubles_real_vector_rint (size_t @var{nslots}, double * @var{result}, double * @var{operand})
 Apply slot--by--slot the function @cfunc{rint}.
+@end deftypefun
+
+@c page
+@node vectors real comparison
+@subsection Comparing real vectors
+
+
+@deftypefun void ccdoubles_real_vector_isgreater (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isgreater} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isgreaterequal (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isgreaterequal} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isless (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isless} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_islessequal (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{islessequal} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_islessgreater (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_isunordered (size_t @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isunordered} to the operands.
 @end deftypefun
 
 @c page
@@ -1053,6 +1088,7 @@ old contents.
 * matrices real basic::         Basic real matrix operations.
 * matrices real arithmetic::    Arithmetic real matrix operations.
 * matrices real rounding::      Rounding real matrix operations.
+* matrices real comparison::    Comparing real matrices.
 * matrices real special::       Special real matrix operations.
 * matrices real trigonometric:: Trigonometric real matrix operations.
 * matrices real hyperbolic::    Hyperbolic real matrix operations.
@@ -1128,6 +1164,40 @@ Apply slot--by--slot the function @cfunc{round}.
 
 @deftypefun void ccdoubles_real_matrix_rint (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @var{operand})
 Apply slot--by--slot the function @cfunc{rint}.
+@end deftypefun
+
+@c page
+@node matrices real comparison
+@subsection Comparing real matrices
+
+
+@deftypefun void ccdoubles_real_matrix_isgreater (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isgreater} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isgreaterequal (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isgreaterequal} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isless (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isless} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_islessequal (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{islessequal} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_islessgreater (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isunordered (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{isunordered} to the operands.
 @end deftypefun
 
 @c page

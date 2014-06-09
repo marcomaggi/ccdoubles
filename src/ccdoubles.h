@@ -171,6 +171,33 @@ ccdoubles_decl void ccdoubles_real_vector_rint (size_t nslots,
 
 /* ------------------------------------------------------------------ */
 
+ccdoubles_decl void ccdoubles_real_vector_isgreater (size_t nslots,
+						     int * restrict result,
+						     double * restrict operand1,
+						     double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_isgreaterequal (size_t nslots,
+							  int * restrict result,
+							  double * restrict operand1,
+							  double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_isless (size_t nslots,
+						  int * restrict result,
+						  double * restrict operand1,
+						  double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_islessequal (size_t nslots,
+						       int * restrict result,
+						       double * restrict operand1,
+						       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_islessgreater (size_t nslots,
+							 int * restrict result,
+							 double * restrict operand1,
+							 double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_isunordered (size_t nslots,
+						       int * restrict result,
+						       double * restrict operand1,
+						       double * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
 							    const double * restrict operand1,
 							    const double * restrict operand2);
@@ -293,6 +320,33 @@ ccdoubles_decl void ccdoubles_real_matrix_round (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
 						double * restrict result,
 						double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_isgreater (size_t nrows, size_t ncols,
+						     int * restrict result,
+						     double * restrict operand1,
+						     double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_isgreaterequal (size_t nrows, size_t ncols,
+							  int * restrict result,
+							  double * restrict operand1,
+							  double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_isless (size_t nrows, size_t ncols,
+						  int * restrict result,
+						  double * restrict operand1,
+						  double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_islessequal (size_t nrows, size_t ncols,
+						       int * restrict result,
+						       double * restrict operand1,
+						       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_islessgreater (size_t nrows, size_t ncols,
+							 int * restrict result,
+							 double * restrict operand1,
+							 double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_isunordered (size_t nrows, size_t ncols,
+						       int * restrict result,
+						       double * restrict operand1,
+						       double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 

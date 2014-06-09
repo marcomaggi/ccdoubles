@@ -170,6 +170,56 @@ test_real_matrices (void)
 /* ------------------------------------------------------------------ */
 
   {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_isgreater (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(0 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_isgreaterequal (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(0 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_isless (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(1 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_islessequal (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(1 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_islessgreater (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(1 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_isunordered (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(0 == R[0][0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
     double	R[NROWS][NCOLS];
     double	lambda = 1.2;
     double	O[NROWS][NCOLS] = { {  3.4 } };

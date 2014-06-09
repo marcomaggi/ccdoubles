@@ -151,6 +151,60 @@ ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
 
 
 /** --------------------------------------------------------------------
+ ** Comparison.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_matrix_isgreater (size_t nrows, size_t ncols,
+				 int * restrict result,
+				 double * restrict operand1,
+				 double * restrict operand2)
+{
+  ccdoubles_real_vector_isgreater (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_isgreaterequal (size_t nrows, size_t ncols,
+				      int * restrict result,
+				      double * restrict operand1,
+				      double * restrict operand2)
+{
+  ccdoubles_real_vector_isgreaterequal (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_isless (size_t nrows, size_t ncols,
+			      int * restrict result,
+			      double * restrict operand1,
+			      double * restrict operand2)
+{
+  ccdoubles_real_vector_isless (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_islessequal (size_t nrows, size_t ncols,
+				   int * restrict result,
+				   double * restrict operand1,
+				   double * restrict operand2)
+{
+  ccdoubles_real_vector_islessequal (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_islessgreater (size_t nrows, size_t ncols,
+				     int * restrict result,
+				     double * restrict operand1,
+				     double * restrict operand2)
+{
+  ccdoubles_real_vector_islessgreater (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_isunordered (size_t nrows, size_t ncols,
+				   int * restrict result,
+				   double * restrict operand1,
+				   double * restrict operand2)
+{
+  ccdoubles_real_vector_isunordered (nrows * ncols, result, operand1, operand2);
+}
+
+
+/** --------------------------------------------------------------------
  ** Matrix operations.
  ** ----------------------------------------------------------------- */
 

@@ -179,6 +179,72 @@ ccdoubles_real_vector_rint (size_t nslots,
 
 
 /** --------------------------------------------------------------------
+ ** Comparison.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_vector_isgreater (size_t nslots,
+				 int * restrict result,
+				 double * restrict operand1,
+				 double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isgreater(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_isgreaterequal (size_t nslots,
+				      int * restrict result,
+				      double * restrict operand1,
+				      double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isgreaterequal(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_isless (size_t nslots,
+			      int * restrict result,
+			      double * restrict operand1,
+			      double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isless(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_islessequal (size_t nslots,
+				   int * restrict result,
+				   double * restrict operand1,
+				   double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = islessequal(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_islessgreater (size_t nslots,
+				     int * restrict result,
+				     double * restrict operand1,
+				     double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = islessgreater(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_isunordered (size_t nslots,
+				   int * restrict result,
+				   double * restrict operand1,
+				   double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = isunordered(operand1[i], operand2[i]);
+  }
+}
+
+
+/** --------------------------------------------------------------------
  ** Vector operations.
  ** ----------------------------------------------------------------- */
 

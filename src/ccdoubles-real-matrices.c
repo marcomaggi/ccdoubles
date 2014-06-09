@@ -363,6 +363,117 @@ ccdoubles_real_matrix_rowcol_mul (size_t result_nrows,
 
 
 /** --------------------------------------------------------------------
+ ** Exponentiation and logarithms.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_matrix_exp (size_t nrows, size_t ncols,
+			   double * restrict result,
+			   double * restrict operand)
+{
+  ccdoubles_real_vector_exp (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_exp10 (size_t nrows, size_t ncols,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  ccdoubles_real_vector_exp10 (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_exp2 (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  ccdoubles_real_vector_exp2 (nrows * ncols, result, operand);
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_log (size_t nrows, size_t ncols,
+			   double * restrict result,
+			   double * restrict operand)
+{
+  ccdoubles_real_vector_log (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_log10 (size_t nrows, size_t ncols,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  ccdoubles_real_vector_log10 (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_log2 (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  ccdoubles_real_vector_log2 (nrows * ncols, result, operand);
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_logb (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  ccdoubles_real_vector_logb (nrows * ncols, result, operand);
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_pow (size_t nrows, size_t ncols,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  ccdoubles_real_vector_pow (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_sqrt (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  ccdoubles_real_vector_sqrt (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_cbrt (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  ccdoubles_real_vector_cbrt (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_hypot (size_t nrows, size_t ncols,
+			     double * restrict result,
+			     double * restrict operand1,
+			     double * restrict operand2)
+{
+  ccdoubles_real_vector_hypot (nrows * ncols, result, operand1, operand2);
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_expm1 (size_t nrows, size_t ncols,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  ccdoubles_real_vector_expm1 (nrows * ncols, result, operand);
+}
+void
+ccdoubles_real_matrix_log1p (size_t nrows, size_t ncols,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  ccdoubles_real_vector_log1p (nrows * ncols, result, operand);
+}
+
+
+/** --------------------------------------------------------------------
  ** Trigonometric operations.
  ** ----------------------------------------------------------------- */
 

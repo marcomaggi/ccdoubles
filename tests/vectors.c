@@ -331,6 +331,101 @@ test_real_vectors (void)
   {
     double	R[NSLOTS];
     double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_exp (NSLOTS, R, O);
+    assert(exp(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_exp10 (NSLOTS, R, O);
+    assert(exp(1.2 * log(10.0)) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_exp2 (NSLOTS, R, O);
+    assert(exp2(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_log (NSLOTS, R, O);
+    assert(log(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_log10 (NSLOTS, R, O);
+    assert(log10(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_log2 (NSLOTS, R, O);
+    assert(log2(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_logb (NSLOTS, R, O);
+    assert(logb(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_pow (NSLOTS, R, O1, O2);
+    assert(pow(1.2, 3.4) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_sqrt (NSLOTS, R, O);
+    assert(sqrt(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_cbrt (NSLOTS, R, O);
+    assert(cbrt(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_hypot (NSLOTS, R, O1, O2);
+    assert(hypot(1.2, 3.4) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_expm1 (NSLOTS, R, O);
+    assert(expm1(1.2) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_log1p (NSLOTS, R, O);
+    assert(log1p(1.2) == R[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double	R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
     ccdoubles_real_vector_sin (NSLOTS, R, O);
     assert(sin(1.2) == R[0]);
   }

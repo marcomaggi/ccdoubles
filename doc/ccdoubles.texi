@@ -469,6 +469,7 @@ old contents.
 * vectors real comparison::     Comparing real vectors.
 * vectors real predicates::     Inspecting real vectors.
 * vectors real special::        Special real vector operations.
+* vectors real explog::         Exponentiation and logarithms.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
 * vectors real printing::       Printing real vectors.
@@ -668,6 +669,76 @@ for (size_t i=0; i<nslots; ++i) @{
   result[i] = alpha * operand1[i] + beta * operand2[i];
 @}
 @end example
+@end deftypefun
+
+@c page
+@node vectors real explog
+@subsection Exponentiation and logarithms
+
+
+@deftypefun void ccdoubles_real_vector_exp (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{exp} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_exp10 (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @code{exp(X * log(10))} to the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_exp2 (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{exp2} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_log (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_log10 (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log10} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_log2 (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log2} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_logb (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{logb} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_pow (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{pow} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_sqrt (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{sqrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_cbrt (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{cbrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_hypot (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{hypot} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_expm1 (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{expm1} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_log1p (size_t @var{nslots}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @end deftypefun
 
 @c page
@@ -1150,6 +1221,7 @@ old contents.
 * matrices real comparison::    Comparing real matrices.
 * matrices real predicates::    Inspecting real matrices.
 * matrices real special::       Special real matrix operations.
+* matrices real explog::        Exponentiation and logarithms.
 * matrices real trigonometric:: Trigonometric real matrix operations.
 * matrices real hyperbolic::    Hyperbolic real matrix operations.
 * matrices real printing::      Printing real matrices.
@@ -1371,6 +1443,76 @@ ccdoubles_real_matrix_rowcol_mul \
 
 When possible, rather than this function, we should consider using
 @acronym{CBLAS}'s @cfunc{cblas_dgemm}.
+@end deftypefun
+
+@c page
+@node matrices real explog
+@subsection Exponentiation and logarithms
+
+
+@deftypefun void ccdoubles_real_matrix_exp (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{exp} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_exp10 (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @code{exp(X * log(10))} to the
+operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_exp2 (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{exp2} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_log (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_log10 (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log10} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_log2 (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log2} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_logb (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{logb} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_pow (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{pow} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_sqrt (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{sqrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_cbrt (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{cbrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_hypot (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{hypot} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_expm1 (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{expm1} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_log1p (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
+Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @end deftypefun
 
 @c page

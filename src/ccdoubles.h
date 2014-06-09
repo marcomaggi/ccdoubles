@@ -256,6 +256,52 @@ ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nslots,
 							      double beta,
 							      double * restrict operand2);
 
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_vector_exp (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_exp10 (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_exp2 (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_log (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_log10 (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_log2 (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_logb (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_pow (size_t nslots,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_sqrt (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_cbrt (size_t nslots,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_hypot (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand1,
+						 double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_expm1 (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_log1p (size_t nslots,
+						 double * restrict result,
+						 double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_real_vector_sin (size_t nslots,
 					       double * restrict result,
 					       double * restrict operand);
@@ -278,6 +324,8 @@ ccdoubles_decl void ccdoubles_real_vector_atan2 (size_t nslots,
 						 double * restrict result,
 						 double * restrict operand1,
 						 double * restrict operand2);
+
+/* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_vector_sinh (size_t nslots,
 						double * restrict result,
@@ -459,6 +507,50 @@ ccdoubles_decl void ccdoubles_real_matrix_rowcol_mul (size_t result_nrows,
 						      double * restrict result,
 						      double * restrict operand1,
 						      double * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_exp (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_exp10 (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_exp2 (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_log (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_log10 (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_log2 (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_logb (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_pow (size_t nrows, size_t ncols,
+					       double * restrict result,
+					       double * restrict operand1,
+					       double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_sqrt (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_cbrt (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_hypot (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand1,
+						 double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_expm1 (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_log1p (size_t nrows, size_t ncols,
+						 double * restrict result,
+						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 

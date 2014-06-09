@@ -388,6 +388,143 @@ ccdoubles_real_vector_linear_combination (size_t nslots,
 
 
 /** --------------------------------------------------------------------
+ ** Exponentiation and logarithms.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_vector_exp (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = exp(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_exp10 (size_t nslots,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = exp(operand[i] * log(10.0));
+  }
+}
+void
+ccdoubles_real_vector_exp2 (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = exp2(operand[i]);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_log (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = log(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_log10 (size_t nslots,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = log10(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_log2 (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = log2(operand[i]);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_logb (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = logb(operand[i]);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_pow (size_t nslots,
+			   double * restrict result,
+			   double * restrict operand1,
+			   double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = pow(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_sqrt (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = sqrt(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_cbrt (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = cbrt(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_hypot (size_t nslots,
+			     double * restrict result,
+			     double * restrict operand1,
+			     double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = hypot(operand1[i], operand2[i]);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_expm1 (size_t nslots,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = expm1(operand[i]);
+  }
+}
+void
+ccdoubles_real_vector_log1p (size_t nslots,
+			     double * restrict result,
+			     double * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = log1p(operand[i]);
+  }
+}
+
+
+/** --------------------------------------------------------------------
  ** Trigonometric operations.
  ** ----------------------------------------------------------------- */
 

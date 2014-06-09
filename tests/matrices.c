@@ -370,6 +370,101 @@ test_real_matrices (void)
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_exp (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(exp(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_exp10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(exp(1.2 * log(10.0)) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_exp2 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(exp2(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_log (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(log(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_log10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(log10(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_log2 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(log2(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_logb (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(logb(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_pow (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(pow(1.2, 3.4) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_sqrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(sqrt(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_cbrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(cbrt(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { { 1.2 } };
+    double	O2[NROWS][NCOLS] = { { 3.4 } };
+    ccdoubles_real_matrix_hypot (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(hypot(1.2, 3.4) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_expm1 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(expm1(1.2) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
+    ccdoubles_real_matrix_log1p (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(log1p(1.2) == R[0][0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { {  1.2 } };
     ccdoubles_real_matrix_sin (NROWS, NCOLS, &R[0][0], &O[0][0]);
     assert(sin(1.2) == R[0][0]);
   }

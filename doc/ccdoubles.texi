@@ -469,7 +469,8 @@ old contents.
 * vectors real comparison::     Comparing real vectors.
 * vectors real predicates::     Inspecting real vectors.
 * vectors real special::        Special real vector operations.
-* vectors real explog::         Exponentiation and logarithms.
+* vectors real explog::         Real vector exponentiation and
+                                logarithms.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
 * vectors real printing::       Printing real vectors.
@@ -673,7 +674,7 @@ for (size_t i=0; i<nslots; ++i) @{
 
 @c page
 @node vectors real explog
-@subsection Exponentiation and logarithms
+@subsection Real vectors exponentiation and logarithms
 
 
 @deftypefun void ccdoubles_real_vector_exp (size_t @var{nslots}, double * @var{result}, double * @var{operand})
@@ -867,6 +868,8 @@ will print:
 * vectors cplx basic::          Basic complex vector operations.
 * vectors cplx arithmetic::     Arithmetic complex vector operations.
 * vectors cplx special::        Special complex vector operations.
+* vectors cplx explog::         Complex vectors exponentiation and
+                                logarithms.
 * vectors cplx trigonometric::  Trigonometric complex vector operations.
 * vectors cplx hyperbolic::     Hyperbolic complex vector operations.
 * vectors cplx printing::       Printing complex vectors.
@@ -980,6 +983,36 @@ for (size_t i=0; i<nslots; ++i) @{
   result[i] = alpha * operand1[i] + beta * operand2[i];
 @}
 @end example
+@end deftypefun
+
+@c page
+@node vectors cplx explog
+@subsection Complex vectors exponentiation and logarithms
+
+
+@deftypefun void ccdoubles_cplx_vector_exp (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{cexp} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_log (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{clog} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_log10 (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{log10(cabs(Z)) + I * carg(Z)}
+to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_sqrt (size_t @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{csqrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_pow (size_t @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @end deftypefun
 
 @c page
@@ -1221,7 +1254,8 @@ old contents.
 * matrices real comparison::    Comparing real matrices.
 * matrices real predicates::    Inspecting real matrices.
 * matrices real special::       Special real matrix operations.
-* matrices real explog::        Exponentiation and logarithms.
+* matrices real explog::        Real matricex exponentiation and
+                                logarithms.
 * matrices real trigonometric:: Trigonometric real matrix operations.
 * matrices real hyperbolic::    Hyperbolic real matrix operations.
 * matrices real printing::      Printing real matrices.
@@ -1447,7 +1481,7 @@ When possible, rather than this function, we should consider using
 
 @c page
 @node matrices real explog
-@subsection Exponentiation and logarithms
+@subsection Real matrices exponentiation and logarithms
 
 
 @deftypefun void ccdoubles_real_matrix_exp (size_t @var{ncols}, size_t @var{nrows}, double * @var{result}, double * @var{operand})
@@ -1664,6 +1698,8 @@ will print:
 * matrices cplx basic::         Basic complex matrix operations.
 * matrices cplx arithmetic::    Arithmetic complex matrix operations.
 * matrices cplx special::       Special complex matrix operations.
+* matrices cplx explog::        Complex matrices exponentiation and
+                                logarithms.
 * matrices cplx trigonometric:: Trigonometric complex matrix operations.
 * matrices cplx hyperbolic::    Hyperbolic complex matrix operations.
 * matrices cplx printing::      Printing complex matrices.
@@ -1813,6 +1849,36 @@ ccdoubles_real_matrix_rowcol_mul \
 
 When possible, rather than this function, we should consider using
 @acronym{CBLAS}'s @cfunc{cblas_zgemm}.
+@end deftypefun
+
+@c page
+@node matrices cplx explog
+@subsection Complex matrices exponentiation and logarithms
+
+
+@deftypefun void ccdoubles_cplx_matrix_exp (size_t @var{nrows}, size_t @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{cexp} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_log (size_t @var{nrows}, size_t @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{clog} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_log10 (size_t @var{nrows}, size_t @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{log10(cabs(Z)) + I * carg(Z)}
+to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_sqrt (size_t @var{nrows}, size_t @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+Apply slot--by--slot the function @cfunc{csqrt} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_pow (size_t @var{nrows}, size_t @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @end deftypefun
 
 @c page

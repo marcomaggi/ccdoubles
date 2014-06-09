@@ -55,7 +55,7 @@ dnl page
 
 AC_FUNC_MALLOC
 AC_FUNC_MEMCMP
-AC_CHECK_FUNCS([memmove memset strerror])
+AC_CHECK_FUNCS([exp10 clog10])
 
 AC_CACHE_SAVE
 

@@ -251,6 +251,48 @@ ccdoubles_cplx_matrix_rowcol_mul (size_t result_nrows,
 
 
 /** --------------------------------------------------------------------
+ ** Exponentiation and logarithms.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_cplx_matrix_exp (size_t nrows, size_t ncols,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  ccdoubles_cplx_vector_exp (nrows * ncols, result, operand);
+}
+void
+ccdoubles_cplx_matrix_log (size_t nrows, size_t ncols,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  ccdoubles_cplx_vector_log (nrows * ncols, result, operand);
+}
+void
+ccdoubles_cplx_matrix_log10 (size_t nrows, size_t ncols,
+			     double complex * restrict result,
+			     double complex * restrict operand)
+{
+  ccdoubles_cplx_vector_log10 (nrows * ncols, result, operand);
+}
+void
+ccdoubles_cplx_matrix_sqrt (size_t nrows, size_t ncols,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  ccdoubles_cplx_vector_sqrt (nrows * ncols, result, operand);
+}
+void
+ccdoubles_cplx_matrix_pow (size_t nrows, size_t ncols,
+			   double complex * restrict result,
+			   double complex * restrict operand1,
+			   double complex * restrict operand2)
+{
+  ccdoubles_cplx_vector_pow (nrows * ncols, result, operand1, operand2);
+}
+
+
+/** --------------------------------------------------------------------
  ** Trigonometric operations.
  ** ----------------------------------------------------------------- */
 

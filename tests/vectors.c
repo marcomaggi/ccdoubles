@@ -701,6 +701,49 @@ test_cplx_vectors (void)
   {
     double complex	R[NSLOTS];
     double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
+    double complex	E = cexp(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_exp (NSLOTS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NSLOTS];
+    double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
+    double complex	E = clog(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_log (NSLOTS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NSLOTS];
+    double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
+    double complex	E = CPLX(log10(cabs(CPLX(1.2, 3.4))), carg(CPLX(1.2, 3.4)));
+    ccdoubles_cplx_vector_log10 (NSLOTS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NSLOTS];
+    double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
+    double complex	E = csqrt(CPLX(1.2, 3.4));
+    ccdoubles_cplx_vector_sqrt (NSLOTS, R, O);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NSLOTS];
+    double complex	O1[NSLOTS] = { CPLX(1.2, 3.4) };
+    double complex	O2[NSLOTS] = { CPLX(5.6, 7.8) };
+    double complex	E = cpow(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
+    ccdoubles_cplx_vector_pow (NSLOTS, R, O1, O2);
+    assert(cabs(E - R[0]) < EPSILON);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double complex	R[NSLOTS];
+    double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
     double complex	E = csin(CPLX(1.2, 3.4));
     ccdoubles_cplx_vector_sin (NSLOTS, R, O);
     assert(cabs(E - R[0]) < EPSILON);

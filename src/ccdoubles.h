@@ -681,6 +681,27 @@ ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nslots,
 							      double complex beta,
 							      double complex * restrict operand2);
 
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_vector_exp (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_log (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_log10 (size_t nslots,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_sqrt (size_t nslots,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_pow (size_t nslots,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_cplx_vector_sin (size_t nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
@@ -699,6 +720,8 @@ ccdoubles_decl void ccdoubles_cplx_vector_acos (size_t nslots,
 ccdoubles_decl void ccdoubles_cplx_vector_atan (size_t nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
+
+/* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_vector_sinh (size_t nslots,
 						double complex * restrict result,
@@ -821,6 +844,25 @@ ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (size_t result_nrows,
 
 /* ------------------------------------------------------------------ */
 
+ccdoubles_decl void ccdoubles_cplx_matrix_exp (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_log (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_log10 (size_t nrows, size_t ncols,
+						 double complex * restrict result,
+						 double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_sqrt (size_t nrows, size_t ncols,
+						double complex * restrict result,
+						double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_pow (size_t nrows, size_t ncols,
+					       double complex * restrict result,
+					       double complex * restrict operand1,
+					       double complex * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
@@ -839,6 +881,8 @@ ccdoubles_decl void ccdoubles_cplx_matrix_acos (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_cplx_matrix_atan (size_t nrows, size_t ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
+
+/* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_matrix_sinh (size_t nrows, size_t ncols,
 						double complex * restrict result,

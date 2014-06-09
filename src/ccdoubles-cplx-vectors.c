@@ -239,6 +239,62 @@ ccdoubles_cplx_vector_linear_combination (size_t nslots,
 
 
 /** --------------------------------------------------------------------
+ ** Exponentiation and logarithms.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_cplx_vector_exp (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = cexp(operand[i]);
+  }
+}
+void
+ccdoubles_cplx_vector_log (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = clog(operand[i]);
+  }
+}
+void
+ccdoubles_cplx_vector_log10 (size_t nslots,
+			     double complex * restrict result,
+			     double complex * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+#ifdef HAVE_CLOG10
+    result[i] = clog10(operand[i]);
+#else
+    result[i] = CCDOUBLES_CPLX(log10(cabs(operand[i])), carg(operand[i]));
+#endif
+  }
+}
+void
+ccdoubles_cplx_vector_sqrt (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = csqrt(operand[i]);
+  }
+}
+void
+ccdoubles_cplx_vector_pow (size_t nslots,
+			   double complex * restrict result,
+			   double complex * restrict operand1,
+			   double complex * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = cpow(operand1[i], operand2[i]);
+  }
+}
+
+
+/** --------------------------------------------------------------------
  ** Trigonometric operations.
  ** ----------------------------------------------------------------- */
 

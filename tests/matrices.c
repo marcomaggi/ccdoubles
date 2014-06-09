@@ -463,6 +463,49 @@ test_real_matrices (void)
 /* ------------------------------------------------------------------ */
 
   {
+    double complex	R[NROWS][NCOLS];
+    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
+    double complex	E = cexp(CPLX(1.2, 3.4));
+    ccdoubles_cplx_matrix_exp (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(cabs(E - R[0][0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NROWS][NCOLS];
+    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
+    double complex	E = clog(CPLX(1.2, 3.4));
+    ccdoubles_cplx_matrix_log (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(cabs(E - R[0][0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NROWS][NCOLS];
+    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
+    double complex	E = CPLX(log10(cabs(CPLX(1.2, 3.4))), carg(CPLX(1.2, 3.4)));
+    ccdoubles_cplx_matrix_log10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(cabs(E - R[0][0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NROWS][NCOLS];
+    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
+    double complex	E = csqrt(CPLX(1.2, 3.4));
+    ccdoubles_cplx_matrix_sqrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(cabs(E - R[0][0]) < EPSILON);
+  }
+
+  {
+    double complex	R[NROWS][NCOLS];
+    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { CPLX(5.6, 7.8) } };
+    double complex	E = cpow(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
+    ccdoubles_cplx_matrix_pow (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(cabs(E - R[0][0]) < EPSILON);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
     ccdoubles_real_matrix_sin (NROWS, NCOLS, &R[0][0], &O[0][0]);

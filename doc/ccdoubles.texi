@@ -134,9 +134,10 @@ library is meant to be used as companion for more sophisticated
 libraries such as @acronym{CBLAS} and @acronym{LAPACKE}.
 
 @value{PACKAGE} installs the single header file @file{ccdoubles.h}.  All
-the function names in the @api{} are prefixed with @code{ccd_}; all the
-constant names are prefixed with @code{CCD_}; all the type names are
-prefixed with @code{ccd_} and suffixed with @code{_t}.
+the function names in the @api{} are prefixed with @code{ccdoubles_};
+all the preprocessor macro names are prefixed with @code{CCDOUBLES_};
+all the type names are prefixed with @code{ccdoubles_} and suffixed with
+@code{_t}.
 
 @menu
 * overview linking::            Linking code with the library.
@@ -195,24 +196,24 @@ The installed libraries follow version numbering as established by the
 system, libtool, Shared library support for @gnu{}}.
 
 
-@deftypefun {const char *} ccd_version_string (void)
+@deftypefun {const char *} ccdoubles_version_string (void)
 Return a pointer to a statically allocated @asciiz{} string representing
 the interface version number.
 @end deftypefun
 
 
-@deftypefun int ccd_version_interface_current (void)
+@deftypefun int ccdoubles_version_interface_current (void)
 Return an integer representing the library interface current number.
 @end deftypefun
 
 
-@deftypefun int ccd_version_interface_revision (void)
+@deftypefun int ccdoubles_version_interface_revision (void)
 Return an integer representing the library interface current revision
 number.
 @end deftypefun
 
 
-@deftypefun int ccd_version_interface_age (void)
+@deftypefun int ccdoubles_version_interface_age (void)
 Return an integer representing the library interface current age.
 @end deftypefun
 

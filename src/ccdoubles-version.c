@@ -32,22 +32,22 @@
 
 
 const char *
-ccd_version_string (void)
+ccdoubles_version_string (void)
 {
   return ccdoubles_VERSION_INTERFACE_STRING;
 }
 int
-ccd_version_interface_current (void)
+ccdoubles_version_interface_current (void)
 {
   return ccdoubles_VERSION_INTERFACE_CURRENT;
 }
 int
-ccd_version_interface_revision (void)
+ccdoubles_version_interface_revision (void)
 {
   return ccdoubles_VERSION_INTERFACE_REVISION;
 }
 int
-ccd_version_interface_age (void)
+ccdoubles_version_interface_age (void)
 {
   return ccdoubles_VERSION_INTERFACE_AGE;
 }

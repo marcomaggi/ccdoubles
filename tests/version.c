@@ -19,11 +19,11 @@
 int
 main (int argc, const char *const argv[])
 {
-  printf("version number string: %s\n", ccd_version_string());
+  printf("version number string: %s\n", ccdoubles_version_string());
   printf("libtool version number: %d:%d:%d\n",
-	 ccd_version_interface_current(),
-	 ccd_version_interface_revision(),
-	 ccd_version_interface_age());
+	 ccdoubles_version_interface_current(),
+	 ccdoubles_version_interface_revision(),
+	 ccdoubles_version_interface_age());
   exit(EXIT_SUCCESS);
 }
 

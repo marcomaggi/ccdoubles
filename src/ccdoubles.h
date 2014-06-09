@@ -784,10 +784,10 @@ ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, 
  ** Version functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl const char *	ccd_version_string		(void);
-ccdoubles_decl int		ccd_version_interface_current	(void);
-ccdoubles_decl int		ccd_version_interface_revision	(void);
-ccdoubles_decl int		ccd_version_interface_age	(void);
+ccdoubles_decl const char *	ccdoubles_version_string		(void);
+ccdoubles_decl int		ccdoubles_version_interface_current	(void);
+ccdoubles_decl int		ccdoubles_version_interface_revision	(void);
+ccdoubles_decl int		ccdoubles_version_interface_age		(void);
 
 
 /** --------------------------------------------------------------------

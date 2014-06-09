@@ -134,6 +134,32 @@ test_real_matrices (void)
 
   {
     double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { {  1.2 } };
+    double	O2[NROWS][NCOLS] = { {  3.4 } };
+    ccdoubles_real_matrix_fmod (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(fmod(1.2, 3.4) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { {  1.2 } };
+    double	O2[NROWS][NCOLS] = { {  3.4 } };
+    ccdoubles_real_matrix_drem (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(drem(1.2, 3.4) == R[0][0]);
+  }
+
+  {
+    double	R[NROWS][NCOLS];
+    double	O1[NROWS][NCOLS] = { {  1.2 } };
+    double	O2[NROWS][NCOLS] = { {  3.4 } };
+    ccdoubles_real_matrix_remainder (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    assert(remainder(1.2, 3.4) == R[0][0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
     ccdoubles_real_matrix_ceil (NROWS, NCOLS, &R[0][0], &O[0][0]);
     assert(ceil(1.2) == R[0][0]);

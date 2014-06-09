@@ -515,6 +515,22 @@ Perform the slot--by--slot negation of the operand.
 Compute slot--by--slot the absolute value of the operand.
 @end deftypefun
 
+@c ------------------------------------------------------------
+
+@deftypefun void ccdoubles_real_vector_fmod (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmod} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_drem (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{drem} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_remainder (size_t @var{nslots}, double * @var{result}, double * @vari{operand}, double *1 @varii{operand})
+Apply slot--by--slot the function @cfunc{remainder} to the operands.
+@end deftypefun
+
 @c page
 @node vectors real rounding
 @subsection Rounding real vector operations
@@ -1178,6 +1194,22 @@ Perform the slot--by--slot negation of the operand.
 
 @deftypefun void ccdoubles_real_matrix_abs (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @var{operand})
 Compute slot--by--slot the absolute value of the operand.
+@end deftypefun
+
+@c ------------------------------------------------------------
+
+@deftypefun void ccdoubles_real_matrix_fmod (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{fmod} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_drem (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+Apply slot--by--slot the function @cfunc{drem} to the operands.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_remainder (size_t @var{nrows}, size_t @var{ncols}, double * @var{result}, double * @vari{operand}, double *1 @varii{operand})
+Apply slot--by--slot the function @cfunc{remainder} to the operands.
 @end deftypefun
 
 @c page

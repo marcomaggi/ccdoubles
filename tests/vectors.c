@@ -133,6 +133,32 @@ test_real_vectors (void)
 
   {
     double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_fmod (NSLOTS, R, O1, O2);
+    assert(fmod(1.2, 3.4) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_drem (NSLOTS, R, O1, O2);
+    assert(fmod(1.2, 3.4) == R[0]);
+  }
+
+  {
+    double	R[NSLOTS];
+    double	O1[NSLOTS] = { 1.2 };
+    double	O2[NSLOTS] = { 3.4 };
+    ccdoubles_real_vector_remainder (NSLOTS, R, O1, O2);
+    assert(remainder(1.2, 3.4) == R[0]);
+  }
+
+/* ------------------------------------------------------------------ */
+
+  {
+    double	R[NSLOTS];
     double	O[NSLOTS] = { 1.2 };
     ccdoubles_real_vector_ceil (NSLOTS, R, O);
     assert(ceil(1.2) == R[0]);

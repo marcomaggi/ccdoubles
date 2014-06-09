@@ -126,6 +126,39 @@ ccdoubles_real_vector_abs (size_t nslots,
   }
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_fmod (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand1,
+			    double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = fmod(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_drem (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand1,
+			    double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = drem(operand1[i], operand2[i]);
+  }
+}
+void
+ccdoubles_real_vector_remainder (size_t nslots,
+			    double * restrict result,
+			    double * restrict operand1,
+			    double * restrict operand2)
+{
+  for (size_t i=0; i<nslots; ++i) {
+    result[i] = remainder(operand1[i], operand2[i]);
+  }
+}
+
 
 /** --------------------------------------------------------------------
  ** Rounding.

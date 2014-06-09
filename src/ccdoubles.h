@@ -153,6 +153,21 @@ ccdoubles_decl void ccdoubles_real_vector_abs (size_t nslots,
 
 /* ------------------------------------------------------------------ */
 
+ccdoubles_decl void ccdoubles_real_vector_fmod (size_t nslots,
+						double * restrict result,
+						double * restrict operand1,
+						double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_drem (size_t nslots,
+						double * restrict result,
+						double * restrict operand1,
+						double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_remainder (size_t nslots,
+						     double * restrict result,
+						     double * restrict operand1,
+						     double * restrict operand2);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_real_vector_ceil (size_t nslots,
 						double * restrict result,
 						double * restrict operand);
@@ -331,6 +346,21 @@ ccdoubles_decl void ccdoubles_real_matrix_neg (size_t nrows, size_t ncols,
 ccdoubles_decl void ccdoubles_real_matrix_abs (size_t nrows, size_t ncols,
 					       double * restrict result,
 					       double * restrict operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_matrix_fmod (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand1,
+						double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_drem (size_t nrows, size_t ncols,
+						double * restrict result,
+						double * restrict operand1,
+						double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_matrix_remainder (size_t nrows, size_t ncols,
+						     double * restrict result,
+						     double * restrict operand1,
+						     double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 

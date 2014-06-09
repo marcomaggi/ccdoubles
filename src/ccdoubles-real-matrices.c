@@ -108,6 +108,33 @@ ccdoubles_real_matrix_abs (size_t nrows, size_t ncols,
   ccdoubles_real_vector_abs(nrows * ncols, result, operand);
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_matrix_fmod (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand1,
+			    double * restrict operand2)
+{
+  ccdoubles_real_vector_fmod (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_drem (size_t nrows, size_t ncols,
+			    double * restrict result,
+			    double * restrict operand1,
+			    double * restrict operand2)
+{
+  ccdoubles_real_vector_drem (nrows * ncols, result, operand1, operand2);
+}
+void
+ccdoubles_real_matrix_remainder (size_t nrows, size_t ncols,
+				 double * restrict result,
+				 double * restrict operand1,
+				 double * restrict operand2)
+{
+  ccdoubles_real_vector_remainder (nrows * ncols, result, operand1, operand2);
+}
+
 
 /** --------------------------------------------------------------------
  ** Rounding.

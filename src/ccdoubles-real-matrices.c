@@ -239,6 +239,13 @@ ccdoubles_real_matrix_isfinite (size_t nrows, size_t ncols,
   ccdoubles_real_vector_isfinite (nrows * ncols, result, operand);
 }
 void
+ccdoubles_real_matrix_isinfinite (size_t nrows, size_t ncols,
+				int * restrict result,
+				double * restrict operand)
+{
+  ccdoubles_real_vector_isinfinite (nrows * ncols, result, operand);
+}
+void
 ccdoubles_real_matrix_isnormal (size_t nrows, size_t ncols,
 				int * restrict result,
 				double * restrict operand)

@@ -215,6 +215,9 @@ ccdoubles_decl void ccdoubles_real_vector_fpclassify (size_t nslots,
 ccdoubles_decl void ccdoubles_real_vector_isfinite (size_t nslots,
 						    int * restrict result,
 						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_vector_isinfinite (size_t nslots,
+						      int * restrict result,
+						      double * restrict operand);
 ccdoubles_decl void ccdoubles_real_vector_isnormal (size_t nslots,
 						    int * restrict result,
 						    double * restrict operand);
@@ -393,6 +396,9 @@ ccdoubles_decl void ccdoubles_real_matrix_fpclassify (size_t nrows, size_t ncols
 ccdoubles_decl void ccdoubles_real_matrix_isfinite (size_t nrows, size_t ncols,
 						    int * restrict result,
 						    double * restrict operand);
+ccdoubles_decl void ccdoubles_real_matrix_isinfinite (size_t nrows, size_t ncols,
+						      int * restrict result,
+						      double * restrict operand);
 ccdoubles_decl void ccdoubles_real_matrix_isnormal (size_t nrows, size_t ncols,
 						    int * restrict result,
 						    double * restrict operand);

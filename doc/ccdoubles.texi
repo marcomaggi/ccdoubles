@@ -604,6 +604,12 @@ Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
 @end deftypefun
 
 
+@deftypefun void ccdoubles_real_vector_isinfinite (size_t @var{nslots}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isinfinite} to the operand and
+reverse the result.
+@end deftypefun
+
+
 @deftypefun void ccdoubles_real_vector_isnormal (size_t @var{nslots}, int * @var{result}, double * @var{operand})
 Apply slot--by--slot the macro @cfunc{isnormal} to the operand.
 @end deftypefun
@@ -1260,6 +1266,12 @@ Apply slot--by--slot the macro @cfunc{fpclassify} to the operand.
 
 @deftypefun void ccdoubles_real_matrix_isfinite (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
 Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_isinfinite (size_t @var{nrows}, size_t @var{ncols}, int * @var{result}, double * @var{operand})
+Apply slot--by--slot the macro @cfunc{isfinite} to the operand and
+reverse the result.
 @end deftypefun
 
 

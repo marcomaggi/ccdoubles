@@ -253,6 +253,13 @@ test_real_vectors (void)
   {
     int		R[NSLOTS];
     double	O[NSLOTS] = { 1.2 };
+    ccdoubles_real_vector_isinfinite (NSLOTS, R, O);
+    assert(0 == R[0]);
+  }
+
+  {
+    int		R[NSLOTS];
+    double	O[NSLOTS] = { 1.2 };
     ccdoubles_real_vector_isnormal (NSLOTS, R, O);
     assert(1 == R[0]);
   }

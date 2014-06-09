@@ -254,6 +254,13 @@ test_real_matrices (void)
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
+    ccdoubles_real_matrix_isinfinite (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    assert(0 == R[0][0]);
+  }
+
+  {
+    int		R[NROWS][NCOLS];
+    double	O[NROWS][NCOLS] = { { 1.2 } };
     ccdoubles_real_matrix_isnormal (NROWS, NCOLS, &R[0][0], &O[0][0]);
     assert(1 == R[0][0]);
   }

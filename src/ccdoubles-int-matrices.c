@@ -36,20 +36,20 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_int_matrix_clear (size_t nrows, size_t ncols,
+ccdoubles_int_matrix_clear (unsigned nrows, unsigned ncols,
 			    int * restrict matrix)
 {
   ccdoubles_int_vector_clear(nrows * ncols, matrix);
 }
 void
-ccdoubles_int_matrix_set (size_t nrows, size_t ncols,
+ccdoubles_int_matrix_set (unsigned nrows, unsigned ncols,
 			  int * restrict matrix,
 			  int value)
 {
   ccdoubles_int_vector_set(nrows * ncols, matrix, value);
 }
 void
-ccdoubles_int_matrix_copy (size_t nrows, size_t ncols,
+ccdoubles_int_matrix_copy (unsigned nrows, unsigned ncols,
 			   int * restrict dst,
 			   int * restrict src)
 {
@@ -63,27 +63,27 @@ ccdoubles_int_matrix_copy (size_t nrows, size_t ncols,
 
 void
 ccdoubles_int_matrix_print_display (FILE * f, const char * name,
-				    size_t nrows, size_t ncols,
+				    unsigned nrows, unsigned ncols,
 				    int * operand)
 {
-  size_t	i, j;
-  fprintf(f, "Row-major matrix %s (dimension %ld x %ld) (displayed in row-major order):\n",
+  unsigned	i, j;
+  fprintf(f, "Row-major matrix %s (dimension %u x %u) (displayed in row-major order):\n",
 	  name, nrows, ncols);
   for (i=0; i<nrows; ++i) {
     j = 0;
-    fprintf(f, "| (%ld,%ld) %+d ", 1+i, 1+j, operand[i * ncols + j]);
+    fprintf(f, "| (%u,%u) %+d ", 1+i, 1+j, operand[i * ncols + j]);
     for (++j; j<ncols; ++j) {
-      fprintf(f, "; (%ld,%ld) %+d ", 1+i, 1+j, operand[i * ncols + j]);
+      fprintf(f, "; (%u,%u) %+d ", 1+i, 1+j, operand[i * ncols + j]);
     }
     fprintf(f, "|\n");
   }
   fprintf(f, "\n");
 }
 void
-ccdoubles_int_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_int_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols,
 				     int * operand)
 {
-  size_t	i, j;
+  unsigned	i, j;
   fprintf(f, "[[%+d", operand[0]);
   for (j=1; j<ncols; ++j) {
     fprintf(f, " %+d", operand[j]);
@@ -100,10 +100,10 @@ ccdoubles_int_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
   fprintf(f, "]\n");
 }
 void
-ccdoubles_int_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_int_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols,
 				   int * operand)
 {
-  size_t	i, j;
+  unsigned	i, j;
   fprintf(f, "{{%+d", operand[0]);
   for (j=1; j<ncols; ++j) {
     fprintf(f, ", %+d", operand[j]);

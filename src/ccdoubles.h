@@ -127,137 +127,137 @@ ccdoubles_decl double complex ccdoubles_cplx_neg (double complex O);
  ** Real vector functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_real_vector_clear (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_clear (unsigned nslots,
 						 double * restrict vector);
-ccdoubles_decl void ccdoubles_real_vector_set   (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_set   (unsigned nslots,
 						 double * restrict vector,
 						 double value);
-ccdoubles_decl void ccdoubles_real_vector_copy (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_copy (unsigned nslots,
 						double * restrict dst,
 						double * restrict src);
 
-ccdoubles_decl void ccdoubles_real_vector_add (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_add (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_sub (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_sub (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_mul (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_mul (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_div (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_div (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_neg (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_neg (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_abs (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_abs (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_fmod (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_fmod (unsigned nslots,
 						double * restrict result,
 						double * restrict operand1,
 						double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_drem (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_drem (unsigned nslots,
 						double * restrict result,
 						double * restrict operand1,
 						double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_remainder (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_remainder (unsigned nslots,
 						     double * restrict result,
 						     double * restrict operand1,
 						     double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_ceil (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_ceil (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_floor (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_floor (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_trunc (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_trunc (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_round (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_round (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_rint (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_rint (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_isgreater (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isgreater (unsigned nslots,
 						     int * restrict result,
 						     double * restrict operand1,
 						     double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_isgreaterequal (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isgreaterequal (unsigned nslots,
 							  int * restrict result,
 							  double * restrict operand1,
 							  double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_isless (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isless (unsigned nslots,
 						  int * restrict result,
 						  double * restrict operand1,
 						  double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_islessequal (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_islessequal (unsigned nslots,
 						       int * restrict result,
 						       double * restrict operand1,
 						       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_islessgreater (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_islessgreater (unsigned nslots,
 							 int * restrict result,
 							 double * restrict operand1,
 							 double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_isunordered (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isunordered (unsigned nslots,
 						       int * restrict result,
 						       double * restrict operand1,
 						       double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_min (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_min (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_max (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_max (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_fpclassify (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_fpclassify (unsigned nslots,
 						      int * restrict result,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_isfinite (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isfinite (unsigned nslots,
 						    int * restrict result,
 						    double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_isinfinite (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isinfinite (unsigned nslots,
 						      int * restrict result,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_isnormal (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isnormal (unsigned nslots,
 						    int * restrict result,
 						    double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_isnan (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_isnan (unsigned nslots,
 						 int * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl double ccdoubles_real_vector_scalar_product (size_t nslots,
+ccdoubles_decl double ccdoubles_real_vector_scalar_product (unsigned nslots,
 							    const double * restrict operand1,
 							    const double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_scalar_mul (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_scalar_mul (unsigned nslots,
 						      double * restrict result,
 						      double lambda,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_linear_combination (unsigned nslots,
 							      double * restrict result,
 							      double alpha,
 							      double * restrict operand1,
@@ -266,104 +266,104 @@ ccdoubles_decl void ccdoubles_real_vector_linear_combination (size_t nslots,
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_exp (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_exp (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_exp10 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_exp10 (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_exp2 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_exp2 (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_log (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_log (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_log10 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_log10 (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_log2 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_log2 (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_logb (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_logb (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_pow (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_pow (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_sqrt (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_sqrt (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_cbrt (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_cbrt (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_hypot (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_hypot (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand1,
 						 double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_vector_expm1 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_expm1 (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_log1p (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_log1p (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_sin (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_sin (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_cos (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_cos (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_tan (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_tan (unsigned nslots,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_asin (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_asin (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_acos (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_acos (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_atan (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_atan (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_atan2 (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_atan2 (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand1,
 						 double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_vector_sinh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_sinh (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_cosh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_cosh (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_tanh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_tanh (unsigned nslots,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_asinh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_asinh (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_acosh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_acosh (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_vector_atanh (size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_atanh (unsigned nslots,
 						 double * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_vector_print_display (FILE * f, const char * name,
-							 size_t nslots,
+							 unsigned nslots,
 							 double * operand);
 
-ccdoubles_decl void ccdoubles_real_vector_print_brackets (FILE * f, size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_print_brackets (FILE * f, unsigned nslots,
 							  double * operand);
 
-ccdoubles_decl void ccdoubles_real_vector_print_braces (FILE * f, size_t nslots,
+ccdoubles_decl void ccdoubles_real_vector_print_braces (FILE * f, unsigned nslots,
 							double * operand);
 
 
@@ -371,249 +371,249 @@ ccdoubles_decl void ccdoubles_real_vector_print_braces (FILE * f, size_t nslots,
  ** Real matrix functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_real_matrix_clear (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_clear (unsigned nrows, unsigned ncols,
 						 double * restrict matrix);
-ccdoubles_decl void ccdoubles_real_matrix_set   (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_set   (unsigned nrows, unsigned ncols,
 						 double * restrict matrix,
 						 double value);
-ccdoubles_decl void ccdoubles_real_matrix_copy (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_copy (unsigned nrows, unsigned ncols,
 						double * restrict dst,
 						double * restrict src);
 
-ccdoubles_decl void ccdoubles_real_matrix_add (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_add (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_sub (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_sub (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_mul (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_mul (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_div (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_div (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_neg (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_neg (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_abs (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_abs (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_fmod (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_fmod (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand1,
 						double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_drem (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_drem (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand1,
 						double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_remainder (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_remainder (unsigned nrows, unsigned ncols,
 						     double * restrict result,
 						     double * restrict operand1,
 						     double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_ceil (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_ceil (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_floor (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_floor (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_trunc (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_trunc (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_round (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_round (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_rint (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_rint (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_isgreater (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isgreater (unsigned nrows, unsigned ncols,
 						     int * restrict result,
 						     double * restrict operand1,
 						     double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_isgreaterequal (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isgreaterequal (unsigned nrows, unsigned ncols,
 							  int * restrict result,
 							  double * restrict operand1,
 							  double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_isless (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isless (unsigned nrows, unsigned ncols,
 						  int * restrict result,
 						  double * restrict operand1,
 						  double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_islessequal (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_islessequal (unsigned nrows, unsigned ncols,
 						       int * restrict result,
 						       double * restrict operand1,
 						       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_islessgreater (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_islessgreater (unsigned nrows, unsigned ncols,
 							 int * restrict result,
 							 double * restrict operand1,
 							 double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_isunordered (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isunordered (unsigned nrows, unsigned ncols,
 						       int * restrict result,
 						       double * restrict operand1,
 						       double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_min (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_min (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_max (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_max (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_fpclassify (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_fpclassify (unsigned nrows, unsigned ncols,
 						      int * restrict result,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_isfinite (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isfinite (unsigned nrows, unsigned ncols,
 						    int * restrict result,
 						    double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_isinfinite (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isinfinite (unsigned nrows, unsigned ncols,
 						      int * restrict result,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_isnormal (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isnormal (unsigned nrows, unsigned ncols,
 						    int * restrict result,
 						    double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_isnan (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_isnan (unsigned nrows, unsigned ncols,
 						 int * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_scalar_mul (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_scalar_mul (unsigned nrows, unsigned ncols,
 						      double * restrict result,
 						      double lambda,
 						      double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_linear_combination (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_linear_combination (unsigned nrows, unsigned ncols,
 							      double * restrict result,
 							      double alpha,
 							      double * restrict operand1,
 							      double beta,
 							      double * restrict operand2);
 
-ccdoubles_decl void ccdoubles_real_matrix_transpose (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_transpose (unsigned nrows, unsigned ncols,
 						     double * restrict result,
 						     double * restrict operand);
 
-ccdoubles_decl void ccdoubles_real_matrix_rowcol_mul (size_t result_nrows,
-						      size_t operand_n,
-						      size_t result_ncols,
+ccdoubles_decl void ccdoubles_real_matrix_rowcol_mul (unsigned result_nrows,
+						      unsigned operand_n,
+						      unsigned result_ncols,
 						      double * restrict result,
 						      double * restrict operand1,
 						      double * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_exp (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_exp (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_exp10 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_exp10 (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_exp2 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_exp2 (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_log (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_log (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_log10 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_log10 (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_log2 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_log2 (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_logb (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_logb (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_pow (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_pow (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand1,
 					       double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_sqrt (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_sqrt (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_cbrt (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_cbrt (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_hypot (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_hypot (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand1,
 						 double * restrict operand2);
-ccdoubles_decl void ccdoubles_real_matrix_expm1 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_expm1 (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_log1p (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_log1p (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_real_matrix_sin (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_sin (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_cos (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_cos (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_tan (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_tan (unsigned nrows, unsigned ncols,
 					       double * restrict result,
 					       double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_asin (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_asin (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_acos (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_acos (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_atan (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_atan (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_atan2 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_atan2 (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand1,
 						 double * restrict operand2);
 
-ccdoubles_decl void ccdoubles_real_matrix_sinh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_sinh (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_cosh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_cosh (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_tanh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_tanh (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_asinh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_asinh (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_acosh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_acosh (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
-ccdoubles_decl void ccdoubles_real_matrix_atanh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_atanh (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_matrix_print_display (FILE * f, const char * name,
-							 size_t nrows, size_t ncols,
+							 unsigned nrows, unsigned ncols,
 							 double * operand);
 
-ccdoubles_decl void ccdoubles_real_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols,
 							  double * operand);
 
-ccdoubles_decl void ccdoubles_real_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_real_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols,
 							double * operand);
 
 
@@ -621,68 +621,68 @@ ccdoubles_decl void ccdoubles_real_matrix_print_braces (FILE * f, size_t nrows, 
  ** Complex vector functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_cplx_vector_clear (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_clear (unsigned nslots,
 						 double complex * restrict vector);
-ccdoubles_decl void ccdoubles_cplx_vector_set   (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_set   (unsigned nslots,
 						 double complex * restrict vector,
 						 double complex value);
-ccdoubles_decl void ccdoubles_cplx_vector_copy (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_copy (unsigned nslots,
 						double complex * restrict dst,
 						double complex * restrict src);
 
-ccdoubles_decl void ccdoubles_cplx_vector_real (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_real (unsigned nslots,
 						double * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_imag (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_imag (unsigned nslots,
 						double * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_magnitude (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_magnitude (unsigned nslots,
 						     double * restrict result,
 						     double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_angle (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_angle (unsigned nslots,
 						 double * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_conj (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_conj (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_from_rect (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_from_rect (unsigned nslots,
 						     double complex * restrict result,
 						     double * restrict real,
 						     double * restrict imag);
-ccdoubles_decl void ccdoubles_cplx_vector_from_polar (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_from_polar (unsigned nslots,
 						      double complex * restrict result,
 						      double * restrict magnitude,
 						      double * restrict angle);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_add (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_add (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_sub (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_sub (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_mul (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_mul (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_div (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_div (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_neg (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_neg (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (size_t nslots,
+ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (unsigned nslots,
 							      const double complex * restrict operand1,
 							      const double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
 						      double complex * restrict result,
 						      double complex lambda,
 						      double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (unsigned nslots,
 							      double complex * restrict result,
 							      double complex alpha,
 							      double complex * restrict operand1,
@@ -691,75 +691,75 @@ ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (size_t nslots,
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_exp (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_exp (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_log (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_log (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_log10 (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_log10 (unsigned nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_sqrt (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_sqrt (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_pow (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_pow (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_sin (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_sin (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_cos (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_cos (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_tan (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_tan (unsigned nslots,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_asin (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_asin (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_acos (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_acos (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_atan (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_atan (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_sinh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_sinh (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_cosh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_cosh (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_tanh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_tanh (unsigned nslots,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_asinh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_asinh (unsigned nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_acosh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_acosh (unsigned nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_vector_atanh (size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_atanh (unsigned nslots,
 						 double complex * restrict result,
 						 double complex * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_vector_print_display (FILE * f, const char * name,
-							 size_t nslots,
+							 unsigned nslots,
 							 double complex * operand);
 
-ccdoubles_decl void ccdoubles_cplx_vector_print_brackets (FILE * f, size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_print_brackets (FILE * f, unsigned nslots,
 							  double complex * operand);
 
-ccdoubles_decl void ccdoubles_cplx_vector_print_braces (FILE * f, size_t nslots,
+ccdoubles_decl void ccdoubles_cplx_vector_print_braces (FILE * f, unsigned nslots,
 							double complex * operand);
 
 
@@ -767,160 +767,160 @@ ccdoubles_decl void ccdoubles_cplx_vector_print_braces (FILE * f, size_t nslots,
  ** Complex matrix functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_clear (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_clear (unsigned nrows, unsigned ncols,
 						 double complex * restrict matrix);
-ccdoubles_decl void ccdoubles_cplx_matrix_set   (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_set   (unsigned nrows, unsigned ncols,
 						 double complex * restrict matrix,
 						 double complex value);
-ccdoubles_decl void ccdoubles_cplx_matrix_copy (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_copy (unsigned nrows, unsigned ncols,
 						double complex * restrict dst,
 						double complex * restrict src);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_real (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_real (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_imag (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_imag (unsigned nrows, unsigned ncols,
 						double * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_magnitude (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_magnitude (unsigned nrows, unsigned ncols,
 						     double * restrict result,
 						     double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_angle (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_angle (unsigned nrows, unsigned ncols,
 						 double * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_conj (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_conj (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_from_rect (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_from_rect (unsigned nrows, unsigned ncols,
 						     double complex * restrict result,
 						     double * restrict real,
 						     double * restrict imag);
-ccdoubles_decl void ccdoubles_cplx_matrix_from_polar (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_from_polar (unsigned nrows, unsigned ncols,
 						      double complex * restrict result,
 						      double * restrict magnitude,
 						      double * restrict angle);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_add (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_add (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_matrix_sub (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_sub (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_matrix_mul (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_mul (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_matrix_div (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_div (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
-ccdoubles_decl void ccdoubles_cplx_matrix_neg (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_neg (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (unsigned nrows, unsigned ncols,
 						      double complex * restrict result,
 						      double complex lambda,
 						      double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols,
 							      double complex * restrict result,
 							      double complex alpha,
 							      double complex * restrict operand1,
 							      double complex beta,
 							      double complex * restrict operand2);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_transpose (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_transpose (unsigned nrows, unsigned ncols,
 						     double complex * restrict result,
 						     double complex * restrict operand);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_conjugate_transpose (size_t operand_nrows, size_t operand_ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_conjugate_transpose (unsigned operand_nrows, unsigned operand_ncols,
 							       double complex * restrict result,
 							       double complex * restrict operand);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (size_t result_nrows,
-						      size_t operand_n,
-						      size_t result_ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (unsigned result_nrows,
+						      unsigned operand_n,
+						      unsigned result_ncols,
 						      double complex * restrict result,
 						      double complex * restrict operand1,
 						      double complex * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_exp (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_exp (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_log (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_log (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_log10 (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_log10 (unsigned nrows, unsigned ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_sqrt (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_sqrt (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_pow (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_pow (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand1,
 					       double complex * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_sin (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_sin (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_cos (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_cos (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_tan (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_tan (unsigned nrows, unsigned ncols,
 					       double complex * restrict result,
 					       double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_asin (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_asin (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_acos (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_acos (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_atan (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_atan (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_sinh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_sinh (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_cosh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_cosh (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_tanh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_tanh (unsigned nrows, unsigned ncols,
 						double complex * restrict result,
 						double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_asinh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_asinh (unsigned nrows, unsigned ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_acosh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_acosh (unsigned nrows, unsigned ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
-ccdoubles_decl void ccdoubles_cplx_matrix_atanh (size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_atanh (unsigned nrows, unsigned ncols,
 						 double complex * restrict result,
 						 double complex * restrict operand);
 
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
-							 size_t nrows, size_t ncols,
+							 unsigned nrows, unsigned ncols,
 							 double complex * operand);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols,
 							  double complex * operand);
 
-ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, size_t ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols,
 							double complex * operand);
 
 
@@ -928,27 +928,27 @@ ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, 
  ** Arrays of integers.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_int_vector_clear (size_t nslots, int * restrict vector);
-ccdoubles_decl void ccdoubles_int_vector_set (size_t nslots, int * restrict vector, int value);
-ccdoubles_decl void ccdoubles_int_vector_copy (size_t nslots, int * restrict dst, int * restrict src);
+ccdoubles_decl void ccdoubles_int_vector_clear (unsigned nslots, int * restrict vector);
+ccdoubles_decl void ccdoubles_int_vector_set (unsigned nslots, int * restrict vector, int value);
+ccdoubles_decl void ccdoubles_int_vector_copy (unsigned nslots, int * restrict dst, int * restrict src);
 
 ccdoubles_decl void ccdoubles_int_vector_print_display (FILE * f, const char * name,
-						     size_t nslots,
+						     unsigned nslots,
 						     int * operand);
-ccdoubles_decl void ccdoubles_int_vector_print_brackets (FILE * f, size_t nslots, int * operand);
-ccdoubles_decl void ccdoubles_int_vector_print_braces (FILE * f, size_t nslots, int * operand);
+ccdoubles_decl void ccdoubles_int_vector_print_brackets (FILE * f, unsigned nslots, int * operand);
+ccdoubles_decl void ccdoubles_int_vector_print_braces (FILE * f, unsigned nslots, int * operand);
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_int_matrix_clear (size_t nrows, size_t ncols, int * restrict matrix);
-ccdoubles_decl void ccdoubles_int_matrix_set (size_t nrows, size_t ncols, int * restrict matrix, int value);
-ccdoubles_decl void ccdoubles_int_matrix_copy (size_t nrows, size_t ncols, int * restrict dst, int * restrict src);
+ccdoubles_decl void ccdoubles_int_matrix_clear (unsigned nrows, unsigned ncols, int * restrict matrix);
+ccdoubles_decl void ccdoubles_int_matrix_set (unsigned nrows, unsigned ncols, int * restrict matrix, int value);
+ccdoubles_decl void ccdoubles_int_matrix_copy (unsigned nrows, unsigned ncols, int * restrict dst, int * restrict src);
 
 ccdoubles_decl void ccdoubles_int_matrix_print_display (FILE * f, const char * name,
-						     size_t nrows, size_t ncols,
+						     unsigned nrows, unsigned ncols,
 						     int * operand);
-ccdoubles_decl void ccdoubles_int_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols, int * operand);
-ccdoubles_decl void ccdoubles_int_matrix_print_braces (FILE * f, size_t nrows, size_t ncols, int * operand);
+ccdoubles_decl void ccdoubles_int_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols, int * operand);
+ccdoubles_decl void ccdoubles_int_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols, int * operand);
 
 
 /** --------------------------------------------------------------------

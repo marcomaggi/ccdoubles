@@ -1720,6 +1720,56 @@ When possible, rather than this function, we should consider using
 @acronym{CBLAS}'s @cfunc{cblas_dgemm}.
 @end deftypefun
 
+
+@deftypefun void ccdoubles_real_matrix_linspace (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double @var{start}, double @var{row_past}, double @var{col_past})
+Fill the result matrix with @var{nrows} times @var{ncols} evenly--spaced
+steps from @var{start} to @var{row_past} in the horizontal direction and
+from @var{start} to @var{col_past} in the vertical direction.  It is
+implemented as follows:
+
+@example
+double        row_step = (row_past - start) / ((double)nrows);
+double        col_step = (col_past - start) / ((double)ncols);
+for (unsigned i=0; i<nrows; ++i) @{
+  double      row_first = ((double)i) * row_step + start;
+  for (unsigned j=0; j<ncols; ++j) @{
+    result[i * ncols + j] = ((double)j) * col_step + row_first;
+  @}
+@}
+@end example
+
+As example, the code:
+
+@example
+unsigned    nrows = 10;
+unsigned    ncols = 10;
+double      R[nrows][ncols];
+double      start    = 0.0;
+double      row_past = 10.0;
+double      col_past = 10.0;
+ccdoubles_real_matrix_linspace (nrows, ncols, &R[0][0],
+                                start, row_past, col_past);
+ccdoubles_real_matrix_print_brackets(stdout, nrows, ncols,
+                                     &R[0][0]);
+@end example
+
+@noindent
+prints (edited to remove trailing zeros):
+
+@example
+[[+0.0 +1.0 +2.0 +3.0 +4.0 +5.0 +6.0 +7.0 +8.0 +9.0]
+ [+1.0 +2.0 +3.0 +4.0 +5.0 +6.0 +7.0 +8.0 +9.0 +10.0]
+ [+2.0 +3.0 +4.0 +5.0 +6.0 +7.0 +8.0 +9.0 +10.0 +11.0]
+ [+3.0 +4.0 +5.0 +6.0 +7.0 +8.0 +9.0 +10.0 +11.0 +12.0]
+ [+4.0 +5.0 +6.0 +7.0 +8.0 +9.0 +10.0 +11.0 +12.0 +13.0]
+ [+5.0 +6.0 +7.0 +8.0 +9.0 +10.0 +11.0 +12.0 +13.0 +14.0]
+ [+6.0 +7.0 +8.0 +9.0 +10.0 +11.0 +12.0 +13.0 +14.0 +15.0]
+ [+7.0 +8.0 +9.0 +10.0 +11.0 +12.0 +13.0 +14.0 +15.0 +16.0]
+ [+8.0 +9.0 +10.0 +11.0 +12.0 +13.0 +14.0 +15.0 +16.0 +17.0]
+ [+9.0 +10.0 +11.0 +12.0 +13.0 +14.0 +15.0 +16.0 +17.0 +18.0]]
+@end example
+@end deftypefun
+
 @c page
 @node matrices real explog
 @subsection Real matrices exponentiation and logarithms

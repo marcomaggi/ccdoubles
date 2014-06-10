@@ -371,6 +371,19 @@ test_real_matrices (void)
     assert(fabs(E[1][0]-R[1][0])<EPSILON); assert(fabs(E[1][1]-R[1][1])<EPSILON); assert(fabs(E[1][2]-R[1][2])<EPSILON);
   }
 
+  {
+    unsigned	nrows = 10;
+    unsigned	ncols = 10;
+    double	R[nrows][ncols];
+    double	start    = 0.0;
+    double	row_past = 10.0;
+    double	col_past = 10.0;
+    ccdoubles_real_matrix_linspace (nrows, ncols, MREF(R), start, row_past, col_past);
+    if (1) {
+      ccdoubles_real_matrix_print_brackets(stdout, nrows, ncols, MREF(R));
+    }
+  }
+
 /* ------------------------------------------------------------------ */
 
   {

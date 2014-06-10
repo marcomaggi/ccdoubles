@@ -522,6 +522,11 @@ ccdoubles_decl void ccdoubles_real_matrix_rowcol_mul (unsigned result_nrows,
 						      double * restrict operand1,
 						      double * restrict operand2);
 
+ccdoubles_decl void ccdoubles_real_matrix_linspace (unsigned nrows, unsigned ncols,
+						    double * restrict result,
+						    double start,
+						    double row_past, double col_past);
+
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_real_matrix_exp (unsigned nrows, unsigned ncols,

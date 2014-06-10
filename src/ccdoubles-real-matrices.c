@@ -378,16 +378,23 @@ ccdoubles_real_matrix_linspace (unsigned nrows, unsigned ncols,
     }
   }
 }
-/* void */
-/* ccdoubles_real_matrix_logspace (unsigned nrows, unsigned ncols, */
-/* 				double * restrict result, */
-/* 				double start, double past) */
-/* { */
-/*   double	step = (past - start) / ((double)nslots); */
-/*   for (unsigned i=0; i<nslots; ++i) { */
-/*     result[i] = pow(10.0, ((double)i) * step + start); */
-/*   } */
-/* } */
+#if 0
+void
+ccdoubles_real_matrix_logspace (unsigned nrows, unsigned ncols,
+				double * restrict result,
+				double start,
+				double row_past, double col_past)
+{
+  double	row_step = (row_past - start) / ((double)nrows);
+  double	col_step = (col_past - start) / ((double)ncols);
+  for (unsigned i=0; i<nrows; ++i) {
+    double	row_first = ((double)i) * row_step + start;
+    for (unsigned j=0; j<ncols; ++j) {
+      result[i * ncols + j] = pow(10.0, ((double)j) * col_step + row_first);
+    }
+  }
+}
+#endif
 
 
 /** --------------------------------------------------------------------

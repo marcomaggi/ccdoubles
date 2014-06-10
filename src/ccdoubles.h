@@ -526,6 +526,12 @@ ccdoubles_decl void ccdoubles_real_matrix_linspace (unsigned nrows, unsigned nco
 						    double * restrict result,
 						    double start,
 						    double row_past, double col_past);
+#if 0
+ccdoubles_decl void ccdoubles_real_matrix_logspace (unsigned nrows, unsigned ncols,
+						    double * restrict result,
+						    double start,
+						    double row_past, double col_past);
+#endif
 
 /* ------------------------------------------------------------------ */
 

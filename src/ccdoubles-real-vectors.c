@@ -386,6 +386,29 @@ ccdoubles_real_vector_linear_combination (unsigned nslots,
   }
 }
 
+/* ------------------------------------------------------------------ */
+
+void
+ccdoubles_real_vector_linspace (unsigned nslots,
+				double * restrict result,
+				double start, double past)
+{
+  double	step = (past - start) / ((double)nslots);
+  for (unsigned i=0; i<nslots; ++i) {
+    result[i] = ((double)i) * step + start;
+  }
+}
+void
+ccdoubles_real_vector_logspace (unsigned nslots,
+				double * restrict result,
+				double start, double past)
+{
+  double	step = (past - start) / ((double)nslots);
+  for (unsigned i=0; i<nslots; ++i) {
+    result[i] = pow(10.0, ((double)i) * step + start);
+  }
+}
+
 
 /** --------------------------------------------------------------------
  ** Exponentiation and logarithms.

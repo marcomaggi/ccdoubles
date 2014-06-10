@@ -263,6 +263,12 @@ ccdoubles_decl void ccdoubles_real_vector_linear_combination (unsigned nslots,
 							      double * restrict operand1,
 							      double beta,
 							      double * restrict operand2);
+ccdoubles_decl void ccdoubles_real_vector_linspace (unsigned nslots,
+						    double * restrict result,
+						    double start, double past);
+ccdoubles_decl void ccdoubles_real_vector_logspace (unsigned nslots,
+						    double * restrict result,
+						    double start, double past);
 
 /* ------------------------------------------------------------------ */
 

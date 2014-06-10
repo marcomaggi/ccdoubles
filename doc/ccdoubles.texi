@@ -742,6 +742,80 @@ for (unsigned i=0; i<nslots; ++i) @{
 @end example
 @end deftypefun
 
+
+@deftypefun void ccdoubles_real_vector_linspace (unsigned @var{nslots}, double * @var{result}, double @var{start}, double @var{past})
+Fill the result vector with @var{nslots} evenly--spaced steps from
+@var{start} to @var{past}.  It is implemented as follows:
+
+@example
+double        step = (past - start) / ((double)nslots);
+for (unsigned i=0; i<nslots; ++i) @{
+  result[i] = ((double)i) * step + start;
+@}
+@end example
+
+As example, the code:
+
+@example
+unsigned    nslots = 10;
+double      R[nslots];
+double      start = 0.0;
+double      past  = 10.0;
+ccdoubles_real_vector_linspace (nslots, R, start, past);
+ccdoubles_real_vector_print_brackets(stdout, nslots, R);
+@end example
+
+@noindent
+prints (edited to add newlines):
+
+@example
+[+0.000000 +1.000000 +2.000000 +3.000000
+ +4.000000 +5.000000 +6.000000 +7.000000
+ +8.000000 +9.000000]
+@end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_logspace (unsigned @var{nslots}, double * @var{result}, double @var{start}, double @var{past})
+Fill the result vector with @var{nslots} logarithmically spaced steps
+from @code{pow(10.0, @var{start})} to @code{pow(10.0, @var{past})}.  It
+is implemented as follows:
+
+@example
+double        step = (past - start) / ((double)nslots);
+for (unsigned i=0; i<nslots; ++i) @{
+  result[i] = pow(10.0, ((double)i) * step + start);
+@}
+@end example
+
+As example, the code:
+
+@example
+unsigned    nslots = 10;
+double      R[nslots];
+double      start = 0.0;
+double      past  = 10.0;
+ccdoubles_real_vector_logspace (nslots, R, start, past);
+ccdoubles_real_vector_print_brackets(stdout, nslots, R);
+@end example
+
+@noindent
+prints (edited to add newlines):
+
+@example
+[+1.000000
+ +10.000000
+ +100.000000
+ +1000.000000
+ +10000.000000
+ +100000.000000
+ +1000000.000000
+ +10000000.000000
+ +100000000.000000
+ +1000000000.000000]
+@end example
+@end deftypefun
+
 @c page
 @node vectors real explog
 @subsection Real vectors exponentiation and logarithms

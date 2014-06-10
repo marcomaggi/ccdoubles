@@ -328,6 +328,42 @@ test_real_vectors (void)
     assert((1.2 * 4.5 + 2.3 * 6.7) == R[1]);
   }
 
+  {
+    unsigned	nslots = 10;
+    double	R[nslots];
+    double	start = 0.0;
+    double	past  = 10.0;
+    ccdoubles_real_vector_linspace (nslots, R, start, past);
+    if (0) {
+      ccdoubles_real_vector_print_brackets(stdout, nslots, R);
+    }
+    assert(0.0 == R[0]); assert(1.0 == R[1]); assert(2.0 == R[2]);
+    assert(3.0 == R[3]); assert(4.0 == R[4]); assert(5.0 == R[5]);
+    assert(6.0 == R[6]); assert(7.0 == R[7]); assert(8.0 == R[8]);
+    assert(9.0 == R[9]);
+  }
+
+  {
+    unsigned	nslots = 10;
+    double	R[nslots];
+    double	start = 0.0;
+    double	past  = 10.0;
+    ccdoubles_real_vector_logspace (nslots, R, start, past);
+    if (1) {
+      ccdoubles_real_vector_print_brackets(stdout, nslots, R);
+    }
+    assert(1.0 == R[0]);
+    assert(10.0 == R[1]);
+    assert(100.0 == R[2]);
+    assert(1000.0 == R[3]);
+    assert(10000.0 == R[4]);
+    assert(100000.0 == R[5]);
+    assert(1000000.0 == R[6]);
+    assert(10000000.0 == R[7]);
+    assert(100000000.0 == R[8]);
+    assert(1000000000.0 == R[9]);
+  }
+
 /* ------------------------------------------------------------------ */
 
   {

@@ -1,4 +1,4 @@
-(library (ccdoubles)
+(library (ccdoubles (0 1 0))
   (export
     ccdoubles_real_vector_clear
     ccdoubles_real_vector_set

@@ -31,10 +31,10 @@
   ;;
   ;;   (foreign-library
   ;;     (name "ccdoubles")
-  ;;     (libtool-version
-  ;;       (current 0)
-  ;;       (revision 1)
-  ;;       (age 0))
+  ;;     (version
+  ;;       (major	?major-number)
+  ;;       (minor	?minor-number)
+  ;;       (patch	?patch-number))
   ;;     (functions ?func-spec ...))
   ;;
   (let* ((P (open-input-file "table.scm"))
@@ -52,6 +52,11 @@
   ;;
   (string-append "lib" name ".so"))
 
+(define version-spec
+  ;;A list of version numbers.
+  ;;
+  (map cadr (cdr (list-ref sexp 2))))
+
 (define func-spec*
   ;;We expect each FUNC-SPEC to have the format:
   ;;
@@ -68,7 +73,9 @@
 
 ;;; --------------------------------------------------------------------
 
-(display (string-append "(library (" name ")\n"))
+(display (string-append "(library (" name " "))
+(display version-spec)
+(display ")\n")
 (display "  (export")
 (map (lambda (func-name)
        (display (string-append "\n    " func-name "")))

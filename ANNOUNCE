@@ -25,7 +25,16 @@ the documentation is available online:
 Notes for revision 0.1d0
 ------------------------
 
-* This is a template project.
+* This is the first release, only basic functions available.
+
+* Some of  the missing functions:  element swap; row swap;  column swap;
+  CBLAS and  LAPACKE need  some auxiliary functions  to show  results in
+  human-readable format.
+
+* The  directory  "scheme"  contains  a table  of  functions  in  Scheme
+  symbolic expression form and a  demo program that automatically builds
+  a Vicare Scheme binding for  CCDoubles.  It should be easily adaptable
+  to other Scheme implementations.
 
 
 ### end of file

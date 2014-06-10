@@ -366,8 +366,8 @@ with the preprocessor macro @code{CMPLX(@var{REAL}, @var{IMAG})}.
 Return a new @code{double complex}.
 
 This macro is an alias for @func{CCDOUBLES_CPLX} but it is defined only
-if the header @file{ccdoubles.h} is included with the symbol
-@code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
+if the header @file{ccdoubles.h} is included with the C preprocessor
+symbol @code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
 @end deftypefn
 
 
@@ -376,9 +376,22 @@ if the header @file{ccdoubles.h} is included with the symbol
 Return the real or imaginary part of the complex number @var{Z} by
 applying @func{creal} or @func{cimag} to it.
 
-This macro is an alias for @func{CCDOUBLES_CPLX} but it is defined only
-if the header @file{ccdoubles.h} is included with the symbol
-@code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
+This macro is defined only if the header @file{ccdoubles.h} is included
+with the C preprocessor symbol @code{CCDOUBLES_ENABLE_SHORT_MACROS}
+already defined.
+@end deftypefn
+
+
+@deftypefn {Preprocessor Macro} {double *} MREF (@var{M})
+Expand into a pointer to the first element of a bidimensional array:
+
+@example
+MREF(M) @expansion{} &M[0][0]
+@end example
+
+This macro is defined only if the header @file{ccdoubles.h} is included
+with the C preprocessor symbol @code{CCDOUBLES_ENABLE_SHORT_MACROS}
+already defined.
 @end deftypefn
 
 @c page

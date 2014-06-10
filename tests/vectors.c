@@ -31,6 +31,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+
+#define CCDOUBLES_ENABLE_SHORT_MACROS		1
 #include <ccdoubles.h>
 
 static void test_real_vectors (void);

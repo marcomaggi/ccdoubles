@@ -31,6 +31,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+
+#define CCDOUBLES_ENABLE_SHORT_MACROS		1
 #include <ccdoubles.h>
 
 static void test_real_matrices (void);
@@ -39,8 +41,6 @@ static void test_cplx_matrices (void);
 #define	NROWS		1
 #define	NCOLS		1
 #define EPSILON		1e-6
-
-#define CPLX(REAL,IMAG)		CCDOUBLES_CPLX((REAL),(IMAG))
 
 
 /** --------------------------------------------------------------------
@@ -63,22 +63,28 @@ main (int argc, const char *const argv[])
 void
 test_real_matrices (void)
 {
+  /* { */
+  /*   double	M[1][NROWS][NCOLS]; */
+  /*   ccdoubles_real_matrix_clear(NROWS, NCOLS, M); */
+  /*   assert(0.0 == M[0][0]); */
+  /* } */
+
   {
-    double	V[NROWS][NCOLS];
-    ccdoubles_real_matrix_clear(NROWS, NCOLS, &V[0][0]);
-    assert(0.0 == V[0][0]);
+    double	M[NROWS][NCOLS];
+    ccdoubles_real_matrix_clear(NROWS, NCOLS, MREF(M));
+    assert(0.0 == M[0][0]);
   }
 
   {
-    double	V[NROWS][NCOLS];
-    ccdoubles_real_matrix_set(NROWS, NCOLS, &V[0][0], 1.2);
-    assert(1.2 == V[0][0]);
+    double	M[NROWS][NCOLS];
+    ccdoubles_real_matrix_set(NROWS, NCOLS, MREF(M), 1.2);
+    assert(1.2 == M[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
-    double	V[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_copy(NROWS, NCOLS, &R[0][0], &V[0][0]);
+    double	M[NROWS][NCOLS] = { { 1.2 } };
+    ccdoubles_real_matrix_copy(NROWS, NCOLS, MREF(R), MREF(M));
     assert(1.2 == R[0][0]);
   }
 
@@ -88,7 +94,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_add (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_add (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert((1.2 + 3.4) == R[0][0]);
   }
 
@@ -96,7 +102,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_sub (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_sub (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert((1.2 - 3.4) == R[0][0]);
   }
 
@@ -104,7 +110,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_mul (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_mul (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert((1.2 * 3.4) == R[0][0]);
   }
 
@@ -112,21 +118,21 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_div (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_div (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert((1.2 / 3.4) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_neg (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_neg (NROWS, NCOLS, MREF(R), MREF(O));
     assert(-1.2 == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  -1.2 } };
-    ccdoubles_real_matrix_abs (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_abs (NROWS, NCOLS, MREF(R), MREF(O));
     assert(1.2 == R[0][0]);
   }
 
@@ -136,7 +142,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_fmod (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_fmod (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(fmod(1.2, 3.4) == R[0][0]);
   }
 
@@ -144,7 +150,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_drem (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_drem (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(drem(1.2, 3.4) == R[0][0]);
   }
 
@@ -152,7 +158,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_remainder (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_remainder (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(remainder(1.2, 3.4) == R[0][0]);
   }
 
@@ -161,35 +167,35 @@ test_real_matrices (void)
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_ceil (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_ceil (NROWS, NCOLS, MREF(R), MREF(O));
     assert(ceil(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_floor (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_floor (NROWS, NCOLS, MREF(R), MREF(O));
     assert(floor(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_trunc (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_trunc (NROWS, NCOLS, MREF(R), MREF(O));
     assert(trunc(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_round (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_round (NROWS, NCOLS, MREF(R), MREF(O));
     assert(round(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_rint (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_rint (NROWS, NCOLS, MREF(R), MREF(O));
     assert(rint(1.2) == R[0][0]);
   }
 
@@ -199,7 +205,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_isgreater (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_isgreater (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(0 == R[0][0]);
   }
 
@@ -207,7 +213,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_isgreaterequal (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_isgreaterequal (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(0 == R[0][0]);
   }
 
@@ -215,7 +221,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_isless (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_isless (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(1 == R[0][0]);
   }
 
@@ -223,7 +229,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_islessequal (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_islessequal (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(1 == R[0][0]);
   }
 
@@ -231,7 +237,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_islessgreater (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_islessgreater (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(1 == R[0][0]);
   }
 
@@ -239,7 +245,7 @@ test_real_matrices (void)
     int		R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_isunordered (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_isunordered (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(0 == R[0][0]);
   }
 
@@ -249,7 +255,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_min (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_min (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(1.2 == R[0][0]);
   }
 
@@ -257,7 +263,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_max (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_max (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(3.4 == R[0][0]);
   }
 
@@ -266,35 +272,35 @@ test_real_matrices (void)
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_fpclassify (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_fpclassify (NROWS, NCOLS, MREF(R), MREF(O));
     assert(FP_NORMAL == R[0][0]);
   }
 
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_isfinite (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_isfinite (NROWS, NCOLS, MREF(R), MREF(O));
     assert(1 == R[0][0]);
   }
 
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_isinfinite (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_isinfinite (NROWS, NCOLS, MREF(R), MREF(O));
     assert(0 == R[0][0]);
   }
 
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_isnormal (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_isnormal (NROWS, NCOLS, MREF(R), MREF(O));
     assert(1 == R[0][0]);
   }
 
   {
     int		R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { { 1.2 } };
-    ccdoubles_real_matrix_isnan (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_isnan (NROWS, NCOLS, MREF(R), MREF(O));
     assert(0 == R[0][0]);
   }
 
@@ -304,7 +310,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	lambda = 1.2;
     double	O[NROWS][NCOLS] = { {  3.4 } };
-    ccdoubles_real_matrix_scalar_mul (NROWS, NCOLS, &R[0][0], lambda, &O[0][0]);
+    ccdoubles_real_matrix_scalar_mul (NROWS, NCOLS, MREF(R), lambda, MREF(O));
     assert((1.2 * 3.4) == R[0][0]);
   }
 
@@ -314,7 +320,7 @@ test_real_matrices (void)
     double	beta  = 2.3;
     double	O1[2][2] = { { 3.4, 4.5 }, { 5.6, 6.7 } };
     double	O2[2][2] = { { 7.8, 8.9 }, { 9.0, 0.1 } };
-    ccdoubles_real_matrix_linear_combination (2, 2, &R[0][0], alpha, &O1[0][0], beta, &O2[0][0]);
+    ccdoubles_real_matrix_linear_combination (2, 2, MREF(R), alpha, MREF(O1), beta, MREF(O2));
     assert((1.2 * 3.4 + 2.3 * 7.8) == R[0][0]);
     assert((1.2 * 4.5 + 2.3 * 8.9) == R[0][1]);
     assert((1.2 * 5.6 + 2.3 * 9.0) == R[1][0]);
@@ -327,7 +333,7 @@ test_real_matrices (void)
       { 1.2, 3.4, 5.6 },
       { 7.8, 8.9, 9.0 }
     };
-    ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_transpose (2, 3, MREF(R), MREF(O));
     assert(1.2 == R[0][0]); assert(7.8 == R[0][1]);
     assert(3.4 == R[1][0]); assert(8.9 == R[1][1]);
     assert(5.6 == R[2][0]); assert(9.0 == R[2][1]);
@@ -356,10 +362,10 @@ test_real_matrices (void)
       { -23.9, -24.8, -25.7 }
     };
     ccdoubles_real_matrix_rowcol_mul (RESULT_NROWS, OPERAND_N, RESULT_NCOLS,
-				      &R[0][0], &O1[0][0], &O2[0][0]);
+				      MREF(R), MREF(O1), MREF(O2));
     if (0) {
-      ccdoubles_real_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, &R[0][0]);
-      ccdoubles_real_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, &E[0][0]);
+      ccdoubles_real_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, MREF(R));
+      ccdoubles_real_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, MREF(E));
     }
     assert(fabs(E[0][0]-R[0][0])<EPSILON); assert(fabs(E[0][1]-R[0][1])<EPSILON); assert(fabs(E[0][2]-R[0][2])<EPSILON);
     assert(fabs(E[1][0]-R[1][0])<EPSILON); assert(fabs(E[1][1]-R[1][1])<EPSILON); assert(fabs(E[1][2]-R[1][2])<EPSILON);
@@ -370,49 +376,49 @@ test_real_matrices (void)
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_exp (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_exp (NROWS, NCOLS, MREF(R), MREF(O));
     assert(exp(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_exp10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_exp10 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(exp(1.2 * log(10.0)) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_exp2 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_exp2 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(exp2(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_log (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_log (NROWS, NCOLS, MREF(R), MREF(O));
     assert(log(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_log10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_log10 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(log10(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_log2 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_log2 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(log2(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_logb (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_logb (NROWS, NCOLS, MREF(R), MREF(O));
     assert(logb(1.2) == R[0][0]);
   }
 
@@ -420,21 +426,21 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_pow (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_pow (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(pow(1.2, 3.4) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_sqrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_sqrt (NROWS, NCOLS, MREF(R), MREF(O));
     assert(sqrt(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_cbrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_cbrt (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cbrt(1.2) == R[0][0]);
   }
 
@@ -442,21 +448,21 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { { 1.2 } };
     double	O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_real_matrix_hypot (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_hypot (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(hypot(1.2, 3.4) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_expm1 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_expm1 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(expm1(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_log1p (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_log1p (NROWS, NCOLS, MREF(R), MREF(O));
     assert(log1p(1.2) == R[0][0]);
   }
 
@@ -464,42 +470,42 @@ test_real_matrices (void)
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	E = cexp(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_exp (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	E = cexp(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_exp (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	E = clog(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_log (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	E = clog(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_log (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	E = CPLX(log10(cabs(CPLX(1.2, 3.4))), carg(CPLX(1.2, 3.4)));
-    ccdoubles_cplx_matrix_log10 (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	E = Z(log10(cabs(Z(1.2, 3.4))), carg(Z(1.2, 3.4)));
+    ccdoubles_cplx_matrix_log10 (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	E = csqrt(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_sqrt (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	E = csqrt(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_sqrt (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	O2[NROWS][NCOLS] = { { CPLX(5.6, 7.8) } };
-    double complex	E = cpow(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
-    ccdoubles_cplx_matrix_pow (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    double complex	O1[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { Z(5.6, 7.8) } };
+    double complex	E = cpow(Z(1.2, 3.4), Z(5.6, 7.8));
+    ccdoubles_cplx_matrix_pow (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
@@ -508,42 +514,42 @@ test_real_matrices (void)
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_sin (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_sin (NROWS, NCOLS, MREF(R), MREF(O));
     assert(sin(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_cos (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_cos (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cos(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_tan (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_tan (NROWS, NCOLS, MREF(R), MREF(O));
     assert(tan(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  0.5 } };
-    ccdoubles_real_matrix_asin (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_asin (NROWS, NCOLS, MREF(R), MREF(O));
     assert(asin(0.5) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  0.5 } };
-    ccdoubles_real_matrix_acos (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_acos (NROWS, NCOLS, MREF(R), MREF(O));
     assert(acos(0.5) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  0.5 } };
-    ccdoubles_real_matrix_atan (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_atan (NROWS, NCOLS, MREF(R), MREF(O));
     assert(atan(0.5) == R[0][0]);
   }
 
@@ -551,7 +557,7 @@ test_real_matrices (void)
     double	R[NROWS][NCOLS];
     double	O1[NROWS][NCOLS] = { {  0.5 } };
     double	O2[NROWS][NCOLS] = { {  0.6 } };
-    ccdoubles_real_matrix_atan2 (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    ccdoubles_real_matrix_atan2 (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(atan2(0.5, 0.6) == R[0][0]);
   }
 
@@ -560,42 +566,42 @@ test_real_matrices (void)
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_sinh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_sinh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(sinh(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_cosh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_cosh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cosh(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_tanh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_tanh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(tanh(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  0.5 } };
-    ccdoubles_real_matrix_asinh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_asinh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(asinh(0.5) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  1.2 } };
-    ccdoubles_real_matrix_acosh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_acosh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(acosh(1.2) == R[0][0]);
   }
 
   {
     double	R[NROWS][NCOLS];
     double	O[NROWS][NCOLS] = { {  0.1 } };
-    ccdoubles_real_matrix_atanh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_real_matrix_atanh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(atanh(0.1) == R[0][0]);
   }
 }
@@ -609,69 +615,69 @@ void
 test_cplx_matrices (void)
 {
   {
-    double complex	V[NROWS][NCOLS];
-    double complex	E = CPLX(0.0, 0.0);
-    ccdoubles_cplx_matrix_clear(NROWS, NCOLS, &V[0][0]);
-    assert(E == V[0][0]);
+    double complex	M[NROWS][NCOLS];
+    double complex	E = Z(0.0, 0.0);
+    ccdoubles_cplx_matrix_clear(NROWS, NCOLS, MREF(M));
+    assert(E == M[0][0]);
   }
 
   {
-    double complex	V[NROWS][NCOLS];
-    double complex	E = CPLX(1.2, 3.4);
-    ccdoubles_cplx_matrix_set(NROWS, NCOLS, &V[0][0], E);
-    assert(E == V[0][0]);
+    double complex	M[NROWS][NCOLS];
+    double complex	E = Z(1.2, 3.4);
+    ccdoubles_cplx_matrix_set(NROWS, NCOLS, MREF(M), E);
+    assert(E == M[0][0]);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_copy (NROWS, NCOLS, &R[0][0], &O[0][0]);
-    assert(CPLX(1.2, 3.4) == R[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_copy (NROWS, NCOLS, MREF(R), MREF(O));
+    assert(Z(1.2, 3.4) == R[0][0]);
   }
 
 /* ------------------------------------------------------------------ */
 
   {
     double		R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_real (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_real (NROWS, NCOLS, MREF(R), MREF(O));
     assert(1.2 == R[0][0]);
   }
 
   {
     double		R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_imag (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_imag (NROWS, NCOLS, MREF(R), MREF(O));
     assert(3.4 == R[0][0]);
   }
 
   {
     double		R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_magnitude (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_magnitude (NROWS, NCOLS, MREF(R), MREF(O));
     assert(hypot(1.2, 3.4) == R[0][0]);
   }
 
   {
     double		R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_angle (NROWS, NCOLS, &R[0][0], &O[0][0]);
-    assert(carg(CPLX(1.2, 3.4)) == R[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_angle (NROWS, NCOLS, MREF(R), MREF(O));
+    assert(carg(Z(1.2, 3.4)) == R[0][0]);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    ccdoubles_cplx_matrix_conj (NROWS, NCOLS, &R[0][0], &O[0][0]);
-    assert(CPLX(1.2, -3.4) == R[0][0]);
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    ccdoubles_cplx_matrix_conj (NROWS, NCOLS, MREF(R), MREF(O));
+    assert(Z(1.2, -3.4) == R[0][0]);
   }
 
   {
     double complex	R[NROWS][NCOLS];
     double		O1[NROWS][NCOLS] = { { 1.2 } };
     double		O2[NROWS][NCOLS] = { { 3.4 } };
-    ccdoubles_cplx_matrix_from_rect (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
-    assert(CPLX(1.2, 3.4) == R[0][0]);
+    ccdoubles_cplx_matrix_from_rect (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
+    assert(Z(1.2, 3.4) == R[0][0]);
   }
 
   {
@@ -680,89 +686,89 @@ test_cplx_matrices (void)
     double		O2[NROWS][NCOLS] = { { 3.4 } };
     double		M = 1.2;
     double		A = 3.4;
-    ccdoubles_cplx_matrix_from_polar (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
-    assert(CPLX(M*cos(A), M*sin(A)) == R[0][0]);
+    ccdoubles_cplx_matrix_from_polar (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
+    assert(Z(M*cos(A), M*sin(A)) == R[0][0]);
   }
 
 /* ------------------------------------------------------------------ */
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	O2[NROWS][NCOLS] = { { CPLX(4.5, 6.7) } };
-    ccdoubles_cplx_matrix_add (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
-    assert((CPLX(1.2, 3.4) + CPLX(4.5, 6.7)) == R[0][0]);
+    double complex	O1[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { Z(4.5, 6.7) } };
+    ccdoubles_cplx_matrix_add (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
+    assert((Z(1.2, 3.4) + Z(4.5, 6.7)) == R[0][0]);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	O2[NROWS][NCOLS] = { { CPLX(4.5, 6.7) } };
-    ccdoubles_cplx_matrix_sub (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
-    assert((CPLX(1.2, 3.4) - CPLX(4.5, 6.7)) == R[0][0]);
+    double complex	O1[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { Z(4.5, 6.7) } };
+    ccdoubles_cplx_matrix_sub (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
+    assert((Z(1.2, 3.4) - Z(4.5, 6.7)) == R[0][0]);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	O2[NROWS][NCOLS] = { { CPLX(5.6, 7.8) } };
-    double complex	E = ccdoubles_cplx_mul(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
-    ccdoubles_cplx_matrix_mul (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    double complex	O1[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { Z(5.6, 7.8) } };
+    double complex	E = ccdoubles_cplx_mul(Z(1.2, 3.4), Z(5.6, 7.8));
+    ccdoubles_cplx_matrix_mul (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(E == R[0][0]);
     assert((O1[0][0] * O2[0][0]) == R[0][0]);
     assert((O1[0][0] * O2[0][0]) == E);
-    /* printf("multiplication E = %lf%+lfi\n", creal(E), cimag(E)); */
+    /* printf("multiplication E = %lf%+lfi\n", Re(E), Im(E)); */
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O1[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	O2[NROWS][NCOLS] = { { CPLX(5.6, 7.8) } };
-    double complex	E = ccdoubles_cplx_div(CPLX(1.2, 3.4), CPLX(5.6, 7.8));
-    double complex	X = CPLX(1.2, 3.4) / CPLX(5.6, 7.8);
-    ccdoubles_cplx_matrix_div (NROWS, NCOLS, &R[0][0], &O1[0][0], &O2[0][0]);
+    double complex	O1[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	O2[NROWS][NCOLS] = { { Z(5.6, 7.8) } };
+    double complex	E = ccdoubles_cplx_div(Z(1.2, 3.4), Z(5.6, 7.8));
+    double complex	X = Z(1.2, 3.4) / Z(5.6, 7.8);
+    ccdoubles_cplx_matrix_div (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
     assert(cabs(E - R[0][0]) < EPSILON);
     assert(cabs(X - R[0][0]) < EPSILON);
     assert(cabs(X - E)    < EPSILON);
-    /* printf("division E = %lf%+lfi\n", creal(E), cimag(E)); */
-    /* printf("division X = %lf%+lfi\n", creal(X), cimag(X)); */
+    /* printf("division E = %lf%+lfi\n", Re(E), Im(E)); */
+    /* printf("division X = %lf%+lfi\n", Re(X), Im(X)); */
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { { CPLX(1.2, 3.4) } };
-    double complex	E = ccdoubles_cplx_neg(CPLX(1.2, 3.4));
+    double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
+    double complex	E = ccdoubles_cplx_neg(Z(1.2, 3.4));
     double complex	X = -O[0][0];
-    ccdoubles_cplx_matrix_neg (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    ccdoubles_cplx_matrix_neg (NROWS, NCOLS, MREF(R), MREF(O));
     assert(E == R[0][0]);
     assert(E == X);
     assert(X == R[0][0]);
-    /* printf("negation R = %lf%+lfi\n", creal(R[0][0]), cimag(R[0][0])); */
-    /* printf("negation X = %lf%+lfi\n", creal(X), cimag(X)); */
+    /* printf("negation R = %lf%+lfi\n", Re(R[0][0]), Im(R[0][0])); */
+    /* printf("negation X = %lf%+lfi\n", Re(X), Im(X)); */
   }
 
 /* ------------------------------------------------------------------ */
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	lambda = CPLX(1.2, 3.4);
-    double complex	O[NROWS][NCOLS] = { { CPLX(5.6, 7.8) } };
-    double complex	E = ccdoubles_cplx_mul(lambda, CPLX(5.6, 7.8));
-    ccdoubles_cplx_matrix_scalar_mul (NROWS, NCOLS, &R[0][0], lambda, &O[0][0]);
+    double complex	lambda = Z(1.2, 3.4);
+    double complex	O[NROWS][NCOLS] = { { Z(5.6, 7.8) } };
+    double complex	E = ccdoubles_cplx_mul(lambda, Z(5.6, 7.8));
+    ccdoubles_cplx_matrix_scalar_mul (NROWS, NCOLS, MREF(R), lambda, MREF(O));
     assert(E == R[0][0]);
   }
 
   {
     double complex	R[2][2];
-    double complex	alpha = CPLX(1.2, 2.3);
-    double complex	beta  = CPLX(3.4, 5.6);
+    double complex	alpha = Z(1.2, 2.3);
+    double complex	beta  = Z(3.4, 5.6);
     double complex	O1[2][2] = {
-      { CPLX(1.2, 2.3), CPLX(3.4, 4.5) },
-      { CPLX(5.6, 6.7), CPLX(7.8, 8.9) }
+      { Z(1.2, 2.3), Z(3.4, 4.5) },
+      { Z(5.6, 6.7), Z(7.8, 8.9) }
     };
     double complex	O2[2][2] = {
-      { CPLX(9.0, 0.1), CPLX(1.2, 2.3) },
-      { CPLX(3.4, 4.5), CPLX(5.6, 6.7) }
+      { Z(9.0, 0.1), Z(1.2, 2.3) },
+      { Z(3.4, 4.5), Z(5.6, 6.7) }
     };
     double complex	E00 = \
       ccdoubles_cplx_mul(alpha, O1[0][0]) + ccdoubles_cplx_mul(beta, O2[0][0]);
@@ -772,7 +778,7 @@ test_cplx_matrices (void)
       ccdoubles_cplx_mul(alpha, O1[1][0]) + ccdoubles_cplx_mul(beta, O2[1][0]);
     double complex	E11 = \
       ccdoubles_cplx_mul(alpha, O1[1][1]) + ccdoubles_cplx_mul(beta, O2[1][1]);
-    ccdoubles_cplx_matrix_linear_combination (2, 2, &R[0][0], alpha, &O1[0][0], beta, &O2[0][0]);
+    ccdoubles_cplx_matrix_linear_combination (2, 2, MREF(R), alpha, MREF(O1), beta, MREF(O2));
     assert(E00 == R[0][0]);
     assert(E01 == R[0][1]);
     assert(E10 == R[1][0]);
@@ -782,25 +788,25 @@ test_cplx_matrices (void)
   {
     double complex	R[3][2];
     double complex	O[2][3] = {
-      { CPLX(1.2, 0.0), CPLX(3.4, 0.0), CPLX(5.6, 0.0) },
-      { CPLX(7.8, 0.0), CPLX(8.9, 0.0), CPLX(9.0, 0.0) }
+      { Z(1.2, 0.0), Z(3.4, 0.0), Z(5.6, 0.0) },
+      { Z(7.8, 0.0), Z(8.9, 0.0), Z(9.0, 0.0) }
     };
-    ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
-    assert(CPLX(1.2, 0.0) == R[0][0]); assert(CPLX(7.8, 0.0) == R[0][1]);
-    assert(CPLX(3.4, 0.0) == R[1][0]); assert(CPLX(8.9, 0.0) == R[1][1]);
-    assert(CPLX(5.6, 0.0) == R[2][0]); assert(CPLX(9.0, 0.0) == R[2][1]);
+    ccdoubles_cplx_matrix_transpose (2, 3, MREF(R), MREF(O));
+    assert(Z(1.2, 0.0) == R[0][0]); assert(Z(7.8, 0.0) == R[0][1]);
+    assert(Z(3.4, 0.0) == R[1][0]); assert(Z(8.9, 0.0) == R[1][1]);
+    assert(Z(5.6, 0.0) == R[2][0]); assert(Z(9.0, 0.0) == R[2][1]);
   }
 
   {
     double complex	R[3][2];
     double complex	O[2][3] = {
-      { CPLX(1.2, 2.3), CPLX(3.4, 4.5), CPLX(5.6, 6.7) },
-      { CPLX(7.8, 8.9), CPLX(9.0, 0.1), CPLX(-1.2, -2.3) }
+      { Z(1.2, 2.3), Z(3.4, 4.5), Z(5.6, 6.7) },
+      { Z(7.8, 8.9), Z(9.0, 0.1), Z(-1.2, -2.3) }
     };
-    ccdoubles_cplx_matrix_conjugate_transpose (2, 3, &R[0][0], &O[0][0]);
-    assert(CPLX(1.2, +2.3) == R[0][0]); assert(CPLX(7.8, -8.9) == R[0][1]);
-    assert(CPLX(3.4, -4.5) == R[1][0]); assert(CPLX(9.0, +0.1) == R[1][1]);
-    assert(CPLX(5.6, -6.7) == R[2][0]); assert(CPLX(-1.2, 2.3) == R[2][1]);
+    ccdoubles_cplx_matrix_conjugate_transpose (2, 3, MREF(R), MREF(O));
+    assert(Z(1.2, +2.3) == R[0][0]); assert(Z(7.8, -8.9) == R[0][1]);
+    assert(Z(3.4, -4.5) == R[1][0]); assert(Z(9.0, +0.1) == R[1][1]);
+    assert(Z(5.6, -6.7) == R[2][0]); assert(Z(-1.2, 2.3) == R[2][1]);
   }
 
   {
@@ -812,24 +818,24 @@ test_cplx_matrices (void)
 #define OPERAND_N		4
     double complex	R[RESULT_NROWS][RESULT_NCOLS];
     double complex	O1[RESULT_NROWS][OPERAND_N] = {
-      { CPLX(1.1,0.0), CPLX(1.2,0.0), CPLX(1.3,0.0), CPLX(1.4,0.0) },
-      { CPLX(2.1,0.0), CPLX(2.2,0.0), CPLX(2.3,0.0), CPLX(2.4,0.0) }
+      { Z(1.1,0.0), Z(1.2,0.0), Z(1.3,0.0), Z(1.4,0.0) },
+      { Z(2.1,0.0), Z(2.2,0.0), Z(2.3,0.0), Z(2.4,0.0) }
     };
     double complex	O2[OPERAND_N][RESULT_NCOLS] = {
-      { CPLX(-1.1,0.0),  CPLX(-1.2,0.0),  CPLX(-1.3,0.0) },
-      { CPLX(-2.1,0.0),  CPLX(-2.2,0.0),  CPLX(-2.3,0.0) },
-      { CPLX(-3.1,0.0),  CPLX(-3.2,0.0),  CPLX(-3.3,0.0) },
-      { CPLX(-4.1,0.0),  CPLX(-4.2,0.0),  CPLX(-4.3,0.0) }
+      { Z(-1.1,0.0),  Z(-1.2,0.0),  Z(-1.3,0.0) },
+      { Z(-2.1,0.0),  Z(-2.2,0.0),  Z(-2.3,0.0) },
+      { Z(-3.1,0.0),  Z(-3.2,0.0),  Z(-3.3,0.0) },
+      { Z(-4.1,0.0),  Z(-4.2,0.0),  Z(-4.3,0.0) }
     };
     double complex	E[RESULT_NROWS][RESULT_NCOLS] = { /* expected result */
-      { CPLX(-13.5,0.0), CPLX(-14.0,0.0), CPLX(-14.5,0.0) },
-      { CPLX(-23.9,0.0), CPLX(-24.8,0.0), CPLX(-25.7,0.0) }
+      { Z(-13.5,0.0), Z(-14.0,0.0), Z(-14.5,0.0) },
+      { Z(-23.9,0.0), Z(-24.8,0.0), Z(-25.7,0.0) }
     };
     ccdoubles_cplx_matrix_rowcol_mul (RESULT_NROWS, OPERAND_N, RESULT_NCOLS,
-				      &R[0][0], &O1[0][0], &O2[0][0]);
+				      MREF(R), MREF(O1), MREF(O2));
     if (0) {
-      ccdoubles_cplx_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, &R[0][0]);
-      ccdoubles_cplx_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, &E[0][0]);
+      ccdoubles_cplx_matrix_print_display (stdout, "R", RESULT_NROWS, RESULT_NCOLS, MREF(R));
+      ccdoubles_cplx_matrix_print_display (stdout, "E", RESULT_NROWS, RESULT_NCOLS, MREF(E));
     }
     assert(cabs(E[0][0]-R[0][0])<EPSILON); assert(cabs(E[0][1]-R[0][1])<EPSILON); assert(cabs(E[0][2]-R[0][2])<EPSILON);
     assert(cabs(E[1][0]-R[1][0])<EPSILON); assert(cabs(E[1][1]-R[1][1])<EPSILON); assert(cabs(E[1][2]-R[1][2])<EPSILON);
@@ -839,49 +845,49 @@ test_cplx_matrices (void)
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = csin(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_sin (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = csin(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_sin (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = ccos(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_cos (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = ccos(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_cos (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = ctan(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_tan (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = ctan(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_tan (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = casin(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_asin (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = casin(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_asin (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = cacos(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_acos (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = cacos(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_acos (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = catan(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_atan (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = catan(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_atan (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
@@ -889,49 +895,49 @@ test_cplx_matrices (void)
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = csinh(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_sinh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = csinh(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_sinh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = ccosh(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_cosh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = ccosh(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_cosh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(1.2, 3.4) } };
-    double complex	E = ctanh(CPLX(1.2, 3.4));
-    ccdoubles_cplx_matrix_tanh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(1.2, 3.4) } };
+    double complex	E = ctanh(Z(1.2, 3.4));
+    ccdoubles_cplx_matrix_tanh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = casinh(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_asinh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = casinh(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_asinh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = cacosh(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_acosh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = cacosh(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_acosh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 
   {
     double complex	R[NROWS][NCOLS];
-    double complex	O[NROWS][NCOLS] = { {  CPLX(0.5, 0.6) } };
-    double complex	E = catanh(CPLX(0.5, 0.6));
-    ccdoubles_cplx_matrix_atanh (NROWS, NCOLS, &R[0][0], &O[0][0]);
+    double complex	O[NROWS][NCOLS] = { {  Z(0.5, 0.6) } };
+    double complex	E = catanh(Z(0.5, 0.6));
+    ccdoubles_cplx_matrix_atanh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(cabs(E - R[0][0]) < EPSILON);
   }
 }

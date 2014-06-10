@@ -103,6 +103,8 @@ extern "C" {
 #  define Z(REAL,IMAG)		(CCDOUBLES_CPLX((REAL),(IMAG)))
 #  define Re(Z)			(creal(Z))
 #  define Im(Z)			(cimag(Z))
+
+#  define MREF(M)		(&M[0][0])
 #endif
 
 

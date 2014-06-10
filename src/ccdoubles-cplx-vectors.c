@@ -50,6 +50,14 @@ ccdoubles_cplx_vector_set (unsigned nslots, double complex * restrict vector, do
   }
 }
 void
+ccdoubles_cplx_vector_set_split (unsigned nslots, double complex * restrict vector,
+				 double value_re, double value_im)
+{
+  for (unsigned i=0; i<nslots; ++i) {
+    vector[i] = Z(value_re, value_im);
+  }
+}
+void
 ccdoubles_cplx_vector_copy (unsigned nslots,
 			    double complex * restrict dst,
 			    double complex * restrict src)

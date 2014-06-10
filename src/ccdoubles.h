@@ -643,6 +643,8 @@ ccdoubles_decl void ccdoubles_cplx_vector_clear (unsigned nslots,
 ccdoubles_decl void ccdoubles_cplx_vector_set   (unsigned nslots,
 						 double complex * restrict vector,
 						 double complex value);
+ccdoubles_decl void ccdoubles_cplx_vector_set_split (unsigned nslots, double complex * restrict vector,
+						     double value_re, double value_im);
 ccdoubles_decl void ccdoubles_cplx_vector_copy (unsigned nslots,
 						double complex * restrict dst,
 						double complex * restrict src);
@@ -789,6 +791,9 @@ ccdoubles_decl void ccdoubles_cplx_matrix_clear (unsigned nrows, unsigned ncols,
 ccdoubles_decl void ccdoubles_cplx_matrix_set   (unsigned nrows, unsigned ncols,
 						 double complex * restrict matrix,
 						 double complex value);
+ccdoubles_decl void ccdoubles_cplx_matrix_set_split (unsigned nrows, unsigned ncols,
+						     double complex * restrict matrix,
+						     double value_re, double value_im);
 ccdoubles_decl void ccdoubles_cplx_matrix_copy (unsigned nrows, unsigned ncols,
 						double complex * restrict dst,
 						double complex * restrict src);

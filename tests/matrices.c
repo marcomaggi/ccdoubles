@@ -642,6 +642,13 @@ test_cplx_matrices (void)
   }
 
   {
+    double complex	M[NROWS][NCOLS];
+    double complex	E = Z(1.2, 3.4);
+    ccdoubles_cplx_matrix_set_split(NROWS, NCOLS, MREF(M), Re(E), Im(E));
+    assert(E == M[0][0]);
+  }
+
+  {
     double complex	R[NROWS][NCOLS];
     double complex	O[NROWS][NCOLS] = { { Z(1.2, 3.4) } };
     ccdoubles_cplx_matrix_copy (NROWS, NCOLS, MREF(R), MREF(O));

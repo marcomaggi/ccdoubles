@@ -579,6 +579,13 @@ test_cplx_vectors (void)
   }
 
   {
+    double complex	V[NSLOTS];
+    double complex	E = CPLX(1.2, 3.4);
+    ccdoubles_cplx_vector_set_split(NSLOTS, V, Re(E), Im(E));
+    assert(E == V[0]);
+  }
+
+  {
     double complex	R[NSLOTS];
     double complex	O[NSLOTS] = { CPLX(1.2, 3.4) };
     ccdoubles_cplx_vector_copy (NSLOTS, R, O);

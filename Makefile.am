@@ -22,6 +22,21 @@ doc_ccdoubles_TEXINFOS	= \
 	doc/gpl-3.0.texi	\
 	doc/fdl-1.3.texi
 
+## --------------------------------------------------------------------
+
+EXTRA_DIST		+= \
+	scheme/Makefile				\
+	scheme/process.sps			\
+	scheme/table.scm			\
+	scheme/ccdoubles.sls			\
+	scheme/ccdoubles/main.sls		\
+	scheme/ccdoubles/compat.guile.sls	\
+	scheme/ccdoubles/compat.mosh.sls	\
+	scheme/ccdoubles/compat.mzscheme.sls	\
+	scheme/ccdoubles/compat.sagittarius.sls	\
+	scheme/ccdoubles/compat.vicare.sls	\
+	scheme/ccdoubles/syntax-helpers.sls
+
 #page
 #### libraries
 

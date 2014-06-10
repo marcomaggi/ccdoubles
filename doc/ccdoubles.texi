@@ -1030,8 +1030,16 @@ complex part @code{0.0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_set (unsigned @var{nslots}, double complex * @var{vector}, double @var{value})
+@deftypefun void ccdoubles_cplx_vector_set (unsigned @var{nslots}, double complex * @var{vector}, double complex @var{value})
 Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_set_split (unsigned @var{nslots}, double complex * @var{vector}, double @var{value_re}, double @var{value_im})
+Set all the slots to a complex number having @var{value_re} as real part
+and @var{value_im} as imaginary part.  This function is like
+@cfunc{ccdoubles_cplx_vector_set}, but splitting the real and imaginary
+parts makes it easier to interface it with foreign languages.
 @end deftypefun
 
 
@@ -2009,6 +2017,14 @@ complex part @code{0.0}.
 
 @deftypefun void ccdoubles_cplx_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{matrix}, double complex @var{value})
 Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_set_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{vector}, double @var{value_re}, double @var{value_im})
+Set all the slots to a complex number having @var{value_re} as real part
+and @var{value_im} as imaginary part.  This function is like
+@cfunc{ccdoubles_cplx_matrix_set}, but splitting the real and imaginary
+parts makes it easier to interface it with foreign languages.
 @end deftypefun
 
 

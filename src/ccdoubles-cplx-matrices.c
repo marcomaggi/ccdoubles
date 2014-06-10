@@ -50,6 +50,13 @@ ccdoubles_cplx_matrix_set (unsigned nrows, unsigned ncols,
   ccdoubles_cplx_vector_set(nrows * ncols, matrix, value);
 }
 void
+ccdoubles_cplx_matrix_set_split (unsigned nrows, unsigned ncols,
+				 double complex * restrict matrix,
+				 double value_re, double value_im)
+{
+  ccdoubles_cplx_vector_set_split(nrows * ncols, matrix, value_re, value_im);
+}
+void
 ccdoubles_cplx_matrix_copy (unsigned nrows, unsigned ncols,
 			    double complex * restrict dst,
 			    double complex * restrict src)

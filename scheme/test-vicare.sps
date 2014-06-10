@@ -86,6 +86,19 @@
 	(array-set-c-double! P j          rep)
 	(array-set-c-double! P (fxadd1 j) imp)))))
 
+;;; --------------------------------------------------------------------
+
+(define-constant EPSILON
+  1e-6)
+
+(define* (double-vector=? {O1 vector?} {O2 vector?})
+  (let loop ((i 0))
+    (or (fx=? i (vector-length O1))
+	(and (let ((X (vector-ref O1 i))
+		   (Y (vector-ref O2 i)))
+	       (< (magnitude (- X Y)) EPSILON))
+	     (loop (fxadd1 i))))))
+
 
 (parametrise ((check-test-name	'real-vectors-helpers))
 
@@ -138,6 +151,64 @@
   (collect))
 
 
+(parametrise ((check-test-name	'real-vectors-arithmetic))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-real-vector '#(1.2 3.4 5.6)))
+  	     (O2 (scheme-vector->ccdoubles-real-vector '#(7.8 8.9 9.0)))
+  	     (R  (guarded-malloc (* N sizeof-double))))
+        (ccdoubles_real_vector_add N R O1 O2)
+  	(ccdoubles-real-vector->scheme-vector N R))
+    => (list->vector (map +
+		       '(1.2 3.4 5.6)
+		       '(7.8 8.9 9.0))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-real-vector '#(1.2 3.4 5.6)))
+  	     (O2 (scheme-vector->ccdoubles-real-vector '#(7.8 8.9 9.0)))
+  	     (R  (guarded-malloc (* N sizeof-double))))
+        (ccdoubles_real_vector_sub N R O1 O2)
+  	(ccdoubles-real-vector->scheme-vector N R))
+    => (list->vector (map -
+		       '(1.2 3.4 5.6)
+		       '(7.8 8.9 9.0))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-real-vector '#(1.2 3.4 5.6)))
+  	     (O2 (scheme-vector->ccdoubles-real-vector '#(7.8 8.9 9.0)))
+  	     (R  (guarded-malloc (* N sizeof-double))))
+        (ccdoubles_real_vector_mul N R O1 O2)
+  	(ccdoubles-real-vector->scheme-vector N R))
+    => (list->vector (map *
+		       '(1.2 3.4 5.6)
+		       '(7.8 8.9 9.0))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-real-vector '#(1.2 3.4 5.6)))
+  	     (O2 (scheme-vector->ccdoubles-real-vector '#(7.8 8.9 9.0)))
+  	     (R  (guarded-malloc (* N sizeof-double))))
+        (ccdoubles_real_vector_div N R O1 O2)
+  	(ccdoubles-real-vector->scheme-vector N R))
+    => (list->vector (map /
+		       '(1.2 3.4 5.6)
+		       '(7.8 8.9 9.0))))
+
+  (check
+      (let* ((N 3)
+  	     (O (scheme-vector->ccdoubles-real-vector '#(7.8 8.9 9.0)))
+  	     (R (guarded-malloc (* N sizeof-double))))
+        (ccdoubles_real_vector_neg N R O)
+  	(ccdoubles-real-vector->scheme-vector N R))
+    => (list->vector (map -
+		       '(7.8 8.9 9.0))))
+
+  (collect))
+
+
 (parametrise ((check-test-name	'cplx-vectors-basic))
 
   (check
@@ -161,6 +232,69 @@
         (ccdoubles_cplx_vector_copy N D S)
   	(ccdoubles-cplx-vector->scheme-vector N D))
     => '#(1.2+2.3i 3.4+4.5i 5.6+6.7i))
+
+  (collect))
+
+
+(parametrise ((check-test-name	'cplx-vectors-arithmetic))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-cplx-vector '#(1.2+2.3i 3.4+4.5i 5.6+6.7i)))
+  	     (O2 (scheme-vector->ccdoubles-cplx-vector '#(7.8+8.9i 8.9+9.1i 9.0+0.1i)))
+  	     (R  (guarded-malloc (* N sizeof-double-complex))))
+        (ccdoubles_cplx_vector_add N R O1 O2)
+  	(ccdoubles-cplx-vector->scheme-vector N R))
+    (=> double-vector=?)
+    (list->vector (map +
+		    '(1.2+2.3i 3.4+4.5i 5.6+6.7i)
+		    '(7.8+8.9i 8.9+9.1i 9.0+0.1i))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-cplx-vector '#(1.2+2.3i 3.4+4.5i 5.6+6.7i)))
+  	     (O2 (scheme-vector->ccdoubles-cplx-vector '#(7.8+8.9i 8.9+9.1i 9.0+0.1i)))
+  	     (R  (guarded-malloc (* N sizeof-double-complex))))
+        (ccdoubles_cplx_vector_sub N R O1 O2)
+  	(ccdoubles-cplx-vector->scheme-vector N R))
+    (=> double-vector=?)
+    (list->vector (map -
+		    '(1.2+2.3i 3.4+4.5i 5.6+6.7i)
+		    '(7.8+8.9i 8.9+9.1i 9.0+0.1i))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-cplx-vector '#(1.2+2.3i 3.4+4.5i 5.6+6.7i)))
+  	     (O2 (scheme-vector->ccdoubles-cplx-vector '#(7.8+8.9i 8.9+9.1i 9.0+0.1i)))
+  	     (R  (guarded-malloc (* N sizeof-double-complex))))
+        (ccdoubles_cplx_vector_mul N R O1 O2)
+  	(ccdoubles-cplx-vector->scheme-vector N R))
+    (=> double-vector=?)
+    (list->vector (map *
+		    '(1.2+2.3i 3.4+4.5i 5.6+6.7i)
+		    '(7.8+8.9i 8.9+9.1i 9.0+0.1i))))
+
+  (check
+      (let* ((N 3)
+  	     (O1 (scheme-vector->ccdoubles-cplx-vector '#(1.2+2.3i 3.4+4.5i 5.6+6.7i)))
+  	     (O2 (scheme-vector->ccdoubles-cplx-vector '#(7.8+8.9i 8.9+9.1i 9.0+0.1i)))
+  	     (R  (guarded-malloc (* N sizeof-double-complex))))
+        (ccdoubles_cplx_vector_div N R O1 O2)
+  	(ccdoubles-cplx-vector->scheme-vector N R))
+    (=> double-vector=?)
+    (list->vector (map /
+		    '(1.2+2.3i 3.4+4.5i 5.6+6.7i)
+		    '(7.8+8.9i 8.9+9.1i 9.0+0.1i))))
+
+  (check
+      (let* ((N 3)
+  	     (O (scheme-vector->ccdoubles-cplx-vector '#(7.8+8.9i 8.9+9.1i 9.0+0.1i)))
+  	     (R (guarded-malloc (* N sizeof-double-complex))))
+        (ccdoubles_cplx_vector_neg N R O)
+  	(ccdoubles-cplx-vector->scheme-vector N R))
+    (=> double-vector=?)
+    (list->vector (map -
+		    '(7.8+8.9i 8.9+9.1i 9.0+0.1i))))
 
   (collect))
 

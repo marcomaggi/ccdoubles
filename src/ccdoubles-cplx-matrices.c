@@ -420,7 +420,7 @@ ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
       fprintf(f, "; (%ld,%ld) %+lf%-+lfi ", 1+i, 1+j,
 	      creal(operand[i * ncols + j]), cimag(operand[i * ncols + j]));
     }
-    fprintf(f, " |\n");
+    fprintf(f, "|\n");
   }
   fprintf(f, "\n");
 }

@@ -41,7 +41,9 @@ libccdoubles_la_SOURCES= \
 	src/ccdoubles-real-vectors.c	\
 	src/ccdoubles-cplx-vectors.c	\
 	src/ccdoubles-real-matrices.c	\
-	src/ccdoubles-cplx-matrices.c
+	src/ccdoubles-cplx-matrices.c	\
+	src/ccdoubles-int-vectors.c	\
+	src/ccdoubles-int-matrices.c
 
 #page
 #### tests
@@ -50,6 +52,7 @@ check_PROGRAMS	= \
 	tests/version		\
 	tests/vectors		\
 	tests/matrices		\
+	tests/integers		\
 	tests/printing
 
 TESTS				= $(check_PROGRAMS)
@@ -65,6 +68,9 @@ tests_vectors_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_matrices_CPPFLAGS		= $(ccdoubles_tests_cppflags)
 tests_matrices_LDADD		= $(ccdoubles_tests_ldadd)
+
+tests_integers_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_integers_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_printing_CPPFLAGS		= $(ccdoubles_tests_cppflags)
 tests_printing_LDADD		= $(ccdoubles_tests_ldadd)

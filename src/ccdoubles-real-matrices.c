@@ -607,7 +607,7 @@ ccdoubles_real_matrix_print_display (FILE * f, const char * name,
     for (++j; j<ncols; ++j) {
       fprintf(f, "; (%ld,%ld) %+lf ", 1+i, 1+j, operand[i * ncols + j]);
     }
-    fprintf(f, " |\n");
+    fprintf(f, "|\n");
   }
   fprintf(f, "\n");
 }

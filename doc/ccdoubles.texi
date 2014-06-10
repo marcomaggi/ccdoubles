@@ -403,6 +403,7 @@ already defined.
 * vectors intro::               Introduction to vector operations.
 * vectors real::                Operations on real--valued vectors.
 * vectors cplx::                Operations on complex--valued vectors.
+* vectors int::                 Operations on @code{int}--valued vectors.
 @end menu
 
 @c page
@@ -1197,6 +1198,102 @@ will print:
 @end deftypefun
 
 @c page
+@node vectors int
+@section Operations on @code{int}--valued vectors
+
+
+Vectors of integer numbers are useful because some predicate functions
+acting on vectors of @code{double} store the result in an array
+integers.
+
+@menu
+* vectors int basic::          Basic @code{int} vector operations.
+* vectors int printing::       Printing @code{int} vectors.
+@end menu
+
+@c page
+@node vectors int basic
+@subsection Basic @code{int} vector operations
+
+
+@deftypefun void ccdoubles_int_vector_clear (size_t @var{nslots}, int * @var{vector})
+Reset all the slots to @code{0}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_vector_set (size_t @var{nslots}, int * @var{vector}, double @var{value})
+Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_vector_copy (size_t @var{nslots}, int * @var{dst}, int * @var{src})
+Copy the slots from @var{src} to @var{dst}.
+@end deftypefun
+
+@c page
+@node vectors int printing
+@subsection Printing @code{int} vectors
+
+
+@deftypefun void ccdoubles_int_vector_print_display (FILE * @var{f}, const char * @var{name}, size_t @var{nslots}, int * @var{operand})
+Print on @var{f} a layout of the operand.  @var{name} must be a pointer
+to an @asciiz{} string representing the operand name.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+int     O[NSLOTS] = @{ 11, 22, 33 @};
+ccdoubles_int_vector_print_display(stdout, "O", NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+Vector O (dimension 3):
+| (1) +11 ; (2) +22 ; (3) +33 |
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_vector_print_brackets (FILE * @var{f}, size_t @var{nslots}, int * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+int     O[NSLOTS] = @{ 11, 22, 33 @};
+ccdoubles_int_vector_print_brackets(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+[+11 +22 +33]
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_vector_print_braces (FILE * @var{f}, size_t @var{nslots}, int * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NSLOTS
+#define NSLOTS          3
+int      O[NSLOTS] = @{ 11, 22, 33 @};
+ccdoubles_int_vector_print_brackets(stdout, NSLOTS, O);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+@{+11, +22, +33@}
+@end smallexample
+@end deftypefun
+
+@c page
 @node matrices
 @chapter Operations on matrices
 
@@ -1205,6 +1302,7 @@ will print:
 * matrices intro::               Introduction to matrix operations.
 * matrices real::                Operations on real--valued matrices.
 * matrices cplx::                Operations on complex--valued matrices.
+* matrices int::                 Operations on @code{int}--valued matrices.
 @end menu
 
 @c page
@@ -2074,6 +2172,123 @@ will print:
 @smallexample
 @{@{+1.100000-1.100000i, +1.200000-1.200000i, +1.300000-1.300000i@},
  @{+2.100000-2.100000i, +2.200000-2.200000i, +2.300000-2.300000i@}@}
+@end smallexample
+@end deftypefun
+
+@c page
+@node matrices int
+@section Operations on @code{int}--valued matrices
+
+
+Matrices of integer numbers are useful because some predicate functions
+acting on matrices of @code{double} store the result in an array
+integers.
+
+@menu
+* matrices int basic::          Basic @code{int} vector operations.
+* matrices int printing::       Printing @code{int} vectors.
+@end menu
+
+@c page
+@node matrices int basic
+@subsection Basic @code{int} vector operations
+
+
+@deftypefun void ccdoubles_int_matrix_clear (size_t @var{nrows}, size_t @var{ncols}, int * @var{matrix})
+Reset all the slots to @code{0}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_matrix_set (size_t @var{nrows}, size_t @var{ncols}, int * @var{matrix}, double @var{value})
+Set all the slots to the given @var{value}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_matrix_copy (size_t @var{nrows}, size_t @var{ncols}, int * @var{dst}, int * @var{src})
+Copy the slots from @var{src} to @var{dst}.
+@end deftypefun
+
+@c page
+@node matrices int printing
+@subsection Printing @code{int} vectors
+
+
+@deftypefun void ccdoubles_int_matrix_print_display (FILE * @var{f}, const char * @var{name}, size_t @var{nrows}, size_t @var{ncols}, int * @var{operand})
+Print on @var{f} a layout of the operand.  @var{name} must be a pointer
+to an @asciiz{} string representing the operand name.  Example:
+
+@example
+#undef NROWS
+#undef NCOLS
+#define NROWS           2
+#define NCOLS           3
+int     O[NROWS][NCOLS] = @{
+  @{ 11, 22, 33 @},
+  @{ 44, 55, 66 @}
+@};
+ccdoubles_int_matrix_print_display \
+  (stdout, "O", NROWS, NCOLS, &O[0][0]);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+Row-major matrix O (dimension 2 x 3) (displayed in row-major order):
+| (1,1) +11 ; (1,2) +22 ; (1,3) +33 |
+| (2,1) +44 ; (2,2) +55 ; (2,3) +66 |
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_matrix_print_brackets (FILE * @var{f}, size_t @var{nrows}, size_t @var{ncols}, int * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NROWS
+#undef NCOLS
+#define NROWS           2
+#define NCOLS           3
+int     O[NROWS][NCOLS] = @{
+  @{ 11, 22, 33 @},
+  @{ 44, 55, 66 @}
+@};
+ccdoubles_int_matrix_print_brackets \
+  (stdout, NROWS, NCOLS, &O[0][0]);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+[[+11 +22 +33]
+ [+44 +55 +66]]
+@end smallexample
+@end deftypefun
+
+
+@deftypefun void ccdoubles_int_matrix_print_braces (FILE * @var{f}, size_t @var{nrows}, size_t @var{ncols}, int * @var{operand})
+Print on @var{f} a layout of the operand.  Example:
+
+@example
+#undef NROWS
+#undef NCOLS
+#define NROWS           2
+#define NCOLS           3
+int     O[NROWS][NCOLS] = @{
+  @{ 11, 22, 33 @},
+  @{ 44, 55, 66 @}
+@};
+ccdoubles_int_matrix_print_braces \
+  (stdout, NROWS, NCOLS, &O[0][0]);
+@end example
+
+@noindent
+will print:
+
+@smallexample
+@{@{+11, +22, +33@},
+ @{+44, +55, +66@}@}
 @end smallexample
 @end deftypefun
 

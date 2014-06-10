@@ -925,6 +925,33 @@ ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, size_t nrows, 
 
 
 /** --------------------------------------------------------------------
+ ** Arrays of integers.
+ ** ----------------------------------------------------------------- */
+
+ccdoubles_decl void ccdoubles_int_vector_clear (size_t nslots, int * restrict vector);
+ccdoubles_decl void ccdoubles_int_vector_set (size_t nslots, int * restrict vector, int value);
+ccdoubles_decl void ccdoubles_int_vector_copy (size_t nslots, int * restrict dst, int * restrict src);
+
+ccdoubles_decl void ccdoubles_int_vector_print_display (FILE * f, const char * name,
+						     size_t nslots,
+						     int * operand);
+ccdoubles_decl void ccdoubles_int_vector_print_brackets (FILE * f, size_t nslots, int * operand);
+ccdoubles_decl void ccdoubles_int_vector_print_braces (FILE * f, size_t nslots, int * operand);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_int_matrix_clear (size_t nrows, size_t ncols, int * restrict matrix);
+ccdoubles_decl void ccdoubles_int_matrix_set (size_t nrows, size_t ncols, int * restrict matrix, int value);
+ccdoubles_decl void ccdoubles_int_matrix_copy (size_t nrows, size_t ncols, int * restrict dst, int * restrict src);
+
+ccdoubles_decl void ccdoubles_int_matrix_print_display (FILE * f, const char * name,
+						     size_t nrows, size_t ncols,
+						     int * operand);
+ccdoubles_decl void ccdoubles_int_matrix_print_brackets (FILE * f, size_t nrows, size_t ncols, int * operand);
+ccdoubles_decl void ccdoubles_int_matrix_print_braces (FILE * f, size_t nrows, size_t ncols, int * operand);
+
+
+/** --------------------------------------------------------------------
  ** Version functions.
  ** ----------------------------------------------------------------- */
 

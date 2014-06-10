@@ -233,6 +233,16 @@ ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
   }
 }
 void
+ccdoubles_cplx_vector_scalar_mul_split (unsigned nslots,
+					double complex * restrict result,
+					double lambda_re, double lambda_im,
+					double complex * restrict operand)
+{
+  for (unsigned i=0; i<nslots; ++i) {
+    result[i] = Z(lambda_re, lambda_im) * operand[i];
+  }
+}
+void
 ccdoubles_cplx_vector_linear_combination (unsigned nslots,
 					  double complex * restrict result,
 					  double complex alpha,
@@ -242,6 +252,20 @@ ccdoubles_cplx_vector_linear_combination (unsigned nslots,
 {
   for (unsigned i=0; i<nslots; ++i) {
     result[i] = alpha * operand1[i] + beta * operand2[i];
+  }
+}
+void
+ccdoubles_cplx_vector_linear_combination_split (unsigned nslots,
+						double complex * restrict result,
+						double alpha_re, double alpha_im,
+						double complex * restrict operand1,
+						double beta_re, double beta_im,
+						double complex * restrict operand2)
+{
+  for (unsigned i=0; i<nslots; ++i) {
+    result[i] = \
+      Z(alpha_re, alpha_im) * operand1[i] + \
+      Z(beta_re,  beta_im)  * operand2[i];
   }
 }
 

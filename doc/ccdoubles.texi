@@ -1121,12 +1121,21 @@ for (unsigned i=0; i<nslots; ++i) @{
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_scalar_mul (unsigned @var{nslots}, double complex * @var{result}, double @var{lambda}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_scalar_mul (unsigned @var{nslots}, double complex * @var{result}, double complex @var{lambda}, const double complex * @var{operand})
 Multiply the scalar @var{lambda} with all the slots in the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_linear_combination (unsigned @var{nslots}, double complex * @var{result}, double @var{alpha}, double complex * @vari{operand}, double @var{beta}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_scalar_mul_split (unsigned @var{nslots}, double complex * @var{result}, double @var{lambda_re}, double @var{lambda_im}, const double complex * @var{operand})
+Multiply the scalar having real part @var{lambda_re} and imaginary part
+@var{lambda_im} with all the slots in the operand.  This function is
+like @cfunc{ccdoubles_cplx_vector_scalar_mul}, but splitting the real
+and imaginary parts makes it easier to interface it with foreign
+languages.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_linear_combination (unsigned @var{nslots}, double complex * @var{result}, double complex @var{alpha}, double complex * @vari{operand}, double complex @var{beta}, double complex * @varii{operand})
 Perform the linear combination of the vector operands and the given
 scalars.  The implementation is:
 
@@ -1135,6 +1144,15 @@ for (unsigned i=0; i<nslots; ++i) @{
   result[i] = alpha * operand1[i] + beta * operand2[i];
 @}
 @end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_linear_combination_split (unsigned @var{nslots}, double complex * @var{result}, double @var{alpha_re}, double @var{alpha_im}, double complex * @vari{operand}, double @var{beta_re}, double @var{beta_im}, double complex * @varii{operand})
+Perform the linear combination of the vector operands and the given
+scalars.  This function is like
+@cfunc{ccdoubles_cplx_vector_linear_combination}, but splitting the real
+and imaginary parts of the coefficients makes it easier to interface it
+with foreign languages.
 @end deftypefun
 
 @c page
@@ -2093,8 +2111,17 @@ Perform the slot--by--slot negation of the operand.
 @subsection Special complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double @var{lambda}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex  @var{lambda}, const double complex * @var{operand})
 Multiply the scalar @var{lambda} with all the slots in the operand.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_scalar_mul_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double @var{lambda_re}, double @var{lambda_im}, const double complex * @var{operand})
+Multiply the scalar having real part @var{lambda_re} and imaginary part
+@var{lambda_im} with all the slots in the operand.  This function is
+like @cfunc{ccdoubles_cplx_matrix_scalar_mul}, but splitting the real
+and imaginary parts of the coefficient makes it easier to interface it
+with foreign languages.
 @end deftypefun
 
 
@@ -2111,6 +2138,15 @@ for (unsigned i=0; i<nrows; ++i) @{
   @}
 @}
 @end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_matrix_linear_combination_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double @var{alpha_re}, double @var{alpha_im}, double complex * @vari{operand}, double @var{beta_re}, double @var{beta_im}, double complex * @varii{operand})
+Perform the linear combination of the matrix operands and the given
+scalars.  This function is like
+@cfunc{ccdoubles_cplx_matrix_linear_combination}, but splitting the real
+and imaginary parts of the coefficient makes it easier to interface it
+with foreign languages.
 @end deftypefun
 
 

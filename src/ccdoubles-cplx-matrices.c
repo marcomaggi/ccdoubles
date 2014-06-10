@@ -180,6 +180,14 @@ ccdoubles_cplx_matrix_scalar_mul (unsigned nrows, unsigned ncols,
   ccdoubles_cplx_vector_scalar_mul(nrows * ncols, result, lambda, operand);
 }
 void
+ccdoubles_cplx_matrix_scalar_mul_split (unsigned nrows, unsigned ncols,
+					double complex * restrict result,
+					double lambda_re, double lambda_im,
+					double complex * restrict operand)
+{
+  ccdoubles_cplx_vector_scalar_mul_split(nrows * ncols, result, lambda_re, lambda_im, operand);
+}
+void
 ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols,
 					  double complex * restrict result,
 					  double complex alpha,
@@ -189,6 +197,18 @@ ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols,
 {
   ccdoubles_cplx_vector_linear_combination(nrows * ncols,
 					   result, alpha, operand1, beta, operand2);
+}
+void
+ccdoubles_cplx_matrix_linear_combination_split (unsigned nrows, unsigned ncols,
+						double complex * restrict result,
+						double alpha_re, double alpha_im,
+						double complex * restrict operand1,
+						double beta_re, double beta_im,
+						double complex * restrict operand2)
+{
+  ccdoubles_cplx_vector_linear_combination_split(nrows * ncols, result,
+						 alpha_re, alpha_im, operand1,
+						 beta_re, beta_im, operand2);
 }
 void
 ccdoubles_cplx_matrix_transpose (unsigned operand_nrows, unsigned operand_ncols,

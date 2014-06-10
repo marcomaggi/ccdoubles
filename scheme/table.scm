@@ -183,8 +183,19 @@
   (void ccdoubles_cplx_vector_div (unsigned-int nslots double-complex* result double-complex* operand1 double-complex* operand2))
   (void ccdoubles_cplx_vector_neg (unsigned-int nslots double-complex* result double-complex* operand))
   (double-complex ccdoubles_cplx_vector_scalar_product (unsigned-int nslots double-complex* operand1 double-complex* operand2))
-  (void ccdoubles_cplx_vector_scalar_mul (unsigned-int nslots double-complex* result double-complex lambda double-complex* operand))
-  (void ccdoubles_cplx_vector_linear_combination (unsigned-int nslots double-complex* result double-complex alpha double-complex* operand1 double-complex beta double-complex* operand2))
+  ;; (void ccdoubles_cplx_vector_scalar_mul (unsigned-int nslots double-complex* result
+  ;; 						       double-complex lambda double-complex* operand))
+  (void ccdoubles_cplx_vector_scalar_mul_split (unsigned-int nslots double-complex* result
+							     double lambda_re double lambda_im
+							     double-complex* operand))
+  ;; (void ccdoubles_cplx_vector_linear_combination
+  ;; 	(unsigned-int nslots double-complex* result
+  ;; 		      double-complex alpha double-complex* operand1
+  ;; 		      double-complex beta double-complex* operand2))
+  (void ccdoubles_cplx_vector_linear_combination_split
+	(unsigned-int nslots double-complex* result
+		      double alpha_re double alpha_im double-complex* operand1
+		      double beta_re double beta_im double-complex* operand2))
 
   (void ccdoubles_cplx_vector_exp (unsigned-int nslots double-complex* result double-complex* operand))
   (void ccdoubles_cplx_vector_log (unsigned-int nslots double-complex* result double-complex* operand))
@@ -225,8 +236,21 @@
   (void ccdoubles_cplx_matrix_div (unsigned-int nrows unsigned-int ncols double-complex* result double-complex* operand1 double-complex* operand2))
   (void ccdoubles_cplx_matrix_neg (unsigned-int nrows unsigned-int ncols double-complex* result double-complex* operand))
 
-  (void ccdoubles_cplx_matrix_scalar_mul (unsigned-int nrows unsigned-int ncols double-complex* result double-complex lambda double-complex* operand))
-  (void ccdoubles_cplx_matrix_linear_combination (unsigned-int nrows unsigned-int ncols double-complex* result double-complex alpha double-complex* operand1 double-complex beta double-complex* operand2))
+  ;; (void ccdoubles_cplx_matrix_scalar_mul (unsigned-int nrows unsigned-int ncols double-complex* result
+  ;; 						       double-complex lambda double-complex* operand))
+  (void ccdoubles_cplx_matrix_scalar_mul_split
+	(unsigned-int nrows unsigned-int ncols double-complex* result
+		      double lambda_re double lambda_im double-complex* operand))
+  ;; (void ccdoubles_cplx_matrix_linear_combination
+  ;; 	(unsigned-int nrows unsigned-int ncols
+  ;; 		      double-complex* result
+  ;; 		      double-complex alpha double-complex* operand1
+  ;; 		      double-complex beta double-complex* operand2))
+  (void ccdoubles_cplx_matrix_linear_combination_split
+	(unsigned-int nrows unsigned-int ncols
+		      double-complex* result
+		      double alpha_re double alpha_im double-complex* operand1
+		      double beta_re double beta_im double-complex* operand2))
 
   (void ccdoubles_cplx_matrix_transpose (unsigned-int nrows unsigned-int ncols double-complex* result double-complex* operand))
 

@@ -779,6 +779,15 @@ test_cplx_matrices (void)
   }
 
   {
+    double complex	R[NROWS][NCOLS];
+    double complex	lambda = Z(1.2, 3.4);
+    double complex	O[NROWS][NCOLS] = { { Z(5.6, 7.8) } };
+    double complex	E = ccdoubles_cplx_mul(lambda, Z(5.6, 7.8));
+    ccdoubles_cplx_matrix_scalar_mul_split (NROWS, NCOLS, MREF(R), Re(lambda), Im(lambda), MREF(O));
+    assert(E == R[0][0]);
+  }
+
+  {
     double complex	R[2][2];
     double complex	alpha = Z(1.2, 2.3);
     double complex	beta  = Z(3.4, 5.6);
@@ -799,6 +808,35 @@ test_cplx_matrices (void)
     double complex	E11 = \
       ccdoubles_cplx_mul(alpha, O1[1][1]) + ccdoubles_cplx_mul(beta, O2[1][1]);
     ccdoubles_cplx_matrix_linear_combination (2, 2, MREF(R), alpha, MREF(O1), beta, MREF(O2));
+    assert(E00 == R[0][0]);
+    assert(E01 == R[0][1]);
+    assert(E10 == R[1][0]);
+    assert(E11 == R[1][1]);
+  }
+
+  {
+    double complex	R[2][2];
+    double complex	alpha = Z(1.2, 2.3);
+    double complex	beta  = Z(3.4, 5.6);
+    double complex	O1[2][2] = {
+      { Z(1.2, 2.3), Z(3.4, 4.5) },
+      { Z(5.6, 6.7), Z(7.8, 8.9) }
+    };
+    double complex	O2[2][2] = {
+      { Z(9.0, 0.1), Z(1.2, 2.3) },
+      { Z(3.4, 4.5), Z(5.6, 6.7) }
+    };
+    double complex	E00 = \
+      ccdoubles_cplx_mul(alpha, O1[0][0]) + ccdoubles_cplx_mul(beta, O2[0][0]);
+    double complex	E01 = \
+      ccdoubles_cplx_mul(alpha, O1[0][1]) + ccdoubles_cplx_mul(beta, O2[0][1]);
+    double complex	E10 =						\
+      ccdoubles_cplx_mul(alpha, O1[1][0]) + ccdoubles_cplx_mul(beta, O2[1][0]);
+    double complex	E11 = \
+      ccdoubles_cplx_mul(alpha, O1[1][1]) + ccdoubles_cplx_mul(beta, O2[1][1]);
+    ccdoubles_cplx_matrix_linear_combination_split (2, 2, MREF(R),
+						    Re(alpha), Im(alpha), MREF(O1),
+						    Re(beta),  Im(beta),  MREF(O2));
     assert(E00 == R[0][0]);
     assert(E01 == R[0][1]);
     assert(E10 == R[1][0]);

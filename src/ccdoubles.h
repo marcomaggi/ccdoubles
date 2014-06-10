@@ -701,12 +701,22 @@ ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
 						      double complex * restrict result,
 						      double complex lambda,
 						      double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul_split (unsigned nslots,
+							    double complex * restrict result,
+							    double lambda_re, double lambda_im,
+							    double complex * restrict operand);
 ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (unsigned nslots,
 							      double complex * restrict result,
 							      double complex alpha,
 							      double complex * restrict operand1,
 							      double complex beta,
 							      double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_linear_combination_split (unsigned nslots,
+								    double complex * restrict result,
+								    double alpha_re, double alpha_im,
+								    double complex * restrict operand1,
+								    double beta_re, double beta_im,
+								    double complex * restrict operand2);
 
 /* ------------------------------------------------------------------ */
 
@@ -850,12 +860,22 @@ ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (unsigned nrows, unsigned n
 						      double complex * restrict result,
 						      double complex lambda,
 						      double complex * restrict operand);
+ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul_split (unsigned nrows, unsigned ncols,
+							    double complex * restrict result,
+							    double lambda_re, double lambda_im,
+							    double complex * restrict operand);
 ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols,
 							      double complex * restrict result,
 							      double complex alpha,
 							      double complex * restrict operand1,
 							      double complex beta,
 							      double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination_split (unsigned nrows, unsigned ncols,
+								    double complex * restrict result,
+								    double alpha_re, double alpha_im,
+								    double complex * restrict operand1,
+								    double beta_re, double beta_im,
+								    double complex * restrict operand2);
 
 ccdoubles_decl void ccdoubles_cplx_matrix_transpose (unsigned nrows, unsigned ncols,
 						     double complex * restrict result,

@@ -727,6 +727,15 @@ test_cplx_vectors (void)
   }
 
   {
+    double complex	R[NSLOTS];
+    double complex	lambda = CPLX(1.2, 3.4);
+    double complex	O[NSLOTS] = { CPLX(5.6, 7.8) };
+    double complex	E = ccdoubles_cplx_mul(lambda, CPLX(5.6, 7.8));
+    ccdoubles_cplx_vector_scalar_mul_split (NSLOTS, R, Re(lambda), Im(lambda), O);
+    assert(E == R[0]);
+  }
+
+  {
     double complex	R[2];
     double complex	alpha = CPLX(1.2, 2.3);
     double complex	beta  = CPLX(3.4, 5.6);
@@ -737,6 +746,23 @@ test_cplx_vectors (void)
     double complex	E2 = \
       ccdoubles_cplx_mul(alpha, O1[1]) + ccdoubles_cplx_mul(beta, O2[1]);
     ccdoubles_cplx_vector_linear_combination (2, R, alpha, O1, beta, O2);
+    assert(E1 == R[0]);
+    assert(E2 == R[1]);
+  }
+
+  {
+    double complex	R[2];
+    double complex	alpha = CPLX(1.2, 2.3);
+    double complex	beta  = CPLX(3.4, 5.6);
+    double complex	O1[2] = { CPLX(1.2, 2.3), CPLX(3.4, 4.5) };
+    double complex	O2[2] = { CPLX(5.6, 6.7), CPLX(7.8, 8.9) };
+    double complex	E1 = \
+      ccdoubles_cplx_mul(alpha, O1[0]) + ccdoubles_cplx_mul(beta, O2[0]);
+    double complex	E2 = \
+      ccdoubles_cplx_mul(alpha, O1[1]) + ccdoubles_cplx_mul(beta, O2[1]);
+    ccdoubles_cplx_vector_linear_combination_split (2, R,
+						    Re(alpha), Im(alpha), O1,
+						    Re(beta),  Im(beta),  O2);
     assert(E1 == R[0]);
     assert(E2 == R[1]);
   }

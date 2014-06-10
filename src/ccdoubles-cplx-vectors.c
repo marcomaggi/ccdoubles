@@ -71,7 +71,7 @@ ccdoubles_cplx_vector_real (size_t nslots,
 			    double complex * restrict operand)
 {
   for (size_t i=0; i<nslots; ++i) {
-    result[i] = creal(operand[i]);
+    result[i] = Re(operand[i]);
   }
 }
 void
@@ -80,7 +80,7 @@ ccdoubles_cplx_vector_imag (size_t nslots,
 			    double complex * restrict operand)
 {
   for (size_t i=0; i<nslots; ++i) {
-    result[i] = cimag(operand[i]);
+    result[i] = Im(operand[i]);
   }
 }
 void
@@ -92,7 +92,7 @@ ccdoubles_cplx_vector_magnitude (size_t nslots,
     if (1) {
       result[i] = cabs(operand[i]);
     } else {
-      result[i] = hypot(creal(operand[i]), cimag(operand[i]));
+      result[i] = hypot(Re(operand[i]), Im(operand[i]));
     }
   }
 }
@@ -105,7 +105,7 @@ ccdoubles_cplx_vector_angle (size_t nslots,
     if (1) {
       result[i] = carg(operand[i]);
     } else {
-      result[i] = atan2(cimag(operand[i]), creal(operand[i]));
+      result[i] = atan2(Im(operand[i]), Re(operand[i]));
     }
   }
 }
@@ -128,7 +128,7 @@ ccdoubles_cplx_vector_from_rect (size_t nslots,
 				 double * restrict imag)
 {
   for (size_t i=0; i<nslots; ++i) {
-    result[i] = CCDOUBLES_CPLX(real[i], imag[i]);
+    result[i] = Z(real[i], imag[i]);
   }
 }
 void
@@ -138,8 +138,8 @@ ccdoubles_cplx_vector_from_polar (size_t nslots,
 				  double * restrict angle)
 {
   for (size_t i=0; i<nslots; ++i) {
-    result[i] = CCDOUBLES_CPLX((magnitude[i] * cos(angle[i])),
-			       (magnitude[i] * sin(angle[i])));
+    result[i] = Z((magnitude[i] * cos(angle[i])),
+		  (magnitude[i] * sin(angle[i])));
   }
 }
 
@@ -269,7 +269,7 @@ ccdoubles_cplx_vector_log10 (size_t nslots,
 #ifdef HAVE_CLOG10
     result[i] = clog10(operand[i]);
 #else
-    result[i] = CCDOUBLES_CPLX(log10(cabs(operand[i])), carg(operand[i]));
+    result[i] = Z(log10(cabs(operand[i])), carg(operand[i]));
 #endif
   }
 }
@@ -436,27 +436,27 @@ ccdoubles_cplx_vector_print_display (FILE * f, const char * name,
 				     double complex * operand)
 {
   fprintf(f, "Vector %s (dimension %ld):\n", name, nslots);
-  fprintf(f, "| (1) %+lf%-+lfi ", creal(operand[0]), cimag(operand[0]));
+  fprintf(f, "| (1) %+lf%-+lfi ", Re(operand[0]), Im(operand[0]));
   for (size_t i=1; i<nslots; ++i) {
-    fprintf(f, "; (%ld) %+lf%-+lfi ", 1+i, creal(operand[i]), cimag(operand[i]));
+    fprintf(f, "; (%ld) %+lf%-+lfi ", 1+i, Re(operand[i]), Im(operand[i]));
   }
   fprintf(f, "|\n");
 }
 void
 ccdoubles_cplx_vector_print_brackets (FILE * f, size_t nslots, double complex * operand)
 {
-  fprintf(f, "[%+lf%-+lfi", creal(operand[0]), cimag(operand[0]));
+  fprintf(f, "[%+lf%-+lfi", Re(operand[0]), Im(operand[0]));
   for (size_t i=1; i<nslots; ++i) {
-    fprintf(f, " %+lf%-+lfi", creal(operand[i]), cimag(operand[i]));
+    fprintf(f, " %+lf%-+lfi", Re(operand[i]), Im(operand[i]));
   }
   fprintf(f, "]\n");
 }
 void
 ccdoubles_cplx_vector_print_braces (FILE * f, size_t nslots, double complex * operand)
 {
-  fprintf(f, "{%+lf%-+lfi", creal(operand[0]), cimag(operand[0]));
+  fprintf(f, "{%+lf%-+lfi", Re(operand[0]), Im(operand[0]));
   for (size_t i=1; i<nslots; ++i) {
-    fprintf(f, ", %+lf%-+lfi", creal(operand[i]), cimag(operand[i]));
+    fprintf(f, ", %+lf%-+lfi", Re(operand[i]), Im(operand[i]));
   }
   fprintf(f, "}\n");
 }

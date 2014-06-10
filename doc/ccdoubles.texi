@@ -231,23 +231,19 @@ Return an integer representing the library interface current age.
 @section Operations on scalar complex numbers
 
 
+@menu
+* scalars complex funcs::       Functions acting on scalar complex values.
+* scalars complex macros::      Preprocessor macros.
+@end menu
+
+@c page
+@node scalars complex funcs
+@subsection Functions acting on scalar complex values
+
+
 The C99 language standard library defines common operations on scalar
 @code{double complex} numbers; in addition @value{PACKAGE} defines
 convenience functions to perform the same.
-
-
-@deftypefn {Preprocessor Macro} {double complex} CCDOUBLES_CPLX (double @var{REAL}, double @var{IMAG})
-Build and return a new @code{double complex} value.  Expands into:
-
-@example
-(((double)(@var{REAL})) + ((double)(@var{IMAG})) * _Complex_I)
-@end example
-
-@quotation
-@strong{NOTE} The latest C Language Standard defines the same operation
-with the preprocessor macro @code{CMPLX(@var{REAL}, @var{IMAG})}.
-@end quotation
-@end deftypefn
 
 
 @deftypefun {double complex} ccdoubles_cplx_mul (double complex @vari{O}, double complex @varii{O})
@@ -345,6 +341,45 @@ printf("R = %lf%+lfi\n", creal(R), cimag(R));
 @print{} R = -1.200000-3.400000i
 @end example
 @end deftypefun
+
+
+@c page
+@node scalars complex macros
+@subsection Preprocessor macros
+
+
+@deftypefn {Preprocessor Macro} {double complex} CCDOUBLES_CPLX (double @var{REAL}, double @var{IMAG})
+Build and return a new @code{double complex} value.  Expands into:
+
+@example
+(((double)(@var{REAL})) + ((double)(@var{IMAG})) * _Complex_I)
+@end example
+
+@quotation
+@strong{NOTE} The latest C Language Standard defines the same operation
+with the preprocessor macro @code{CMPLX(@var{REAL}, @var{IMAG})}.
+@end quotation
+@end deftypefn
+
+
+@deftypefn {Preprocessor Macro} {double complex} Z (double @var{real}, double @var{imag})
+Return a new @code{double complex}.
+
+This macro is an alias for @func{CCDOUBLES_CPLX} but it is defined only
+if the header @file{ccdoubles.h} is included with the symbol
+@code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
+@end deftypefn
+
+
+@deftypefn {Preprocessor Macro} double Re (double complex @var{Z})
+@deftypefnx {Preprocessor Macro} double Im (double complex @var{Z})
+Return the real or imaginary part of the complex number @var{Z} by
+applying @func{creal} or @func{cimag} to it.
+
+This macro is an alias for @func{CCDOUBLES_CPLX} but it is defined only
+if the header @file{ccdoubles.h} is included with the symbol
+@code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
+@end deftypefn
 
 @c page
 @node vectors

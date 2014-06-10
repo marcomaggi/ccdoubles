@@ -38,8 +38,8 @@
 double complex
 ccdoubles_cplx_mul (double complex O1, double complex O2)
 {
-  return CPLX((creal(O1) * creal(O2) - cimag(O1) * cimag(O2)),
-	      (creal(O1) * cimag(O2) + cimag(O1) * creal(O2)));
+  return CPLX((Re(O1) * Re(O2) - Im(O1) * Im(O2)),
+	      (Re(O1) * Im(O2) + Im(O1) * Re(O2)));
 }
 double complex
 ccdoubles_cplx_div (double complex O1, double complex O2)
@@ -48,17 +48,17 @@ ccdoubles_cplx_div (double complex O1, double complex O2)
 #undef B
 #undef C
 #undef D
-#define A	creal(O1)
-#define B	cimag(O1)
-#define C	creal(O2)
-#define D	cimag(O2)
+#define A	Re(O1)
+#define B	Im(O1)
+#define C	Re(O2)
+#define D	Im(O2)
   const double	denom = C*C+D*D;
   return CPLX((A*C+B*D)/denom, (B*C-A*D)/denom);
 }
 double complex
 ccdoubles_cplx_neg (double complex O)
 {
-  return CPLX(-creal(O), -cimag(O));
+  return CPLX(-Re(O), -Im(O));
 }
 
 /* end of file */

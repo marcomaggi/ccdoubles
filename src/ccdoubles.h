@@ -99,6 +99,12 @@ extern "C" {
 #define CCDOUBLES_CPLX(REAL,IMAG)	\
   (((double)(REAL)) + ((double)(IMAG)) * _Complex_I)
 
+#ifdef CCDOUBLES_ENABLE_SHORT_MACROS
+#  define Z(REAL,IMAG)		(CCDOUBLES_CPLX((REAL),(IMAG)))
+#  define Re(Z)			(creal(Z))
+#  define Im(Z)			(cimag(Z))
+#endif
+
 
 /** --------------------------------------------------------------------
  ** Constants.

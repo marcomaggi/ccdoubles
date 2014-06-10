@@ -35,9 +35,10 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
-#include "ccdoubles.h"
-#include <stdio.h>
 #include <string.h>
+
+#define CCDOUBLES_ENABLE_SHORT_MACROS	1
+#include "ccdoubles.h"
 
 
 /** --------------------------------------------------------------------

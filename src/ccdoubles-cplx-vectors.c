@@ -223,6 +223,18 @@ ccdoubles_cplx_vector_scalar_product (unsigned nslots,
   return result;
 }
 void
+ccdoubles_cplx_vector_scalar_product_split (unsigned nslots,
+					    double complex * result,
+					    const double complex * restrict operand1,
+					    const double complex * restrict operand2)
+{
+  double complex	R = 0.0;
+  for (unsigned i=0; i<nslots; ++i) {
+    R += operand1[i] * operand2[i];
+  }
+  *result = R;
+}
+void
 ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
 				  double complex * restrict result,
 				  double complex lambda,

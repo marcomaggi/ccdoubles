@@ -182,7 +182,10 @@
   (void ccdoubles_cplx_vector_mul (unsigned-int nslots double-complex* result double-complex* operand1 double-complex* operand2))
   (void ccdoubles_cplx_vector_div (unsigned-int nslots double-complex* result double-complex* operand1 double-complex* operand2))
   (void ccdoubles_cplx_vector_neg (unsigned-int nslots double-complex* result double-complex* operand))
-  (double-complex ccdoubles_cplx_vector_scalar_product (unsigned-int nslots double-complex* operand1 double-complex* operand2))
+  ;; (double-complex ccdoubles_cplx_vector_scalar_product
+  ;; 		  (unsigned-int nslots double-complex* operand1 double-complex* operand2))
+  (void ccdoubles_cplx_vector_scalar_product_split
+	(unsigned-int nslots double-complex* result double-complex* operand1 double-complex* operand2))
   ;; (void ccdoubles_cplx_vector_scalar_mul (unsigned-int nslots double-complex* result
   ;; 						       double-complex lambda double-complex* operand))
   (void ccdoubles_cplx_vector_scalar_mul_split (unsigned-int nslots double-complex* result

@@ -1108,7 +1108,7 @@ Perform the slot--by--slot negation of the operand.
 @subsection Special complex vector operations
 
 
-@deftypefun double ccdoubles_cplx_vector_scalar_product (unsigned @var{nslots}, const double complex * @vari{operand}, const double complex * @varii{operand})
+@deftypefun {double complex} ccdoubles_cplx_vector_scalar_product (unsigned @var{nslots}, const double complex * @vari{operand}, const double complex * @varii{operand})
 Perform the scalar product between the operands and return the result.
 The implementation is:
 
@@ -1118,6 +1118,14 @@ for (unsigned i=0; i<nslots; ++i) @{
   result += operand1[i] * operand2[i];
 @}
 @end example
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_scalar_product_split (unsigned @var{nslots}, double complex * result, const double complex * @vari{operand}, const double complex * @varii{operand})
+Perform the scalar product between the operands and store the result in
+the variable referenced by @var{result}.  This function is like
+@cfunc{ccdoubles_cplx_vector_scalar_product}, but supplying a result
+buffer makes it easier to interface it with foreign languages.
 @end deftypefun
 
 

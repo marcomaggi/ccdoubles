@@ -697,6 +697,10 @@ ccdoubles_decl void ccdoubles_cplx_vector_neg (unsigned nslots,
 ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (unsigned nslots,
 							      const double complex * restrict operand1,
 							      const double complex * restrict operand2);
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_product_split (unsigned nslots,
+								double complex * result,
+								const double complex * restrict operand1,
+								const double complex * restrict operand2);
 ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
 						      double complex * restrict result,
 						      double complex lambda,

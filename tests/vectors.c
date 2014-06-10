@@ -718,6 +718,17 @@ test_cplx_vectors (void)
   }
 
   {
+    double complex	R;
+    double complex	O1[2] = { CPLX(1.2, 2.3), CPLX(3.4, 4.5) };
+    double complex	O2[2] = { CPLX(5.6, 6.7), CPLX(7.8, 8.9) };
+    double complex	E =
+      ccdoubles_cplx_mul(CPLX(1.2, 2.3), CPLX(5.6, 6.7)) +
+      ccdoubles_cplx_mul(CPLX(3.4, 4.5), CPLX(7.8, 8.9));
+    ccdoubles_cplx_vector_scalar_product_split (2, &R, O1, O2);
+    assert(E == R);
+  }
+
+  {
     double complex	R[NSLOTS];
     double complex	lambda = CPLX(1.2, 3.4);
     double complex	O[NSLOTS] = { CPLX(5.6, 7.8) };

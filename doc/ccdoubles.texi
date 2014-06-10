@@ -388,6 +388,27 @@ double          RV[nslots];
 double complex  CV[nslots];
 @end example
 
+The memory layout of a vector is equal to the memory layout of a matrix
+with a single row defined as follows:
+
+@example
+size_t          nrows = 1;
+size_t          ncols = 3;
+double          RM[nrows][ncols];
+double complex  CM[nrows][ncols];
+@end example
+
+@noindent
+and equal to the memory layout of a matrix with a single column defined
+as follows:
+
+@example
+size_t          nrows = 3;
+size_t          ncols = 1;
+double          RM[nrows][ncols];
+double complex  CM[nrows][ncols];
+@end example
+
 All the functions have simple implementation involving an iteration over
 the vector's slots using @code{restrict} pointers; examples for real
 valued vectors:

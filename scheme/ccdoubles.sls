@@ -123,7 +123,7 @@
     ccdoubles_real_matrix_acosh
     ccdoubles_real_matrix_atanh
     ccdoubles_cplx_vector_clear
-    ccdoubles_cplx_vector_set
+    ccdoubles_cplx_vector_set_split
     ccdoubles_cplx_vector_copy
     ccdoubles_cplx_vector_real
     ccdoubles_cplx_vector_imag
@@ -137,9 +137,9 @@
     ccdoubles_cplx_vector_mul
     ccdoubles_cplx_vector_div
     ccdoubles_cplx_vector_neg
-    ccdoubles_cplx_vector_scalar_product
-    ccdoubles_cplx_vector_scalar_mul
-    ccdoubles_cplx_vector_linear_combination
+    ccdoubles_cplx_vector_scalar_product_split
+    ccdoubles_cplx_vector_scalar_mul_split
+    ccdoubles_cplx_vector_linear_combination_split
     ccdoubles_cplx_vector_exp
     ccdoubles_cplx_vector_log
     ccdoubles_cplx_vector_log10
@@ -158,7 +158,7 @@
     ccdoubles_cplx_vector_acosh
     ccdoubles_cplx_vector_atanh
     ccdoubles_cplx_matrix_clear
-    ccdoubles_cplx_matrix_set
+    ccdoubles_cplx_matrix_set_split
     ccdoubles_cplx_matrix_copy
     ccdoubles_cplx_matrix_real
     ccdoubles_cplx_matrix_imag
@@ -172,8 +172,8 @@
     ccdoubles_cplx_matrix_mul
     ccdoubles_cplx_matrix_div
     ccdoubles_cplx_matrix_neg
-    ccdoubles_cplx_matrix_scalar_mul
-    ccdoubles_cplx_matrix_linear_combination
+    ccdoubles_cplx_matrix_scalar_mul_split
+    ccdoubles_cplx_matrix_linear_combination_split
     ccdoubles_cplx_matrix_transpose
     ccdoubles_cplx_matrix_conjugate_transpose
     ccdoubles_cplx_matrix_rowcol_mul
@@ -204,8 +204,8 @@
     ccdoubles_version_interface_current
     ccdoubles_version_interface_revision
     ccdoubles_version_interface_age)
-  (import (vicare) (prefix (vicare ffi) ffi.))
-  (define libtoken (ffi.open-shared-object "libccdoubles.so"))
+  (import (rnrs (6)) (ccdoubles compat))
+  (define-shared-object "libccdoubles.so")
   (define-c-function void ccdoubles_real_vector_clear (unsigned-int double* ))
   (define-c-function void ccdoubles_real_vector_set (unsigned-int double* double ))
   (define-c-function void ccdoubles_real_vector_copy (unsigned-int double* double* ))
@@ -329,7 +329,7 @@
   (define-c-function void ccdoubles_real_matrix_acosh (unsigned-int unsigned-int double* double* ))
   (define-c-function void ccdoubles_real_matrix_atanh (unsigned-int unsigned-int double* double* ))
   (define-c-function void ccdoubles_cplx_vector_clear (unsigned-int double-complex* ))
-  (define-c-function void ccdoubles_cplx_vector_set (unsigned-int double-complex* double-complex ))
+  (define-c-function void ccdoubles_cplx_vector_set_split (unsigned-int double-complex* double double ))
   (define-c-function void ccdoubles_cplx_vector_copy (unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_real (unsigned-int double* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_imag (unsigned-int double* double-complex* ))
@@ -343,9 +343,9 @@
   (define-c-function void ccdoubles_cplx_vector_mul (unsigned-int double-complex* double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_div (unsigned-int double-complex* double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_neg (unsigned-int double-complex* double-complex* ))
-  (define-c-function double-complex ccdoubles_cplx_vector_scalar_product (unsigned-int double-complex* double-complex* ))
-  (define-c-function void ccdoubles_cplx_vector_scalar_mul (unsigned-int double-complex* double-complex double-complex* ))
-  (define-c-function void ccdoubles_cplx_vector_linear_combination (unsigned-int double-complex* double-complex double-complex* double-complex double-complex* ))
+  (define-c-function void ccdoubles_cplx_vector_scalar_product_split (unsigned-int double-complex* double-complex* double-complex* ))
+  (define-c-function void ccdoubles_cplx_vector_scalar_mul_split (unsigned-int double-complex* double double double-complex* ))
+  (define-c-function void ccdoubles_cplx_vector_linear_combination_split (unsigned-int double-complex* double double double-complex* double double double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_exp (unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_log (unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_log10 (unsigned-int double-complex* double-complex* ))
@@ -364,7 +364,7 @@
   (define-c-function void ccdoubles_cplx_vector_acosh (unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_vector_atanh (unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_clear (unsigned-int unsigned-int double-complex* ))
-  (define-c-function void ccdoubles_cplx_matrix_set (unsigned-int unsigned-int double-complex* double-complex ))
+  (define-c-function void ccdoubles_cplx_matrix_set_split (unsigned-int unsigned-int double-complex* double double ))
   (define-c-function void ccdoubles_cplx_matrix_copy (unsigned-int unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_real (unsigned-int unsigned-int double* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_imag (unsigned-int unsigned-int double* double-complex* ))
@@ -378,8 +378,8 @@
   (define-c-function void ccdoubles_cplx_matrix_mul (unsigned-int unsigned-int double-complex* double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_div (unsigned-int unsigned-int double-complex* double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_neg (unsigned-int unsigned-int double-complex* double-complex* ))
-  (define-c-function void ccdoubles_cplx_matrix_scalar_mul (unsigned-int unsigned-int double-complex* double-complex double-complex* ))
-  (define-c-function void ccdoubles_cplx_matrix_linear_combination (unsigned-int unsigned-int double-complex* double-complex double-complex* double-complex double-complex* ))
+  (define-c-function void ccdoubles_cplx_matrix_scalar_mul_split (unsigned-int unsigned-int double-complex* double double double-complex* ))
+  (define-c-function void ccdoubles_cplx_matrix_linear_combination_split (unsigned-int unsigned-int double-complex* double double double-complex* double double double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_transpose (unsigned-int unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_conjugate_transpose (unsigned-int unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_rowcol_mul (unsigned-int unsigned-int unsigned-int double-complex* double-complex* double-complex* ))
@@ -401,10 +401,10 @@
   (define-c-function void ccdoubles_cplx_matrix_acosh (unsigned-int unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_cplx_matrix_atanh (unsigned-int unsigned-int double-complex* double-complex* ))
   (define-c-function void ccdoubles_int_vector_clear (unsigned-int signed-int* ))
-  (define-c-function void ccdoubles_int_vector_set (unsigned-int signed-int* int ))
+  (define-c-function void ccdoubles_int_vector_set (unsigned-int signed-int* signed-int ))
   (define-c-function void ccdoubles_int_vector_copy (unsigned-int signed-int* signed-int* ))
   (define-c-function void ccdoubles_int_matrix_clear (unsigned-int unsigned-int signed-int* ))
-  (define-c-function void ccdoubles_int_matrix_set (unsigned-int unsigned-int signed-int* int ))
+  (define-c-function void ccdoubles_int_matrix_set (unsigned-int unsigned-int signed-int* signed-int ))
   (define-c-function void ccdoubles_int_matrix_copy (unsigned-int unsigned-int signed-int* signed-int* ))
   (define-c-function char* ccdoubles_version_string (void))
   (define-c-function signed-int ccdoubles_version_interface_current (void))

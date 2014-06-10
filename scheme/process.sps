@@ -74,8 +74,8 @@
        (display (string-append "\n    " func-name "")))
   func-name*)
 (display ")\n")
-(display "  (import (vicare) (prefix (vicare ffi) ffi.))\n")
-(display (string-append "  (define libtoken (ffi.open-shared-object \"" libname "\"))\n"))
+(display "  (import (rnrs (6)) (ccdoubles compat))\n")
+(display (string-append "  (define-shared-object \"" libname "\")\n"))
 
 (map (lambda (func-spec)
        ;;We expect FUNC-SPEC to have the format:

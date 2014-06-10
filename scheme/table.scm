@@ -282,11 +282,11 @@
   (void ccdoubles_cplx_matrix_atanh (unsigned-int nrows unsigned-int ncols double-complex* result double-complex* operand))
 
   (void ccdoubles_int_vector_clear (unsigned-int nslots signed-int* vector))
-  (void ccdoubles_int_vector_set (unsigned-int nslots signed-int* vector int value))
+  (void ccdoubles_int_vector_set (unsigned-int nslots signed-int* vector signed-int value))
   (void ccdoubles_int_vector_copy (unsigned-int nslots signed-int* dst signed-int* src))
 
   (void ccdoubles_int_matrix_clear (unsigned-int nrows unsigned-int ncols signed-int* matrix))
-  (void ccdoubles_int_matrix_set (unsigned-int nrows unsigned-int ncols signed-int* matrix int value))
+  (void ccdoubles_int_matrix_set (unsigned-int nrows unsigned-int ncols signed-int* matrix signed-int value))
   (void ccdoubles_int_matrix_copy (unsigned-int nrows unsigned-int ncols signed-int* dst signed-int* src))
 
   (char* ccdoubles_version_string (void))

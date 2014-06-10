@@ -72,7 +72,7 @@
 
 (define-syntax (define-shared-object stx)
   (syntax-case stx ()
-    ((_ ?libname)
+    ((?ctx ?libname)
      (with-syntax
 	 ((LIBTOKEN	(datum->syntax #'?ctx 'libtoken)))
        #'(define LIBTOKEN

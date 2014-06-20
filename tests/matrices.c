@@ -327,16 +327,31 @@ test_real_matrices (void)
     assert((1.2 * 6.7 + 2.3 * 0.1) == R[1][1]);
   }
 
-  {
+  { /* transposition with different operand and result */
     double	R[3][2];
     double	O[2][3] = {
       { 1.2, 3.4, 5.6 },
       { 7.8, 8.9, 9.0 }
     };
     ccdoubles_real_matrix_transpose (2, 3, MREF(R), MREF(O));
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "R", 3, 2, MREF(R));
     assert(1.2 == R[0][0]); assert(7.8 == R[0][1]);
     assert(3.4 == R[1][0]); assert(8.9 == R[1][1]);
     assert(5.6 == R[2][0]); assert(9.0 == R[2][1]);
+  }
+  { /* transposition with coincident operand and result */
+    double	O[3][3] = {
+      { 1.1, 1.2, 1.3 },
+      { 2.1, 2.2, 2.3 },
+      { 3.1, 3.2, 3.3 }
+    };
+    ccdoubles_real_matrix_transpose (3, 3, MREF(O), MREF(O));
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "O", 3, 3, MREF(O));
+    assert(1.1 == O[0][0]); assert(2.1 == O[0][1]); assert(3.1 == O[0][2]);
+    assert(1.2 == O[1][0]); assert(2.2 == O[1][1]); assert(3.2 == O[1][2]);
+    assert(1.3 == O[2][0]); assert(2.3 == O[2][1]); assert(3.3 == O[2][2]);
   }
 
   {
@@ -843,7 +858,7 @@ test_cplx_matrices (void)
     assert(E11 == R[1][1]);
   }
 
-  {
+  { /* transposition with distinct operand and result */
     double complex	R[3][2];
     double complex	O[2][3] = {
       { Z(1.2, 0.0), Z(3.4, 0.0), Z(5.6, 0.0) },
@@ -854,17 +869,43 @@ test_cplx_matrices (void)
     assert(Z(3.4, 0.0) == R[1][0]); assert(Z(8.9, 0.0) == R[1][1]);
     assert(Z(5.6, 0.0) == R[2][0]); assert(Z(9.0, 0.0) == R[2][1]);
   }
+  { /* transposition with coincident operand and result */
+    double complex	O[3][3] = {
+      { Z(1.1,0.1), Z(1.2,0.1), Z(1.3,0.1) },
+      { Z(2.1,0.1), Z(2.2,0.1), Z(2.3,0.1) },
+      { Z(3.1,0.1), Z(3.2,0.1), Z(3.3,0.1) }
+    };
+    ccdoubles_cplx_matrix_transpose (3, 3, MREF(O), MREF(O));
+    if (0)
+      ccdoubles_cplx_matrix_print_display (stderr, "O", 3, 3, MREF(O));
+    assert(Z(1.1,0.1) == O[0][0]); assert(Z(2.1,0.1) == O[0][1]); assert(Z(3.1,0.1) == O[0][2]);
+    assert(Z(1.2,0.1) == O[1][0]); assert(Z(2.2,0.1) == O[1][1]); assert(Z(3.2,0.1) == O[1][2]);
+    assert(Z(1.3,0.1) == O[2][0]); assert(Z(2.3,0.1) == O[2][1]); assert(Z(3.3,0.1) == O[2][2]);
+  }
 
-  {
+  { /* conjugate-transpose with distinct operand and result */
     double complex	R[3][2];
     double complex	O[2][3] = {
       { Z(1.2, 2.3), Z(3.4, 4.5), Z(5.6, 6.7) },
       { Z(7.8, 8.9), Z(9.0, 0.1), Z(-1.2, -2.3) }
     };
     ccdoubles_cplx_matrix_conjugate_transpose (2, 3, MREF(R), MREF(O));
-    assert(Z(1.2, +2.3) == R[0][0]); assert(Z(7.8, -8.9) == R[0][1]);
-    assert(Z(3.4, -4.5) == R[1][0]); assert(Z(9.0, +0.1) == R[1][1]);
+    assert(Z(1.2, -2.3) == R[0][0]); assert(Z(7.8, -8.9) == R[0][1]);
+    assert(Z(3.4, -4.5) == R[1][0]); assert(Z(9.0, -0.1) == R[1][1]);
     assert(Z(5.6, -6.7) == R[2][0]); assert(Z(-1.2, 2.3) == R[2][1]);
+  }
+  { /* conjugate-transpose with coincident operand and result */
+    double complex	O[3][3] = {
+      { Z(1.1, 11.11), Z(1.2, 11.22), Z(1.3, 11.33) },
+      { Z(2.1, 22.11), Z(2.2, 22.22), Z(2.3, 22.33) },
+      { Z(3.1, 33.11), Z(3.2, 33.22), Z(3.3, 33.33) }
+    };
+    ccdoubles_cplx_matrix_conjugate_transpose (3, 3, MREF(O), MREF(O));
+    if (0)
+      ccdoubles_cplx_matrix_print_display (stderr, "O", 3, 3, MREF(O));
+    assert(Z(1.1, -11.11) == O[0][0]); assert(Z(2.1, -22.11) == O[0][1]); assert(Z(3.1, -33.11) == O[0][2]);
+    assert(Z(1.2, -11.22) == O[1][0]); assert(Z(2.2, -22.22) == O[1][1]); assert(Z(3.2, -33.22) == O[1][2]);
+    assert(Z(1.3, -11.33) == O[2][0]); assert(Z(2.3, -22.33) == O[2][1]); assert(Z(3.3, -33.33) == O[2][2]);
   }
 
   {

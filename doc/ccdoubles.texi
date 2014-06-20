@@ -1727,15 +1727,20 @@ for (unsigned i=0; i<nrows; ++i) @{
 
 
 @deftypefun void ccdoubles_real_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double * @var{result}, double * @var{operand})
-Transpose the operand.  If @var{result} and @var{operand} reference the
-same array: the result is undefined.  To call this function we are meant
-to do:
+Transpose the operand.  To call this function we are meant to do:
 
 @example
 double  O[2][3];
 double  R[3][2];
 ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
 @end example
+
+As a special case: if @var{result} and @var{operand} reference the same
+array @strong{and} the arguments @var{operand_nrows} and
+@var{operand_ncols} are @strong{equal}: the operation is performed
+faster.  If @var{result} and @var{operand} reference the same array
+@strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
+are @strong{different}: the result is undefined.
 @end deftypefun
 
 
@@ -2161,29 +2166,41 @@ with foreign languages.
 
 
 @deftypefun void ccdoubles_cplx_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double complex * @var{result}, double complex * @var{operand})
-Transpose the operand.  If @var{result} and @var{operand} reference the
-same array: the result is undefined.  To call this function we are meant
-to do:
+Transpose the operand.  To call this function we are meant to do:
 
 @example
 double complex  O[2][3];
 double complex  R[3][2];
-ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
 @end example
+
+As a special case: if @var{result} and @var{operand} reference the same
+array @strong{and} the arguments @var{operand_nrows} and
+@var{operand_ncols} are @strong{equal}: the operation is performed
+faster.  If @var{result} and @var{operand} reference the same array
+@strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
+are @strong{different}: the result is undefined.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_conjugate_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double * @var{result}, double * @var{operand})
-Transpose the operand and conjugate its elements.  If @var{result} and
-@var{operand} reference the same array: the result is undefined.  To
-call this function we are meant to do:
+@deftypefun void ccdoubles_cplx_matrix_conjugate_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double * @var{result}, double * @var{operand})
+Transpose the operand and conjugate its elements; notice that the
+elements on the main diagonal are conjugate, too.  To call this function
+we are meant to do:
 
 @example
 double  O[2][3];
 double  R[3][2];
-ccdoubles_real_matrix_conjugate_transpose \
+ccdoubles_cplx_matrix_conjugate_transpose \
   (2, 3, &R[0][0], &O[0][0]);
 @end example
+
+As a special case: if @var{result} and @var{operand} reference the same
+array @strong{and} the arguments @var{operand_nrows} and
+@var{operand_ncols} are @strong{equal}: the operation is performed
+faster.  If @var{result} and @var{operand} reference the same array
+@strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
+are @strong{different}: the result is undefined.
 @end deftypefun
 
 
@@ -2195,7 +2212,7 @@ function we are meant to do:
 double     R[result_nrows][result_ncols];
 double     O1[result_nrows][operand_n];
 double     O2[operand_n][result_ncols];
-ccdoubles_real_matrix_rowcol_mul \
+ccdoubles_cplx_matrix_rowcol_mul \
   (result_nrows, operand_n, result_ncols,
    &R[0][0], &O1[0][0], &O2[0][0]);
 @end example
@@ -2279,7 +2296,7 @@ of the operand.
 @subsection Printing complex matrices
 
 
-@deftypefun void ccdoubles_real_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 

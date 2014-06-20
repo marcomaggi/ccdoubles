@@ -216,14 +216,26 @@ ccdoubles_cplx_matrix_transpose (unsigned operand_nrows, unsigned operand_ncols,
 				 double complex * restrict operand)
 /* To call this function we are meant to do:
  *
- *    double complex	O[2][3];
- *    double complex	R[3][2];
- *    ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
+ *    #define Onrows	2
+ *    #define Oncols	3
+ *    #define Rnrows	Oncols
+ *    #define Rncols	Onrows
+ *    double complex	O[Onrows][Oncols];
+ *    double complex	R[Rnrows][Rncols];
+ *    ccdoubles_cplx_matrix_transpose (Onrows, Oncols, &R[0][0], &O[0][0]);
  */
 {
-  for (unsigned i=0; i<operand_nrows; ++i) {
-    for (unsigned j=0; j<operand_ncols; ++j) {
-      result[j * operand_nrows + i] = operand[i * operand_ncols + j];
+  if ((result == operand) && (operand_nrows == operand_ncols)) {
+    for (unsigned i=0; i<operand_nrows; ++i) {
+      for (unsigned j=i+1; j<operand_ncols; ++j) {
+	COMPLEX_SWAP(result[j * operand_nrows + i], operand[i * operand_ncols + j]);
+      }
+    }
+  } else {
+    for (unsigned i=0; i<operand_nrows; ++i) {
+      for (unsigned j=0; j<operand_ncols; ++j) {
+	result[j * operand_nrows + i] = operand[i * operand_ncols + j];
+      }
     }
   }
 }
@@ -238,12 +250,20 @@ ccdoubles_cplx_matrix_conjugate_transpose (unsigned operand_nrows, unsigned oper
  *    ccdoubles_cplx_matrix_conjugate_transpose (2, 3, &R[0][0], &O[0][0]);
  */
 {
-  for (unsigned i=0; i<operand_nrows; ++i) {
-    for (unsigned j=0; j<operand_ncols; ++j) {
-      if (i != j) {
+  if ((result == operand) && (operand_nrows == operand_ncols)) {
+    for (unsigned i=0; i<operand_nrows; ++i) {
+      for (unsigned j=i; j<operand_ncols; ++j) {
+	if (i != j) {
+	  COMPLEX_SWAP_CONJ(result[j * operand_nrows + i], operand[i * operand_ncols + j]);
+	} else {
+	  result[j * operand_nrows + i] = conj(operand[i * operand_ncols + j]);
+	}
+      }
+    }
+  } else {
+    for (unsigned i=0; i<operand_nrows; ++i) {
+      for (unsigned j=0; j<operand_ncols; ++j) {
 	result[j * operand_nrows + i] = conj(operand[i * operand_ncols + j]);
-      } else {
-	result[j * operand_nrows + i] = operand[i * operand_ncols + j];
       }
     }
   }

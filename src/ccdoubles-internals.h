@@ -48,6 +48,34 @@
 /* Build and return a "double complex". */
 #define CPLX(REAL,IMAG)		(CCDOUBLES_CPLX((REAL),(IMAG)))
 
+#define INT_SWAP(A,B)			\
+  do {					\
+    int	tmp = A;			\
+    A = B;				\
+    B = tmp;				\
+  } while (0);
+
+#define REAL_SWAP(A,B)			\
+  do {					\
+    double	tmp = A;		\
+    A = B;				\
+    B = tmp;				\
+  } while (0);
+
+#define COMPLEX_SWAP(A,B)		\
+  do {					\
+    double complex	tmp = A;	\
+    A = B;				\
+    B = tmp;				\
+  } while (0);
+
+#define COMPLEX_SWAP_CONJ(A,B)		\
+  do {					\
+    double complex	tmp = A;	\
+    A = conj(B);			\
+    B = conj(tmp);			\
+  } while (0);
+
 
 /** --------------------------------------------------------------------
  ** Constants.

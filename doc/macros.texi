@@ -312,6 +312,22 @@
 @acronym{RE2}
 @end macro
 
+@macro lapack{}
+@acronym{LAPACK}
+@end macro
+
+@macro lapacke{}
+@acronym{LAPACKE}
+@end macro
+
+@macro blas{}
+@acronym{BLAS}
+@end macro
+
+@macro cblas{}
+@acronym{CBLAS}
+@end macro
+
 @c page
 @c ------------------------------------------------------------
 @c Scheme language macros.

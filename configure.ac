@@ -2,7 +2,7 @@ dnl @configure_input@
 dnl
 
 AC_PREREQ([2.69])
-AC_INIT([CCDoubles],[0.1d1],
+AC_INIT([CCDoubles],[0.1d2],
   [marco.maggi-ipsu@poste.it],
   [ccdoubles],[http://github.com/marcomaggi/ccdoubles/])
 AC_CONFIG_SRCDIR([src/])

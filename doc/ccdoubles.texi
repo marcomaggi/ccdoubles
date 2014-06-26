@@ -102,6 +102,7 @@ entitled ``@gnu{} Free Documentation License''.
 @menu
 * overview::                    Overview of the package.
 * version::                     Version functions.
+* types::                       Type definitions.
 * scalars::                     Operations on scalar numbers.
 * vectors::                     Operations on vectors.
 * matrices::                    Operations on matrices.
@@ -218,6 +219,43 @@ number.
 @deftypefun int ccdoubles_version_interface_age (void)
 Return an integer representing the library interface current age.
 @end deftypefun
+
+@c page
+@node types
+@chapter Type definitions
+
+
+The following type definitions are declared in @file{ccdoubles.h}.
+
+
+@deftp {Type Definition} ccdoubles_int_result_t
+An alias for @code{int * restrict}.
+@end deftp
+
+
+@deftp {Type Definition} ccdoubles_int_operand_t
+An alias for @code{const int * restrict}.
+@end deftp
+
+
+@deftp {Type Definition} ccdoubles_real_result_t
+An alias for @code{double * restrict}.
+@end deftp
+
+
+@deftp {Type Definition} ccdoubles_real_operand_t
+An alias for @code{const double * restrict}.
+@end deftp
+
+
+@deftp {Type Definition} ccdoubles_cplx_result_t
+An alias for @code{double complex * restrict}.
+@end deftp
+
+
+@deftp {Type Definition} ccdoubles_cplx_operand_t
+An alias for @code{const double complex * restrict}.
+@end deftp
 
 @c page
 @node scalars
@@ -540,21 +578,21 @@ valued vectors:
 @example
 void
 ccdoubles_real_vector_add (unsigned nslots,
-                           double * restrict result,
-                           double * restrict operand1,
-                           double * restrict operand2)
+                           ccdoubles_real_result_t R,
+                           ccdoubles_real_operand_t O1,
+                           ccdoubles_real_operand_t O2)
 @{
   for (unsigned i=0; i<nslots; ++i) @{
-    result[i] = operand1[i] + operand2[i];
+    R[i] = O1[i] + O2[i];
   @}
 @}
 void
 ccdoubles_real_vector_sin (unsigned nslots,
-                           double * restrict result,
-                           double * restrict operand)
+                           ccdoubles_real_result_t R,
+                           ccdoubles_real_operand_t O)
 @{
   for (unsigned i=0; i<nslots; ++i) @{
-    result[i] = sin(operand[i]);
+    R[i] = sin(O[i]);
   @}
 @}
 @end example
@@ -565,21 +603,21 @@ examples for complex valued vectors:
 @example
 void
 ccdoubles_cplx_vector_add (unsigned nslots,
-                           double complex * restrict result,
-                           double complex * restrict operand1,
-                           double complex * restrict operand2)
+                           ccdoubles_cplx_result_t R,
+                           ccdoubles_cplx_operand_t O1,
+                           ccdoubles_cplx_operand_t O2)
 @{
   for (unsigned i=0; i<nslots; ++i) @{
-    result[i] = operand1[i] + operand2[i];
+    R[i] = O1[i] + O2[i];
   @}
 @}
 void
 ccdoubles_cplx_vector_sin (unsigned nslots,
-                           double complex * restrict result,
-                           double complex * restrict operand)
+                           ccdoubles_cplx_result_t R,
+                           ccdoubles_cplx_operand_t O)
 @{
   for (unsigned i=0; i<nslots; ++i) @{
-    result[i] = csin(operand[i]);
+    R[i] = csin(O[i]);
   @}
 @}
 @end example
@@ -642,17 +680,17 @@ the first element of the arrays.
 @subsection Basic real vector operations
 
 
-@deftypefun void ccdoubles_real_vector_clear (unsigned @var{nslots}, double * @var{vector})
+@deftypefun void ccdoubles_real_vector_clear (unsigned @var{nslots}, ccdoubles_real_result_t @var{vector})
 Reset all the slots to @code{0.0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_set (unsigned @var{nslots}, double * @var{vector}, double @var{value})
+@deftypefun void ccdoubles_real_vector_set (unsigned @var{nslots}, ccdoubles_real_result_t @var{vector}, double @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_copy (unsigned @var{nslots}, double * @var{dst}, double * @var{src})
+@deftypefun void ccdoubles_real_vector_copy (unsigned @var{nslots}, ccdoubles_real_result_t @var{dst}, ccdoubles_real_operand_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
@@ -661,37 +699,37 @@ Copy the slots from @var{src} to @var{dst}.
 @subsection Arithmetic real vector operations
 
 
-@deftypefun void ccdoubles_real_vector_add (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_vector_sub (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_vector_mul (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_vector_div (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_add (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_vector_sub (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_vector_mul (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_vector_div (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Perform slot--by--slot addition, subtraction, multiplication and
 division.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_neg (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_neg (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Perform the slot--by--slot negation of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_abs (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_abs (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the absolute value of the operand.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_real_vector_fmod (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_fmod (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmod} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_drem (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_drem (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{drem} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_remainder (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double *1 @varii{operand})
+@deftypefun void ccdoubles_real_vector_remainder (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_result_t1 @varii{O})
 Apply slot--by--slot the function @cfunc{remainder} to the operands.
 @end deftypefun
 
@@ -700,27 +738,27 @@ Apply slot--by--slot the function @cfunc{remainder} to the operands.
 @subsection Rounding real vector operations
 
 
-@deftypefun void ccdoubles_real_vector_ceil (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_ceil (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{ceil}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_floor (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_floor (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{floor}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_trunc (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_trunc (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{trunc}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_round (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_round (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{round}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_rint (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_rint (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{rint}.
 @end deftypefun
 
@@ -729,43 +767,55 @@ Apply slot--by--slot the function @cfunc{rint}.
 @subsection Comparing real vectors
 
 
-@deftypefun void ccdoubles_real_vector_isgreater (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_isgreater (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isgreater} to the operands.
+Usage template:
+
+@example
+#include <ccdoubles.h>
+#define NSLOTS  3
+
+int     R[NSLOTS];
+double  O1[NSLOTS];
+double  O2[NSLOTS];
+
+ccdoubles_real_vector_isgreater (NSLOTS, R, O1, O2);
+@end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isgreaterequal (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_isgreaterequal (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isgreaterequal} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isless (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_isless (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isless} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_islessequal (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_islessequal (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{islessequal} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_islessgreater (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_islessgreater (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isunordered (unsigned @var{nslots}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_isunordered (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isunordered} to the operands.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_real_vector_min (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_min (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmin} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_max (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_max (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmax} to the operands.
 @end deftypefun
 
@@ -774,28 +824,28 @@ Apply slot--by--slot the function @cfunc{fmax} to the operands.
 @subsection Inspecting real vectors
 
 
-@deftypefun void ccdoubles_real_vector_fpclassify (unsigned @var{nslots}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_fpclassify (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{fpclassify} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isfinite (unsigned @var{nslots}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_isfinite (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isinfinite (unsigned @var{nslots}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_isinfinite (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isinfinite} to the operand and
 reverse the result.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isnormal (unsigned @var{nslots}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_isnormal (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isnormal} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_isnan (unsigned @var{nslots}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_isnan (unsigned @var{nslots}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @end deftypefun
 
@@ -804,37 +854,38 @@ Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @subsection Special real vector operations
 
 
-@deftypefun double ccdoubles_real_vector_scalar_product (unsigned @var{nslots}, const double * @vari{operand}, const double * @varii{operand})
+@deftypefun double ccdoubles_real_vector_scalar_product (unsigned @var{nslots}, const ccdoubles_real_operand_t @vari{O}, const ccdoubles_real_operand_t @varii{O})
 Perform the scalar product between the operands and return the result.
 The implementation is:
 
 @example
 double        result = 0.0;
 for (unsigned i=0; i<nslots; ++i) @{
-  result += operand1[i] * operand2[i];
+  result += O1[i] * O2[i];
 @}
+return result;
 @end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_scalar_mul (unsigned @var{nslots}, double * @var{result}, double @var{lambda}, const double * @var{operand})
+@deftypefun void ccdoubles_real_vector_scalar_mul (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, double @var{lambda}, const ccdoubles_real_operand_t @var{O})
 Multiply the scalar @var{lambda} with all the slots in the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_linear_combination (unsigned @var{nslots}, double * @var{result}, double @var{alpha}, double * @vari{operand}, double @var{beta}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_linear_combination (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, double @var{alpha}, ccdoubles_real_operand_t @vari{O}, double @var{beta}, ccdoubles_real_operand_t @varii{O})
 Perform the linear combination of the vector operands and the given
 scalars.  The implementation is:
 
 @example
 for (unsigned i=0; i<nslots; ++i) @{
-  result[i] = alpha * operand1[i] + beta * operand2[i];
+  result[i] = alpha * O1[i] + beta * O2[i];
 @}
 @end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_linspace (unsigned @var{nslots}, double * @var{result}, double @var{start}, double @var{past})
+@deftypefun void ccdoubles_real_vector_linspace (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, double @var{start}, double @var{past})
 Fill the result vector with @var{nslots} evenly--spaced steps from
 @var{start} to @var{past}.  It is implemented as follows:
 
@@ -867,7 +918,7 @@ prints (edited to add newlines):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_logspace (unsigned @var{nslots}, double * @var{result}, double @var{start}, double @var{past})
+@deftypefun void ccdoubles_real_vector_logspace (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, double @var{start}, double @var{past})
 Fill the result vector with @var{nslots} logarithmically spaced steps
 from @code{pow(10.0, @var{start})} to @code{pow(10.0, @var{past})}.  It
 is implemented as follows:
@@ -912,68 +963,68 @@ prints (edited to add newlines):
 @subsection Real vectors exponentiation and logarithms
 
 
-@deftypefun void ccdoubles_real_vector_exp (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_exp (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{exp} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_exp10 (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_exp10 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @code{exp(X * log(10))} to the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_exp2 (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_exp2 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{exp2} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_log (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_log (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_log10 (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_log10 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log10} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_log2 (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_log2 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log2} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_logb (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_logb (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{logb} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_pow (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_pow (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{pow} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_sqrt (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_sqrt (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{sqrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_cbrt (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_cbrt (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{cbrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_hypot (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_hypot (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{hypot} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_expm1 (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_expm1 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{expm1} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_log1p (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_log1p (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @end deftypefun
 
@@ -982,29 +1033,29 @@ Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @subsection Trigonometric real vector operations
 
 
-@deftypefun void ccdoubles_real_vector_sin (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_cos (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_tan (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_sin (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_cos (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_tan (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the trigonometric sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_asin (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_acos (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_atan (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_asin (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_acos (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_atan (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
 tangent of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_atan2 (unsigned @var{nslots}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_vector_atan2 (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Compute slot--by--slot the trigonometric arc tangent of the operands.
 The implementation is:
 
 @example
 for (unsigned i=0; i<nslots; ++i) @{
-  result[i] = atan2(operand1[i], operand2[i]);
+  R[i] = atan2(O1[i], O2[i]);
 @}
 @end example
 
@@ -1016,17 +1067,17 @@ for (unsigned i=0; i<nslots; ++i) @{
 @subsection Hyperbolic real vector operations
 
 
-@deftypefun void ccdoubles_real_vector_sinh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_cosh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_tanh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_sinh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_cosh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_tanh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_asinh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_acosh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_vector_atanh (unsigned @var{nslots}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_asinh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_acosh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_vector_atanh (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
 @end deftypefun
@@ -1036,7 +1087,7 @@ of the operand.
 @subsection Printing real vectors
 
 
-@deftypefun void ccdoubles_real_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -1057,7 +1108,7 @@ Vector O (dimension 3):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1076,7 +1127,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, double * @var{operand})
+@deftypefun void ccdoubles_real_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1115,18 +1166,18 @@ will print:
 @subsection Basic complex vector operations
 
 
-@deftypefun void ccdoubles_cplx_vector_clear (unsigned @var{nslots}, double complex * @var{vector})
+@deftypefun void ccdoubles_cplx_vector_clear (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{vector})
 Reset all the slots to complex numbers with real part @code{0.0} and
 complex part @code{0.0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_set (unsigned @var{nslots}, double complex * @var{vector}, double complex @var{value})
+@deftypefun void ccdoubles_cplx_vector_set (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{vector}, double complex @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_set_split (unsigned @var{nslots}, double complex * @var{vector}, double @var{value_re}, double @var{value_im})
+@deftypefun void ccdoubles_cplx_vector_set_split (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{vector}, double @var{value_re}, double @var{value_im})
 Set all the slots to a complex number having @var{value_re} as real part
 and @var{value_im} as imaginary part.  This function is like
 @cfunc{ccdoubles_cplx_vector_set}, but splitting the real and imaginary
@@ -1134,44 +1185,44 @@ parts makes it easier to interface it with foreign languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_copy (unsigned @var{nslots}, double complex * @var{dst}, double complex * @var{src})
+@deftypefun void ccdoubles_cplx_vector_copy (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{dst}, ccdoubles_cplx_result_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_cplx_vector_real (unsigned @var{nslots}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_real (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the real part of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_imag (unsigned @var{nslots}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_imag (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the imaginary part of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_magnitude (unsigned @var{nslots}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_magnitude (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the magnitude of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_angle (unsigned @var{nslots}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_angle (unsigned @var{nslots}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the angle of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_conj (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_conj (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the conjugate of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_from_rect (unsigned @var{nslots}, double complex * @var{result}, double * @var{real}, double * imag)
+@deftypefun void ccdoubles_cplx_vector_from_rect (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_real_result_t @var{real}, ccdoubles_real_result_t imag)
 Build slot--by--slot a complex valued vectors from the real and
 imaginary parts.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_from_polar (unsigned @var{nslots}, double complex * @var{result}, double * @var{magnitude}, double * @var{angle})
+@deftypefun void ccdoubles_cplx_vector_from_polar (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_real_result_t @var{magnitude}, ccdoubles_real_result_t @var{angle})
 Build slot--by--slot a complex valued vectors from the magnitude and
 angle.
 @end deftypefun
@@ -1181,16 +1232,16 @@ angle.
 @subsection Arithmetic complex vector operations
 
 
-@deftypefun void ccdoubles_cplx_vector_add (unsigned @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_vector_sub (unsigned @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_vector_mul (unsigned @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_vector_div (unsigned @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_add (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_vector_sub (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_vector_mul (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_vector_div (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
 Perform slot--by--slot addition, subtraction, multiplication and
 division.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_neg (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_neg (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Perform the slot--by--slot negation of the operand.
 @end deftypefun
 
@@ -1199,33 +1250,41 @@ Perform the slot--by--slot negation of the operand.
 @subsection Special complex vector operations
 
 
-@deftypefun {double complex} ccdoubles_cplx_vector_scalar_product (unsigned @var{nslots}, const double complex * @vari{operand}, const double complex * @varii{operand})
+@deftypefun {double complex} ccdoubles_cplx_vector_scalar_product (unsigned @var{nslots}, const ccdoubles_cplx_operand_t @vari{O}, const ccdoubles_cplx_operand_t @varii{O})
 Perform the scalar product between the operands and return the result.
 The implementation is:
 
 @example
 double complex  result = CCDOUBLES_CPLX(0.0, 0.0);
 for (unsigned i=0; i<nslots; ++i) @{
-  result += operand1[i] * operand2[i];
+  result += O1[i] * O2[i];
 @}
+return result;
 @end example
+
+@strong{NOTE} Whenever possible: rather than this function we should use
+the function @cfunc{cblas_zdotu} (which computes the scalar product
+@code{@var{R} = @vari{O}^T @varii{O}} where the first operand is
+transposed) or the function @cfunc{cblas_zdotu} (which computes the
+scalar product @code{@var{R} = @vari{O}^H @varii{O}} where the first
+operand is conjugate--transposed).
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_scalar_product_split (unsigned @var{nslots}, double complex * result, const double complex * @vari{operand}, const double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_scalar_product_split (unsigned @var{nslots}, ccdoubles_cplx_result_t result, const ccdoubles_cplx_operand_t @vari{O}, const ccdoubles_cplx_operand_t @varii{O})
 Perform the scalar product between the operands and store the result in
-the variable referenced by @var{result}.  This function is like
+the variable referenced by @var{R}.  This function is like
 @cfunc{ccdoubles_cplx_vector_scalar_product}, but supplying a result
 buffer makes it easier to interface it with foreign languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_scalar_mul (unsigned @var{nslots}, double complex * @var{result}, double complex @var{lambda}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_scalar_mul (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, double complex @var{lambda}, const ccdoubles_cplx_operand_t @var{O})
 Multiply the scalar @var{lambda} with all the slots in the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_scalar_mul_split (unsigned @var{nslots}, double complex * @var{result}, double @var{lambda_re}, double @var{lambda_im}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_scalar_mul_split (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, double @var{lambda_re}, double @var{lambda_im}, const ccdoubles_cplx_operand_t @var{O})
 Multiply the scalar having real part @var{lambda_re} and imaginary part
 @var{lambda_im} with all the slots in the operand.  This function is
 like @cfunc{ccdoubles_cplx_vector_scalar_mul}, but splitting the real
@@ -1234,19 +1293,19 @@ languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_linear_combination (unsigned @var{nslots}, double complex * @var{result}, double complex @var{alpha}, double complex * @vari{operand}, double complex @var{beta}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_linear_combination (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, double complex @var{alpha}, ccdoubles_cplx_operand_t @vari{O}, double complex @var{beta}, ccdoubles_cplx_operand_t @varii{O})
 Perform the linear combination of the vector operands and the given
 scalars.  The implementation is:
 
 @example
 for (unsigned i=0; i<nslots; ++i) @{
-  result[i] = alpha * operand1[i] + beta * operand2[i];
+  R[i] = alpha * O1[i] + beta * O2[i];
 @}
 @end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_linear_combination_split (unsigned @var{nslots}, double complex * @var{result}, double @var{alpha_re}, double @var{alpha_im}, double complex * @vari{operand}, double @var{beta_re}, double @var{beta_im}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_linear_combination_split (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, double @var{alpha_re}, double @var{alpha_im}, ccdoubles_cplx_operand_t @vari{O}, double @var{beta_re}, double @var{beta_im}, ccdoubles_cplx_operand_t @varii{O})
 Perform the linear combination of the vector operands and the given
 scalars.  This function is like
 @cfunc{ccdoubles_cplx_vector_linear_combination}, but splitting the real
@@ -1259,28 +1318,28 @@ with foreign languages.
 @subsection Complex vectors exponentiation and logarithms
 
 
-@deftypefun void ccdoubles_cplx_vector_exp (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_exp (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{cexp} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_log (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_log (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{clog} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_log10 (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_log10 (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log10(cabs(Z)) + I * carg(Z)}
 to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_sqrt (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_sqrt (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{csqrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_pow (unsigned @var{nslots}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_vector_pow (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @end deftypefun
 
@@ -1289,17 +1348,17 @@ Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @subsection Trigonometric complex vector operations
 
 
-@deftypefun void ccdoubles_cplx_vector_sin (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_cos (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_tan (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_sin (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_cos (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_tan (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the trigonometric sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_asin (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_acos (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_atan (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_asin (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_acos (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_atan (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
 tangent of the operand.
 @end deftypefun
@@ -1309,17 +1368,17 @@ tangent of the operand.
 @subsection Hyperbolic complex vector operations
 
 
-@deftypefun void ccdoubles_cplx_vector_sinh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_cosh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_tanh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_sinh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_cosh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_tanh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_asinh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_acosh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_vector_atanh (unsigned @var{nslots}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_asinh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_acosh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_vector_atanh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
 @end deftypefun
@@ -1329,7 +1388,7 @@ of the operand.
 @subsection Printing cplx vectors
 
 
-@deftypefun void ccdoubles_cplx_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -1353,7 +1412,7 @@ Vector O (dimension 3):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1375,7 +1434,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1415,17 +1474,17 @@ integers.
 @subsection Basic @code{int} vector operations
 
 
-@deftypefun void ccdoubles_int_vector_clear (unsigned @var{nslots}, int * @var{vector})
+@deftypefun void ccdoubles_int_vector_clear (unsigned @var{nslots}, ccdoubles_int_result_t @var{vector})
 Reset all the slots to @code{0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_vector_set (unsigned @var{nslots}, int * @var{vector}, double @var{value})
+@deftypefun void ccdoubles_int_vector_set (unsigned @var{nslots}, ccdoubles_int_result_t @var{vector}, double @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_vector_copy (unsigned @var{nslots}, int * @var{dst}, int * @var{src})
+@deftypefun void ccdoubles_int_vector_copy (unsigned @var{nslots}, ccdoubles_int_result_t @var{dst}, ccdoubles_int_operand_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
@@ -1434,7 +1493,7 @@ Copy the slots from @var{src} to @var{dst}.
 @subsection Printing @code{int} vectors
 
 
-@deftypefun void ccdoubles_int_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, int * @var{operand})
+@deftypefun void ccdoubles_int_vector_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nslots}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -1455,7 +1514,7 @@ Vector O (dimension 3):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, int * @var{operand})
+@deftypefun void ccdoubles_int_vector_print_brackets (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1474,7 +1533,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, int * @var{operand})
+@deftypefun void ccdoubles_int_vector_print_braces (FILE * @var{f}, unsigned @var{nslots}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -1592,7 +1651,7 @@ is equivalent to:
 double          RV0[2];
 double          RV1[2];
 double          RV3[2];
-double *        RM[3];
+ccdoubles_real_result_t        RM[3];
 RM[0] = &RV0[0];
 RM[1] = &RV1[0];
 RM[2] = &RV2[0];
@@ -1652,19 +1711,18 @@ corresponding vector function; examples for real valued matrices:
 @example
 void
 ccdoubles_real_matrix_add (unsigned nrows, unsigned ncols,
-                           double * restrict result,
-                           double * restrict operand1,
-                           double * restrict operand2)
+                           ccdoubles_real_result_t R,
+                           ccdoubles_real_operand_t O1,
+                           ccdoubles_real_operand_t O2)
 @{
-  ccdoubles_real_vector_add (nrows * ncols, result,
-                             operand1, operand2);
+  ccdoubles_real_vector_add (nrows * ncols, R, O1, O2);
 @}
 void
 ccdoubles_real_matrix_sin (unsigned nrows, unsigned ncols,
-                           double * restrict result,
-                           double * restrict operand)
+                           ccdoubles_real_result_t R,
+                           ccdoubles_real_operand_t O)
 @{
-  ccdoubles_real_vector_sin (nrows * ncols, result, operand);
+  ccdoubles_real_vector_sin (nrows * ncols, R, O);
 @}
 @end example
 
@@ -1674,19 +1732,18 @@ examples for complex valued matrices:
 @example
 void
 ccdoubles_cplx_matrix_add (unsigned nrows, unsigned ncols,
-                           double complex * restrict result,
-                           double complex * restrict operand1,
-                           double complex * restrict operand2)
+                           ccdoubles_cplx_result_t R,
+                           ccdoubles_cplx_operand_t O1,
+                           ccdoubles_cplx_operand_t O2)
 @{
-  ccdoubles_cplx_vector_add (nrows * ncols,
-                             result, operand1, operand2);
+  ccdoubles_cplx_vector_add (nrows * ncols, R, O1, O2);
 @}
 void
 ccdoubles_cplx_matrix_sin (unsigned nrows, unsigned ncols,
-                           double complex * restrict result,
-                           double complex * restrict operand)
+                           ccdoubles_cplx_result_t R,
+                           ccdoubles_cplx_operand_t O)
 @{
-  ccdoubles_cplx_vector_sin (nrows * ncols, result, operand);
+  ccdoubles_cplx_vector_sin (nrows * ncols, R, O);
 @}
 @end example
 
@@ -1789,17 +1846,17 @@ ccdoubles_real_matrix_sin(NROWS, NCOLS, MREF(R), MREF(M));
 @subsection Basic real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{matrix})
+@deftypefun void ccdoubles_real_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{matrix})
 Reset all the slots to @code{0.0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{matrix}, double @var{value})
+@deftypefun void ccdoubles_real_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{matrix}, double @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{dst}, double * @var{src})
+@deftypefun void ccdoubles_real_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{dst}, ccdoubles_real_operand_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
@@ -1808,37 +1865,37 @@ Copy the slots from @var{src} to @var{dst}.
 @subsection Arithmetic real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_add (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_matrix_sub (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_matrix_mul (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
-@deftypefunx void ccdoubles_real_matrix_div (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_add (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_matrix_sub (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_matrix_mul (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
+@deftypefunx void ccdoubles_real_matrix_div (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Perform slot--by--slot addition, subtraction, multiplication and
 division.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_neg (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_neg (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Perform the slot--by--slot negation of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_abs (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_abs (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the absolute value of the operand.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_real_matrix_fmod (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_fmod (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmod} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_drem (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_drem (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{drem} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_remainder (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double *1 @varii{operand})
+@deftypefun void ccdoubles_real_matrix_remainder (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_result_t1 @varii{O})
 Apply slot--by--slot the function @cfunc{remainder} to the operands.
 @end deftypefun
 
@@ -1847,27 +1904,27 @@ Apply slot--by--slot the function @cfunc{remainder} to the operands.
 @subsection Rounding real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_ceil (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_ceil (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{ceil}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_floor (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_floor (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{floor}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_trunc (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_trunc (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{trunc}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_round (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_round (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{round}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_rint (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_rint (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{rint}.
 @end deftypefun
 
@@ -1876,43 +1933,56 @@ Apply slot--by--slot the function @cfunc{rint}.
 @subsection Comparing real matrices
 
 
-@deftypefun void ccdoubles_real_matrix_isgreater (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_isgreater (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isgreater} to the operands.
+Usage template:
+
+@example
+#include <ccdoubles.h>
+#define NROWS   3
+#define NCOLS   2
+
+int     R[NROWS][NCOLS];
+double  O1[NROWS][NCOLS];
+double  O2[NROWS][NCOLS];
+
+ccdoubles_real_matrix_isgreater (nrows, ncols, R, O1, O2);
+@end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isgreaterequal (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_isgreaterequal (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isgreaterequal} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isless (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_isless (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isless} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_islessequal (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_islessequal (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{islessequal} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_islessgreater (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_islessgreater (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{islessgreater} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isunordered (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_isunordered (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{isunordered} to the operands.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_real_matrix_min (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_min (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmin} to the operands.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_max (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_max (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{fmax} to the operands.
 @end deftypefun
 
@@ -1921,28 +1991,28 @@ Apply slot--by--slot the function @cfunc{fmax} to the operands.
 @subsection Inspecting real matrices
 
 
-@deftypefun void ccdoubles_real_matrix_fpclassify (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_fpclassify (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{fpclassify} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isfinite (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_isfinite (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isfinite} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isinfinite (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_isinfinite (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isfinite} to the operand and
 reverse the result.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isnormal (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_isnormal (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isnormal} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_isnan (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_isnan (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @end deftypefun
 
@@ -1951,28 +2021,26 @@ Apply slot--by--slot the macro @cfunc{isnan} to the operand.
 @subsection Special real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double @var{lambda}, const double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, double @var{lambda}, const ccdoubles_real_operand_t @var{O})
 Multiply the scalar @var{lambda} with all the slots in the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_linear_combination (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double @var{alpha}, double * @vari{operand}, double @var{beta}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_linear_combination (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, double @var{alpha}, ccdoubles_real_operand_t @vari{O}, double @var{beta}, ccdoubles_real_operand_t @varii{O})
 Perform the linear combination of the matrix operands and the given
 scalars.  The implementation is equivalent to:
 
 @example
 for (unsigned i=0; i<nrows; ++i) @{
   for (unsigned j=0; j<ncols; ++j) @{
-    result[i][j] = \
-      alpha * operand1[i][j] + \
-      beta  * operand2[i][j];
+    R[i][j] = alpha * O1[i][j] + beta  * O2[i][j];
   @}
 @}
 @end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Transpose the operand.  To call this function we are meant to do:
 
 @example
@@ -1981,16 +2049,16 @@ double  R[3][2];
 ccdoubles_real_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
 @end example
 
-As a special case: if @var{result} and @var{operand} reference the same
+As a special case: if @var{R} and @var{O} reference the same
 array @strong{and} the arguments @var{operand_nrows} and
 @var{operand_ncols} are @strong{equal}: the operation is performed
-faster.  If @var{result} and @var{operand} reference the same array
+faster.  If @var{R} and @var{O} reference the same array
 @strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
 are @strong{different}: the result is undefined.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_rowcol_mul (unsigned @var{result_nrows}, unsigned @var{operand_n}, unsigned @var{result_ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_rowcol_mul (unsigned @var{result_nrows}, unsigned @var{operand_n}, unsigned @var{result_ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Compute the row--column product between the operands.  To call this
 function we are meant to do:
 
@@ -2008,7 +2076,7 @@ When possible, rather than this function, we should consider using
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_linspace (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double @var{start}, double @var{row_past}, double @var{col_past})
+@deftypefun void ccdoubles_real_matrix_linspace (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, double @var{start}, double @var{row_past}, double @var{col_past})
 Fill the result matrix with @var{nrows} times @var{ncols} evenly--spaced
 steps from @var{start} to @var{row_past} in the horizontal direction and
 from @var{start} to @var{col_past} in the vertical direction.  It is
@@ -2020,7 +2088,7 @@ double        col_step = (col_past - start) / ((double)ncols);
 for (unsigned i=0; i<nrows; ++i) @{
   double      row_first = ((double)i) * row_step + start;
   for (unsigned j=0; j<ncols; ++j) @{
-    result[i * ncols + j] = ((double)j) * col_step + row_first;
+    R[i * ncols + j] = ((double)j) * col_step + row_first;
   @}
 @}
 @end example
@@ -2062,68 +2130,68 @@ prints (edited to remove trailing zeros):
 @subsection Real matrices exponentiation and logarithms
 
 
-@deftypefun void ccdoubles_real_matrix_exp (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_exp (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{exp} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_exp10 (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_exp10 (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @code{exp(X * log(10))} to the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_exp2 (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_exp2 (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{exp2} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_log (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_log (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_log10 (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_log10 (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log10} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_log2 (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_log2 (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log2} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_logb (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_logb (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{logb} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_pow (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_pow (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{pow} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_sqrt (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_sqrt (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{sqrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_cbrt (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_cbrt (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{cbrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_hypot (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_hypot (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{hypot} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_expm1 (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_expm1 (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{expm1} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_log1p (unsigned @var{ncols}, unsigned @var{nrows}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_log1p (unsigned @var{ncols}, unsigned @var{nrows}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @end deftypefun
 
@@ -2132,30 +2200,30 @@ Apply slot--by--slot the function @cfunc{log1p} to the operand.
 @subsection Trigonometric real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_sin (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_cos (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_tan (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_sin (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_cos (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_tan (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the trigonometric sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_asin (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_acos (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_atan (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_asin (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_acos (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_atan (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
 tangent of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_atan2 (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @vari{operand}, double * @varii{operand})
+@deftypefun void ccdoubles_real_matrix_atan2 (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @vari{O}, ccdoubles_real_operand_t @varii{O})
 Compute slot--by--slot the trigonometric arc tangent of the operands.
 The implementation is equivalent to:
 
 @example
 for (unsigned i=0; i<nrows; ++i) @{
   for (unsigned j=0; i<ncols; ++j) @{
-    result[i][j] = atan2(operand1[i][j], operand2[i][j]);
+    O[i][j] = atan2(O1[i][j], O2[i][j]);
   @}
 @}
 @end example
@@ -2168,17 +2236,17 @@ for (unsigned i=0; i<nrows; ++i) @{
 @subsection Hyperbolic real matrix operations
 
 
-@deftypefun void ccdoubles_real_matrix_sinh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_cosh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_tanh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_sinh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_cosh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_tanh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_asinh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_acosh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
-@deftypefunx void ccdoubles_real_matrix_atanh (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_asinh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_acosh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
+@deftypefunx void ccdoubles_real_matrix_atanh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
 @end deftypefun
@@ -2188,7 +2256,7 @@ of the operand.
 @subsection Printing real matrices
 
 
-@deftypefun void ccdoubles_real_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -2216,7 +2284,7 @@ Row-major matrix O (dimension 2 x 3) (displayed in row-major order):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -2242,7 +2310,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_real_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
+@deftypefun void ccdoubles_real_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -2288,18 +2356,18 @@ will print:
 @subsection Basic complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{matrix})
+@deftypefun void ccdoubles_cplx_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{matrix})
 Reset all the slots to complex numbers with real part @code{0.0} and
 complex part @code{0.0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{matrix}, double complex @var{value})
+@deftypefun void ccdoubles_cplx_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{matrix}, double complex @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_set_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{vector}, double @var{value_re}, double @var{value_im})
+@deftypefun void ccdoubles_cplx_matrix_set_split (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{vector}, double @var{value_re}, double @var{value_im})
 Set all the slots to a complex number having @var{value_re} as real part
 and @var{value_im} as imaginary part.  This function is like
 @cfunc{ccdoubles_cplx_matrix_set}, but splitting the real and imaginary
@@ -2307,44 +2375,44 @@ parts makes it easier to interface it with foreign languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{dst}, double complex * @var{src})
+@deftypefun void ccdoubles_cplx_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{dst}, ccdoubles_cplx_operand_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
 @c ------------------------------------------------------------
 
-@deftypefun void ccdoubles_cplx_matrix_real (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_real (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the real part of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_imag (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_imag (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the imaginary part of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_magnitude (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_magnitude (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the magnitude of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_angle (unsigned @var{nrows}, unsigned @var{ncols}, double * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_angle (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Extract slot--by--slot the angle of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_conj (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_conj (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the conjugate of the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_from_rect (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double * @var{real}, double * imag)
+@deftypefun void ccdoubles_cplx_matrix_from_rect (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_real_result_t @var{real}, ccdoubles_real_result_t imag)
 Build slot--by--slot a complex valued matrix from the real and imaginary
 parts.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_from_polar (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double * @var{magnitude}, double * @var{angle})
+@deftypefun void ccdoubles_cplx_matrix_from_polar (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_real_operand_t @var{magnitude}, ccdoubles_real_operand_t @var{angle})
 Build slot--by--slot a complex valued matrix from the magnitude and
 angle.
 @end deftypefun
@@ -2354,16 +2422,16 @@ angle.
 @subsection Arithmetic complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_add (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_matrix_sub (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_matrix_mul (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
-@deftypefunx void ccdoubles_cplx_matrix_div (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_matrix_add (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_matrix_sub (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_matrix_mul (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
+@deftypefunx void ccdoubles_cplx_matrix_div (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
 Perform slot--by--slot addition, subtraction, multiplication and
 division.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_neg (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_neg (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Perform the slot--by--slot negation of the operand.
 @end deftypefun
 
@@ -2372,12 +2440,12 @@ Perform the slot--by--slot negation of the operand.
 @subsection Special complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex  @var{lambda}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_scalar_mul (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, double complex  @var{lambda}, const ccdoubles_cplx_operand_t @var{O})
 Multiply the scalar @var{lambda} with all the slots in the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_scalar_mul_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double @var{lambda_re}, double @var{lambda_im}, const double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_scalar_mul_split (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, double @var{lambda_re}, double @var{lambda_im}, const ccdoubles_cplx_operand_t @var{O})
 Multiply the scalar having real part @var{lambda_re} and imaginary part
 @var{lambda_im} with all the slots in the operand.  This function is
 like @cfunc{ccdoubles_cplx_matrix_scalar_mul}, but splitting the real
@@ -2386,23 +2454,21 @@ with foreign languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_linear_combination (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex @var{alpha}, double complex * @vari{operand}, double complex @var{beta}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_matrix_linear_combination (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, double complex @var{alpha}, ccdoubles_cplx_operand_t @vari{O}, double complex @var{beta}, ccdoubles_cplx_operand_t @varii{O})
 Perform the linear combination of the matrix operands and the given
 scalars.  The implementation is equivalent to:
 
 @example
 for (unsigned i=0; i<nrows; ++i) @{
   for (unsigned j=0; j<ncols; ++j) @{
-    result[i][j] = \
-      alpha * operand1[i][j] + \
-      beta  * operand2[i][j];
+    R[i][j] = alpha * O1[i][j] + beta  * O2[i][j];
   @}
 @}
 @end example
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_linear_combination_split (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double @var{alpha_re}, double @var{alpha_im}, double complex * @vari{operand}, double @var{beta_re}, double @var{beta_im}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_matrix_linear_combination_split (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, double @var{alpha_re}, double @var{alpha_im}, ccdoubles_cplx_operand_t @vari{O}, double @var{beta_re}, double @var{beta_im}, ccdoubles_cplx_operand_t @varii{O})
 Perform the linear combination of the matrix operands and the given
 scalars.  This function is like
 @cfunc{ccdoubles_cplx_matrix_linear_combination}, but splitting the real
@@ -2411,7 +2477,7 @@ with foreign languages.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Transpose the operand.  To call this function we are meant to do:
 
 @example
@@ -2420,16 +2486,16 @@ double complex  R[3][2];
 ccdoubles_cplx_matrix_transpose (2, 3, &R[0][0], &O[0][0]);
 @end example
 
-As a special case: if @var{result} and @var{operand} reference the same
+As a special case: if @var{R} and @var{O} reference the same
 array @strong{and} the arguments @var{operand_nrows} and
 @var{operand_ncols} are @strong{equal}: the operation is performed
-faster.  If @var{result} and @var{operand} reference the same array
+faster.  If @var{R} and @var{O} reference the same array
 @strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
 are @strong{different}: the result is undefined.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_conjugate_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, double * @var{result}, double * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_conjugate_transpose (unsigned @var{operand_nrows}, unsigned @var{operand_ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Transpose the operand and conjugate its elements; notice that the
 elements on the main diagonal are conjugate, too.  To call this function
 we are meant to do:
@@ -2441,16 +2507,16 @@ ccdoubles_cplx_matrix_conjugate_transpose \
   (2, 3, &R[0][0], &O[0][0]);
 @end example
 
-As a special case: if @var{result} and @var{operand} reference the same
+As a special case: if @var{R} and @var{O} reference the same
 array @strong{and} the arguments @var{operand_nrows} and
 @var{operand_ncols} are @strong{equal}: the operation is performed
-faster.  If @var{result} and @var{operand} reference the same array
+faster.  If @var{R} and @var{O} reference the same array
 @strong{but} the arguments @var{operand_nrows} and @var{operand_ncols}
 are @strong{different}: the result is undefined.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_rowcol_mul (unsigned @var{result_nrows}, unsigned @var{operand_n}, unsigned @var{result_ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_matrix_rowcol_mul (unsigned @var{result_nrows}, unsigned @var{operand_n}, unsigned @var{result_ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
 Compute the row--column product between the operands.  To call this
 function we are meant to do:
 
@@ -2472,28 +2538,28 @@ When possible, rather than this function, we should consider using
 @subsection Complex matrices exponentiation and logarithms
 
 
-@deftypefun void ccdoubles_cplx_matrix_exp (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_exp (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{cexp} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_log (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_log (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{clog} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_log10 (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_log10 (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{log10(cabs(Z)) + I * carg(Z)}
 to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_sqrt (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_sqrt (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Apply slot--by--slot the function @cfunc{csqrt} to the operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_pow (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @vari{operand}, double complex * @varii{operand})
+@deftypefun void ccdoubles_cplx_matrix_pow (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @vari{O}, ccdoubles_cplx_operand_t @varii{O})
 Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @end deftypefun
 
@@ -2502,17 +2568,17 @@ Apply slot--by--slot the function @cfunc{cpow} to the operands.
 @subsection Trigonometric complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_sin (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_cos (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_tan (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_sin (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_cos (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_tan (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the trigonometric sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_asin (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_acos (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_atan (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_asin (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_acos (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_atan (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the trigonometric arc sine, arc cosine, arc
 tangent of the operand.
 @end deftypefun
@@ -2522,17 +2588,17 @@ tangent of the operand.
 @subsection Hyperbolic complex matrix operations
 
 
-@deftypefun void ccdoubles_cplx_matrix_sinh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_cosh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_tanh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_sinh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_cosh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_tanh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the hyperbolic sine, cosine, tangent of the
 operand.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_asinh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_acosh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
-@deftypefunx void ccdoubles_cplx_matrix_atanh (unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{result}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_asinh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_acosh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
+@deftypefunx void ccdoubles_cplx_matrix_atanh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
 @end deftypefun
@@ -2542,7 +2608,7 @@ of the operand.
 @subsection Printing complex matrices
 
 
-@deftypefun void ccdoubles_cplx_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, double * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -2571,7 +2637,7 @@ Row-major matrix O (dimension 2 x 3) (displayed in row-major order):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -2598,7 +2664,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_cplx_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, double complex * @var{operand})
+@deftypefun void ccdoubles_cplx_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_cplx_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -2643,17 +2709,17 @@ integers.
 @subsection Basic @code{int} vector operations
 
 
-@deftypefun void ccdoubles_int_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{matrix})
+@deftypefun void ccdoubles_int_matrix_clear (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{matrix})
 Reset all the slots to @code{0}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{matrix}, double @var{value})
+@deftypefun void ccdoubles_int_matrix_set (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{matrix}, double @var{value})
 Set all the slots to the given @var{value}.
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, int * @var{dst}, int * @var{src})
+@deftypefun void ccdoubles_int_matrix_copy (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_result_t @var{dst}, ccdoubles_int_operand_t @var{src})
 Copy the slots from @var{src} to @var{dst}.
 @end deftypefun
 
@@ -2662,7 +2728,7 @@ Copy the slots from @var{src} to @var{dst}.
 @subsection Printing @code{int} vectors
 
 
-@deftypefun void ccdoubles_int_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, int * @var{operand})
+@deftypefun void ccdoubles_int_matrix_print_display (FILE * @var{f}, const char * @var{name}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
@@ -2690,7 +2756,7 @@ Row-major matrix O (dimension 2 x 3) (displayed in row-major order):
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, int * @var{operand})
+@deftypefun void ccdoubles_int_matrix_print_brackets (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example
@@ -2716,7 +2782,7 @@ will print:
 @end deftypefun
 
 
-@deftypefun void ccdoubles_int_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, int * @var{operand})
+@deftypefun void ccdoubles_int_matrix_print_braces (FILE * @var{f}, unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_int_operand_t @var{O})
 Print on @var{f} a layout of the operand.  Example:
 
 @example

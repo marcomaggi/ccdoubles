@@ -37,19 +37,19 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_int_vector_clear (unsigned nslots, int * restrict vector)
+ccdoubles_int_vector_clear (unsigned nslots, ccdoubles_int_result_t vector)
 {
   memset(vector, 0, sizeof(int) * nslots);
 }
 void
-ccdoubles_int_vector_set (unsigned nslots, int * restrict vector, int value)
+ccdoubles_int_vector_set (unsigned nslots, ccdoubles_int_result_t vector, int value)
 {
   for (unsigned i=0; i<nslots; ++i) {
     vector[i] = value;
   }
 }
 void
-ccdoubles_int_vector_copy (unsigned nslots, int * restrict dst, int * restrict src)
+ccdoubles_int_vector_copy (unsigned nslots, ccdoubles_int_result_t dst, ccdoubles_int_operand_t src)
 {
   if (1) {
     memcpy(dst, src, sizeof(int) * nslots);
@@ -68,30 +68,30 @@ ccdoubles_int_vector_copy (unsigned nslots, int * restrict dst, int * restrict s
 void
 ccdoubles_int_vector_print_display (FILE * f, const char * name,
 				    unsigned nslots,
-				    int * operand)
+				    ccdoubles_int_operand_t O)
 {
   fprintf(f, "Vector %s (dimension %u):\n", name, nslots);
-  fprintf(f, "| (1) %+d ", operand[0]);
+  fprintf(f, "| (1) %+d ", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, "; (%u) %+d ", 1+i, operand[i]);
+    fprintf(f, "; (%u) %+d ", 1+i, O[i]);
   }
   fprintf(f, "|\n");
 }
 void
-ccdoubles_int_vector_print_brackets (FILE * f, unsigned nslots, int * operand)
+ccdoubles_int_vector_print_brackets (FILE * f, unsigned nslots, ccdoubles_int_operand_t O)
 {
-  fprintf(f, "[%+d", operand[0]);
+  fprintf(f, "[%+d", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, " %+d", operand[i]);
+    fprintf(f, " %+d", O[i]);
   }
   fprintf(f, "]\n");
 }
 void
-ccdoubles_int_vector_print_braces (FILE * f, unsigned nslots, int * operand)
+ccdoubles_int_vector_print_braces (FILE * f, unsigned nslots, ccdoubles_int_operand_t O)
 {
-  fprintf(f, "{%+d", operand[0]);
+  fprintf(f, "{%+d", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, ", %+d", operand[i]);
+    fprintf(f, ", %+d", O[i]);
   }
   fprintf(f, "}\n");
 }

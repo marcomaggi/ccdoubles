@@ -38,29 +38,29 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_cplx_vector_clear (unsigned nslots, double complex * restrict vector)
+ccdoubles_cplx_vector_clear (unsigned nslots, ccdoubles_cplx_result_t V)
 {
-  memset(vector, 0, sizeof(double complex) * nslots);
+  memset(V, 0, sizeof(double complex) * nslots);
 }
 void
-ccdoubles_cplx_vector_set (unsigned nslots, double complex * restrict vector, double complex value)
+ccdoubles_cplx_vector_set (unsigned nslots, ccdoubles_cplx_result_t V, double complex value)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    vector[i] = value;
+    V[i] = value;
   }
 }
 void
-ccdoubles_cplx_vector_set_split (unsigned nslots, double complex * restrict vector,
+ccdoubles_cplx_vector_set_split (unsigned nslots, ccdoubles_cplx_result_t V,
 				 double value_re, double value_im)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    vector[i] = Z(value_re, value_im);
+    V[i] = Z(value_re, value_im);
   }
 }
 void
 ccdoubles_cplx_vector_copy (unsigned nslots,
-			    double complex * restrict dst,
-			    double complex * restrict src)
+			    ccdoubles_cplx_result_t dst,
+			    ccdoubles_cplx_operand_t src)
 {
   if (1) {
     memcpy(dst, src, sizeof(double complex) * nslots);
@@ -75,55 +75,55 @@ ccdoubles_cplx_vector_copy (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_real (unsigned nslots,
-			    double * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = Re(operand[i]);
+    R[i] = Re(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_imag (unsigned nslots,
-			    double * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = Im(operand[i]);
+    R[i] = Im(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_magnitude (unsigned nslots,
-				 double * restrict result,
-				 double complex * restrict operand)
+				 ccdoubles_real_result_t R,
+				 ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
     if (1) {
-      result[i] = cabs(operand[i]);
+      R[i] = cabs(O[i]);
     } else {
-      result[i] = hypot(Re(operand[i]), Im(operand[i]));
+      R[i] = hypot(Re(O[i]), Im(O[i]));
     }
   }
 }
 void
 ccdoubles_cplx_vector_angle (unsigned nslots,
-			     double * restrict result,
-			     double complex * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
     if (1) {
-      result[i] = carg(operand[i]);
+      R[i] = carg(O[i]);
     } else {
-      result[i] = atan2(Im(operand[i]), Re(operand[i]));
+      R[i] = atan2(Im(O[i]), Re(O[i]));
     }
   }
 }
 void
 ccdoubles_cplx_vector_conj (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = conj(operand[i]);
+    R[i] = conj(O[i]);
   }
 }
 
@@ -131,23 +131,23 @@ ccdoubles_cplx_vector_conj (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_from_rect (unsigned nslots,
-				 double complex * restrict result,
-				 double * restrict real,
-				 double * restrict imag)
+				 ccdoubles_cplx_result_t R,
+				 ccdoubles_real_operand_t real,
+				 ccdoubles_real_operand_t imag)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = Z(real[i], imag[i]);
+    R[i] = Z(real[i], imag[i]);
   }
 }
 void
 ccdoubles_cplx_vector_from_polar (unsigned nslots,
-				  double complex * restrict result,
-				  double * restrict magnitude,
-				  double * restrict angle)
+				  ccdoubles_cplx_result_t R,
+				  ccdoubles_real_operand_t magnitude,
+				  ccdoubles_real_operand_t angle)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = Z((magnitude[i] * cos(angle[i])),
-		  (magnitude[i] * sin(angle[i])));
+    R[i] = Z((magnitude[i] * cos(angle[i])),
+	     (magnitude[i] * sin(angle[i])));
   }
 }
 
@@ -158,51 +158,51 @@ ccdoubles_cplx_vector_from_polar (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_add (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand1,
-			   double complex * restrict operand2)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O1,
+			   ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] + operand2[i];
+    R[i] = O1[i] + O2[i];
   }
 }
 void
 ccdoubles_cplx_vector_sub (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand1,
-			   double complex * restrict operand2)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O1,
+			   ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] - operand2[i];
+    R[i] = O1[i] - O2[i];
   }
 }
 void
 ccdoubles_cplx_vector_mul (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand1,
-			   double complex * restrict operand2)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O1,
+			   ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] * operand2[i];
+    R[i] = O1[i] * O2[i];
   }
 }
 void
 ccdoubles_cplx_vector_div (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand1,
-			   double complex * restrict operand2)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O1,
+			   ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] / operand2[i];
+    R[i] = O1[i] / O2[i];
   }
 }
 void
 ccdoubles_cplx_vector_neg (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = - operand[i];
+    R[i] = - O[i];
   }
 }
 
@@ -213,71 +213,71 @@ ccdoubles_cplx_vector_neg (unsigned nslots,
 
 double complex
 ccdoubles_cplx_vector_scalar_product (unsigned nslots,
-				      const double complex * restrict operand1,
-				      const double complex * restrict operand2)
+				      ccdoubles_cplx_operand_t O1,
+				      ccdoubles_cplx_operand_t O2)
 {
   double complex	result = 0.0;
   for (unsigned i=0; i<nslots; ++i) {
-    result += operand1[i] * operand2[i];
+    result += O1[i] * O2[i];
   }
   return result;
 }
 void
 ccdoubles_cplx_vector_scalar_product_split (unsigned nslots,
-					    double complex * result,
-					    const double complex * restrict operand1,
-					    const double complex * restrict operand2)
+					    ccdoubles_cplx_result_t R,
+					    ccdoubles_cplx_operand_t O1,
+					    ccdoubles_cplx_operand_t O2)
 {
-  double complex	R = 0.0;
+  double complex	result = 0.0;
   for (unsigned i=0; i<nslots; ++i) {
-    R += operand1[i] * operand2[i];
+    result += O1[i] * O2[i];
   }
-  *result = R;
+  *R = result;
 }
 void
 ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
-				  double complex * restrict result,
+				  ccdoubles_cplx_result_t R,
 				  double complex lambda,
-				  double complex * restrict operand)
+				  ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = lambda * operand[i];
+    R[i] = lambda * O[i];
   }
 }
 void
 ccdoubles_cplx_vector_scalar_mul_split (unsigned nslots,
-					double complex * restrict result,
+					ccdoubles_cplx_result_t R,
 					double lambda_re, double lambda_im,
-					double complex * restrict operand)
+					ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = Z(lambda_re, lambda_im) * operand[i];
+    R[i] = Z(lambda_re, lambda_im) * O[i];
   }
 }
 void
 ccdoubles_cplx_vector_linear_combination (unsigned nslots,
-					  double complex * restrict result,
+					  ccdoubles_cplx_result_t R,
 					  double complex alpha,
-					  double complex * restrict operand1,
+					  ccdoubles_cplx_operand_t O1,
 					  double complex beta,
-					  double complex * restrict operand2)
+					  ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = alpha * operand1[i] + beta * operand2[i];
+    R[i] = alpha * O1[i] + beta * O2[i];
   }
 }
 void
 ccdoubles_cplx_vector_linear_combination_split (unsigned nslots,
-						double complex * restrict result,
+						ccdoubles_cplx_result_t R,
 						double alpha_re, double alpha_im,
-						double complex * restrict operand1,
+						ccdoubles_cplx_operand_t O1,
 						double beta_re, double beta_im,
-						double complex * restrict operand2)
+						ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = \
-      Z(alpha_re, alpha_im) * operand1[i] + \
-      Z(beta_re,  beta_im)  * operand2[i];
+    R[i] = \
+      Z(alpha_re, alpha_im) * O1[i] + \
+      Z(beta_re,  beta_im)  * O2[i];
   }
 }
 
@@ -288,52 +288,52 @@ ccdoubles_cplx_vector_linear_combination_split (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_exp (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cexp(operand[i]);
+    R[i] = cexp(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_log (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = clog(operand[i]);
+    R[i] = clog(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_log10 (unsigned nslots,
-			     double complex * restrict result,
-			     double complex * restrict operand)
+			     ccdoubles_cplx_result_t R,
+			     ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
 #ifdef HAVE_CLOG10
-    result[i] = clog10(operand[i]);
+    R[i] = clog10(O[i]);
 #else
-    result[i] = Z(log10(cabs(operand[i])), carg(operand[i]));
+    R[i] = Z(log10(cabs(O[i])), carg(O[i]));
 #endif
   }
 }
 void
 ccdoubles_cplx_vector_sqrt (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = csqrt(operand[i]);
+    R[i] = csqrt(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_pow (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand1,
-			   double complex * restrict operand2)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O1,
+			   ccdoubles_cplx_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cpow(operand1[i], operand2[i]);
+    R[i] = cpow(O1[i], O2[i]);
   }
 }
 
@@ -344,29 +344,29 @@ ccdoubles_cplx_vector_pow (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_sin (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = csin(operand[i]);
+    R[i] = csin(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_cos (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ccos(operand[i]);
+    R[i] = ccos(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_tan (unsigned nslots,
-			   double complex * restrict result,
-			   double complex * restrict operand)
+			   ccdoubles_cplx_result_t R,
+			   ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ctan(operand[i]);
+    R[i] = ctan(O[i]);
   }
 }
 
@@ -377,29 +377,29 @@ ccdoubles_cplx_vector_tan (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_asin (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = casin(operand[i]);
+    R[i] = casin(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_acos (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cacos(operand[i]);
+    R[i] = cacos(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_atan (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = catan(operand[i]);
+    R[i] = catan(O[i]);
   }
 }
 
@@ -410,29 +410,29 @@ ccdoubles_cplx_vector_atan (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_sinh (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = csinh(operand[i]);
+    R[i] = csinh(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_cosh (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ccosh(operand[i]);
+    R[i] = ccosh(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_tanh (unsigned nslots,
-			    double complex * restrict result,
-			    double complex * restrict operand)
+			    ccdoubles_cplx_result_t R,
+			    ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ctanh(operand[i]);
+    R[i] = ctanh(O[i]);
   }
 }
 
@@ -443,29 +443,29 @@ ccdoubles_cplx_vector_tanh (unsigned nslots,
 
 void
 ccdoubles_cplx_vector_asinh (unsigned nslots,
-			     double complex * restrict result,
-			     double complex * restrict operand)
+			     ccdoubles_cplx_result_t R,
+			     ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = casinh(operand[i]);
+    R[i] = casinh(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_acosh (unsigned nslots,
-			     double complex * restrict result,
-			     double complex * restrict operand)
+			     ccdoubles_cplx_result_t R,
+			     ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cacosh(operand[i]);
+    R[i] = cacosh(O[i]);
   }
 }
 void
 ccdoubles_cplx_vector_atanh (unsigned nslots,
-			     double complex * restrict result,
-			     double complex * restrict operand)
+			     ccdoubles_cplx_result_t R,
+			     ccdoubles_cplx_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = catanh(operand[i]);
+    R[i] = catanh(O[i]);
   }
 }
 
@@ -477,30 +477,30 @@ ccdoubles_cplx_vector_atanh (unsigned nslots,
 void
 ccdoubles_cplx_vector_print_display (FILE * f, const char * name,
 				     unsigned nslots,
-				     double complex * operand)
+				     ccdoubles_cplx_operand_t O)
 {
   fprintf(f, "Vector %s (dimension %u):\n", name, nslots);
-  fprintf(f, "| (1) %+lf%-+lfi ", Re(operand[0]), Im(operand[0]));
+  fprintf(f, "| (1) %+lf%-+lfi ", Re(O[0]), Im(O[0]));
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, "; (%u) %+lf%-+lfi ", 1+i, Re(operand[i]), Im(operand[i]));
+    fprintf(f, "; (%u) %+lf%-+lfi ", 1+i, Re(O[i]), Im(O[i]));
   }
   fprintf(f, "|\n");
 }
 void
-ccdoubles_cplx_vector_print_brackets (FILE * f, unsigned nslots, double complex * operand)
+ccdoubles_cplx_vector_print_brackets (FILE * f, unsigned nslots, ccdoubles_cplx_operand_t O)
 {
-  fprintf(f, "[%+lf%-+lfi", Re(operand[0]), Im(operand[0]));
+  fprintf(f, "[%+lf%-+lfi", Re(O[0]), Im(O[0]));
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, " %+lf%-+lfi", Re(operand[i]), Im(operand[i]));
+    fprintf(f, " %+lf%-+lfi", Re(O[i]), Im(O[i]));
   }
   fprintf(f, "]\n");
 }
 void
-ccdoubles_cplx_vector_print_braces (FILE * f, unsigned nslots, double complex * operand)
+ccdoubles_cplx_vector_print_braces (FILE * f, unsigned nslots, ccdoubles_cplx_operand_t O)
 {
-  fprintf(f, "{%+lf%-+lfi", Re(operand[0]), Im(operand[0]));
+  fprintf(f, "{%+lf%-+lfi", Re(O[0]), Im(O[0]));
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, ", %+lf%-+lfi", Re(operand[i]), Im(operand[i]));
+    fprintf(f, ", %+lf%-+lfi", Re(O[i]), Im(O[i]));
   }
   fprintf(f, "}\n");
 }

@@ -37,12 +37,12 @@
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_vector_clear (unsigned nslots, double * restrict vector)
+ccdoubles_real_vector_clear (unsigned nslots, ccdoubles_real_result_t vector)
 {
   memset(vector, 0, sizeof(double) * nslots);
 }
 void
-ccdoubles_real_vector_set (unsigned nslots, double * restrict vector, double value)
+ccdoubles_real_vector_set (unsigned nslots, ccdoubles_real_result_t vector, double value)
 {
   for (unsigned i=0; i<nslots; ++i) {
     vector[i] = value;
@@ -50,8 +50,8 @@ ccdoubles_real_vector_set (unsigned nslots, double * restrict vector, double val
 }
 void
 ccdoubles_real_vector_copy (unsigned nslots,
-			    double * restrict dst,
-			    double * restrict src)
+			    ccdoubles_real_result_t dst,
+			    ccdoubles_real_operand_t src)
 {
   if (1) {
     memcpy(dst, src, sizeof(double) * nslots);
@@ -69,60 +69,60 @@ ccdoubles_real_vector_copy (unsigned nslots,
 
 void
 ccdoubles_real_vector_add (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] + operand2[i];
+    R[i] = O1[i] + O2[i];
   }
 }
 void
 ccdoubles_real_vector_sub (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] - operand2[i];
+    R[i] = O1[i] - O2[i];
   }
 }
 void
 ccdoubles_real_vector_mul (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] * operand2[i];
+    R[i] = O1[i] * O2[i];
   }
 }
 void
 ccdoubles_real_vector_div (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = operand1[i] / operand2[i];
+    R[i] = O1[i] / O2[i];
   }
 }
 void
 ccdoubles_real_vector_neg (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = - operand[i];
+    R[i] = - O[i];
   }
 }
 void
 ccdoubles_real_vector_abs (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = fabs(operand[i]);
+    R[i] = fabs(O[i]);
   }
 }
 
@@ -130,32 +130,32 @@ ccdoubles_real_vector_abs (unsigned nslots,
 
 void
 ccdoubles_real_vector_fmod (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand1,
-			    double * restrict operand2)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O1,
+			    ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = fmod(operand1[i], operand2[i]);
+    R[i] = fmod(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_drem (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand1,
-			    double * restrict operand2)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O1,
+			    ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = drem(operand1[i], operand2[i]);
+    R[i] = drem(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_remainder (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand1,
-			    double * restrict operand2)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O1,
+			    ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = remainder(operand1[i], operand2[i]);
+    R[i] = remainder(O1[i], O2[i]);
   }
 }
 
@@ -166,47 +166,47 @@ ccdoubles_real_vector_remainder (unsigned nslots,
 
 void
 ccdoubles_real_vector_ceil (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ceil(operand[i]);
+    R[i] = ceil(O[i]);
   }
 }
 void
 ccdoubles_real_vector_floor (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = floor(operand[i]);
+    R[i] = floor(O[i]);
   }
 }
 void
 ccdoubles_real_vector_trunc (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = trunc(operand[i]);
+    R[i] = trunc(O[i]);
   }
 }
 void
 ccdoubles_real_vector_round (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = round(operand[i]);
+    R[i] = round(O[i]);
   }
 }
 void
 ccdoubles_real_vector_rint (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = rint(operand[i]);
+    R[i] = rint(O[i]);
   }
 }
 
@@ -217,62 +217,62 @@ ccdoubles_real_vector_rint (unsigned nslots,
 
 void
 ccdoubles_real_vector_isgreater (unsigned nslots,
-				 int * restrict result,
-				 double * restrict operand1,
-				 double * restrict operand2)
+				 ccdoubles_int_result_t R,
+				 ccdoubles_real_operand_t O1,
+				 ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isgreater(operand1[i], operand2[i]);
+    R[i] = isgreater(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_isgreaterequal (unsigned nslots,
-				      int * restrict result,
-				      double * restrict operand1,
-				      double * restrict operand2)
+				      ccdoubles_int_result_t R,
+				      ccdoubles_real_operand_t O1,
+				      ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isgreaterequal(operand1[i], operand2[i]);
+    R[i] = isgreaterequal(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_isless (unsigned nslots,
-			      int * restrict result,
-			      double * restrict operand1,
-			      double * restrict operand2)
+			      ccdoubles_int_result_t R,
+			      ccdoubles_real_operand_t O1,
+			      ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isless(operand1[i], operand2[i]);
+    R[i] = isless(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_islessequal (unsigned nslots,
-				   int * restrict result,
-				   double * restrict operand1,
-				   double * restrict operand2)
+				   ccdoubles_int_result_t R,
+				   ccdoubles_real_operand_t O1,
+				   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = islessequal(operand1[i], operand2[i]);
+    R[i] = islessequal(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_islessgreater (unsigned nslots,
-				     int * restrict result,
-				     double * restrict operand1,
-				     double * restrict operand2)
+				     ccdoubles_int_result_t R,
+				     ccdoubles_real_operand_t O1,
+				     ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = islessgreater(operand1[i], operand2[i]);
+    R[i] = islessgreater(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_isunordered (unsigned nslots,
-				   int * restrict result,
-				   double * restrict operand1,
-				   double * restrict operand2)
+				   ccdoubles_int_result_t R,
+				   ccdoubles_real_operand_t O1,
+				   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isunordered(operand1[i], operand2[i]);
+    R[i] = isunordered(O1[i], O2[i]);
   }
 }
 
@@ -280,22 +280,22 @@ ccdoubles_real_vector_isunordered (unsigned nslots,
 
 void
 ccdoubles_real_vector_min (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = fmin(operand1[i], operand2[i]);
+    R[i] = fmin(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_max (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = fmax(operand1[i], operand2[i]);
+    R[i] = fmax(O1[i], O2[i]);
   }
 }
 
@@ -303,47 +303,47 @@ ccdoubles_real_vector_max (unsigned nslots,
 
 void
 ccdoubles_real_vector_fpclassify (unsigned nslots,
-				  int * restrict result,
-				  double * restrict operand)
+				  ccdoubles_int_result_t R,
+				  ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = fpclassify(operand[i]);
+    R[i] = fpclassify(O[i]);
   }
 }
 void
 ccdoubles_real_vector_isfinite (unsigned nslots,
-				int * restrict result,
-				double * restrict operand)
+				ccdoubles_int_result_t R,
+				ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isfinite(operand[i]);
+    R[i] = isfinite(O[i]);
   }
 }
 void
 ccdoubles_real_vector_isinfinite (unsigned nslots,
-				  int * restrict result,
-				  double * restrict operand)
+				  ccdoubles_int_result_t R,
+				  ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isfinite(operand[i]) ? 0 : 1;
+    R[i] = isfinite(O[i]) ? 0 : 1;
   }
 }
 void
 ccdoubles_real_vector_isnormal (unsigned nslots,
-				int * restrict result,
-				double * restrict operand)
+				ccdoubles_int_result_t R,
+				ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isnormal(operand[i]);
+    R[i] = isnormal(O[i]);
   }
 }
 void
 ccdoubles_real_vector_isnan (unsigned nslots,
-			     int * restrict result,
-			     double * restrict operand)
+			     ccdoubles_int_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = isnan(operand[i]);
+    R[i] = isnan(O[i]);
   }
 }
 
@@ -354,35 +354,35 @@ ccdoubles_real_vector_isnan (unsigned nslots,
 
 double
 ccdoubles_real_vector_scalar_product (unsigned nslots,
-				      const double * restrict operand1,
-				      const double * restrict operand2)
+				      const ccdoubles_real_operand_t O1,
+				      const ccdoubles_real_operand_t O2)
 {
   double	result = 0.0;
   for (unsigned i=0; i<nslots; ++i) {
-    result += operand1[i] * operand2[i];
+    result += O1[i] * O2[i];
   }
   return result;
 }
 void
 ccdoubles_real_vector_scalar_mul (unsigned nslots,
-				  double * restrict result,
+				  ccdoubles_real_result_t R,
 				  double lambda,
-				  double * restrict operand)
+				  ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = lambda * operand[i];
+    R[i] = lambda * O[i];
   }
 }
 void
 ccdoubles_real_vector_linear_combination (unsigned nslots,
-					  double * restrict result,
+					  ccdoubles_real_result_t R,
 					  double alpha,
-					  double * restrict operand1,
+					  ccdoubles_real_operand_t O1,
 					  double beta,
-					  double * restrict operand2)
+					  ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = alpha * operand1[i] + beta * operand2[i];
+    R[i] = alpha * O1[i] + beta * O2[i];
   }
 }
 
@@ -390,22 +390,22 @@ ccdoubles_real_vector_linear_combination (unsigned nslots,
 
 void
 ccdoubles_real_vector_linspace (unsigned nslots,
-				double * restrict result,
+				ccdoubles_real_result_t R,
 				double start, double past)
 {
   double	step = (past - start) / ((double)nslots);
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = ((double)i) * step + start;
+    R[i] = ((double)i) * step + start;
   }
 }
 void
 ccdoubles_real_vector_logspace (unsigned nslots,
-				double * restrict result,
+				ccdoubles_real_result_t R,
 				double start, double past)
 {
   double	step = (past - start) / ((double)nslots);
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = pow(10.0, ((double)i) * step + start);
+    R[i] = pow(10.0, ((double)i) * step + start);
   }
 }
 
@@ -416,29 +416,29 @@ ccdoubles_real_vector_logspace (unsigned nslots,
 
 void
 ccdoubles_real_vector_exp (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = exp(operand[i]);
+    R[i] = exp(O[i]);
   }
 }
 void
 ccdoubles_real_vector_exp10 (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = exp(operand[i] * log(10.0));
+    R[i] = exp(O[i] * log(10.0));
   }
 }
 void
 ccdoubles_real_vector_exp2 (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = exp2(operand[i]);
+    R[i] = exp2(O[i]);
   }
 }
 
@@ -446,29 +446,29 @@ ccdoubles_real_vector_exp2 (unsigned nslots,
 
 void
 ccdoubles_real_vector_log (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = log(operand[i]);
+    R[i] = log(O[i]);
   }
 }
 void
 ccdoubles_real_vector_log10 (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = log10(operand[i]);
+    R[i] = log10(O[i]);
   }
 }
 void
 ccdoubles_real_vector_log2 (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = log2(operand[i]);
+    R[i] = log2(O[i]);
   }
 }
 
@@ -476,11 +476,11 @@ ccdoubles_real_vector_log2 (unsigned nslots,
 
 void
 ccdoubles_real_vector_logb (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = logb(operand[i]);
+    R[i] = logb(O[i]);
   }
 }
 
@@ -488,40 +488,40 @@ ccdoubles_real_vector_logb (unsigned nslots,
 
 void
 ccdoubles_real_vector_pow (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand1,
-			   double * restrict operand2)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O1,
+			   ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = pow(operand1[i], operand2[i]);
+    R[i] = pow(O1[i], O2[i]);
   }
 }
 void
 ccdoubles_real_vector_sqrt (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = sqrt(operand[i]);
+    R[i] = sqrt(O[i]);
   }
 }
 void
 ccdoubles_real_vector_cbrt (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cbrt(operand[i]);
+    R[i] = cbrt(O[i]);
   }
 }
 void
 ccdoubles_real_vector_hypot (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand1,
-			     double * restrict operand2)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O1,
+			     ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = hypot(operand1[i], operand2[i]);
+    R[i] = hypot(O1[i], O2[i]);
   }
 }
 
@@ -529,20 +529,20 @@ ccdoubles_real_vector_hypot (unsigned nslots,
 
 void
 ccdoubles_real_vector_expm1 (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = expm1(operand[i]);
+    R[i] = expm1(O[i]);
   }
 }
 void
 ccdoubles_real_vector_log1p (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = log1p(operand[i]);
+    R[i] = log1p(O[i]);
   }
 }
 
@@ -553,29 +553,29 @@ ccdoubles_real_vector_log1p (unsigned nslots,
 
 void
 ccdoubles_real_vector_sin (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = sin(operand[i]);
+    R[i] = sin(O[i]);
   }
 }
 void
 ccdoubles_real_vector_cos (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cos(operand[i]);
+    R[i] = cos(O[i]);
   }
 }
 void
 ccdoubles_real_vector_tan (unsigned nslots,
-			   double * restrict result,
-			   double * restrict operand)
+			   ccdoubles_real_result_t R,
+			   ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = tan(operand[i]);
+    R[i] = tan(O[i]);
   }
 }
 
@@ -586,39 +586,39 @@ ccdoubles_real_vector_tan (unsigned nslots,
 
 void
 ccdoubles_real_vector_asin (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = asin(operand[i]);
+    R[i] = asin(O[i]);
   }
 }
 void
 ccdoubles_real_vector_acos (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = acos(operand[i]);
+    R[i] = acos(O[i]);
   }
 }
 void
 ccdoubles_real_vector_atan (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = atan(operand[i]);
+    R[i] = atan(O[i]);
   }
 }
 void
 ccdoubles_real_vector_atan2 (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand1,
-			     double * restrict operand2)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O1,
+			     ccdoubles_real_operand_t O2)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = atan2(operand1[i], operand2[i]);
+    R[i] = atan2(O1[i], O2[i]);
   }
 }
 
@@ -629,29 +629,29 @@ ccdoubles_real_vector_atan2 (unsigned nslots,
 
 void
 ccdoubles_real_vector_sinh (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = sinh(operand[i]);
+    R[i] = sinh(O[i]);
   }
 }
 void
 ccdoubles_real_vector_cosh (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = cosh(operand[i]);
+    R[i] = cosh(O[i]);
   }
 }
 void
 ccdoubles_real_vector_tanh (unsigned nslots,
-			    double * restrict result,
-			    double * restrict operand)
+			    ccdoubles_real_result_t R,
+			    ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = tanh(operand[i]);
+    R[i] = tanh(O[i]);
   }
 }
 
@@ -662,29 +662,29 @@ ccdoubles_real_vector_tanh (unsigned nslots,
 
 void
 ccdoubles_real_vector_asinh (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = asinh(operand[i]);
+    R[i] = asinh(O[i]);
   }
 }
 void
 ccdoubles_real_vector_acosh (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = acosh(operand[i]);
+    R[i] = acosh(O[i]);
   }
 }
 void
 ccdoubles_real_vector_atanh (unsigned nslots,
-			     double * restrict result,
-			     double * restrict operand)
+			     ccdoubles_real_result_t R,
+			     ccdoubles_real_operand_t O)
 {
   for (unsigned i=0; i<nslots; ++i) {
-    result[i] = atanh(operand[i]);
+    R[i] = atanh(O[i]);
   }
 }
 
@@ -695,31 +695,32 @@ ccdoubles_real_vector_atanh (unsigned nslots,
 
 void
 ccdoubles_real_vector_print_display (FILE * f, const char * name,
-				     unsigned nslots,
-				     double * operand)
+				     unsigned nslots, ccdoubles_real_operand_t O)
 {
   fprintf(f, "Vector %s (dimension %u):\n", name, nslots);
-  fprintf(f, "| (1) %+lf ", operand[0]);
+  fprintf(f, "| (1) %+lf ", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, "; (%u) %+lf ", 1+i, operand[i]);
+    fprintf(f, "; (%u) %+lf ", 1+i, O[i]);
   }
   fprintf(f, "|\n");
 }
 void
-ccdoubles_real_vector_print_brackets (FILE * f, unsigned nslots, double * operand)
+ccdoubles_real_vector_print_brackets (FILE * f,
+				      unsigned nslots, ccdoubles_real_operand_t O)
 {
-  fprintf(f, "[%+lf", operand[0]);
+  fprintf(f, "[%+lf", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, " %+lf", operand[i]);
+    fprintf(f, " %+lf", O[i]);
   }
   fprintf(f, "]\n");
 }
 void
-ccdoubles_real_vector_print_braces (FILE * f, unsigned nslots, double * operand)
+ccdoubles_real_vector_print_braces (FILE * f,
+				    unsigned nslots, ccdoubles_real_operand_t O)
 {
-  fprintf(f, "{%+lf", operand[0]);
+  fprintf(f, "{%+lf", O[0]);
   for (unsigned i=1; i<nslots; ++i) {
-    fprintf(f, ", %+lf", operand[i]);
+    fprintf(f, ", %+lf", O[i]);
   }
   fprintf(f, "}\n");
 }

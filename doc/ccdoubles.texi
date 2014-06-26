@@ -439,26 +439,99 @@ double          RV[nslots];
 double complex  CV[nslots];
 @end example
 
-The memory layout of a vector is equal to the memory layout of a matrix
-with a single row defined as follows:
+@c ------------------------------------------------------------
+
+@subsubheading Vectors and bidimensional arrays
+
+
+The memory layout of a vector is equal to the memory layout of the data
+area of a matrix with a single row defined as follows:
 
 @example
-unsigned        nrows = 1;
-unsigned        ncols = 3;
-double          RM[nrows][ncols];
-double complex  CM[nrows][ncols];
+double                  RM[1][3];
+double complex          CM[1][3];
 @end example
 
 @noindent
-and equal to the memory layout of a matrix with a single column defined
-as follows:
+meaning that these definitions are equivalent to:
 
 @example
-unsigned        nrows = 3;
-unsigned        ncols = 1;
-double          RM[nrows][ncols];
-double complex  CM[nrows][ncols];
+double                  RV[3];
+double *                RM[1];
+RM[0] = &RV[0];
+
+double complex          CV[3];
+double complex *        CM[1];
+CM[0] = &CV[0];
 @end example
+
+According to a strict interpretation of the C Language Standard, the
+definition of a matrix with a single column:
+
+@example
+double                  RM[3][1];
+double complex          CM[3][1];
+@end example
+
+@noindent
+is equivalent to the following:
+
+@example
+double                  RV0[1];
+double                  RV1[1];
+double                  RV2[1];
+double *                RM[3];
+RM[0] = &RV0[0];
+RM[1] = &RV1[0];
+RM[2] = &RV2[0];
+
+double complex          CV0[1];
+double complex          CV1[1];
+double complex          CV2[1];
+double complex *        CM[3];
+CM[0] = &CV0[0];
+CM[1] = &CV1[0];
+CM[2] = &CV2[0];
+@end example
+
+@noindent
+and there is no guarantee that the memory allocated for the arrays
+@code{RVx} and @code{CVx} is contiguous; in pictures, the memory layout
+is:
+
+@example
+RM
+-
+| -------> |---| RV0
+-
+| -------> |---| RV1
+-
+| -------> |---| RV2
+-
+@end example
+
+@noindent
+and there is no guarantee that it is:
+
+@example
+RM
+-          -
+| -------> | RV0
+-          -
+| -------> | RV1
+-          -
+| -------> | RV2
+-          -
+@end example
+
+Nevertheless, it appears that the @gnu{} C Compiler generates code to
+allocate a contiguous block of memory when a bidimensional array is
+defined.
+
+@c ------------------------------------------------------------
+
+@subsubheading @value{PACKAGE} function implementation templates
+
 
 All the functions have simple implementation involving an iteration over
 the vector's slots using @code{restrict} pointers; examples for real
@@ -511,6 +584,11 @@ ccdoubles_cplx_vector_sin (unsigned nslots,
 @}
 @end example
 
+@c ------------------------------------------------------------
+
+@subsubheading How to call @value{PACKAGE} functions
+
+
 @value{PACKAGE} functions can be called as follows, see how the arrays
 are passed as arguments:
 
@@ -528,6 +606,17 @@ ccdoubles_real_vector_sin(NROWS, NCOLS, R, V);
 @noindent
 the result is stored the array referenced by @code{R}, overwriting the
 old contents.
+
+According to the C Language Standard, the arguments @code{R} and
+@code{V} in the function call:
+
+@example
+ccdoubles_real_vector_sin(NROWS, NCOLS, R, V);
+@end example
+
+@noindent
+are implicitly converted to @code{&R[0]} and @code{&V[0]}, pointers to
+the first element of the arrays.
 
 @c page
 @node vectors real
@@ -1417,23 +1506,55 @@ will print:
 
 @c page
 @node matrices intro
-@section Introduction to vector operations
+@section Introduction to matrix operations
 
 
 The matrices on which @value{PACKAGE} operates are meant to be
-contiguous arrays of @code{double} and @code{double complex} stored in
-row--major order, defined as follows:
+contiguous arrays of @code{double} and @code{double complex} values
+stored in row--major order.  Notice that the requirement of contiguous
+memory is the same enforced by the libraries @cblas{} and @lapacke{}.
+For a discussion of row--major versus column--major order allocation see
+@ref{lapacke order, Row--major and column--major order}.
+
+We can define matrices as follows:
 
 @example
 #include <ccdoubles.h>
-#undef NROWS
-#undef NCOLS
+#define NROWS          2
+#define NCOLS          2
+
+double          RM[NROWS * NCOLS] = @{
+  1.2, 3.4,  /* this is 1st row */
+  5.6, 7.8   /* this is 2nd row */
+@};
+double complex  CM[NROWS * NCOLS] = @{
+  CCDOUBLES_CPLX(1.2, 2.3), CCDOUBLES_CPLX(3.4, 4.5),
+  CCDOUBLES_CPLX(5.6, 6.7), CCDOUBLES_CPLX(7.8, 8.9)
+@};
+@end example
+
+@noindent
+or as follows with variable--length arrays (@acronym{VLA}, which forbid
+hard--coded initialisation of slots):
+
+@example
+unsigned        nrows = 3;
+unsigned        ncols = 4;
+double          RM[nrows * ncols];
+double complex  CM[nrows * ncols];
+@end example
+
+If we trust the compiler to allocate contiguous memory for the data area
+of bidimensional arrays, we can do:
+
+@example
+#include <ccdoubles.h>
 #define NROWS          2
 #define NCOLS          2
 
 double          RM[NROWS][NCOLS] = @{
   @{ 1.2, 3.4 @},  /* this is 1st row */
-  @{ 5.6, 7.8 @}   /* this is 2nd row*/
+  @{ 5.6, 7.8 @}   /* this is 2nd row */
 @};
 double complex  CM[NROWS][NCOLS] = @{
   @{ CCDOUBLES_CPLX(1.2, 2.3), CCDOUBLES_CPLX(3.4, 4.5) @},
@@ -1442,15 +1563,88 @@ double complex  CM[NROWS][NCOLS] = @{
 @end example
 
 @noindent
-or as follows with dynamic size (which forbids hard--coded
-initialisation of slots):
+or as follows with variable--length arrays:
 
 @example
-unsigned          nrows = 3;
-unsigned          ncols = 4;
+unsigned        nrows = 3;
+unsigned        ncols = 4;
 double          RM[nrows][ncols];
 double complex  CM[nrows][ncols];
 @end example
+
+@c ------------------------------------------------------------
+
+@subsubheading Memory layout of bidimensional arrays
+
+
+According to a strict interpretation of the C Language Standard, the
+definition of bidimensional arrays:
+
+@example
+double          RM[3][2];
+complex double  CM[3][2];
+@end example
+
+@noindent
+is equivalent to:
+
+@example
+double          RV0[2];
+double          RV1[2];
+double          RV3[2];
+double *        RM[3];
+RM[0] = &RV0[0];
+RM[1] = &RV1[0];
+RM[2] = &RV2[0];
+
+double complex   CV0[2];
+double complex   CV1[2];
+double complex   CV3[2];
+double complex * CM[3];
+CM[0] = &CV0[0];
+CM[1] = &CV1[0];
+CM[2] = &CV2[0];
+@end example
+
+@noindent
+and there is no guarantee that the data area of the arrays @code{RVx}
+and @code{CVx} is contiguous; in pictures, the memory layout is:
+
+@example
+RM
+-
+| -------> |---|---|---| RV0
+-
+| -------> |---|---|---| RV1
+-
+| -------> |---|---|---| RV2
+-
+@end example
+
+@noindent
+and there is no guarantee that it is:
+
+@example
+        |    RV0    |    RV1    |    RV2    |
+        |---|---|---|---|---|---|---|---|---|
+RM        ^           ^           ^
+-         |           |           |
+| --------            |           |
+-                     |           |
+| --------------------            |
+-                                 |
+| --------------------------------
+-
+@end example
+
+Nevertheless, it appears that the @gnu{} C Compiler generates code to
+allocate a contiguous block of memory when a bidimensional array is
+defined.
+
+@c ------------------------------------------------------------
+
+@subsubheading @value{PACKAGE} function implementation templates
+
 
 All the matrix functions have simple implementation based on the
 corresponding vector function; examples for real valued matrices:
@@ -1496,6 +1690,11 @@ ccdoubles_cplx_matrix_sin (unsigned nrows, unsigned ncols,
 @}
 @end example
 
+@c ------------------------------------------------------------
+
+@subsubheading How to call @value{PACKAGE} functions
+
+
 @value{PACKAGE} functions can be called as follows, see how the arrays
 are passed as arguments:
 
@@ -1506,7 +1705,39 @@ are passed as arguments:
 #define NROWS          2
 #define NCOLS          2
 
-double  M[NROWS][NCOLS] = @{
+double  O[NROWS * NCOLS] = @{
+  1.2, 3.4,
+  5.6, 7.8
+@};
+double  R[NROWS * NCOLS];
+
+ccdoubles_real_matrix_sin(NROWS, NCOLS, R, O);
+@end example
+
+@noindent
+the result is stored the array referenced by @code{R}, overwriting the
+old contents.  According to the C Language Standard, the arguments
+@code{R} and @code{O} in the function call:
+
+@example
+ccdoubles_real_matrix_sin(NROWS, NCOLS, R, O);
+@end example
+
+@noindent
+are implicitly converted to @code{&R[0]} and @code{&O[0]}, pointers to
+the first element of the arrays.
+
+If we trust the compiler to allocate contiguous memory for the data area
+of bidimensional arrays, we can do:
+
+@example
+#include <ccdoubles.h>
+#undef NROWS
+#undef NCOLS
+#define NROWS          2
+#define NCOLS          2
+
+double  O[NROWS][NCOLS] = @{
   @{ 1.2, 3.4 @},
   @{ 5.6, 7.8 @}
 @};
@@ -1516,8 +1747,23 @@ ccdoubles_real_matrix_sin(NROWS, NCOLS, &R[0][0], &M[0][0]);
 @end example
 
 @noindent
-the result is stored the array referenced by @code{R}, overwriting the
-old contents.
+and we can use the predefined macro @cfunc{MREF} as follows:
+
+@example
+#define CCDOUBLES_ENABLE_SHORT_MACROS   1
+#include <ccdoubles.h>
+
+#define NROWS          2
+#define NCOLS          2
+
+double  O[NROWS][NCOLS] = @{
+  @{ 1.2, 3.4 @},
+  @{ 5.6, 7.8 @}
+@};
+double  R[NROWS][NCOLS];
+
+ccdoubles_real_matrix_sin(NROWS, NCOLS, MREF(R), MREF(M));
+@end example
 
 @c page
 @node matrices real

@@ -25,7 +25,11 @@ the documentation is available online:
 Notes for revision 0.1d1
 ------------------------
 
-*
+* Some documentation improvement.
+
+* Changed  types  of  function   parameters.   It  should  be  backwards
+  compatible.
+
 
 Notes for revision 0.1d0
 ------------------------

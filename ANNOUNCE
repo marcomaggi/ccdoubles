@@ -13,9 +13,17 @@ sophisticated libraries such as CBLAS and LAPACKE.
 GNU+Linux  system.   It is  distributed  under  the GNU  General  Public
 License version 3.0.
 
-  The latest version of this package can be downloaded from:
+  The latest release of this package can be downloaded from:
+
+	 <https://bitbucket.org/marcomaggi/ccdoubles/downloads>
+
+development takes place at:
 
 	       <http://github.com/marcomaggi/ccdoubles/>
+
+and as backup at:
+
+	     <https://bitbucket.org/marcomaggi/ccdoubles/>
 
 the documentation is available online:
 

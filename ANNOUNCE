@@ -33,7 +33,12 @@ the documentation is available online:
 Notes for revision 0.1d2
 ------------------------
 
-*
+* Added subvector functions:
+
+   ccdoubles_real_vector_copy_forward()
+   ccdoubles_real_vector_copy_backward()
+   ccdoubles_cplx_vector_copy_forward()
+   ccdoubles_cplx_vector_copy_backward()
 
 
 Notes for revision 0.1d1

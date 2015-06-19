@@ -5,9 +5,11 @@
 
   Abstract
 
+    This is the public header file  of CCDoubles, a C99 language library
+    implementing  numeric  routines.   The  library is  meant  to  be  a
+    companion for more advanced libraries like CBLAS and LAPACKE.
 
-
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -374,6 +376,14 @@ ccdoubles_decl void ccdoubles_real_vector_acosh (unsigned nslots,
 ccdoubles_decl void ccdoubles_real_vector_atanh (unsigned nslots,
 						 ccdoubles_real_result_t R,
 						 ccdoubles_real_operand_t O);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_real_vector_copy_forward (unsigned dst_start, unsigned src_start, unsigned nslots,
+							ccdoubles_real_result_t dst, ccdoubles_real_operand_t src);
+
+ccdoubles_decl void ccdoubles_real_vector_copy_backward (unsigned dst_start, unsigned src_start, unsigned nslots,
+							 ccdoubles_real_result_t dst, ccdoubles_real_operand_t src);
 
 /* ------------------------------------------------------------------ */
 
@@ -797,6 +807,14 @@ ccdoubles_decl void ccdoubles_cplx_vector_acosh (unsigned nslots,
 ccdoubles_decl void ccdoubles_cplx_vector_atanh (unsigned nslots,
 						 ccdoubles_cplx_result_t R,
 						 ccdoubles_cplx_operand_t O);
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_vector_copy_forward (unsigned dst_start, unsigned src_start, unsigned nslots,
+							ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src);
+
+ccdoubles_decl void ccdoubles_cplx_vector_copy_backward (unsigned dst_start, unsigned src_start, unsigned nslots,
+							 ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src);
 
 /* ------------------------------------------------------------------ */
 

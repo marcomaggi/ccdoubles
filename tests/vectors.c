@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -64,6 +64,9 @@ main (int argc, const char *const argv[])
 void
 test_real_vectors (void)
 {
+#undef NSLOTS
+#define	NSLOTS		1
+
   {
     double	V[NSLOTS];
     ccdoubles_real_vector_clear(NSLOTS, V);
@@ -554,6 +557,30 @@ test_real_vectors (void)
     ccdoubles_real_vector_atanh (NSLOTS, R, O);
     assert(atanh(0.1) == R[0]);
   }
+
+  {
+#undef NSLOTS
+#define NSLOTS	5
+    double	R[NSLOTS] = { 8.0, 0.0, 0.0, 0.0, 9.0 };
+    double	O[NSLOTS] = { 0.0, 1.0, 2.0, 3.0, 4.0 };
+    double	E[NSLOTS] = { 8.0, 1.0, 2.0, 3.0, 9.0 };
+    ccdoubles_real_vector_copy_forward (1, 1, 3, R, O);
+    for (unsigned i=0; i<NSLOTS; ++i) {
+      assert(E[i] == R[i]);
+    }
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS	5
+    double	R[NSLOTS] = { 8.0, 0.0, 0.0, 0.0, 9.0 };
+    double	O[NSLOTS] = { 0.0, 1.0, 2.0, 3.0, 4.0 };
+    double	E[NSLOTS] = { 8.0, 1.0, 2.0, 3.0, 9.0 };
+    ccdoubles_real_vector_copy_backward (1, 1, 3, R, O);
+    for (unsigned i=0; i<NSLOTS; ++i) {
+      assert(E[i] == R[i]);
+    }
+  }
 }
 
 
@@ -564,6 +591,9 @@ test_real_vectors (void)
 void
 test_cplx_vectors (void)
 {
+#undef NSLOTS
+#define	NSLOTS		1
+
   {
     double complex	V[NSLOTS];
     double complex	E = CPLX(0.0, 0.0);
@@ -919,6 +949,30 @@ test_cplx_vectors (void)
     double complex	E = catanh(CPLX(0.5, 0.6));
     ccdoubles_cplx_vector_atanh (NSLOTS, R, O);
     assert(cabs(E - R[0]) < EPSILON);
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS	5
+    double complex	R[NSLOTS] = { CPLX(8.0,1.2), CPLX(0.0,1.2), CPLX(0.0,1.2), CPLX(0.0,1.2), CPLX(9.0,1.2) };
+    double complex	O[NSLOTS] = { CPLX(0.0,1.2), CPLX(1.0,1.2), CPLX(2.0,1.2), CPLX(3.0,1.2), CPLX(4.0,1.2) };
+    double complex	E[NSLOTS] = { CPLX(8.0,1.2), CPLX(1.0,1.2), CPLX(2.0,1.2), CPLX(3.0,1.2), CPLX(9.0,1.2) };
+    ccdoubles_cplx_vector_copy_forward (1, 1, 3, R, O);
+    for (unsigned i=0; i<NSLOTS; ++i) {
+      assert(E[i] == R[i]);
+    }
+  }
+
+  {
+#undef NSLOTS
+#define NSLOTS	5
+    double complex	R[NSLOTS] = { CPLX(8.0,1.2), CPLX(0.0,1.2), CPLX(0.0,1.2), CPLX(0.0,1.2), CPLX(9.0,1.2) };
+    double complex	O[NSLOTS] = { CPLX(0.0,1.2), CPLX(1.0,1.2), CPLX(2.0,1.2), CPLX(3.0,1.2), CPLX(4.0,1.2) };
+    double complex	E[NSLOTS] = { CPLX(8.0,1.2), CPLX(1.0,1.2), CPLX(2.0,1.2), CPLX(3.0,1.2), CPLX(9.0,1.2) };
+    ccdoubles_cplx_vector_copy_backward (1, 1, 3, R, O);
+    for (unsigned i=0; i<NSLOTS; ++i) {
+      assert(E[i] == R[i]);
+    }
   }
 }
 

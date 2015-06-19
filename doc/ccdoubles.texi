@@ -33,7 +33,15 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2014
+@set COPYRIGHT_YEARS            2014, 2015
+
+@c ------------------------------------------------------------
+
+@set GITHUB_URL                 @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
+@set BITBUCKET_URL              @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}}
+@set DOWNLOAD_URL               @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}/downloads}
+@set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/@value{PACKAGE_NICKNAME}.html}
+@set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.io/vicare.html}
 
 @c page
 @c ------------------------------------------------------------
@@ -113,7 +121,6 @@ Appendices
 
 * Package License::             GNU General Public License.
 * Documentation License::       GNU Free Documentation License.
-* resources::                   On--line resources.
 * references::                  Bibliography and references.
 
 Indexes
@@ -148,13 +155,27 @@ all the type names are prefixed with @code{ccdoubles_} and suffixed with
 
 @c page
 @node overview linking
-@section Linking code with the library
+@section Linking code with the @value{PACKAGE} library
 
 
-This package installs a data file for @command{pkg-config}, so when
-searching for the installed library with the @gnu{} Autotools, we can:
+This package installs a data file for @command{pkg-config}; usage
+examples:
 
-@itemize
+@example
+$ pkg-config ccdoubles --modversion
+0.1
+
+$ pkg-config ccdoubles --cflags
+-I/usr/local/include
+
+$ pkg-config ccdoubles --libs
+-L/usr/local/lib64 -lccdoubles
+@end example
+
+When searching for the installed library with the @gnu{} Autotools, we
+can:
+
+@enumerate
 @item
 Install the file @file{pkg.m4} from @file{/usr/share/aclocal} into the
 source tree of the package, for example under @file{meta/autoconf/}.
@@ -168,7 +189,7 @@ m4_include(meta/autoconf/pkg.m4)
 @end example
 
 @item
-Just add the following macro use to @file{configure.ac}:
+Add the following macro use to @file{configure.ac}:
 
 @example
 PKG_CHECK_MODULES([CCDOUBLES],[ccdoubles >= 0.1])
@@ -177,7 +198,11 @@ PKG_CHECK_MODULES([CCDOUBLES],[ccdoubles >= 0.1])
 @noindent
 which will set the variables @code{CCDOUBLES_LIBS} and
 @code{CCDOUBLES_CFLAGS}.
-@end itemize
+
+@item
+Make use of @code{CCDOUBLES_LIBS} and @code{CCDOUBLES_CFLAGS} in the
+@file{Makefile}.
+@end enumerate
 
 Alternatively we can use the raw @gnu{} Autoconf macros:
 
@@ -414,7 +439,7 @@ symbol @code{CCDOUBLES_ENABLE_SHORT_MACROS} already defined.
 @deftypefn {Preprocessor Macro} double Re (double complex @var{Z})
 @deftypefnx {Preprocessor Macro} double Im (double complex @var{Z})
 Return the real or imaginary part of the complex number @var{Z} by
-applying @func{creal} or @func{cimag} to it.
+applying the C Standard functions @cfunc{creal} or @cfunc{cimag} to it.
 
 This macro is defined only if the header @file{ccdoubles.h} is included
 with the C preprocessor symbol @code{CCDOUBLES_ENABLE_SHORT_MACROS}
@@ -672,6 +697,7 @@ the first element of the arrays.
                                 logarithms.
 * vectors real trigonometric::  Trigonometric real vector operations.
 * vectors real hyperbolic::     Hyperbolic real vector operations.
+* vectors real subvectors::     Subvector operations.
 * vectors real printing::       Printing real vectors.
 @end menu
 
@@ -1083,6 +1109,29 @@ of the operand.
 @end deftypefun
 
 @c page
+@node vectors real subvectors
+@subsection Subvector operations
+
+
+@deftypefun void ccdoubles_real_vector_copy_forward (unsigned @var{dst_start}, unsigned @var{src_start}, unsigned @var{nslots}, ccdoubles_real_result_t @var{dst}, ccdoubles_real_operand_t @var{src})
+Copy the region of @var{nslots} values from @var{src} to @var{dst},
+beginning at indexes @var{dst_start} and @var{src_start}.  The copy
+happens forwards: starting with the slots at indexes @var{dst_start} and
+@var{src_start}; then indexes @code{@var{dst_start} + 1} and
+@code{@var{src_start} + 1}; and so on.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_vector_copy_backward (unsigned @var{dst_start}, unsigned @var{src_start}, unsigned @var{nslots}, ccdoubles_real_result_t @var{dst}, ccdoubles_real_operand_t @var{src})
+Copy the region of @var{nslots} values from @var{src} to @var{dst},
+beginning at indexes @var{dst_start} and @var{src_start}.  The copy
+happens backwards: starting with the slots at indexes
+@code{@var{dst_start} + @var{nslots} - 1} and @code{@var{src_start} +
+@var{nslots} - 1}; then indexes @code{@var{dst_start} + @var{nslots} -
+2} and @code{@var{src_start} + @var{nslots} - 2}; and so on.
+@end deftypefun
+
+@c page
 @node vectors real printing
 @subsection Printing real vectors
 
@@ -1158,6 +1207,7 @@ will print:
                                 logarithms.
 * vectors cplx trigonometric::  Trigonometric complex vector operations.
 * vectors cplx hyperbolic::     Hyperbolic complex vector operations.
+* vectors cplx subvectors::     Subvector operations.
 * vectors cplx printing::       Printing complex vectors.
 @end menu
 
@@ -1381,6 +1431,29 @@ operand.
 @deftypefunx void ccdoubles_cplx_vector_atanh (unsigned @var{nslots}, ccdoubles_cplx_result_t @var{R}, ccdoubles_cplx_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
+@end deftypefun
+
+@c page
+@node vectors cplx subvectors
+@subsection Subvector operations
+
+
+@deftypefun void ccdoubles_cplx_vector_copy_forward (unsigned @var{dst_start}, unsigned @var{src_start}, unsigned @var{nslots}, ccdoubles_cplx_result_t @var{dst}, ccdoubles_cplx_operand_t @var{src})
+Copy the region of @var{nslots} values from @var{src} to @var{dst},
+beginning at indexes @var{dst_start} and @var{src_start}.  The copy
+happens forwards: starting with the slots at indexes @var{dst_start} and
+@var{src_start}; then indexes @code{@var{dst_start} + 1} and
+@code{@var{src_start} + 1}; and so on.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_cplx_vector_copy_backward (unsigned @var{dst_start}, unsigned @var{src_start}, unsigned @var{nslots}, ccdoubles_cplx_result_t @var{dst}, ccdoubles_cplx_operand_t @var{src})
+Copy the region of @var{nslots} values from @var{src} to @var{dst},
+beginning at indexes @var{dst_start} and @var{src_start}.  The copy
+happens backwards: starting with the slots at indexes
+@code{@var{dst_start} + @var{nslots} - 1} and @code{@var{src_start} +
+@var{nslots} - 1}; then indexes @code{@var{dst_start} + @var{nslots} -
+2} and @code{@var{src_start} + @var{nslots} - 2}; and so on.
 @end deftypefun
 
 @c page
@@ -2982,24 +3055,28 @@ columns.  When using @cblas{} we will use the argument
 @include fdl-1.3.texi
 
 @c page
-@node resources
-@appendix On--line resources
-
-
-The latest version of this package can be downloaded from:
-
-@center @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}/}
-
-@noindent
-the documentation is available online:
-
-@center @url{http://marcomaggi.github.com/docs/@value{PACKAGE_NICKNAME}.html}
-
-@c page
 @node references
 @appendix Bibliography and references
 
 
+The documentation of @value{PACKAGE} is available online:
+
+@center @value{DOCUMENTATION_URL}
+
+@noindent
+the latest release of this package can be downloaded from:
+
+@center @value{DOWNLOAD_URL}
+
+@noindent
+development takes place at:
+
+@center @value{GITHUB_URL}
+
+@noindent
+and as backup at:
+
+@center @value{BITBUCKET_URL}
 
 @c page
 @node concept index

@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -685,6 +685,31 @@ ccdoubles_real_vector_atanh (unsigned nslots,
 {
   for (unsigned i=0; i<nslots; ++i) {
     R[i] = atanh(O[i]);
+  }
+}
+
+
+/** --------------------------------------------------------------------
+ ** Subvector operations.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_vector_copy_forward (unsigned dst_start, unsigned src_start, unsigned nslots,
+				    ccdoubles_real_result_t dst, ccdoubles_real_operand_t src)
+{
+  unsigned	i_end = dst_start + nslots;
+  for (unsigned i=dst_start, j=src_start; i<i_end; ++i, ++j) {
+    dst[i] = src[j];
+  }
+}
+void
+ccdoubles_real_vector_copy_backward (unsigned dst_start, unsigned src_start, unsigned nslots,
+				     ccdoubles_real_result_t dst, ccdoubles_real_operand_t src)
+{
+  unsigned	dst_first = dst_start + nslots - 1;
+  unsigned	src_first = src_start + nslots - 1;
+  for (unsigned i=dst_first, j=src_first; i>=dst_start; --i, --j) {
+    dst[i] = src[j];
   }
 }
 

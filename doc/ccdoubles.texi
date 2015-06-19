@@ -1911,6 +1911,7 @@ ccdoubles_real_matrix_sin(NROWS, NCOLS, MREF(R), MREF(M));
                                 logarithms.
 * matrices real trigonometric:: Trigonometric real matrix operations.
 * matrices real hyperbolic::    Hyperbolic real matrix operations.
+* matrices real access::        Accessing rows and columns.
 * matrices real printing::      Printing real matrices.
 @end menu
 
@@ -2322,6 +2323,36 @@ operand.
 @deftypefunx void ccdoubles_real_matrix_atanh (unsigned @var{nrows}, unsigned @var{ncols}, ccdoubles_real_result_t @var{R}, ccdoubles_real_operand_t @var{O})
 Compute slot--by--slot the hyperbolic arc sine, arc cosine, arc tangent
 of the operand.
+@end deftypefun
+
+@c page
+@node matrices real access
+@subsection Accessing rows and columns
+
+
+@deftypefun void ccdoubles_real_matrix_row_to_row (unsigned @var{dst_nrows}, unsigned @var{dst_ncols}, ccdoubles_real_result_t @var{dst}, unsigned @var{src_nrows}, unsigned @var{src_ncols}, ccdoubles_real_operand_t @var{src}, unsigned @var{dst_row}, unsigned @var{dst_col}, unsigned @var{src_row}, unsigned @var{src_col}, unsigned @var{nslots})
+Given a destination matrix referenced by @var{dst}, with dimensions
+@var{dst_nrows} and @var{dst_ncols}, and a source matrix @var{dst}, with
+dimensions @var{dst_nrows} and @var{dst_ncols}: copy a row vector from
+@var{src} to @var{dst}.
+
+The row vector has @var{nslots} elements.  The first element of the row
+in @var{dst} is at coordinates @var{dst_row} and @var{dst_col}.  The
+first element of the row in @var{src} is at coordinates @var{src_row}
+and @var{src_col}.
+@end deftypefun
+
+
+@deftypefun void ccdoubles_real_matrix_col_to_col (unsigned @var{dst_nrows}, unsigned @var{dst_ncols}, ccdoubles_real_result_t @var{dst}, unsigned @var{src_nrows}, unsigned @var{src_ncols}, ccdoubles_real_operand_t @var{src}, unsigned @var{dst_row}, unsigned @var{dst_col}, unsigned @var{src_row}, unsigned @var{src_col}, unsigned @var{nslots})
+Given a destination matrix referenced by @var{dst}, with dimensions
+@var{dst_nrows} and @var{dst_ncols}, and a source matrix @var{dst}, with
+dimensions @var{dst_nrows} and @var{dst_ncols}: copy a column vector
+from @var{src} to @var{dst}.
+
+The column vector has @var{nslots} elements.  The first element of the
+column in @var{dst} is at coordinates @var{dst_row} and @var{dst_col}.
+The first element of the column in @var{src} is at coordinates
+@var{src_row} and @var{src_col}.
 @end deftypefun
 
 @c page

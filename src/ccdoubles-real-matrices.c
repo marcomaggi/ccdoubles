@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -628,6 +628,42 @@ ccdoubles_real_matrix_atanh (unsigned nrows, unsigned ncols,
 			     ccdoubles_real_operand_t O)
 {
   ccdoubles_real_vector_atanh (nrows * ncols, R, O);
+}
+
+
+/** --------------------------------------------------------------------
+ ** Inverse hyperbolic operations.
+ ** ----------------------------------------------------------------- */
+
+void
+ccdoubles_real_matrix_row_to_row (unsigned dst_nrows, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+				  unsigned src_nrows, unsigned src_ncols, ccdoubles_real_operand_t src,
+				  unsigned dst_row, unsigned dst_col,
+				  unsigned src_row, unsigned src_col,
+				  unsigned nslots)
+{
+  assert(dst_ncols >= dst_col + nslots);
+  assert(src_ncols >= src_col + nslots);
+  unsigned	dst_index = dst_row * dst_ncols + dst_col;
+  unsigned	src_index = src_row * src_ncols + src_col;
+  for (unsigned k=0; k<nslots; ++k, ++dst_index, ++src_index) {
+    dst[dst_index] = src[src_index];
+  }
+}
+void
+ccdoubles_real_matrix_col_to_col (unsigned dst_nrows, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+				  unsigned src_nrows, unsigned src_ncols, ccdoubles_real_operand_t src,
+				  unsigned dst_row, unsigned dst_col,
+				  unsigned src_row, unsigned src_col,
+				  unsigned nslots)
+{
+  assert(dst_nrows >= dst_row + nslots);
+  assert(src_nrows >= src_row + nslots);
+  unsigned	dst_index = dst_row * dst_ncols + dst_col;
+  unsigned	src_index = src_row * src_ncols + src_col;
+  for (unsigned k=0; k<nslots; ++k, dst_index+=dst_ncols, src_index+=src_ncols) {
+    dst[dst_index] = src[src_index];
+  }
 }
 
 

@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -63,6 +63,11 @@ main (int argc, const char *const argv[])
 void
 test_real_matrices (void)
 {
+#undef NROWS
+#undef NCOLS
+#define	NROWS		1
+#define	NCOLS		1
+
   /* { */
   /*   double	M[1][NROWS][NCOLS]; */
   /*   ccdoubles_real_matrix_clear(NROWS, NCOLS, M); */
@@ -632,6 +637,159 @@ test_real_matrices (void)
     ccdoubles_real_matrix_atanh (NROWS, NCOLS, MREF(R), MREF(O));
     assert(atanh(0.1) == R[0][0]);
   }
+
+  { /* row-to-row copy, full row */
+#undef NROWS
+#undef NCOLS
+#define	NROWS		4
+#define	NCOLS		5
+    double	O[NROWS][NCOLS] = {
+      { 0.0, 0.1, 0.2, 0.3, 0.4 },
+      { 1.0, 1.1, 1.2, 1.3, 1.4 },
+      { 2.0, 2.1, 2.2, 2.3, 2.4 },
+      { 3.0, 3.1, 3.2, 3.3, 3.4 }
+    };
+    double	R[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    double	E[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 1.0, 1.1, 1.2, 1.3, 1.4 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    ccdoubles_real_matrix_row_to_row (NROWS, NCOLS, MREF(R),
+				      NROWS, NCOLS, MREF(O),
+				      2, 0, /* coordinates of first item in R */
+				      1, 0, /* coordinates of first item in O */
+				      NCOLS);
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "R", NROWS, NCOLS, MREF(R));
+    for (unsigned i=0; i<NROWS; ++i) {
+      for (unsigned j=0; j<NCOLS; ++j) {
+	if (0) fprintf(stderr, "i=%u, j=%u, %f, %f\n", i, j, E[i][j], R[i][j]);
+	assert(E[i][j] == R[i][j]);
+      }
+    }
+  }
+
+  { /* row-to-row copy, sub row */
+#undef NROWS
+#undef NCOLS
+#define	NROWS		4
+#define	NCOLS		5
+    double	O[NROWS][NCOLS] = {
+      { 0.0, 0.1, 0.2, 0.3, 0.4 },
+      { 1.0, 1.1, 1.2, 1.3, 1.4 },
+      { 2.0, 2.1, 2.2, 2.3, 2.4 },
+      { 3.0, 3.1, 3.2, 3.3, 3.4 }
+    };
+    double	R[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    double	E[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 1.1, 1.2, 1.3, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    ccdoubles_real_matrix_row_to_row (NROWS, NCOLS, MREF(R),
+				      NROWS, NCOLS, MREF(O),
+				      2, 1, /* coordinates of first item in R */
+				      1, 1, /* coordinates of first item in O */
+				      3);
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "R", NROWS, NCOLS, MREF(R));
+    for (unsigned i=0; i<NROWS; ++i) {
+      for (unsigned j=0; j<NCOLS; ++j) {
+	if (0) fprintf(stderr, "i=%u, j=%u, %f, %f\n", i, j, E[i][j], R[i][j]);
+	assert(E[i][j] == R[i][j]);
+      }
+    }
+  }
+
+  { /* col-to-col copy, full column */
+#undef NROWS
+#undef NCOLS
+#define	NROWS		4
+#define	NCOLS		5
+    double	O[NROWS][NCOLS] = {
+      { 0.0, 0.1, 0.2, 0.3, 0.4 },
+      { 1.0, 1.1, 1.2, 1.3, 1.4 },
+      { 2.0, 2.1, 2.2, 2.3, 2.4 },
+      { 3.0, 3.1, 3.2, 3.3, 3.4 }
+    };
+    double	R[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    static const double	E[NROWS][NCOLS] = {
+      { 0.0, 0.2, 0.0, 0.0, 0.0 },
+      { 0.0, 1.2, 0.0, 0.0, 0.0 },
+      { 0.0, 2.2, 0.0, 0.0, 0.0 },
+      { 0.0, 3.2, 0.0, 0.0, 0.0 }
+    };
+    ccdoubles_real_matrix_col_to_col (NROWS, NCOLS, MREF(R),
+				      NROWS, NCOLS, MREF(O),
+				      0, 1, /* coordinates of first item in R */
+				      0, 2, /* coordinates of first item in O */
+				      NROWS);
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "R", NROWS, NCOLS, MREF(R));
+    for (unsigned i=0; i<NROWS; ++i) {
+      for (unsigned j=0; j<NCOLS; ++j) {
+	if (0) fprintf(stderr, "i=%u, j=%u, E=%f, R=%f\n", i, j, E[i][j], R[i][j]);
+	assert(E[i][j] == R[i][j]);
+      }
+    }
+  }
+
+  { /* col-to-col copy, sub column */
+#undef NROWS
+#undef NCOLS
+#define	NROWS		4
+#define	NCOLS		5
+    double	O[NROWS][NCOLS] = {
+      { 0.0, 0.1, 0.2, 0.3, 0.4 },
+      { 1.0, 1.1, 1.2, 1.3, 1.4 },
+      { 2.0, 2.1, 2.2, 2.3, 2.4 },
+      { 3.0, 3.1, 3.2, 3.3, 3.4 }
+    };
+    double	R[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    static const double	E[NROWS][NCOLS] = {
+      { 0.0, 0.0, 0.0, 0.0, 0.0 },
+      { 0.0, 2.2, 0.0, 0.0, 0.0 },
+      { 0.0, 3.2, 0.0, 0.0, 0.0 },
+      { 0.0, 0.0, 0.0, 0.0, 0.0 }
+    };
+    ccdoubles_real_matrix_col_to_col (NROWS, NCOLS, MREF(R),
+				      NROWS, NCOLS, MREF(O),
+				      1, 1, /* coordinates of first item in R */
+				      2, 2, /* coordinates of first item in O */
+				      2);
+    if (0)
+      ccdoubles_real_matrix_print_display (stderr, "R", NROWS, NCOLS, MREF(R));
+    for (unsigned i=0; i<NROWS; ++i) {
+      for (unsigned j=0; j<NCOLS; ++j) {
+	if (0) fprintf(stderr, "i=%u, j=%u, E=%f, R=%f\n", i, j, E[i][j], R[i][j]);
+	assert(E[i][j] == R[i][j]);
+      }
+    }
+  }
+
 }
 
 
@@ -642,6 +800,11 @@ test_real_matrices (void)
 void
 test_cplx_matrices (void)
 {
+#undef NROWS
+#undef NCOLS
+#define	NROWS		1
+#define	NCOLS		1
+
   {
     double complex	M[NROWS][NCOLS];
     double complex	E = Z(0.0, 0.0);

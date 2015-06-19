@@ -40,6 +40,11 @@ Notes for revision 0.1d2
    ccdoubles_cplx_vector_copy_forward()
    ccdoubles_cplx_vector_copy_backward()
 
+* Added matrix row and column copy functions:
+
+   ccdoubles_real_matrix_row_to_row()
+   ccdoubles_real_matrix_col_to_col()
+
 
 Notes for revision 0.1d1
 ------------------------

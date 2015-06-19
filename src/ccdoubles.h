@@ -648,6 +648,20 @@ ccdoubles_decl void ccdoubles_real_matrix_atanh (unsigned nrows, unsigned ncols,
 
 /* ------------------------------------------------------------------ */
 
+ccdoubles_decl void ccdoubles_real_matrix_row_to_row (unsigned dst_nrows, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+						      unsigned src_nrows, unsigned src_ncols, ccdoubles_real_operand_t src,
+						      unsigned dst_row, unsigned dst_col,
+						      unsigned src_row, unsigned src_col,
+						      unsigned nslots);
+
+ccdoubles_decl void ccdoubles_real_matrix_col_to_col (unsigned dst_nrows, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+						      unsigned src_nrows, unsigned src_ncols, ccdoubles_real_operand_t src,
+						      unsigned dst_row, unsigned dst_col,
+						      unsigned src_row, unsigned src_col,
+						      unsigned nslots);
+
+/* ------------------------------------------------------------------ */
+
 ccdoubles_decl void ccdoubles_real_matrix_print_display (FILE * f, const char * name,
 							 unsigned nrows, unsigned ncols,
 							 ccdoubles_real_operand_t O);

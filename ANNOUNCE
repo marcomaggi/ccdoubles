@@ -1,4 +1,5 @@
-Subject: [announce] CCDoubles revision 0.1d2
+﻿-*- coding: utf-8-with-signature-unix -*-
+Subject: [announce] CCDoubles revision 0.2d0
 
 			       CCDoubles
 			       =========
@@ -10,7 +11,7 @@ values.   This  library is  meant  to  be  used  as companion  for  more
 sophisticated libraries such as CBLAS and LAPACKE.
 
   The package  makes use  of the  GNU Autotools  and it  is tested  on a
-GNU+Linux  system.   It is  distributed  under  the GNU  General  Public
+GNU+Linux system.  It is distributed under the GNU Lesser General Public
 License version 3.0.
 
   The latest release of this package can be downloaded from:
@@ -28,6 +29,12 @@ and as backup at:
 the documentation is available online:
 
 	   <http://marcomaggi.github.com/docs/ccdoubles.html>
+
+
+Notes for revision 0.2d0
+------------------------
+
+* Changed license from GPL3 to LGPL3.
 
 
 Notes for revision 0.1d2
@@ -72,7 +79,6 @@ Notes for revision 0.1d0
 
 ### end of file
 # Local Variables:
-# coding: utf-8-unix
 # mode: text
 # fill-column: 72
 # paragraph-start: "*"

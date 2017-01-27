@@ -19,7 +19,7 @@ AM_MAKEINFOFLAGS	= --no-split
 info_TEXINFOS		= doc/ccdoubles.texi
 doc_ccdoubles_TEXINFOS	= \
 	doc/macros.texi		\
-	doc/gpl-3.0.texi	\
+	doc/lgpl-3.0.texi	\
 	doc/fdl-1.3.texi
 
 ## --------------------------------------------------------------------

@@ -5,7 +5,7 @@ Subject: [announce] CCDoubles revision 0.2d0
 			       =========
 
 
-This  package  installs  a  C99  language  library  implementing  simple
+This  package  installs  a  C11  language  library  implementing  simple
 routines  for vectors  and  matrices of  "double"  and "double  complex"
 values.   This  library is  meant  to  be  used  as companion  for  more
 sophisticated libraries such as CBLAS and LAPACKE.
@@ -35,6 +35,8 @@ Notes for revision 0.2d0
 ------------------------
 
 * Changed license from GPL3 to LGPL3.
+
+* Changed language to C11.
 
 
 Notes for revision 0.1d2

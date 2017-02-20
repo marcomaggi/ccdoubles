@@ -49,7 +49,7 @@
 @c ------------------------------------------------------------
 
 @copying
-This document describes version @value{VERSION} of @value{PACKAGE}, a C99 language library
+This document describes version @value{VERSION} of @value{PACKAGE}, a C11 language library
 implementing simple routines for vectors and matrices of @code{double} and @code{double complex}
 values.  The package is distributed under the terms of the @gnu{} Lesser General Public License
 (@gpl{}).
@@ -134,16 +134,14 @@ Indexes
 @chapter Overview of the package
 
 
-This document describes version @value{VERSION} of @value{PACKAGE}, a
-C99 language library implementing simple routines for vectors and
-matrices of @code{double} and @code{double complex} values.  This
-library is meant to be used as companion for more sophisticated
-libraries such as @acronym{CBLAS} and @acronym{LAPACKE}.
+This document describes version @value{VERSION} of @value{PACKAGE}, a C11 language library
+implementing simple routines for vectors and matrices of @code{double} and @code{double complex}
+values.  This library is meant to be used as companion for more sophisticated libraries such as
+@acronym{CBLAS} and @acronym{LAPACKE}.
 
-@value{PACKAGE} installs the single header file @file{ccdoubles.h}.  All
-the function names in the @api{} are prefixed with @code{ccdoubles_};
-all the preprocessor macro names are prefixed with @code{CCDOUBLES_};
-all the type names are prefixed with @code{ccdoubles_} and suffixed with
+@value{PACKAGE} installs the single header file @file{ccdoubles.h}.  All the function names in the
+@api{} are prefixed with @code{ccdoubles_}; all the preprocessor macro names are prefixed with
+@code{CCDOUBLES_}; all the type names are prefixed with @code{ccdoubles_} and suffixed with
 @code{_t}.
 
 @menu

@@ -54,6 +54,12 @@ dnl page
 AC_LANG([C])
 dnl AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 AC_PROG_CC_C99
+AX_CHECK_COMPILE_FLAG([-std=c11],[],[AC_MSG_ERROR([*** Compiler does not support -std=c11])],[-pedantic])
+AX_CFLAGS="-std=c11"
+dnl AX_CHECK_COMPILE_FLAG([-fplan9-extensions],[],[AC_MSG_ERROR([*** Compiler does not support -fplan9-extensions])],[$AX_CFLAGS])
+dnl AX_CFLAGS="$AX_CFLAGS -fplan9-extensions"
+AC_SUBST(AX_CFLAGS)
+
 AM_PROG_AS
 AM_PROG_CC_C_O
 AC_HEADER_STDC

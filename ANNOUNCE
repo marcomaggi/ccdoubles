@@ -1,5 +1,5 @@
 ﻿-*- coding: utf-8-with-signature-unix -*-
-Subject: [announce] CCDoubles revision 0.2d0
+Subject: [announce] CCDoubles revision 0.3d0
 
 			       CCDoubles
 			       =========
@@ -31,12 +31,16 @@ the documentation is available online:
 	   <http://marcomaggi.github.com/docs/ccdoubles.html>
 
 
+Notes for revision 0.3d0
+------------------------
+
+* Changed language to C11.
+
+
 Notes for revision 0.2d0
 ------------------------
 
 * Changed license from GPL3 to LGPL3.
-
-* Changed language to C11.
 
 
 Notes for revision 0.1d2

@@ -2,7 +2,7 @@ dnl @configure_input@
 dnl
 
 AC_PREREQ([2.69])
-AC_INIT([CCDoubles],[0.2d0],
+AC_INIT([CCDoubles],[0.3d0],
   [marco.maggi-ipsu@poste.it],
   [ccdoubles],[http://github.com/marcomaggi/ccdoubles/])
 dnl This is the revision number of this configure.ac

@@ -97,9 +97,14 @@ extern "C" {
  ** Preprocessor macros.
  ** ----------------------------------------------------------------- */
 
-/* Build and return a "double complex". */
-#define CCDOUBLES_CPLX(REAL,IMAG)	\
-  (((double)(REAL)) + ((double)(IMAG)) * _Complex_I)
+/* Build and return a "double complex".  Under C99 the definition was:
+ *
+ *  #define CCDOUBLES_CPLX(REAL,IMAG)	\
+ *     (((double)(REAL)) + ((double)(IMAG)) * _Complex_I)
+ *
+ * but under C11 it is better to use the standard macro.
+ */
+#define CCDOUBLES_CPLX(REAL,IMAG)	CMPLX((REAL),(IMAG))
 
 #ifdef CCDOUBLES_ENABLE_SHORT_MACROS
 #  define Z(REAL,IMAG)		(CCDOUBLES_CPLX((REAL),(IMAG)))

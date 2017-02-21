@@ -49,7 +49,7 @@ static void test_printing (void);
  ** ----------------------------------------------------------------- */
 
 int
-main (int argc, const char *const argv[])
+main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
 {
   test_int_vectors();
   test_int_matrices();

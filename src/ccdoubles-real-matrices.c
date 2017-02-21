@@ -636,8 +636,8 @@ ccdoubles_real_matrix_atanh (unsigned nrows, unsigned ncols,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_matrix_row_to_row (unsigned dst_nrows, unsigned dst_ncols, ccdoubles_real_result_t  dst,
-				  unsigned src_nrows, unsigned src_ncols, ccdoubles_real_operand_t src,
+ccdoubles_real_matrix_row_to_row (unsigned dst_nrows CCDOUBLES_UNUSED, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+				  unsigned src_nrows CCDOUBLES_UNUSED, unsigned src_ncols, ccdoubles_real_operand_t src,
 				  unsigned dst_row, unsigned dst_col,
 				  unsigned src_row, unsigned src_col,
 				  unsigned nslots)

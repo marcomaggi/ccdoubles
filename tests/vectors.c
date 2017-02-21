@@ -41,7 +41,8 @@ static void test_cplx_vectors (void);
 #define	NSLOTS		1
 #define EPSILON		1e-6
 
-#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
+//#define CPLX(REAL,IMAG)		((REAL) + (IMAG) * _Complex_I)
+#define CPLX(REAL,IMAG)			CMPLX((REAL),(IMAG))
 
 
 /** --------------------------------------------------------------------
@@ -49,7 +50,7 @@ static void test_cplx_vectors (void);
  ** ----------------------------------------------------------------- */
 
 int
-main (int argc, const char *const argv[])
+main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
 {
   test_real_vectors();
   test_cplx_vectors();
@@ -149,7 +150,7 @@ test_real_vectors (void)
     double	O1[NSLOTS] = { 1.2 };
     double	O2[NSLOTS] = { 3.4 };
     ccdoubles_real_vector_drem (NSLOTS, R, O1, O2);
-    assert(fmod(1.2, 3.4) == R[0]);
+    assert(drem(1.2, 3.4) == R[0]);
   }
 
   {

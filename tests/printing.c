@@ -38,7 +38,7 @@
  ** ----------------------------------------------------------------- */
 
 int
-main (int argc, const char *const argv[])
+main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
 {
   printf("\n***** Display tests:\n");
 

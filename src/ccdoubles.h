@@ -5,7 +5,7 @@
 
   Abstract
 
-    This is the public header file  of CCDoubles, a C99 language library
+    This is the public header file  of CCDoubles, a C11 language library
     implementing  numeric  routines.   The  library is  meant  to  be  a
     companion for more advanced libraries like CBLAS and LAPACKE.
 

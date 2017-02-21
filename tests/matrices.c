@@ -48,7 +48,7 @@ static void test_cplx_matrices (void);
  ** ----------------------------------------------------------------- */
 
 int
-main (int argc, const char *const argv[])
+main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
 {
   test_real_matrices();
   test_cplx_matrices();

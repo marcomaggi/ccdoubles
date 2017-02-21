@@ -7,7 +7,7 @@
 
 	Test file for version functions.
 
-  Copyright (C) 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   See the COPYING file.
 */
@@ -17,7 +17,7 @@
 #include <ccdoubles.h>
 
 int
-main (int argc, const char *const argv[])
+main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
 {
   printf("version number string: %s\n", ccdoubles_version_string());
   printf("libtool version number: %d:%d:%d\n",

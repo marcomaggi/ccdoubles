@@ -301,19 +301,18 @@ An alias for @code{const double complex * restrict}.
 @subsection Functions acting on scalar complex values
 
 
-The C99 language standard library defines common operations on scalar
-@code{double complex} numbers; in addition @value{PACKAGE} defines
-convenience functions to perform the same.
+The C1 language standard library defines common operations on scalar @code{double complex} numbers;
+in addition @value{PACKAGE} defines convenience functions to perform the same.
 
 
 @deftypefun {double complex} ccdoubles_cplx_mul (double complex @vari{O}, double complex @varii{O})
-Even though C99 supports the multiplication operation as:
+Even though C11 supports the multiplication operation as:
 
 @example
 #include <ccdoubles.h>
 
-double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
-double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  O1 = CMPLX(1.2, 3.4);
+double complex  O2 = CMPLX(5.6, 7.8);
 double complex  R  = O1 * O2;
 
 printf("R = %lf%+lfi\n", creal(R), cimag(R));
@@ -327,8 +326,8 @@ Example:
 @example
 #include <ccdoubles.h>
 
-double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
-double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  O1 = CMPLX(1.2, 3.4);
+double complex  O2 = CMPLX(5.6, 7.8);
 double complex  R;
 
 R = ccdoubles_cplx_mul(O1, O2);
@@ -340,13 +339,13 @@ printf("R = %lf%+lfi\n", creal(R), cimag(R));
 
 
 @deftypefun {double complex} ccdoubles_cplx_div (double complex @vari{O}, double complex @varii{O})
-Even though C99 supports the division operation as:
+Even though C11 supports the division operation as:
 
 @example
 #include <ccdoubles.h>
 
-double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
-double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  O1 = CMPLX(1.2, 3.4);
+double complex  O2 = CMPLX(5.6, 7.8);
 double complex  R  = O1 / O2;
 
 printf("R = %lf%+lfi\n", creal(R), cimag(R));
@@ -360,8 +359,8 @@ Example:
 @example
 #include <ccdoubles.h>
 
-double complex  O1 = CCDOUBLES_CPLX(1.2, 3.4);
-double complex  O2 = CCDOUBLES_CPLX(5.6, 7.8);
+double complex  O1 = CMPLX(1.2, 3.4);
+double complex  O2 = CMPLX(5.6, 7.8);
 double complex  R;
 
 R = ccdoubles_cplx_div(O1, O2);
@@ -373,12 +372,12 @@ printf("R = %lf%+lfi\n", creal(R), cimag(R));
 
 
 @deftypefun {double complex} ccdoubles_cplx_neg (double complex @var{O})
-Even though C99 supports the negation operation as:
+Even though C11 supports the negation operation as:
 
 @example
 #include <ccdoubles.h>
 
-double complex  O = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O = CMPLX(1.2, 3.4);
 double complex  R = - O;
 
 printf("R = %lf%+lfi\n", creal(R), cimag(R));
@@ -392,7 +391,7 @@ Example:
 @example
 #include <ccdoubles.h>
 
-double complex  O = CCDOUBLES_CPLX(1.2, 3.4);
+double complex  O = CMPLX(1.2, 3.4);
 double complex  R;
 
 R = ccdoubles_cplx_neg(O);
@@ -409,16 +408,12 @@ printf("R = %lf%+lfi\n", creal(R), cimag(R));
 
 
 @deftypefn {Preprocessor Macro} {double complex} CCDOUBLES_CPLX (double @var{REAL}, double @var{IMAG})
-Build and return a new @code{double complex} value.  Expands into:
+Build and return a new @code{double complex} value.  Expands into a use of the C11 macro
+@cfunc{CMPLX}:
 
 @example
-(((double)(@var{REAL})) + ((double)(@var{IMAG})) * _Complex_I)
+CMPLX((@var{REAL}), (@var{IMAG}))
 @end example
-
-@quotation
-@strong{NOTE} The latest C Language Standard defines the same operation
-with the preprocessor macro @code{CMPLX(@var{REAL}, @var{IMAG})}.
-@end quotation
 @end deftypefn
 
 
@@ -482,8 +477,8 @@ follows:
 
 double          RV[NSLOTS] = @{ 1.2, 3.4 @};
 double complex  CV[NSLOTS] = @{
-  CCDOUBLES_CPLX(1.2, 3.4),
-  CCDOUBLES_CPLX(5.6, 7.8)
+  CMPLX(1.2, 3.4),
+  CMPLX(5.6, 7.8)
 @};
 @end example
 
@@ -1300,7 +1295,7 @@ Perform the scalar product between the operands and return the result.
 The implementation is:
 
 @example
-double complex  result = CCDOUBLES_CPLX(0.0, 0.0);
+double complex  result = CMPLX(0.0, 0.0);
 for (unsigned i=0; i<nslots; ++i) @{
   result += O1[i] * O2[i];
 @}
@@ -1461,11 +1456,10 @@ Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
 @example
-#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
 #undef NSLOTS
 #define NSLOTS          3
 double complex	O[NSLOTS] = @{
-  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+  CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3)
 @};
 ccdoubles_cplx_vector_print_display(stdout, "O", NSLOTS, O);
 @end example
@@ -1484,11 +1478,10 @@ Vector O (dimension 3):
 Print on @var{f} a layout of the operand.  Example:
 
 @example
-#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
 #undef NSLOTS
 #define NSLOTS          3
 double complex      O[NSLOTS] = @{
-  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+  CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3)
 @};
 ccdoubles_cplx_vector_print_brackets(stdout, NSLOTS, O);
 @end example
@@ -1506,11 +1499,10 @@ will print:
 Print on @var{f} a layout of the operand.  Example:
 
 @example
-#define CPLX(REAL,IMAG) (CCDOUBLES_CPLX((REAL),(IMAG)))
 #undef NSLOTS
 #define NSLOTS          3
 double complex      O[NSLOTS] = @{
-  CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3)
+  CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3)
 @};
 ccdoubles_cplx_vector_print_braces(stdout, NSLOTS, O);
 @end example
@@ -1655,8 +1647,8 @@ double          RM[NROWS * NCOLS] = @{
   5.6, 7.8   /* this is 2nd row */
 @};
 double complex  CM[NROWS * NCOLS] = @{
-  CCDOUBLES_CPLX(1.2, 2.3), CCDOUBLES_CPLX(3.4, 4.5),
-  CCDOUBLES_CPLX(5.6, 6.7), CCDOUBLES_CPLX(7.8, 8.9)
+  CMPLX(1.2, 2.3), CMPLX(3.4, 4.5),
+  CMPLX(5.6, 6.7), CMPLX(7.8, 8.9)
 @};
 @end example
 
@@ -1684,8 +1676,8 @@ double          RM[NROWS][NCOLS] = @{
   @{ 5.6, 7.8 @}   /* this is 2nd row */
 @};
 double complex  CM[NROWS][NCOLS] = @{
-  @{ CCDOUBLES_CPLX(1.2, 2.3), CCDOUBLES_CPLX(3.4, 4.5) @},
-  @{ CCDOUBLES_CPLX(5.6, 6.7), CCDOUBLES_CPLX(7.8, 8.9) @}
+  @{ CMPLX(1.2, 2.3), CMPLX(3.4, 4.5) @},
+  @{ CMPLX(5.6, 6.7), CMPLX(7.8, 8.9) @}
 @};
 @end example
 
@@ -2712,14 +2704,13 @@ Print on @var{f} a layout of the operand.  @var{name} must be a pointer
 to an @asciiz{} string representing the operand name.  Example:
 
 @example
-#define CPLX(REAL,IMAG)  CCDOUBLES_CPLX((REAL),(IMAG))
 #undef NROWS
 #undef NCOLS
 #define NROWS           2
 #define NCOLS           3
 double complex  O[NROWS][NCOLS] = @{
-  @{ CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) @},
-  @{ CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) @}
+  @{ CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3) @},
+  @{ CMPLX(2.1,-2.1), CMPLX(2.2,-2.2), CMPLX(2.3,-2.3) @}
 @};
 ccdoubles_cplx_matrix_print_display \
   (stdout, "O", NROWS, NCOLS, &O[0][0]);
@@ -2740,14 +2731,13 @@ Row-major matrix O (dimension 2 x 3) (displayed in row-major order):
 Print on @var{f} a layout of the operand.  Example:
 
 @example
-#define CPLX(REAL,IMAG)  CCDOUBLES_CPLX((REAL),(IMAG))
 #undef NROWS
 #undef NCOLS
 #define NROWS           2
 #define NCOLS           3
 double complex  O[NROWS][NCOLS] = @{
-  @{ CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) @},
-  @{ CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) @}
+  @{ CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3) @},
+  @{ CMPLX(2.1,-2.1), CMPLX(2.2,-2.2), CMPLX(2.3,-2.3) @}
 @};
 ccdoubles_cplx_matrix_print_brackets \
   (stdout, NROWS, NCOLS, &O[0][0]);
@@ -2767,14 +2757,13 @@ will print:
 Print on @var{f} a layout of the operand.  Example:
 
 @example
-#define CPLX(REAL,IMAG)  CCDOUBLES_CPLX((REAL),(IMAG))
 #undef NROWS
 #undef NCOLS
 #define NROWS           2
 #define NCOLS           3
 double complex  O[NROWS][NCOLS] = @{
-  @{ CPLX(1.1,-1.1), CPLX(1.2,-1.2), CPLX(1.3,-1.3) @},
-  @{ CPLX(2.1,-2.1), CPLX(2.2,-2.2), CPLX(2.3,-2.3) @}
+  @{ CMPLX(1.1,-1.1), CMPLX(1.2,-1.2), CMPLX(1.3,-1.3) @},
+  @{ CMPLX(2.1,-2.1), CMPLX(2.2,-2.2), CMPLX(2.3,-2.3) @}
 @};
 ccdoubles_cplx_matrix_print_braces \
   (stdout, NROWS, NCOLS, &O[0][0]);

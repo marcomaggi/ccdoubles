@@ -685,158 +685,154 @@ ccdoubles_decl void ccdoubles_cplx_vector_set_split (unsigned nslots, ccdoubles_
 ccdoubles_decl void ccdoubles_cplx_vector_copy (unsigned nslots, ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src)
   __attribute__((__nonnull__(2,3)));
 
-ccdoubles_decl void ccdoubles_cplx_vector_real (unsigned nslots,
-						ccdoubles_real_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_imag (unsigned nslots,
-						ccdoubles_real_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_magnitude (unsigned nslots,
-						     ccdoubles_real_result_t R,
-						     ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_angle (unsigned nslots,
-						 ccdoubles_real_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_conj (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_from_rect (unsigned nslots,
-						     ccdoubles_cplx_result_t R,
-						     ccdoubles_real_operand_t real,
-						     ccdoubles_real_operand_t imag);
-ccdoubles_decl void ccdoubles_cplx_vector_from_polar (unsigned nslots,
-						      ccdoubles_cplx_result_t R,
-						      ccdoubles_real_operand_t magnitude,
-						      ccdoubles_real_operand_t angle);
+ccdoubles_decl void ccdoubles_cplx_vector_real (unsigned nslots, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_imag (unsigned nslots, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_magnitude (unsigned nslots, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_angle (unsigned nslots, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_conj (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_from_rect (unsigned nslots, ccdoubles_cplx_result_t R,
+						     ccdoubles_real_operand_t real, ccdoubles_real_operand_t imag)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_from_polar (unsigned nslots, ccdoubles_cplx_result_t R,
+						      ccdoubles_real_operand_t magnitude, ccdoubles_real_operand_t angle)
+  __attribute__((__nonnull__(2,3,4)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_add (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_sub (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_mul (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_div (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_neg (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (unsigned nslots,
-								    ccdoubles_cplx_operand_t O1,
-								    ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_scalar_product_split (unsigned nslots,
-								double complex * result,
-								ccdoubles_cplx_operand_t O1,
-								ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (unsigned nslots,
-						      ccdoubles_cplx_result_t R,
-						      double complex lambda,
-						      ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul_split (unsigned nslots,
-							    ccdoubles_cplx_result_t R,
-							    double lambda_re, double lambda_im,
-							    ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (unsigned nslots,
-							      ccdoubles_cplx_result_t R,
-							      double complex alpha,
-							      ccdoubles_cplx_operand_t O1,
-							      double complex beta,
-							      ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_vector_linear_combination_split (unsigned nslots,
-								    ccdoubles_cplx_result_t R,
-								    double alpha_re, double alpha_im,
-								    ccdoubles_cplx_operand_t O1,
-								    double beta_re, double beta_im,
-								    ccdoubles_cplx_operand_t O2);
+ccdoubles_decl void ccdoubles_cplx_vector_add (unsigned nslots, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_sub (unsigned nslots, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_mul (unsigned nslots, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_div (unsigned nslots, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_neg (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl double complex ccdoubles_cplx_vector_scalar_product (unsigned nslots, ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_product_split (unsigned nslots,double complex * result,
+								ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul (unsigned nslots, ccdoubles_cplx_result_t R,
+						      double complex lambda, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,4)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_scalar_mul_split (unsigned nslots, ccdoubles_cplx_result_t R,
+							    double lambda_re, double lambda_im, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,5)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_linear_combination (unsigned nslots, ccdoubles_cplx_result_t R,
+							      double complex alpha, ccdoubles_cplx_operand_t O1,
+							      double complex beta, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,4,6)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_linear_combination_split (unsigned nslots, ccdoubles_cplx_result_t R,
+								    double alpha_re, double alpha_im, ccdoubles_cplx_operand_t O1,
+								    double beta_re, double beta_im, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,5,8)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_exp (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_log (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_log10 (unsigned nslots,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_sqrt (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_pow (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
+ccdoubles_decl void ccdoubles_cplx_vector_exp (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_log (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_log10 (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_sqrt (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_pow (unsigned nslots, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(2,3,4)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_sin (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_cos (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_tan (unsigned nslots,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_asin (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_acos (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_atan (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_vector_sin (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_cos (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_tan (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_asin (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_acos (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_atan (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_sinh (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_cosh (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_tanh (unsigned nslots,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_asinh (unsigned nslots,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_acosh (unsigned nslots,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_vector_atanh (unsigned nslots,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_vector_sinh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_cosh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_tanh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_asinh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_acosh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_cplx_vector_atanh (unsigned nslots, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(2,3)));
+
 
 /* ------------------------------------------------------------------ */
 
 ccdoubles_decl void ccdoubles_cplx_vector_copy_forward (unsigned dst_start, unsigned src_start, unsigned nslots,
-							ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src);
+							ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src)
+  __attribute__((__nonnull__(4,5)));
 
 ccdoubles_decl void ccdoubles_cplx_vector_copy_backward (unsigned dst_start, unsigned src_start, unsigned nslots,
-							 ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src);
+							 ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src)
+  __attribute__((__nonnull__(4,5)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_vector_print_display  (FILE * f, const char * name,
-							  unsigned nslots, ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_vector_print_display  (FILE * f, const char * name, unsigned nslots, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,2,4)));
 
-ccdoubles_decl void ccdoubles_cplx_vector_print_brackets (FILE * f,
-							  unsigned nslots, ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_vector_print_brackets (FILE * f, unsigned nslots, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,3)));
 
-ccdoubles_decl void ccdoubles_cplx_vector_print_braces   (FILE * f,
-							  unsigned nslots, ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_vector_print_braces   (FILE * f, unsigned nslots, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,3)));
 
 
 /** --------------------------------------------------------------------

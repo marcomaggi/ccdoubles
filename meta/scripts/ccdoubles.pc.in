@@ -20,7 +20,7 @@ sysconfdir=@sysconfdir@
 
 Name: @PACKAGE_NAME@
 Description: routines for vectors and matrices of double floats
-Version: @CCDOUBLES_PKG_CONFIG_VERSION@
+Version: @MMUX_PKG_CONFIG_VERSION@
 Libs: -L${libdir} -lccdoubles
 Cflags: -I${includedir}
 

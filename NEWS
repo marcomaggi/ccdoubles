@@ -1,40 +1,17 @@
-﻿-*- coding: utf-8-with-signature-unix -*-
-Subject: [announce] CCDoubles revision 0.3d0
+-*- coding: utf-8-unix -*-
 
-			       CCDoubles
-			       =========
-
-
-This  package  installs  a  C11  language  library  implementing  simple
-routines  for vectors  and  matrices of  "double"  and "double  complex"
-values.   This  library is  meant  to  be  used  as companion  for  more
-sophisticated libraries such as CBLAS and LAPACKE.
-
-  The package  makes use  of the  GNU Autotools  and it  is tested  on a
-GNU+Linux system.  It is distributed under the GNU Lesser General Public
-License version 3.0.
-
-  The latest release of this package can be downloaded from:
-
-	 <https://bitbucket.org/marcomaggi/ccdoubles/downloads>
-
-development takes place at:
-
-	       <http://github.com/marcomaggi/ccdoubles/>
-
-and as backup at:
-
-	     <https://bitbucket.org/marcomaggi/ccdoubles/>
-
-the documentation is available online:
-
-	   <http://marcomaggi.github.com/docs/ccdoubles.html>
+			News file for CCDoubles
+			=======================
 
 
-Notes for revision 0.3d0
-------------------------
+Notes for revision 0.3.0-devel.0
+--------------------------------
 
 * Changed language to C11.
+
+* Packaging infrastructure development.
+
+* Changed use of "drem()" to use of "remainder()".
 
 
 Notes for revision 0.2d0
@@ -88,4 +65,5 @@ Notes for revision 0.1d0
 # mode: text
 # fill-column: 72
 # paragraph-start: "*"
+# ispell-local-dictionary: "en_GB"
 # End:

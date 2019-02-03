@@ -1,13 +1,15 @@
-dnl @configure_input@
-dnl
+# @configure_input@
+#
 
 AC_PREREQ([2.69])
-AC_INIT([CCDoubles],[0.3d0],
+MMUX_PKG_VERSIONS([0],[3],[0],[devel.0])
+AC_INIT([CCDoubles],[MMUX_PACKAGE_VERSION],
   [marco.maggi-ipsu@poste.it],
   [ccdoubles],[http://github.com/marcomaggi/ccdoubles/])
-dnl This is the revision number of this configure.ac
-AC_REVISION([0.1])
-AC_COPYRIGHT([Copyright (c) 2014, 2015, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
+MMUX_INIT
+MMUX_LIBTOOL_LIBRARY_VERSIONS([ccdoubles],1,0,0)
+AC_REVISION([0.2])
+AC_COPYRIGHT([Copyright (c) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
 
 This program is free software: you  can redistribute it and/or modify it
 under the  terms of the GNU  General Public License as  published by the
@@ -28,7 +30,7 @@ AC_CONFIG_AUX_DIR([meta/autotools])
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip subdir-objects])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
 AM_MAINTAINER_MODE
 
 AM_PROG_AR
@@ -40,25 +42,13 @@ AC_PROG_MKDIR_P
 LT_PREREQ([2.4])
 LT_INIT
 
-dnl page
-#### libraries interface version
-
-dnl This is the version stored in the pkg-config data file.
-AC_SUBST([CCDOUBLES_PKG_CONFIG_VERSION],[0.2])
-
-MM_LIBTOOL_LIBRARY_VERSIONS([ccdoubles],1,0,0)
-
-dnl page
+
 #### basic system inspection
 
+MMUX_CHECK_TARGET_OS
+
 AC_LANG([C])
-dnl AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
-AC_PROG_CC_C99
-AX_CHECK_COMPILE_FLAG([-std=c11],[],[AC_MSG_ERROR([*** Compiler does not support -std=c11])],[-pedantic])
-AX_CFLAGS="-std=c11"
-dnl AX_CHECK_COMPILE_FLAG([-fplan9-extensions],[],[AC_MSG_ERROR([*** Compiler does not support -fplan9-extensions])],[$AX_CFLAGS])
-dnl AX_CFLAGS="$AX_CFLAGS -fplan9-extensions"
-AC_SUBST(AX_CFLAGS)
+MMUX_LANG_C11
 
 AM_PROG_AS
 AM_PROG_CC_C_O
@@ -73,7 +63,7 @@ AC_TYPE_SSIZE_T
 
 AC_CACHE_SAVE
 
-dnl page
+
 #### checks for library functions
 
 AC_FUNC_MALLOC
@@ -82,21 +72,18 @@ AC_CHECK_FUNCS([exp10 clog10])
 
 AC_CACHE_SAVE
 
-dnl page
+
 dnl external libraries
 
 AC_CHECK_LIB([m],[cabs])
 
-dnl page
+
 #### finish
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile]
    [meta/scripts/ccdoubles.pc])
+MMUX_OUTPUT
 AC_OUTPUT
 
 ### end of file
-# Local Variables:
-# mode: autoconf
-# page-delimiter: "^dnl page"
-# End:

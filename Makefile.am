@@ -2,25 +2,16 @@
 
 ACLOCAL_AMFLAGS		= -I meta/autotools
 AUTOMAKE_OPTIONS	= foreign
-EXTRA_DIST		= INSTALL configure.sh
+EXTRA_DIST		= INSTALL	\
+			  meta/slackware/slack-desc.in
 dist_doc_DATA		= README COPYING
-AM_CFLAGS		= -Wall -Wextra $(AX_CFLAGS)
+AM_CFLAGS		= $(MMUX_CFLAGS) -I$(srcdir)/src
 
 ## --------------------------------------------------------------------
 
 EXTRA_DIST		+= meta/scripts/ccdoubles.pc.in
 pkgconfigdir		= $(libdir)/pkgconfig
 nodist_pkgconfig_DATA	= meta/scripts/ccdoubles.pc
-
-## --------------------------------------------------------------------
-
-AM_MAKEINFOFLAGS	= --no-split
-
-info_TEXINFOS		= doc/ccdoubles.texi
-doc_ccdoubles_TEXINFOS	= \
-	doc/macros.texi		\
-	doc/lgpl-3.0.texi	\
-	doc/fdl-1.3.texi
 
 ## --------------------------------------------------------------------
 
@@ -32,7 +23,20 @@ EXTRA_DIST		+= \
 	scheme/ccdoubles/compat.vicare.sls	\
 	scheme/test-vicare.sps
 
-#page
+
+#### documentation
+
+AM_MAKEINFOFLAGS	= --no-split
+AM_MAKEINFOHTMLFLAGS	= --split=node -c WORDS_IN_PAGE=0 \
+	-c PRE_BODY_CLOSE="<p>This document describes version <tt>$(PACKAGE_VERSION)</tt> of <em>$(PACKAGE_NAME)</em>.</p>"
+
+info_TEXINFOS		= doc/ccdoubles.texi
+doc_ccdoubles_TEXINFOS	= \
+	doc/macros.texi		\
+	doc/lgpl-3.0.texi	\
+	doc/fdl-1.3.texi
+
+
 #### libraries
 
 ccdoubles_CURRENT	= @ccdoubles_VERSION_INTERFACE_CURRENT@
@@ -55,7 +59,7 @@ libccdoubles_la_SOURCES= \
 	src/ccdoubles-int-vectors.c	\
 	src/ccdoubles-int-matrices.c
 
-#page
+
 #### tests
 
 check_PROGRAMS	= \
@@ -85,7 +89,14 @@ tests_integers_LDADD		= $(ccdoubles_tests_ldadd)
 tests_printing_CPPFLAGS		= $(ccdoubles_tests_cppflags)
 tests_printing_LDADD		= $(ccdoubles_tests_ldadd)
 
+## --------------------------------------------------------------------
+
 installcheck-local: $(TESTS)
 	@for f in $(TESTS); do $(builddir)/$$f; done
+
+
+#### common rules
+
+include $(top_srcdir)/meta/automake/mmux-makefile-rules
 
 ### end of file

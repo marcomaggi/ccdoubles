@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014, 2015, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it  under the  terms  of  the GNU  Lesser  General  Public License  as
@@ -156,7 +156,7 @@ test_real_matrices (void)
     double	O1[NROWS][NCOLS] = { {  1.2 } };
     double	O2[NROWS][NCOLS] = { {  3.4 } };
     ccdoubles_real_matrix_drem (NROWS, NCOLS, MREF(R), MREF(O1), MREF(O2));
-    assert(drem(1.2, 3.4) == R[0][0]);
+    assert(remainder(1.2, 3.4) == R[0][0]);
   }
 
   {

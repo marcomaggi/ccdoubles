@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014, 2015, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it  under the  terms  of  the GNU  Lesser  General  Public License  as
@@ -144,9 +144,7 @@ ccdoubles_real_vector_drem (unsigned nslots,
 			    ccdoubles_real_operand_t O1,
 			    ccdoubles_real_operand_t O2)
 {
-  for (unsigned i=0; i<nslots; ++i) {
-    R[i] = drem(O1[i], O2[i]);
-  }
+  ccdoubles_real_vector_remainder(nslots, R, O1, O2);
 }
 void
 ccdoubles_real_vector_remainder (unsigned nslots,

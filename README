@@ -24,14 +24,17 @@ routines  for vectors  and  matrices of  "double"  and "double  complex"
 values.   This  library is  meant  to  be  used  as companion  for  more
 sophisticated libraries such as CBLAS and LAPACKE.
 
-  The package  makes use  of the  GNU Autotools  and it  is tested  on a
-GNU+Linux system.
+  The library targets POSIX systems.
+
+  The package uses the GNU Autotools  and it is tested, using Travis CI,
+on both Ubuntu  GNU+Linux systems and OS X systems.   The package relies
+on "pkg-config" to find the dependencies installed on the system.
 
 
 2. License
 ----------
 
-Copyright (c) 2014-2015, 2017 Marco Maggi
+Copyright (c) 2014-2015, 2017, 2019 Marco Maggi
 <marco.maggi-ipsu@poste.it>
 
 This program is free software: you  can redistribute it and/or modify it
@@ -113,7 +116,12 @@ proper release tarball, but we have to enable maintainer mode:
 4. Usage
 --------
 
-Read the documentation.
+Read the documentation generated from  the Texinfo sources.  The package
+installs the documentation  in Info format; we can  generate and install
+documentation in HTML format by running:
+
+   $ make html
+   $ make install-html
 
 
 A. Credits
@@ -123,11 +131,13 @@ The  stuff was  written by  Marco Maggi.   If this  package exists  it's
 because of the great GNU software tools that he uses all the time.
 
 
-B. Bugs
--------
+B. Bugs, vulnerabilities and contributions
+------------------------------------------
 
-Bug reports are  appreciated, register them at the Issue  Tracker at the
-project's Github site.
+Bug  and vulnerability  reports are  appreciated, all  the vulnerability
+reports  are  public; register  them  using  the  Issue Tracker  at  the
+project's GitHub  site.  For  contributions and  patches please  use the
+Pull Requests feature at the project's GitHub site.
 
 
 C. Resources
@@ -152,6 +162,60 @@ the documentation is available online:
 the GNU Project software can be found here:
 
 			 <http://www.gnu.org/>
+
+
+D. Badges and static analysis
+-----------------------------
+
+D.1 Travis CI
+-------------
+
+Travis CI is  a hosted, distributed continuous  integration service used
+to build and test software projects  hosted at GitHub.  We can find this
+project's dashboard at:
+
+	      <https://travis-ci.org/marcomaggi/ccdoubles>
+
+  Usage of this service is configured through the file ".travis.yml" and
+the scripts under the directory "meta/travis-ci".
+
+
+D.2 Clang's Static Analyzer
+---------------------------
+
+The Clang Static Analyzer is a source code analysis tool that finds bugs
+in C, C++, and Objective-C programs.  It is distributed along with Clang
+and we can find it at:
+
+		   <http://clang-analyzer.llvm.org/>
+
+  Usage of this service is implemented with make rules; see the relevant
+section in the file "Makefile.am".
+
+
+D.3 Codecov
+-----------
+
+Codecov is a service providing code  coverage reports.  We can find this
+project's dashboard at:
+
+	      <https://codecov.io/gh/marcomaggi/ccdoubles>
+
+Usage of  this service is  implemented through direct  interface between
+GitHub and Codecov  sites; it configured through  the file `codecov.yml`
+and appropriate entries in Travis CI's matrix of builds.
+
+
+D.4 Codacy
+----------
+
+Codacy is  an online service  providing code  review.  We can  find this
+project's dashboard at:
+
+	   <https://www.codacy.com/app/marcomaggi/ccdoubles>
+
+Usage of this service is  implemented through direct integration between
+GitHub and Codacy sites.
 
 
 ### end of file

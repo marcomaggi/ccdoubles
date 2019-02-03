@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/marcomaggi/ccdoubles.svg?branch=master)](https://travis-ci.org/marcomaggi/ccdoubles)
 [![codecov](https://codecov.io/gh/marcomaggi/ccdoubles/branch/master/graph/badge.svg)](https://codecov.io/gh/marcomaggi/ccdoubles)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b07b27b019014a2198d498e2e623ad5a)](https://www.codacy.com/app/marcomaggi/ccdoubles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marcomaggi/ccdoubles&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5efb22a0b14e47b0a5d6b3d07ec53560)](https://www.codacy.com/app/marcomaggi/ccdoubles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marcomaggi/ccdoubles&amp;utm_campaign=Badge_Grade)
 
 
 ## Introduction

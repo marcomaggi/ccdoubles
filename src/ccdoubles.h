@@ -839,203 +839,208 @@ ccdoubles_decl void ccdoubles_cplx_vector_print_braces   (FILE * f, unsigned nsl
  ** Complex matrix functions.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_clear (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R);
-ccdoubles_decl void ccdoubles_cplx_matrix_set   (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R,
-						 double complex value);
-ccdoubles_decl void ccdoubles_cplx_matrix_set_split (unsigned nrows, unsigned ncols,
-						     ccdoubles_cplx_result_t R,
-						     double value_re, double value_im);
-ccdoubles_decl void ccdoubles_cplx_matrix_copy (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t dst,
-						ccdoubles_cplx_operand_t src);
+ccdoubles_decl void ccdoubles_cplx_matrix_clear (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R)
+  __attribute__((__nonnull__(3)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_real (unsigned nrows, unsigned ncols,
-						ccdoubles_real_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_imag (unsigned nrows, unsigned ncols,
-						ccdoubles_real_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_magnitude (unsigned nrows, unsigned ncols,
-						     ccdoubles_real_result_t R,
-						     ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_angle (unsigned nrows, unsigned ncols,
-						 ccdoubles_real_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_conj (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_from_rect (unsigned nrows, unsigned ncols,
-						     ccdoubles_cplx_result_t R,
-						     ccdoubles_real_operand_t real,
-						     ccdoubles_real_operand_t imag);
-ccdoubles_decl void ccdoubles_cplx_matrix_from_polar (unsigned nrows, unsigned ncols,
-						      ccdoubles_cplx_result_t R,
-						      ccdoubles_real_operand_t magnitude,
-						      ccdoubles_real_operand_t angle);
+ccdoubles_decl void ccdoubles_cplx_matrix_set   (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, double complex value)
+  __attribute__((__nonnull__(3)));
 
-/* ------------------------------------------------------------------ */
+ccdoubles_decl void ccdoubles_cplx_matrix_set_split (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+						     double value_re, double value_im)
+  __attribute__((__nonnull__(3)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_add (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_matrix_sub (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_matrix_mul (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_matrix_div (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_matrix_neg (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_copy (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t dst, ccdoubles_cplx_operand_t src)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_real (unsigned nrows, unsigned ncols, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_imag (unsigned nrows, unsigned ncols, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_magnitude (unsigned nrows, unsigned ncols, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_angle (unsigned nrows, unsigned ncols, ccdoubles_real_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_conj (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_from_rect (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+						     ccdoubles_real_operand_t real, ccdoubles_real_operand_t imag)
+  __attribute__((__nonnull__(3,4,5)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_from_polar (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+						      ccdoubles_real_operand_t magnitude, ccdoubles_real_operand_t angle)
+  __attribute__((__nonnull__(3,4,5)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (unsigned nrows, unsigned ncols,
-						      ccdoubles_cplx_result_t R,
-						      double complex lambda,
-						      ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul_split (unsigned nrows, unsigned ncols,
-							    ccdoubles_cplx_result_t R,
-							    double lambda_re, double lambda_im,
-							    ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols,
-							      ccdoubles_cplx_result_t R,
-							      double complex alpha,
-							      ccdoubles_cplx_operand_t O1,
-							      double complex beta,
-							      ccdoubles_cplx_operand_t O2);
-ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination_split (unsigned nrows, unsigned ncols,
-								    ccdoubles_cplx_result_t R,
-								    double alpha_re, double alpha_im,
-								    ccdoubles_cplx_operand_t O1,
-								    double beta_re, double beta_im,
-								    ccdoubles_cplx_operand_t O2);
+ccdoubles_decl void ccdoubles_cplx_matrix_add (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,4,5)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_transpose (unsigned nrows, unsigned ncols,
-						     ccdoubles_cplx_result_t R,
-						     ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_sub (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,4,5)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_mul (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,4,5)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_div (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,4,5)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_neg (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+/* ------------------------------------------------------------------ */
+
+ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+						      double complex lambda, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,5)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_scalar_mul_split (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+							    double lambda_re, double lambda_im, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,6)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+							      double complex alpha, ccdoubles_cplx_operand_t O1,
+							      double complex beta, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,5,7)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_linear_combination_split (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+								    double alpha_re, double alpha_im, ccdoubles_cplx_operand_t O1,
+								    double beta_re, double beta_im, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,6,9)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_transpose (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
 
 ccdoubles_decl void ccdoubles_cplx_matrix_conjugate_transpose (unsigned operand_nrows, unsigned operand_ncols,
-							       ccdoubles_cplx_result_t R,
-							       ccdoubles_cplx_operand_t O);
+							       ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (unsigned result_nrows,
-						      unsigned operand_n,
-						      unsigned result_ncols,
+ccdoubles_decl void ccdoubles_cplx_matrix_rowcol_mul (unsigned result_nrows, unsigned operand_n, unsigned result_ncols,
 						      ccdoubles_cplx_result_t R,
-						      ccdoubles_cplx_operand_t O1,
-						      ccdoubles_cplx_operand_t O2);
+						      ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(4,5,6)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_exp (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_log (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_log10 (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_sqrt (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_pow (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O1,
-					       ccdoubles_cplx_operand_t O2);
+ccdoubles_decl void ccdoubles_cplx_matrix_exp (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_log (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_log10 (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_sqrt (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_pow (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R,
+					       ccdoubles_cplx_operand_t O1, ccdoubles_cplx_operand_t O2)
+  __attribute__((__nonnull__(3,4,5)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_sin (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_cos (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_tan (unsigned nrows, unsigned ncols,
-					       ccdoubles_cplx_result_t R,
-					       ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_asin (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_acos (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_atan (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_sin (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_cos (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_tan (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_asin (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_acos (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_atan (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_sinh (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_cosh (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_tanh (unsigned nrows, unsigned ncols,
-						ccdoubles_cplx_result_t R,
-						ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_asinh (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_acosh (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
-ccdoubles_decl void ccdoubles_cplx_matrix_atanh (unsigned nrows, unsigned ncols,
-						 ccdoubles_cplx_result_t R,
-						 ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_sinh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_cosh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_tanh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_asinh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_acosh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(3,4)));
+
+ccdoubles_decl void ccdoubles_cplx_matrix_atanh (unsigned nrows, unsigned ncols, ccdoubles_cplx_result_t R, ccdoubles_cplx_operand_t O)
+    __attribute__((__nonnull__(3,4)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_cplx_matrix_print_display (FILE * f, const char * name,
-							 unsigned nrows, unsigned ncols,
-							 ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_print_display (FILE * f, const char * name, unsigned nrows, unsigned ncols,
+							 ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,2,5)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols,
-							  ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,4)));
 
-ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols,
-							ccdoubles_cplx_operand_t O);
+ccdoubles_decl void ccdoubles_cplx_matrix_print_braces (FILE * f, unsigned nrows, unsigned ncols, ccdoubles_cplx_operand_t O)
+  __attribute__((__nonnull__(1,4)));
 
 
 /** --------------------------------------------------------------------
  ** Arrays of integers.
  ** ----------------------------------------------------------------- */
 
-ccdoubles_decl void ccdoubles_int_vector_clear (unsigned nslots, ccdoubles_int_result_t vector);
-ccdoubles_decl void ccdoubles_int_vector_set   (unsigned nslots, ccdoubles_int_result_t vector, int value);
-ccdoubles_decl void ccdoubles_int_vector_copy  (unsigned nslots, ccdoubles_int_result_t dst, ccdoubles_int_operand_t src);
+ccdoubles_decl void ccdoubles_int_vector_clear (unsigned nslots, ccdoubles_int_result_t vector)
+  __attribute__((__nonnull__(2)));
 
-ccdoubles_decl void ccdoubles_int_vector_print_display  (FILE * f, const char * name,
-							 unsigned nslots, ccdoubles_int_operand_t O);
-ccdoubles_decl void ccdoubles_int_vector_print_brackets (FILE * f,
-							 unsigned nslots, ccdoubles_int_operand_t O);
-ccdoubles_decl void ccdoubles_int_vector_print_braces   (FILE * f,
-							 unsigned nslots, ccdoubles_int_operand_t O);
+ccdoubles_decl void ccdoubles_int_vector_set   (unsigned nslots, ccdoubles_int_result_t vector, int value)
+  __attribute__((__nonnull__(2)));
+
+ccdoubles_decl void ccdoubles_int_vector_copy  (unsigned nslots, ccdoubles_int_result_t dst, ccdoubles_int_operand_t src)
+  __attribute__((__nonnull__(2,3)));
+
+ccdoubles_decl void ccdoubles_int_vector_print_display  (FILE * f, const char * name, unsigned nslots, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,2,4)));
+
+ccdoubles_decl void ccdoubles_int_vector_print_brackets (FILE * f, unsigned nslots, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,3)));
+
+ccdoubles_decl void ccdoubles_int_vector_print_braces   (FILE * f, unsigned nslots, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,3)));
 
 /* ------------------------------------------------------------------ */
 
-ccdoubles_decl void ccdoubles_int_matrix_clear (unsigned nrows, unsigned ncols, ccdoubles_int_result_t matrix);
-ccdoubles_decl void ccdoubles_int_matrix_set   (unsigned nrows, unsigned ncols, ccdoubles_int_result_t matrix, int value);
-ccdoubles_decl void ccdoubles_int_matrix_copy  (unsigned nrows, unsigned ncols, ccdoubles_int_result_t dst, ccdoubles_int_operand_t src);
+ccdoubles_decl void ccdoubles_int_matrix_clear (unsigned nrows, unsigned ncols, ccdoubles_int_result_t matrix)
+  __attribute__((__nonnull__(3)));
+
+ccdoubles_decl void ccdoubles_int_matrix_set   (unsigned nrows, unsigned ncols, ccdoubles_int_result_t matrix, int value)
+  __attribute__((__nonnull__(3)));
+
+ccdoubles_decl void ccdoubles_int_matrix_copy  (unsigned nrows, unsigned ncols, ccdoubles_int_result_t dst, ccdoubles_int_operand_t src)
+  __attribute__((__nonnull__(3,4)));
 
 ccdoubles_decl void ccdoubles_int_matrix_print_display  (FILE * f, const char * name,
-							 unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O);
-ccdoubles_decl void ccdoubles_int_matrix_print_brackets (FILE * f,
-							 unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O);
-ccdoubles_decl void ccdoubles_int_matrix_print_braces   (FILE * f,
-							 unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O);
+							 unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,2,5)));
+
+ccdoubles_decl void ccdoubles_int_matrix_print_brackets (FILE * f, unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,4)));
+
+ccdoubles_decl void ccdoubles_int_matrix_print_braces   (FILE * f, unsigned nrows, unsigned ncols, ccdoubles_int_operand_t O)
+  __attribute__((__nonnull__(1,4)));
 
 
 /** --------------------------------------------------------------------

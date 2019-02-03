@@ -8,8 +8,8 @@
 ## Introduction
 
 This  package  installs  a  C11  language  library  implementing  simple
-routines  for vectors  and  matrices of  `double`  and `double  complex`
-values.   This  library is  meant  to  be  used  as companion  for  more
+mathematical routines for  vectors and matrices of  `double` and `double
+complex` values.  This library is meant to be used as companion for more
 sophisticated libraries such as CBLAS and LAPACKE.
 
 The library targets POSIX systems.

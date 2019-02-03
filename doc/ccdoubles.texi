@@ -33,7 +33,7 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2014, 2015, 2017
+@set COPYRIGHT_YEARS            2014, 2015, 2017, 2019
 
 @c ------------------------------------------------------------
 
@@ -50,9 +50,9 @@
 
 @copying
 This document describes version @value{VERSION} of @value{PACKAGE}, a C11 language library
-implementing simple routines for vectors and matrices of @code{double} and @code{double complex}
-values.  The package is distributed under the terms of the @gnu{} Lesser General Public License
-(@gpl{}).
+implementing simple mathematical routines for vectors and matrices of @code{double} and @code{double
+complex} values.  The package is distributed under the terms of the @gnu{} Lesser General Public
+License (@lgpl{}).
 
 @noindent
 Copyright @copyright{} @value{COPYRIGHT_YEARS} by @value{AUTHOR} @value{AUTHOR_EMAIL}
@@ -135,9 +135,9 @@ Indexes
 
 
 This document describes version @value{VERSION} of @value{PACKAGE}, a C11 language library
-implementing simple routines for vectors and matrices of @code{double} and @code{double complex}
-values.  This library is meant to be used as companion for more sophisticated libraries such as
-@acronym{CBLAS} and @acronym{LAPACKE}.
+implementing simple mathematical routines for vectors and matrices of @code{double} and @code{double
+complex} values.  This library is meant to be used as companion for more sophisticated libraries
+such as @acronym{CBLAS} and @acronym{LAPACKE}.
 
 @value{PACKAGE} installs the single header file @file{ccdoubles.h}.  All the function names in the
 @api{} are prefixed with @code{ccdoubles_}; all the preprocessor macro names are prefixed with
@@ -153,56 +153,40 @@ values.  This library is meant to be used as companion for more sophisticated li
 @section Linking code with the @value{PACKAGE} library
 
 
-This package installs a data file for @command{pkg-config}; usage
-examples:
+This package installs a data file for @command{pkg-config}, so when searching for the installed
+library with the @gnu{} Autotools, we can add the following macro use to @file{configure.ac}:
 
 @example
-$ pkg-config ccdoubles --modversion
-0.1
-
-$ pkg-config ccdoubles --cflags
--I/usr/local/include
-
-$ pkg-config ccdoubles --libs
--L/usr/local/lib64 -lccdoubles
-@end example
-
-When searching for the installed library with the @gnu{} Autotools, we
-can:
-
-@enumerate
-@item
-Install the file @file{pkg.m4} from @file{/usr/share/aclocal} into the
-source tree of the package, for example under @file{meta/autoconf/}.
-
-@item
-Include @file{pkg.m4} in the template by adding the following line to
-@file{acinclude.m4}:
-
-@example
-m4_include(meta/autoconf/pkg.m4)
-@end example
-
-@item
-Add the following macro use to @file{configure.ac}:
-
-@example
-PKG_CHECK_MODULES([CCDOUBLES],[ccdoubles >= 0.1])
+PKG_CHECK_MODULES([CCDOUBLES],[ccdoubles >= 0.3.0])
 @end example
 
 @noindent
-which will set the variables @code{CCDOUBLES_LIBS} and
-@code{CCDOUBLES_CFLAGS}.
+which will set the variables @code{CCDOUBLES_LIBS} and @code{CCDOUBLES_CFLAGS}.  To avoid problems
+with @command{pkg-config}, we need to remember that:
+
+@itemize
+@item
+The macro file defining @code{PKG_CHECK_MODULES} is installed by the package @code{pkg-config}; such
+file usually is in one of the locations:
+
+@center @file{/usr/share/aclocal/pkg.m4}
+@center @file{/usr/local/share/aclocal/pkg.m4}
 
 @item
-Make use of @code{CCDOUBLES_LIBS} and @code{CCDOUBLES_CFLAGS} in the
-@file{Makefile}.
-@end enumerate
+The macro file is located by @command{aclocal}, which in turn is installed by the package @gnu{}
+Automake; @command{aclocal} is used by @command{autoreconf}.  We must make sure that
+@command{aclocal} finds the installed macro files; for this purpose we can use the environment
+variable @env{ACLOCAL_PATH}; under a Bourne shell we can do this with:
+
+@example
+export ACLOCAL_PATH=/usr/local/share/aclocal:/usr/share/aclocal
+@end example
+@end itemize
 
 Alternatively we can use the raw @gnu{} Autoconf macros:
 
 @example
-AC_CHECK_LIB([ccdoubles],[ccd_version_string],,
+AC_CHECK_LIB([ccdoubles],[ccdoubles_version_string],,
   [AC_MSG_FAILURE([test for CCDoubles library failed])])
 AC_CHECK_HEADERS([ccdoubles.h],,
   [AC_MSG_FAILURE([test for CCDoubles header failed])])
@@ -213,15 +197,14 @@ AC_CHECK_HEADERS([ccdoubles.h],,
 @chapter Version functions
 
 
-The installed libraries follow version numbering as established by the
-@gnu{} Autotools.  For an explanation of interface numbers as managed by
-@gnu{} Libtool @xref{Libtool versioning, interface, Libtool's versioning
-system, libtool, Shared library support for @gnu{}}.
+The installed libraries follow version numbering as established by the @gnu{} Autotools.  For an
+explanation of interface numbers as managed by @gnu{} Libtool @xref{Libtool versioning, interface,
+Libtool's versioning system, libtool, Shared library support for @gnu{}}.
 
 
 @deftypefun {const char *} ccdoubles_version_string (void)
-Return a pointer to a statically allocated @asciiz{} string representing
-the interface version number.
+Return a pointer to a statically allocated @asciiz{} string representing the interface version
+number.
 @end deftypefun
 
 
@@ -231,8 +214,7 @@ Return an integer representing the library interface current number.
 
 
 @deftypefun int ccdoubles_version_interface_revision (void)
-Return an integer representing the library interface current revision
-number.
+Return an integer representing the library interface current revision number.
 @end deftypefun
 
 
@@ -301,7 +283,7 @@ An alias for @code{const double complex * restrict}.
 @subsection Functions acting on scalar complex values
 
 
-The C1 language standard library defines common operations on scalar @code{double complex} numbers;
+The C11 language standard library defines common operations on scalar @code{double complex} numbers;
 in addition @value{PACKAGE} defines convenience functions to perform the same.
 
 
@@ -400,7 +382,6 @@ printf("R = %lf%+lfi\n", creal(R), cimag(R));
 @print{} R = -1.200000-3.400000i
 @end example
 @end deftypefun
-
 
 @c page
 @node scalars complex macros

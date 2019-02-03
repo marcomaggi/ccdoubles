@@ -20,7 +20,7 @@ both Ubuntu GNU+Linux  systems and OS X systems.  The  package relies on
 ## License
 
 Copyright (c) 2014-2015, 2017, 2019 Marco Maggi
-<marco.maggi-ipsu@poste.it><br/>
+marco.maggi-ipsu@poste.it<br/>
 All rights reserved.
 
 This program is free software: you  can redistribute it and/or modify it
@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 To install from a proper release tarball, do this:
 
-```
+```shell
 $ cd ccdoubles-0.1.0
 $ mkdir build
 $ cd build
@@ -52,13 +52,13 @@ $ make install
 
 to inspect the available configuration options:
 
-```
+```shell
 $ ../configure --help
 ```
 
 The Makefile is designed to allow parallel builds, so we can do:
 
-```
+```shell
 $ make -j4 all && make -j4 check
 ```
 
@@ -68,20 +68,20 @@ significantly.
 The Makefile supports the DESTDIR  environment variable to install files
 in a temporary location, example: to see what will happen:
 
-```
+```shell
 $ make -n install DESTDIR=/tmp/ccdoubles
 ```
 
 to really do it:
 
-```
+```shell
 $ make install DESTDIR=/tmp/ccdoubles
 ```
 
 After the  installation it is  possible to verify the  installed library
 against the test suite with:
 
-```
+```shell
 $ make installcheck
 ```
 
@@ -90,7 +90,7 @@ we  must install  the GNU  Autotools  (GNU Automake,  GNU Autoconf,  GNU
 Libtool), then  we must first run  the script `autogen.sh` from  the top
 source directory, to generate the needed files:
 
-```
+```shell
 $ cd ccdoubles
 $ sh autogen.sh
 
@@ -101,14 +101,14 @@ notice  that  `autogen.sh`  will   run  the  programs  `autoreconf`  and
 `LIBTOOLIZE`,  whose  value  can  be  customised;  for  example  to  run
 `glibtoolize` rather than `libtoolize` we do:
 
-```
+```shell
 $ LIBTOOLIZE=glibtoolize sh autogen.sh
 ```
 
 After this  the procedure  is the same  as the one  for building  from a
 proper release tarball, but we have to enable maintainer mode:
 
-```
+```shell
 $ ../configure --enable-maintainer-mode [options]
 $ make
 $ make check
@@ -121,7 +121,7 @@ Read the documentation generated from  the Texinfo sources.  The package
 installs the documentation  in Info format; we can  generate and install
 documentation in HTML format by running:
 
-```
+```shell
 $ make html
 $ make install-html
 ```
@@ -220,4 +220,3 @@ project's dashboard at:
 
 Usage of this service is  implemented through direct integration between
 GitHub and Codacy sites.
-

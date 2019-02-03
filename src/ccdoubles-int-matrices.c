@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it  under the  terms  of  the GNU  Lesser  General  Public License  as
@@ -66,11 +66,11 @@ ccdoubles_int_matrix_print_display (FILE * f, const char * name,
 				    unsigned nrows, unsigned ncols,
 				    ccdoubles_int_operand_t O)
 {
-  unsigned	i, j;
+  unsigned	i;
   fprintf(f, "Row-major matrix %s (dimension %u x %u) (displayed in row-major order):\n",
 	  name, nrows, ncols);
   for (i=0; i<nrows; ++i) {
-    j = 0;
+    unsigned j = 0;
     fprintf(f, "| (%u,%u) %+d ", 1+i, 1+j, O[i * ncols + j]);
     for (++j; j<ncols; ++j) {
       fprintf(f, "; (%u,%u) %+d ", 1+i, 1+j, O[i * ncols + j]);

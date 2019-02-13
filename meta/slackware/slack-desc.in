@@ -1,0 +1,12 @@
+              |-----handy-ruler-----------------------------------------------|
+@PACKAGE_NAME@: @PACKAGE_NAME@ @PACKAGE_VERSION@
+@PACKAGE_NAME@:
+@PACKAGE_NAME@: C11 language library implementing simple mathematical routines
+@PACKAGE_NAME@: for vectors and matrices of "double" and "double complex"
+@PACKAGE_NAME@: values.  This library is meant to be used as companion for
+@PACKAGE_NAME@: more sophisticated libraries such as CBLAS and LAPACKE.
+@PACKAGE_NAME@:
+@PACKAGE_NAME@:
+@PACKAGE_NAME@:
+@PACKAGE_NAME@:
+@PACKAGE_NAME@:

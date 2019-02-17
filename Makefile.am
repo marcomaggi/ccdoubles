@@ -9,8 +9,6 @@ AM_CPPFLAGS		= -I$(srcdir)/src
 
 ## --------------------------------------------------------------------
 
-EXTRA_DIST		+= meta/scripts/ccdoubles.pc.in
-pkgconfigdir		= $(libdir)/pkgconfig
 nodist_pkgconfig_DATA	= meta/scripts/ccdoubles.pc
 
 ## --------------------------------------------------------------------
@@ -74,19 +72,26 @@ TESTS				= $(check_PROGRAMS)
 ccdoubles_tests_cppflags	= -I$(srcdir)/src
 ccdoubles_tests_ldadd		= libccdoubles.la
 
+## --------------------------------------------------------------------
+
 tests_version_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_version_CFLAGS		= $(ccdoubles_tests_cflags)
 tests_version_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_vectors_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_vectors_CFLAGS		= $(ccdoubles_tests_cflags)
 tests_vectors_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_matrices_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_matrices_CFLAGS		= $(ccdoubles_tests_cflags)
 tests_matrices_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_integers_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_integers_CFLAGS		= $(ccdoubles_tests_cflags)
 tests_integers_LDADD		= $(ccdoubles_tests_ldadd)
 
 tests_printing_CPPFLAGS		= $(ccdoubles_tests_cppflags)
+tests_printing_CFLAGS		= $(ccdoubles_tests_cflags)
 tests_printing_LDADD		= $(ccdoubles_tests_ldadd)
 
 ## --------------------------------------------------------------------

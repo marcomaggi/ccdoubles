@@ -288,6 +288,10 @@
 @command{bash}
 @end macro
 
+@macro bub{}
+@acronym{bub}
+@end macro
+
 @macro ffmpeg{}
 @acronym{FFMPEG}
 @end macro
@@ -312,20 +316,50 @@
 @acronym{RE2}
 @end macro
 
-@macro lapack{}
-@acronym{LAPACK}
-@end macro
+@c ------------------------------------------------------------------------
 
-@macro lapacke{}
-@acronym{LAPACKE}
+@ifhtml
+@macro uid{}
+@acronym{uid}
 @end macro
+@end ifhtml
+
+@ifnothtml
+@macro uid{}
+@acronym{UID}
+@end macro
+@end ifnothtml
+
+@c ------------------------------------------------------------------------
+
+@ifhtml
+@macro gid{}
+@acronym{gid}
+@end macro
+@end ifhtml
+
+@ifnothtml
+@macro gid{}
+@acronym{GID}
+@end macro
+@end ifnothtml
+
+@c ------------------------------------------------------------------------
 
 @macro blas{}
 @acronym{BLAS}
 @end macro
 
 @macro cblas{}
-@acronym{CBLAS}
+@acronym{CABLAS}
+@end macro
+
+@macro lapack{}
+@acronym{LAPACK}
+@end macro
+
+@macro lapacke{}
+@acronym{LAPACKE}
 @end macro
 
 @c page
@@ -447,6 +481,38 @@ Revised^6 Report on the algorithmic language Scheme
 @code{NULL}
 @end macro
 
+@macro ctrue{}
+@code{true}
+@end macro
+
+@macro cfalse{}
+@code{false}
+@end macro
+
+@macro struct{}
+@code{struct}
+@end macro
+
+@macro method{NAME}
+@cfunc{\NAME\}
+@end macro
+
+@macro iface{NAME}
+@code{\NAME\}
+@end macro
+
+@macro stdin{}
+@code{stdin}
+@end macro
+
+@macro stdout{}
+@code{stdout}
+@end macro
+
+@macro stderr{}
+@code{stderr}
+@end macro
+
 @c page
 @c ------------------------------------------------------------
 @c Macros for references to external documents.
@@ -468,16 +534,24 @@ Revised^6 Report on the algorithmic language Scheme
 @ref{\NODE\,\TITLE\,\TITLE\,autoconf}
 @end macro
 
-@macro vicareref{NODE, TITLE}
-@ref{\NODE\,\TITLE\,\TITLE\,vicare}
+@macro ccexceptionsref{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,ccexceptions}
 @end macro
 
-@macro nauref{NODE, TITLE}
-@ref{\NODE\,\TITLE\,\TITLE\,nausicaa}
+@macro ccmemoryref{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,ccmemory}
 @end macro
 
-@macro naumoreref{NODE, TITLE}
-@ref{\NODE\,\TITLE\,\TITLE\,nausicaa-more}
+@macro ccstructsref{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,ccstructs}
+@end macro
+
+@macro ccstringsref{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,ccstrings}
+@end macro
+
+@macro manpage{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,*manpages*}
 @end macro
 
 @c page

@@ -44,7 +44,7 @@ ccdoubles_AGE		= @ccdoubles_VERSION_INTERFACE_AGE@
 include_HEADERS		= src/ccdoubles.h
 
 lib_LTLIBRARIES		= libccdoubles.la
-libccdoubles_la_LDFLAGS= -version-info $(ccdoubles_CURRENT):$(ccdoubles_REVISION):$(ccdoubles_AGE)
+libccdoubles_la_LDFLAGS= -version-info $(ccdoubles_CURRENT):$(ccdoubles_REVISION):$(ccdoubles_AGE) $(AM_LDFLAGS)
 libccdoubles_la_SOURCES= \
 	src/ccdoubles.h			\
 	src/ccdoubles-internals.h	\
@@ -69,8 +69,9 @@ check_PROGRAMS	= \
 
 TESTS				= $(check_PROGRAMS)
 
-ccdoubles_tests_cppflags	= -I$(srcdir)/src
-ccdoubles_tests_ldadd		= libccdoubles.la
+ccdoubles_tests_cppflags	= $(AM_CPPFLAGS) -I$(srcdir)/src
+ccdoubles_tests_cflags		= $(AM_CFLAGS)
+ccdoubles_tests_ldadd		= $(AM_LDFLAGS) libccdoubles.la
 
 ## --------------------------------------------------------------------
 

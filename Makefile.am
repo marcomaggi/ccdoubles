@@ -4,8 +4,8 @@ ACLOCAL_AMFLAGS		= -I meta/autotools
 AUTOMAKE_OPTIONS	= foreign
 EXTRA_DIST		= INSTALL meta/slackware/slack-desc.in
 dist_doc_DATA		= README COPYING
-AM_CFLAGS		= $(MMUX_CFLAGS)
 AM_CPPFLAGS		= -I$(srcdir)/src
+AM_CFLAGS		= $(MMUX_CFLAGS)
 
 ## --------------------------------------------------------------------
 
@@ -38,15 +38,16 @@ doc_ccdoubles_TEXINFOS	= \
 
 #### libraries
 
-ccdoubles_CURRENT	= @ccdoubles_VERSION_INTERFACE_CURRENT@
-ccdoubles_REVISION	= @ccdoubles_VERSION_INTERFACE_REVISION@
-ccdoubles_AGE		= @ccdoubles_VERSION_INTERFACE_AGE@
+ccdoubles_CURRENT		= @ccdoubles_VERSION_INTERFACE_CURRENT@
+ccdoubles_REVISION		= @ccdoubles_VERSION_INTERFACE_REVISION@
+ccdoubles_AGE			= @ccdoubles_VERSION_INTERFACE_AGE@
+ccdoubles_LINKER_VERSION	= -version-info $(ccdoubles_CURRENT):$(ccdoubles_REVISION):$(ccdoubles_AGE)
 
 include_HEADERS		= src/ccdoubles.h
 
 lib_LTLIBRARIES		= libccdoubles.la
-libccdoubles_la_LDFLAGS= -version-info $(ccdoubles_CURRENT):$(ccdoubles_REVISION):$(ccdoubles_AGE) $(AM_LDFLAGS)
-libccdoubles_la_SOURCES= \
+libccdoubles_la_LDFLAGS	= $(ccdoubles_LINKER_VERSION) $(AM_LDFLAGS)
+libccdoubles_la_SOURCES	= \
 	src/ccdoubles.h			\
 	src/ccdoubles-internals.h	\
 	src/ccdoubles-version.c		\

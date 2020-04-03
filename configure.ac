@@ -2,7 +2,7 @@
 #
 
 AC_PREREQ([2.69])
-MMUX_PKG_VERSIONS([0],[3],[0],[devel.1])
+MMUX_PKG_VERSIONS([0],[4],[0],[devel.0])
 AC_INIT([CCDoubles],[MMUX_PACKAGE_VERSION],
   [marco.maggi-ipsu@poste.it],
   [ccdoubles],[http://github.com/marcomaggi/ccdoubles/])

@@ -7,7 +7,7 @@
 
 	Test file for version functions.
 
-  Copyright (C) 2014, 2017, 2020 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2017, 2020 Marco Maggi <mrc.mgg@gmail.com>
 
   See the COPYING file.
 */

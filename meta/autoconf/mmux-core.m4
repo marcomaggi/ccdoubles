@@ -4,7 +4,7 @@
 #
 # LICENSE
 #
-#   Copyright (c) 2018, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
+#   Copyright (c) 2018, 2019 Marco Maggi <mrc.mgg@gmail.com>
 #
 #   Copying and distribution of this file, with or without modification,
 #   are permitted in  any medium without royalty  provided the copyright
@@ -141,6 +141,14 @@ AC_DEFUN([MMUX_INIT],[
 #     building a Slackware package file.
 #
 AC_DEFUN([MMUX_OUTPUT],[
+  AC_SUBST([MMUX_PKG_MAJOR_VERSION],MMUX_PACKAGE_MAJOR_VERSION)
+  AC_SUBST([MMUX_PKG_MINOR_VERSION],MMUX_PACKAGE_MINOR_VERSION)
+  AC_SUBST([MMUX_PKG_PATCH_LEVEL],MMUX_PACKAGE_PATCH_LEVEL)
+  AC_SUBST([MMUX_PKG_PRERELEASE_TAG],MMUX_PACKAGE_PRERELEASE_TAG)
+  AC_SUBST([MMUX_PKG_BUILD_METADATA],MMUX_PACKAGE_BUILD_METADATA)
+  AC_SUBST([MMUX_PKG_VERSION],MMUX_PACKAGE_VERSION)
+  AC_SUBST([MMUX_PKG_SEMANTIC_VERSION],MMUX_PACKAGE_SEMANTIC_VERSION)
+
   # This is the version stored in the pkg-config data file.
   AC_SUBST([MMUX_PKG_CONFIG_VERSION],MMUX_PACKAGE_PKG_CONFIG_VERSION)
 

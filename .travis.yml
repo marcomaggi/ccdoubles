@@ -144,6 +144,7 @@ install:
   - ./meta/travis-ci/install-autoconf.sh;
   - ./meta/travis-ci/install-automake.sh;
   - ./meta/travis-ci/install-texinfo.sh;
+  - ./meta/travis-ci/install-ccexceptions.sh;
 
 #page
 #### build scripts

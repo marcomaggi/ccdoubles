@@ -9,7 +9,7 @@ AC_INIT([CCDoubles],[MMUX_PACKAGE_VERSION],
 MMUX_INIT
 MMUX_LIBTOOL_LIBRARY_VERSIONS([ccdoubles],1,0,0)
 AC_REVISION([0.2])
-AC_COPYRIGHT([Copyright (c) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
+AC_COPYRIGHT([Copyright (c) 2014, 2015, 2017, 2019, 2020 Marco Maggi <marco.maggi-ipsu@poste.it>
 
 This program is free software: you  can redistribute it and/or modify it
 under the terms of the GNU Lesser General Public License as published by
@@ -61,6 +61,8 @@ AC_C_INLINE
 AC_C_RESTRICT
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
+
+CCLIB_CONFIG_SETUP
 
 AC_CACHE_SAVE
 

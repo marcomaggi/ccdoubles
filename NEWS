@@ -9,6 +9,8 @@ Notes for revision 0.3.0-devel.1
 
 * Packaging infrastructure development.
 
+* Introduced dependency upon CCExceptions version 0.10.0.
+
 
 Notes for revision 0.3.0-devel.0
 --------------------------------

@@ -8,7 +8,7 @@
 	This header file is for internal definitions.  It must be included by all the
 	source files in this package.
 
-  Copyright (C) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015, 2017, 2019, 2020 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is free  software: you can redistribute it and/or  modify it under the
   terms of the  GNU Lesser General Public  License as published by  the Free Software
@@ -92,10 +92,6 @@
 /** --------------------------------------------------------------------
  ** Done.
  ** ----------------------------------------------------------------- */
-
-#ifdef __cplusplus
-} // extern "C"
-#endif
 
 #endif /* CCDOUBLES_INTERNALS_H */
 

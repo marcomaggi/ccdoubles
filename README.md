@@ -11,7 +11,8 @@ mathematical routines for  vectors and matrices of  `double` and `double
 complex` values.  This library is meant to be used as companion for more
 sophisticated libraries such as CBLAS and LAPACKE.
 
-The library targets POSIX systems.
+The  library  targets  POSIX  systems.   This  package  depends  on  the
+packages: CCExceptions, at least version 0.10.0.
 
 The package uses the GNU Autotools and it is tested, using Travis CI, on
 both Ubuntu GNU+Linux  systems and OS X systems.  The  package relies on
@@ -19,7 +20,7 @@ both Ubuntu GNU+Linux  systems and OS X systems.  The  package relies on
 
 ## License
 
-Copyright (c) 2014-2015, 2017, 2019 Marco Maggi
+Copyright (c) 2014-2015, 2017, 2019, 2020 Marco Maggi
 marco.maggi-ipsu@poste.it<br/>
 All rights reserved.
 

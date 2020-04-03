@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014, 2015, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2015, 2017, 2019, 2020 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is free  software: you can redistribute it and/or  modify it under the
   terms of the  GNU Lesser General Public  License as published by  the Free Software
@@ -634,8 +634,8 @@ ccdoubles_real_matrix_atanh (unsigned nrows, unsigned ncols,
  ** ----------------------------------------------------------------- */
 
 void
-ccdoubles_real_matrix_row_to_row (unsigned dst_nrows CCDOUBLES_UNUSED, unsigned dst_ncols, ccdoubles_real_result_t  dst,
-				  unsigned src_nrows CCDOUBLES_UNUSED, unsigned src_ncols, ccdoubles_real_operand_t src,
+ccdoubles_real_matrix_row_to_row (unsigned dst_nrows CCLIB_UNUSED, unsigned dst_ncols, ccdoubles_real_result_t  dst,
+				  unsigned src_nrows CCLIB_UNUSED, unsigned src_ncols, ccdoubles_real_operand_t src,
 				  unsigned dst_row, unsigned dst_col,
 				  unsigned src_row, unsigned src_col,
 				  unsigned nslots)

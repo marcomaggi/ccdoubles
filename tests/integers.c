@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2014, 2017, 2019 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2014, 2017, 2019, 2020 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   See the file COPYING.
 */
@@ -38,7 +38,7 @@ static void test_printing (void);
  ** ----------------------------------------------------------------- */
 
 int
-main (int argc CCDOUBLES_UNUSED, const char *const argv[] CCDOUBLES_UNUSED)
+main (int argc CCLIB_UNUSED, const char *const argv[] CCLIB_UNUSED)
 {
   test_int_vectors();
   test_int_matrices();
